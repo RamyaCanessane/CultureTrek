@@ -18,8 +18,10 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F8F60C78301A2F7400CCA393 /* CultureTrek */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			indentWidth = 4;
 			path = CultureTrek;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -262,7 +264,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H7Q23C77SQ;
+				DEVELOPMENT_TEAM = 2R5488TTS6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -294,7 +296,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H7Q23C77SQ;
+				DEVELOPMENT_TEAM = 2R5488TTS6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

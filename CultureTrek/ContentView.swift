@@ -14,8 +14,15 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+          
+            Text("Bienvenue")
+            
+            Text(.homeWelcomeMessage)
+            
+            Text(String(localized: .homeWelcomeMessage))
         }
         .padding()
+        .environment(\.locale, .init(identifier: "en"))
     }
 }
 
