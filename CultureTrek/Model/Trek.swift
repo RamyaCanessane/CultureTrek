@@ -24,7 +24,6 @@ struct Trek {
     let riddles: [Riddle]
     let quizQuestions: [QuizQuestion]
     let region: String
-    let riddleCount: Int
     let summary: String? // description
     
     enum Elevation {
