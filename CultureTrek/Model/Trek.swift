@@ -21,6 +21,8 @@ struct Trek {
     let goodToKnow: [String]
     let isLiked: Bool
     let name: String
+    let riddles: [Riddle]
+    let quizQuestions: [QuizQuestion]
     let region: String
     let riddleCount: Int
     let summary: String? // description
