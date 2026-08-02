@@ -114,6 +114,7 @@ extension TitledCard {
             Text(title)
                 .font(Styles.titleFont)
                 .foregroundStyle(Styles.titleColor)
+                .textCase(.uppercase)
                 .padding(.horizontal, Styles.titleHPadding)
                 .frame(height: Styles.titleHeight)
                 .background(background)
