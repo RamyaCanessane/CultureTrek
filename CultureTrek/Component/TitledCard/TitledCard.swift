@@ -46,6 +46,29 @@ struct TitledCard: View {
          titlePrefixIcon: Image? = nil,
          content: String,
          kind: Kind,
+         contentAbove: (() -> any View)? = nil,
+         contentBelow: (() -> any View)? = nil) {
+        self.title = title
+        self.titlePrefixIcon = titlePrefixIcon
+        self.content = content
+        self.kind = kind
+        self.contentAbove = if let contentAbove {
+            AnyView(contentAbove())
+        } else {
+            nil
+        }
+        
+        self.contentBelow = if let contentBelow {
+            AnyView(contentBelow())
+        } else {
+            nil
+        }
+    }
+    
+    init(title: String,
+         titlePrefixIcon: Image? = nil,
+         content: String,
+         kind: Kind,
          contentAbove: () -> any View) {
         self.title = title
         self.titlePrefixIcon = titlePrefixIcon

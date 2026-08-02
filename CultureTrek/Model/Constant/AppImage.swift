@@ -14,11 +14,14 @@ enum AppImage {
     
     enum Icon {
         case riddleCompletedTitlePrefix
+        case riddleClue
         
         var systemName: String {
             switch self {
             case .riddleCompletedTitlePrefix:
                 "checkmark.square.fill"
+            case .riddleClue:
+                "lightbulb.max.fill"
             }
         }
         
