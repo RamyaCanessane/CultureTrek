@@ -15,9 +15,22 @@
 		F8F60C84301A305C00CCA393 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D7149781301F709800FCC9C7 /* Exceptions for "CultureTrek" folder in "CultureTrek" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F8F60C75301A2F7400CCA393 /* CultureTrek */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F8F60C78301A2F7400CCA393 /* CultureTrek */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D7149781301F709800FCC9C7 /* Exceptions for "CultureTrek" folder in "CultureTrek" target */,
+			);
 			indentWidth = 4;
 			path = CultureTrek;
 			sourceTree = "<group>";
@@ -267,6 +280,7 @@
 				DEVELOPMENT_TEAM = 2R5488TTS6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CultureTrek/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +313,7 @@
 				DEVELOPMENT_TEAM = 2R5488TTS6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CultureTrek/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

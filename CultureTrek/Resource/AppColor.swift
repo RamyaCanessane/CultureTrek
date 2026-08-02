@@ -22,7 +22,8 @@ enum AppColor {
     static let inverseBackground: Color = .primitiveInverseBackground
     static let inverseForegroundPrimary: Color = .primitiveInverseForegroundPrimary
     static let inverseForegroundSecondary: Color = .primitiveInverseForegroundSecondary
-    static let liked: Color = .primitiveLiked
+    static let likedBackground: Color = .primitiveLikedBackground
+    static let likedForeground: Color = .primitiveLikedForeground
     static let popupBadAnswerBackground: Color = .primitivePopupBadAnswerBackground
     static let popupBadAnswerForeground: Color = .primitivePopupBadAnswerForeground
     static let popupGoodAnswerBackground: Color = .primitivePopupGoodAnswerBackground
