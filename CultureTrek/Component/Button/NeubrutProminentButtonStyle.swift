@@ -11,6 +11,7 @@ import SwiftUI
 struct NeubrutProminentButtonStyle: ButtonStyle {
     let kind: Kind
     let icon: Image?
+    let isFullWidth: Bool
     
     @Environment(\.isEnabled) private var isEnabled
     
@@ -43,6 +44,11 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
             .foregroundStyle(foreground(role: configuration.role))
             .padding(.horizontal, Styles.hPadding)
             .frame(height: Styles.height)
+            .if(isFullWidth) { view in
+                view
+                    .frame(maxWidth: .infinity,
+                           alignment: .center)
+            }
             .background {
                 Styles.shape
                     .fill(background(role: configuration.role))
@@ -118,8 +124,11 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
 extension ButtonStyle where Self == NeubrutProminentButtonStyle {
     
     static func neubrutProminent(kind: Self.Kind,
-                                 icon: Image? = nil) -> Self {
-        Self(kind: kind, icon: icon)
+                                 icon: Image? = nil,
+                                 isFullWidth: Bool = false) -> Self {
+        Self(kind: kind,
+             icon: icon,
+             isFullWidth: isFullWidth)
     }
 }
 
@@ -174,7 +183,8 @@ fileprivate struct Styles {
             )
         
         Button("Vanille") {}
-            .buttonStyle(.neubrutProminent(kind: .secondary))
+            .buttonStyle(.neubrutProminent(kind: .secondary,
+                                           isFullWidth: true))
         
         Button("Vanille") {}
             .buttonStyle(.neubrutProminent(kind: .primary))
@@ -183,7 +193,10 @@ fileprivate struct Styles {
         Button("Vanille") {}
             .buttonStyle(
                 .neubrutProminent(kind: .info,
-                                  icon: Image(systemName: "info"))
+                                  icon: Image(systemName: "info"),
+                                  isFullWidth: true)
             )
     }
+    .padding(32)
+    .background(AppColor.background)
 }
