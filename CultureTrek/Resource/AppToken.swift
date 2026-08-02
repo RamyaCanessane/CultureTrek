@@ -6,6 +6,8 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
+import SwiftUI
+
 enum AppToken {
 
     static let shadowSize: Double = 4
@@ -13,6 +15,8 @@ enum AppToken {
     static let cornerRadius: Double = Primitive.radiusSM
     static let borderWidth: Double = 2
     static let popupBorderWidth: Double = 4
+    static let buttonHeight: Double = 48
+    static let buttonPressedAnimation = Animation.snappy
 
     enum Primitive {
         // Padding
