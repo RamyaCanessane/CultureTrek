@@ -10,15 +10,18 @@ import SwiftUI
 
 struct TitledCard: View {
     let title: String
+    let titlePrefixIcon: Image?
     let content: String
     let kind: Kind
     let contentAbove: AnyView?
     let contentBelow: AnyView?
     
     init(title: String,
+         titlePrefixIcon: Image? = nil,
          content: String,
          kind: Kind) {
         self.title = title
+        self.titlePrefixIcon = titlePrefixIcon
         self.content = content
         self.kind = kind
         self.contentAbove = nil
@@ -26,11 +29,13 @@ struct TitledCard: View {
     }
     
     init(title: String,
+         titlePrefixIcon: Image? = nil,
          content: String,
          kind: Kind,
          contentAbove: () -> any View,
          contentBelow: () -> any View) {
         self.title = title
+        self.titlePrefixIcon = titlePrefixIcon
         self.content = content
         self.kind = kind
         self.contentAbove = AnyView(contentAbove())
@@ -38,10 +43,12 @@ struct TitledCard: View {
     }
     
     init(title: String,
+         titlePrefixIcon: Image? = nil,
          content: String,
          kind: Kind,
          contentAbove: () -> any View) {
         self.title = title
+        self.titlePrefixIcon = titlePrefixIcon
         self.content = content
         self.kind = kind
         self.contentAbove = AnyView(contentAbove())
@@ -49,10 +56,12 @@ struct TitledCard: View {
     }
     
     init(title: String,
+         titlePrefixIcon: Image? = nil,
          content: String,
          kind: Kind,
          contentBelow: () -> any View) {
         self.title = title
+        self.titlePrefixIcon = titlePrefixIcon
         self.content = content
         self.kind = kind
         self.contentAbove = nil
@@ -96,7 +105,8 @@ struct TitledCard: View {
         }
         .overlay(alignment: .topLeading) {
             Title(title: title,
-                  kind: kind)
+                  kind: kind,
+                  prefixIcon: titlePrefixIcon)
             .offset(x: Styles.titleHPadding,
                     y: -Styles.titleHeight / 2)
         }
@@ -109,9 +119,17 @@ extension TitledCard {
     struct Title: View {
         let title: String
         let kind: Kind
+        let prefixIcon: Image?
         
         var body: some View {
-            Text(title)
+            HStack(alignment: .center,
+                   spacing: Styles.titleSpacing) {
+                if let prefixIcon {
+                    prefixIcon
+                }
+                
+                Text(title)
+            }
                 .font(Styles.titleFont)
                 .foregroundStyle(Styles.titleColor)
                 .textCase(.uppercase)
@@ -176,6 +194,7 @@ fileprivate enum Styles {
     static let titleShape = RoundedRectangle(cornerRadius: titleCornerRadius)
     static let titleBorder = AppColor.border
     static let titleBorderWidth = AppToken.borderWidth
+    static let titleSpacing: Double = 4
     
     static let primary = AppColor.accentPrimary
     static let secondary = AppColor.accentSecondary
@@ -193,6 +212,7 @@ fileprivate enum Styles {
                    kind: .info)
         
         TitledCard(title: "Dolores",
+                   titlePrefixIcon: Image(systemName: "checkmark.square.fill"),
                    content: "Vero eos voluptatem optio optio porro sit deleniti debitis reprehenderit.",
                    kind: .success)
         
