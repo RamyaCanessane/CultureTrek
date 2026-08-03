@@ -123,7 +123,7 @@ struct TitledCard: View {
         .clipShape(Styles.shape)
         .overlay {
             Styles.shape
-                .strokeBorder(Styles.border,
+                .strokeBorder(Styles.borderColor,
                               lineWidth: Styles.borderWidth)
         }
         .overlay(alignment: .topLeading) {
@@ -162,7 +162,7 @@ extension TitledCard {
                 .clipShape(Styles.titleShape)
                 .overlay {
                     Styles.titleShape
-                        .strokeBorder(Styles.titleBorder,
+                        .strokeBorder(Styles.titleBorderColor,
                                       lineWidth: Styles.titleBorderWidth)
                 }
         }
@@ -197,7 +197,7 @@ fileprivate enum Styles {
     static let padding = AppToken.Primitive.padding5
     static let topPadding = AppToken.Primitive.padding8
     
-    static let border = AppColor.border
+    static let borderColor = AppColor.border
     static let borderWidth = AppToken.borderWidth
     
     static let cornerRadius = AppToken.cornerRadius
@@ -215,9 +215,9 @@ fileprivate enum Styles {
     static let titleHeight: Double = 40
     static let titleCornerRadius = AppToken.cornerRadius
     static let titleShape = RoundedRectangle(cornerRadius: titleCornerRadius)
-    static let titleBorder = AppColor.border
+    static let titleBorderColor = AppColor.border
     static let titleBorderWidth = AppToken.borderWidth
-    static let titleSpacing: Double = 4
+    static let titleSpacing: Double = AppToken.Primitive.spacing1
     
     static let primary = AppColor.accentPrimary
     static let secondary = AppColor.accentSecondary

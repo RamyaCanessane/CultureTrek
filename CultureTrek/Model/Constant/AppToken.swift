@@ -12,7 +12,7 @@ enum AppToken {
 
     static let shadowSize: Double = 4
     static let shadowSizeMini: Double = 3
-    static let cornerRadius: Double = Primitive.radiusSM
+    static let cornerRadius: Double = Primitive.radiusXS
     static let borderWidth: Double = 2
     static let popupBorderWidth: Double = 4
     static let buttonHeight: Double = 48
