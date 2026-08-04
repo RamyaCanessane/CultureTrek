@@ -19,31 +19,29 @@ struct RiddleValidatedPopupView: View {
     var body: some View {
         VStack(alignment: .center,
                spacing: Styles.vSpacing) {
-            Image(systemName: "checkmark.circle")
-                .font(Styles.iconFont)
-                .symbolEffect(.drawOn.individually,
-                              isActive: !isFirstPresented)
-                .foregroundStyle(Styles.iconColor)
+            iconView
+                .opacity(0)
+                .overlay {
+                    iconView
+                        .symbolEffect(.drawOn.individually,
+                                      isActive: !isFirstPresented)
+                }
             
-            // TODO: ne doit pas sauter
+            titleView
+                .opacity(0)
+                .overlay {
+                    if isFirstPresented {
+                        titleView
+                            .transition(.blurReplace.animation(.smooth.delay(delay)))
+                    }
+                }
             
-            if isFirstPresented {
-                Text("Énigme \(riddleOrder) validée")
-                    .font(Styles.titleFont)
-                    .textCase(Styles.titleTextCase)
-                    .foregroundStyle(Styles.titleColor)
-                    .transition(.blurReplace.animation(.smooth.delay(delay)))
-                
-                HStack(spacing: Styles.subtitleSpacing) {
-                    AppImage.xpPointsIcon
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: Styles.xpPointsIconSize,
-                               height: Styles.xpPointsIconSize)
-                    
-                    Text("\(obtainedXPPoints) points gagnés")
-                        .font(Styles.subtitleFont)
-                        .foregroundStyle(Styles.subtitleColor)
+            contentView
+            .opacity(0)
+            .overlay {
+                if isFirstPresented {
+                    contentView
+                        .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
                 }
             }
         }
@@ -70,6 +68,36 @@ struct RiddleValidatedPopupView: View {
             }
         }
     }
+    
+    private var iconView: some View {
+        Image(systemName: "checkmark.circle")
+            .resizable()
+            .scaledToFit()
+            .frame(width: Styles.iconSize,
+                   height: Styles.iconSize)
+            .foregroundStyle(Styles.iconColor)
+    }
+    
+    private var titleView: some View {
+        Text("Énigme \(riddleOrder) validée")
+            .font(Styles.titleFont)
+            .textCase(Styles.titleTextCase)
+            .foregroundStyle(Styles.titleColor)
+    }
+    
+    private var contentView: some View {
+        HStack(spacing: Styles.subtitleSpacing) {
+            AppImage.xpPointsIcon
+                .resizable()
+                .scaledToFit()
+                .frame(width: Styles.xpPointsIconSize,
+                       height: Styles.xpPointsIconSize)
+            
+            Text("\(obtainedXPPoints) points gagnés")
+                .font(Styles.subtitleFont)
+                .foregroundStyle(Styles.subtitleColor)
+        }
+    }
 }
 
 fileprivate enum Styles {
@@ -84,8 +112,8 @@ fileprivate enum Styles {
     static let borderColor = AppColor.border
     static let borderWidth: Double = 4
     
-    static let iconFont: Font = .system(size: 128,
-                                        weight: .medium)
+    static let iconSize: Double = 128
+    static let iconWeight: Font.Weight = .medium
     static let iconColor = AppColor.popupGoodAnswerForeground
     
     static let titleFont: Font = .system(size: 32,
