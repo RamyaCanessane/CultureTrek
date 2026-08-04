@@ -232,7 +232,7 @@ fileprivate enum Styles {
     VStack(spacing: 24) {
         TitledCard(title: "Laboriosam Sunt",
                    content: "Molestias voluptas incidunt distinctio sit eius sint sed aliquam ad quod incidunt. Voluptas magni sint ducimus nobis ut. Et est distinctio officia consequatur inventore aut quisquam est distinctio sint ea.",
-                   kind: .info)
+                   kind: .secondary)
         
         TitledCard(title: "Dolores",
                    titlePrefixIcon: Image(systemName: "checkmark.square.fill"),
