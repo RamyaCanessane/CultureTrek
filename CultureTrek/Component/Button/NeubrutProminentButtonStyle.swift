@@ -41,39 +41,43 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
                     .font(Styles.labelFont)
             }
         }
-            .foregroundStyle(foreground(role: configuration.role))
-            .padding(.horizontal, Styles.hPadding)
-            .frame(height: Styles.height)
-            .if(isFullWidth) { view in
-                view
-                    .frame(maxWidth: .infinity,
-                           alignment: .center)
-            }
-            .background {
+        .foregroundStyle(foreground(role: configuration.role))
+        .padding(.horizontal, Styles.hPadding)
+        .frame(height: Styles.height)
+        .if(isFullWidth) { view in
+            view
+                .frame(maxWidth: .infinity,
+                       alignment: .center)
+        }
+        .background {
+            Styles.shape
+                .fill(background(role: configuration.role))
+        }
+        .overlay {
+            Styles.shape
+                .strokeBorder(Styles.borderColor,
+                              lineWidth: Styles.borderWidth)
+        }
+        .offset(x: configuration.isPressed && isEnabled
+                ? Styles.shadowSize
+                : 0,
+                y: configuration.isPressed && isEnabled
+                ? Styles.shadowSize
+                : 0)
+        .background {
+            if isEnabled {
                 Styles.shape
-                    .fill(background(role: configuration.role))
-                    .shadow(color: Styles.shadow,
-                            radius: 0,
-                            x: configuration.isPressed || !isEnabled
-                            ? 0
-                            : Styles.shadowSize,
-                            y: configuration.isPressed || !isEnabled
-                            ? 0
-                            : Styles.shadowSize)
+                    .fill(Styles.shadowColor)
+                    .frame(height: Styles.height)
+                    .padding(.leading,
+                             Styles.shadowSize)
+                    .padding(.top, Styles.shadowSize * 2)
+                    .padding(.trailing, -Styles.shadowSize)
+                    .padding(.bottom, 0)
             }
-            .overlay {
-                Styles.shape
-                    .strokeBorder(Styles.border,
-                                  lineWidth: Styles.borderWidth)
-            }
-            .offset(x: configuration.isPressed && isEnabled
-                    ? Styles.shadowSize
-                    : 0,
-                    y: configuration.isPressed && isEnabled
-                    ? Styles.shadowSize
-                    : 0)
-            .animation(Styles.pressedAnimation,
-                       value: configuration.isPressed)
+        }
+        .animation(Styles.pressedAnimation,
+                   value: configuration.isPressed)
     }
     
     private func foreground(role: ButtonRole?) -> Color {
@@ -153,10 +157,10 @@ fileprivate struct Styles {
     static let disabled = AppColor.disabledBackground
     static let disabledForeground = AppColor.disabledLabel
     
-    static let border = AppColor.border
+    static let borderColor = AppColor.border
     static let borderWidth = AppToken.borderWidth
     
-    static let shadow = AppColor.shadow
+    static let shadowColor = AppColor.shadow
     static let shadowSize = AppToken.shadowSize
     
     static let labelFont: Font = .system(size: 17,
@@ -168,11 +172,23 @@ fileprivate struct Styles {
                                         weight: .heavy,
                                         design: .default)
     
-    static let iconLabelSpacing: Double = 8
+    static let iconLabelSpacing: Double = AppToken.Primitive.spacing2
 }
 
 #Preview {
-    VStack {
+    VStack(spacing: 24) {
+        HStack(spacing: 20) {
+            Button("Te 1") {}
+                .buttonStyle(.neubrutProminent(kind: .primary))
+            
+            Button("Te 2") {}
+                .buttonStyle(.neubrutProminent(kind: .primary))
+                .disabled(true)
+            
+            Button("Te 3") {}
+                .buttonStyle(.neubrutProminent(kind: .neutral))
+        }
+        
         Button("Vanille") {}
             .buttonStyle(.neubrutProminent(kind: .primary))
         

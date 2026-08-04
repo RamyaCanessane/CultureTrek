@@ -20,6 +20,16 @@ struct ContentView: View {
             Text(.homeWelcomeMessage)
             
             Text(String(localized: .homeWelcomeMessage))
+            
+            AppImage.xpPointsIcon
+                .resizable()
+                .scaledToFit()
+                .frame(width: 72,
+                       height: 72)
+            
+            Text("Space Grotesky")
+                .font(.spaceGrotesk(size: 32,
+                                    weight: .semibold))
         }
         .padding()
         .environment(\.locale, .init(identifier: "en"))

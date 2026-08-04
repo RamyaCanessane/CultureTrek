@@ -11,10 +11,15 @@ import SwiftUI
 enum AppImage {
     
     static let riddleTestPicture = Image(.riddleTestPicture)
+    static let xpPointsIcon = Image(.xpPointsIcon)
     
     enum Icon {
         case riddleCompletedTitlePrefix
         case riddleClue
+        case riddleTime
+        case riddleMap
+        case riddleBack
+        case riddleNext
         
         var systemName: String {
             switch self {
@@ -22,6 +27,14 @@ enum AppImage {
                 "checkmark.square.fill"
             case .riddleClue:
                 "lightbulb.max.fill"
+            case .riddleTime:
+                "stopwatch"
+            case .riddleMap:
+                "map"
+            case .riddleBack:
+                "arrow.left"
+            case .riddleNext:
+                "arrow.right"
             }
         }
         

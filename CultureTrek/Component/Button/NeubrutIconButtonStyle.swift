@@ -33,14 +33,10 @@ struct NeubrutIconButtonStyle: ButtonStyle {
             .background {
                 Styles.shape
                     .fill(background(role: configuration.role))
-                    .shadow(color: Styles.shadow,
-                            radius: 0,
-                            x: configuration.isPressed || !isEnabled ? 0 : Styles.shadowSize,
-                            y: configuration.isPressed || !isEnabled ? 0 : Styles.shadowSize)
             }
             .overlay {
                 Styles.shape
-                .strokeBorder(Styles.border,
+                .strokeBorder(Styles.borderColor,
                               lineWidth: Styles.borderWidth)
             }
             .offset(x: configuration.isPressed && isEnabled
@@ -49,10 +45,20 @@ struct NeubrutIconButtonStyle: ButtonStyle {
                     y: configuration.isPressed && isEnabled
                     ? Styles.shadowSize
                     : 0)
+            .background {
+                if isEnabled {
+                    Styles.shape
+                        .fill(Styles.shadowColor)
+                        .frame(width: Styles.size,
+                               height: Styles.size)
+                        .padding([.leading, .top], Styles.shadowSize * 2)
+                }
+            }
             .animation(Styles.pressedAnimation,
                        value: configuration.isPressed)
     }
     
+    #warning("mettre le border de disabled en gris")
     private func foreground(role: ButtonRole?) -> Color {
         if !isEnabled {
             return Styles.disabledForeground
@@ -104,10 +110,6 @@ struct NeubrutIconButtonStyle: ButtonStyle {
 
 extension ButtonStyle where Self == NeubrutIconButtonStyle {
     
-    static var neubrutIcon: Self {
-        Self(kind: .primary)
-    }
-    
     static func neubrutIcon(kind: Self.Kind) -> Self {
         Self(kind: kind)
     }
@@ -135,10 +137,10 @@ fileprivate struct Styles {
     static let disabled = AppColor.disabledBackground
     static let disabledForeground = AppColor.disabledLabel
     
-    static let border = AppColor.border
+    static let borderColor = AppColor.border
     static let borderWidth = AppToken.borderWidth
     
-    static let shadow = AppColor.shadow
+    static let shadowColor = AppColor.shadow
     static let shadowSize = AppToken.shadowSize
     
     static let labelFont: Font = .system(size: size / 2,
