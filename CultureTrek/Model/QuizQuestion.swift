@@ -12,6 +12,7 @@ struct QuizQuestion {
     let answers: [Answer]
     let badAnswerExplanation: String?
     let goodAnswerFact: String?
+    let order: UInt
     let question: String
     let result: AnswerResult
     

@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
+import CoreLocation
 import SwiftUI
 
 struct Riddle {
@@ -15,6 +16,6 @@ struct Riddle {
     let order: UInt
     let picture: Image?
     let summary: String // description
-    //    var coordinate: CLLocationCoordinate2D
+//    var coordinate: CLLocationCoordinate2D
     //    var photos: [UIImage]
 }

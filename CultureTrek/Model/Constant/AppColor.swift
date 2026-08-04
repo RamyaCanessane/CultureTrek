@@ -19,6 +19,7 @@ enum AppColor {
     static let disabledLabel: Color = .primitiveDisabledLabel
     static let error: Color = .primitiveError
     static let info: Color = .primitiveInfo
+    static let iconAccent: Color = .primitiveIconAccent
     static let inverseBackground: Color = .primitiveInverseBackground
     static let inverseForegroundPrimary: Color = .primitiveInverseForegroundPrimary
     static let inverseForegroundSecondary: Color = .primitiveInverseForegroundSecondary

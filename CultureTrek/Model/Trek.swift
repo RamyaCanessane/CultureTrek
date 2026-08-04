@@ -25,7 +25,7 @@ struct Trek {
     let quizQuestions: [QuizQuestion]
     let region: String
     let summary: String? // description
-    
+
     enum Elevation {
         case low
         case medium
