@@ -99,6 +99,7 @@ struct TitledCard: View {
         case success
         case warning
         case error
+        case clue
     }
     
     var body: some View {
@@ -170,19 +171,21 @@ extension TitledCard {
         private var background: Color {
             switch kind {
             case .primary:
-                return Styles.primary
+                Styles.primary
             case .secondary:
-                return Styles.secondary
+                Styles.secondary
             case .neutral:
-                return Styles.neutral
+                Styles.neutral
             case .info:
-                return Styles.info
+                Styles.info
             case .success:
-                return Styles.success
+                Styles.success
             case .warning:
-                return Styles.warning
+                Styles.warning
             case .error:
-                return Styles.error
+                Styles.error
+            case .clue:
+                Styles.clue
             }
         }
     }
@@ -226,6 +229,7 @@ fileprivate enum Styles {
     static let success = AppColor.success
     static let warning = AppColor.warning
     static let error = AppColor.error
+    static let clue = AppColor.clue
 }
 
 #Preview {
