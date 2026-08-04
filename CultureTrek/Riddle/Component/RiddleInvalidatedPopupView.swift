@@ -1,16 +1,16 @@
 //
-//  RiddleValidatedPopupView.swift
+//  RiddleInvalidatedPopupView.swift
 //  CultureTrek
 //  
-//  Created by Mathieu Nivelles on 03/08/2026.
+//  Created by Mathieu Nivelles on 04/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
 import SwiftUI
 
-struct RiddleValidatedPopupView: View {
-    let riddleOrder: UInt
-    let obtainedXPPoints: UInt
+struct RiddleInvalidatedPopupView: View {
+    let title: String
+    let content: String
     
     @State private var isFirstPresented: Bool = false
     
@@ -37,13 +37,13 @@ struct RiddleValidatedPopupView: View {
                 }
             
             contentView
-            .opacity(0)
-            .overlay {
-                if isFirstPresented {
-                    contentView
-                        .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
+                .opacity(0)
+                .overlay {
+                    if isFirstPresented {
+                        contentView
+                            .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
+                    }
                 }
-            }
         }
                .padding([.leading, .trailing, .bottom],
                         Styles.padding)
@@ -58,46 +58,38 @@ struct RiddleValidatedPopupView: View {
                        .strokeBorder(Styles.borderColor,
                                      lineWidth: Styles.borderWidth)
                }
-        .task {
-            do {
-                try await Task.sleep(for: .seconds(delay))
-                
-                isFirstPresented = true
-            } catch {
-                
-            }
-        }
+               .task {
+                   do {
+                       try await Task.sleep(for: .seconds(delay))
+                       
+                       isFirstPresented = true
+                   } catch {
+                       
+                   }
+               }
     }
     
     private var iconView: some View {
-        AppImage.Icon.popupValidIcon.image
+        AppImage.Icon.popupInvalidIcon.image
             .resizable()
             .scaledToFit()
-            .fontWeight(Styles.iconWeight)
             .frame(width: Styles.iconSize,
                    height: Styles.iconSize)
             .foregroundStyle(Styles.iconColor)
     }
     
     private var titleView: some View {
-        Text("Énigme \(riddleOrder) validée")
+        Text(title)
             .font(Styles.titleFont)
             .textCase(Styles.titleTextCase)
             .foregroundStyle(Styles.titleColor)
     }
     
     private var contentView: some View {
-        HStack(spacing: Styles.subtitleSpacing) {
-            AppImage.xpPointsIcon
-                .resizable()
-                .scaledToFit()
-                .frame(width: Styles.xpPointsIconSize,
-                       height: Styles.xpPointsIconSize)
-            
-            Text("\(obtainedXPPoints) points gagnés")
-                .font(Styles.subtitleFont)
-                .foregroundStyle(Styles.subtitleColor)
-        }
+        Text(content)
+            .font(Styles.subtitleFont)
+            .foregroundStyle(Styles.subtitleColor)
+            .multilineTextAlignment(Styles.subtitleTextAlignment)
     }
 }
 
@@ -107,7 +99,7 @@ fileprivate enum Styles {
     static let topPadding = AppToken.Primitive.padding6
     static let padding = AppToken.Primitive.padding8
     
-    static let background = AppColor.popupGoodAnswerBackground
+    static let background = AppColor.popupBadAnswerBackground
     static let cornerRadius = AppToken.cornerRadius
     static let shape = RoundedRectangle(cornerRadius: cornerRadius)
     static let borderColor = AppColor.border
@@ -115,23 +107,21 @@ fileprivate enum Styles {
     
     static let iconSize: Double = 128
     static let iconWeight: Font.Weight = .regular
-    static let iconColor = AppColor.popupGoodAnswerForeground
+    static let iconColor = AppColor.popupBadAnswerForeground
     
     static let titleFont: Font = .system(size: 32,
                                          weight: .heavy)
         .width(.condensed)
     static let titleTextCase: Text.Case = .uppercase
-    static let titleColor = AppColor.popupGoodAnswerForeground
+    static let titleColor = AppColor.popupBadAnswerForeground
     
-    static let subtitleSpacing: Double = AppToken.Primitive.spacing2
     static let subtitleFont: Font = .spaceGrotesk(size: 20,
                                                   weight: .bold)
+    static let subtitleTextAlignment: TextAlignment = .center
     static let subtitleColor = AppColor.Label.primary
-    
-    static let xpPointsIconSize: Double = 32
 }
 
 #Preview {
-    RiddleValidatedPopupView(riddleOrder: 7,
-                             obtainedXPPoints: 154)
+    RiddleInvalidatedPopupView(title: "Énigme non validée",
+                               content: "Ce n’est pas le bon endroit… mais ne lâche rien ! »")
 }
