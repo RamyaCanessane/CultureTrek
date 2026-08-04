@@ -20,6 +20,9 @@ enum AppImage {
         case riddleMap
         case riddleBack
         case riddleNext
+        case popupValid
+        case popupInvalid
+        case popupClue
         
         var systemName: String {
             switch self {
@@ -35,6 +38,12 @@ enum AppImage {
                 "arrow.left"
             case .riddleNext:
                 "arrow.right"
+            case .popupValid:
+                "checkmark.circle"
+            case .popupInvalid:
+                "xmark.circle"
+            case .popupClue:
+                "lightbulb.max.fill"
             }
         }
         

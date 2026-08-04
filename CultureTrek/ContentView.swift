@@ -30,6 +30,18 @@ struct ContentView: View {
             Text("Space Grotesky")
                 .font(.spaceGrotesk(size: 32,
                                     weight: .semibold))
+            
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.red)
+                .frame(width: 200, height: 100)
+            
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(.red, lineWidth: 8)
+                .frame(width: 200, height: 100)
+            
+            RoundedRectangle(cornerRadius: 8 + 4)
+                .strokeBorder(.red, lineWidth: 8)
+                .frame(width: 200, height: 100)
         }
         .padding()
         .environment(\.locale, .init(identifier: "en"))

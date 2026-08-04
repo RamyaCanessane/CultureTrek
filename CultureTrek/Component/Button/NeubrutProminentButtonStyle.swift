@@ -23,6 +23,7 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
         case success
         case warning
         case destructive
+        case clue
     }
     
     func makeBody(configuration: Configuration) -> some View {
@@ -102,7 +103,8 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
                 .info,
                 .success,
                 .warning,
-                .destructive:
+                .destructive,
+                .clue:
             return Styles.label
         }
     }
@@ -129,6 +131,8 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
             return Styles.warning
         case .destructive:
             return Styles.destructive
+        case .clue:
+            return Styles.clue
         }
     }
 }
@@ -162,6 +166,7 @@ fileprivate struct Styles {
     static let success = AppColor.success
     static let warning = AppColor.warning
     static let destructive = AppColor.error
+    static let clue = AppColor.clue
     static let disabled = AppColor.disabledBackground
     static let disabledForeground = AppColor.disabledLabel
     

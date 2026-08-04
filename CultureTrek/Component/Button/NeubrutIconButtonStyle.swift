@@ -21,6 +21,7 @@ struct NeubrutIconButtonStyle: ButtonStyle {
         case success
         case warning
         case destructive
+        case clue
         case liked
     }
     
@@ -80,7 +81,8 @@ struct NeubrutIconButtonStyle: ButtonStyle {
              .info,
              .success,
              .warning,
-             .destructive:
+             .destructive,
+             .clue:
             return Styles.label
         case .liked:
             return Styles.likedForeground
@@ -109,6 +111,8 @@ struct NeubrutIconButtonStyle: ButtonStyle {
             return Styles.warning
         case .destructive:
             return Styles.destructive
+        case .clue:
+            return Styles.clue
         case .liked:
             return Styles.liked
         }
@@ -139,6 +143,7 @@ fileprivate struct Styles {
     static let success = AppColor.success
     static let warning = AppColor.warning
     static let destructive = AppColor.error
+    static let clue = AppColor.clue
     static let liked = AppColor.likedBackground
     static let likedForeground = AppColor.likedForeground
     static let disabled = AppColor.disabledBackground
