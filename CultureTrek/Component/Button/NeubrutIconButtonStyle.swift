@@ -36,7 +36,7 @@ struct NeubrutIconButtonStyle: ButtonStyle {
             }
             .overlay {
                 Styles.shape
-                .strokeBorder(Styles.borderColor,
+                .strokeBorder(borderColor,
                               lineWidth: Styles.borderWidth)
             }
             .offset(x: configuration.isPressed && isEnabled
@@ -57,8 +57,15 @@ struct NeubrutIconButtonStyle: ButtonStyle {
             .animation(Styles.pressedAnimation,
                        value: configuration.isPressed)
     }
+
+    private var borderColor: Color {
+        if !isEnabled {
+            return Styles.disabledForeground
+        } else {
+            return Styles.borderColor
+        }
+    }
     
-    #warning("mettre le border de disabled en gris")
     private func foreground(role: ButtonRole?) -> Color {
         if !isEnabled {
             return Styles.disabledForeground

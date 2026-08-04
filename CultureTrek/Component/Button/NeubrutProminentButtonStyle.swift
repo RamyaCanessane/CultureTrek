@@ -55,7 +55,7 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
         }
         .overlay {
             Styles.shape
-                .strokeBorder(Styles.borderColor,
+                .strokeBorder(borderColor,
                               lineWidth: Styles.borderWidth)
         }
         .offset(x: configuration.isPressed && isEnabled
@@ -78,6 +78,14 @@ struct NeubrutProminentButtonStyle: ButtonStyle {
         }
         .animation(Styles.pressedAnimation,
                    value: configuration.isPressed)
+    }
+    
+    private var borderColor: Color {
+        if !isEnabled {
+            return Styles.disabledForeground
+        } else {
+            return Styles.borderColor
+        }
     }
     
     private func foreground(role: ButtonRole?) -> Color {
