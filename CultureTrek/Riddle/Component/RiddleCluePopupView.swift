@@ -1,16 +1,15 @@
 //
-//  RiddleValidatedPopupView.swift
+//  RiddleCluePopupView.swift
 //  CultureTrek
 //  
-//  Created by Mathieu Nivelles on 03/08/2026.
+//  Created by Mathieu Nivelles on 04/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
 import SwiftUI
 
-struct RiddleValidatedPopupView: View {
-    let riddleOrder: UInt
-    let obtainedXPPoints: UInt
+struct RiddleCluePopupView: View {
+    let content: String
     
     @State private var isFirstPresented: Bool = false
     
@@ -23,7 +22,7 @@ struct RiddleValidatedPopupView: View {
                 .opacity(0)
                 .overlay {
                     iconView
-                        .symbolEffect(.drawOn.individually,
+                        .symbolEffect(.drawOn.byLayer,
                                       isActive: !isFirstPresented)
                 }
             
@@ -37,13 +36,13 @@ struct RiddleValidatedPopupView: View {
                 }
             
             contentView
-            .opacity(0)
-            .overlay {
-                if isFirstPresented {
-                    contentView
-                        .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
+                .opacity(0)
+                .overlay {
+                    if isFirstPresented {
+                        contentView
+                            .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
+                    }
                 }
-            }
         }
                .padding(Styles.padding)
                .background {
@@ -55,55 +54,49 @@ struct RiddleValidatedPopupView: View {
                        .strokeBorder(Styles.borderColor,
                                      lineWidth: Styles.borderWidth)
                }
-        .task {
-            do {
-                try await Task.sleep(for: .seconds(delay))
-                
-                isFirstPresented = true
-            } catch {
-                
-            }
-        }
+               .task {
+                   do {
+                       try await Task.sleep(for: .seconds(delay))
+                       
+                       isFirstPresented = true
+                   } catch {
+                       
+                   }
+               }
     }
     
     private var iconView: some View {
-        AppImage.Icon.popupValid.image
+        AppImage.Icon.popupClue.image
             .resizable()
             .scaledToFit()
-            .fontWeight(Styles.iconWeight)
             .frame(width: Styles.iconSize,
                    height: Styles.iconSize)
             .foregroundStyle(Styles.iconColor)
     }
     
     private var titleView: some View {
-        Text("Énigme \(riddleOrder) validée")
+        Text("Indice")
             .font(Styles.titleFont)
             .textCase(Styles.titleTextCase)
             .foregroundStyle(Styles.titleColor)
     }
     
     private var contentView: some View {
-        HStack(spacing: Styles.subtitleSpacing) {
-            AppImage.xpPointsIcon
-                .resizable()
-                .scaledToFit()
-                .frame(width: Styles.xpPointsIconSize,
-                       height: Styles.xpPointsIconSize)
-            
-            Text("\(obtainedXPPoints) points gagnés")
-                .font(Styles.subtitleFont)
-                .foregroundStyle(Styles.subtitleColor)
-        }
+        Text(content)
+            .font(Styles.subtitleFont)
+            .foregroundStyle(Styles.subtitleColor)
+            .multilineTextAlignment(Styles.subtitleTextAlignment)
     }
 }
+
+#warning("Ajouter une couleur jaune pour Clue dans variables Figma et AppColor et l'utiliser ici.")
 
 fileprivate enum Styles {
     
     static let vSpacing = AppToken.Primitive.spacing4
     static let padding = AppToken.Primitive.padding8
     
-    static let background = AppColor.popupGoodAnswerBackground
+    static let background = AppColor.accentNeutral
     static let cornerRadius = AppToken.popupCornerRadius
     static let shape = RoundedRectangle(cornerRadius: cornerRadius)
     static let borderColor = AppColor.border
@@ -111,23 +104,20 @@ fileprivate enum Styles {
     
     static let iconSize: Double = 128
     static let iconWeight: Font.Weight = .regular
-    static let iconColor = AppColor.popupGoodAnswerForeground
+    static let iconColor = AppColor.clue
     
     static let titleFont: Font = .system(size: 32,
                                          weight: .heavy)
         .width(.condensed)
     static let titleTextCase: Text.Case = .uppercase
-    static let titleColor = AppColor.popupGoodAnswerForeground
+    static let titleColor = AppColor.clue
     
-    static let subtitleSpacing: Double = AppToken.Primitive.spacing2
-    static let subtitleFont: Font = .spaceGrotesk(size: 20,
-                                                  weight: .bold)
+    static let subtitleFont: Font = .spaceGrotesk(size: 17,
+                                                  weight: .regular)
+    static let subtitleTextAlignment: TextAlignment = .leading
     static let subtitleColor = AppColor.Label.primary
-    
-    static let xpPointsIconSize: Double = 32
 }
 
 #Preview {
-    RiddleValidatedPopupView(riddleOrder: 7,
-                             obtainedXPPoints: 154)
+    RiddleCluePopupView(content: "Sapiente harum reprehenderit ipsam quod. Quisquam omnis incidunt quod iusto recusandae.")
 }

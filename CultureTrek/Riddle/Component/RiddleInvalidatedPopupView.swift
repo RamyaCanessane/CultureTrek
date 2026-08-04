@@ -45,10 +45,7 @@ struct RiddleInvalidatedPopupView: View {
                     }
                 }
         }
-               .padding([.leading, .trailing, .bottom],
-                        Styles.padding)
-               .padding(.top,
-                        Styles.topPadding)
+               .padding(Styles.padding)
                .background {
                    Styles.shape
                        .fill(Styles.background)
@@ -70,9 +67,10 @@ struct RiddleInvalidatedPopupView: View {
     }
     
     private var iconView: some View {
-        AppImage.Icon.popupInvalidIcon.image
+        AppImage.Icon.popupInvalid.image
             .resizable()
             .scaledToFit()
+            .fontWeight(Styles.iconWeight)
             .frame(width: Styles.iconSize,
                    height: Styles.iconSize)
             .foregroundStyle(Styles.iconColor)
@@ -96,11 +94,10 @@ struct RiddleInvalidatedPopupView: View {
 fileprivate enum Styles {
     
     static let vSpacing = AppToken.Primitive.spacing4
-    static let topPadding = AppToken.Primitive.padding6
     static let padding = AppToken.Primitive.padding8
     
     static let background = AppColor.popupBadAnswerBackground
-    static let cornerRadius = AppToken.cornerRadius
+    static let cornerRadius = AppToken.popupCornerRadius
     static let shape = RoundedRectangle(cornerRadius: cornerRadius)
     static let borderColor = AppColor.border
     static let borderWidth: Double = AppToken.popupBorderWidth

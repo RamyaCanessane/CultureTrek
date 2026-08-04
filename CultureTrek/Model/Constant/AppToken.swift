@@ -12,8 +12,11 @@ enum AppToken {
 
     static let shadowSize: Double = 4
     static let shadowSizeMini: Double = 3
-    static let cornerRadius: Double = Primitive.radiusXS
+    // fix: add borderWidth to solve bug with strokeBorder.
+    static let cornerRadius: Double = Primitive.radiusXS + borderWidth / 2.0
     static let borderWidth: Double = 2
+    // fix: add borderWidth to solve bug with strokeBorder
+    static let popupCornerRadius: Double = Primitive.radiusXS + popupBorderWidth / 2.0
     static let popupBorderWidth: Double = 4
     static let buttonHeight: Double = 48
     static let buttonPressedAnimation = Animation.snappy
