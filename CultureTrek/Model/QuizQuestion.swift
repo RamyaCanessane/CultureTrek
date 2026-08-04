@@ -39,6 +39,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "La tradition veut que l'on cache une fève dans la galette des Rois.",
             goodAnswerFact: "Celui qui trouve la fève devient le roi ou la reine de la journée !",
+            order: 1,
             question: "Quel objet cache-t-on traditionnellement dans la galette des Rois à l'Épiphanie ?",
             result: .undefined
         ),
@@ -51,6 +52,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "La tradition du 1er mai en France est d'offrir du muguet comme porte-bonheur.",
             goodAnswerFact: "Cette tradition remonte à Charles IX qui en offrit aux dames de la cour en 1561.",
+            order: 2,
             question: "Quelle fleur offre-t-on traditionnellement le 1er mai en signe de porte-bonheur ?",
             result: .undefined
         ),
@@ -63,6 +65,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "Créée par Jack Lang en 1982, la Fête de la musique a lieu le 21 juin.",
             goodAnswerFact: "Elle coïncide généralement avec le jour du solstice d'été !",
+            order: 3,
             question: "Quelle fête a été créée en France en 1982 et se déroule le jour du solstice d'été ?",
             result: .undefined
         ),
@@ -75,6 +78,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "C'est « l'artisanat d'art et la culture de la baguette de pain » qui a été inscrit en 2022.",
             goodAnswerFact: "Chaque jour, environ 12 millions de Français poussent la porte d'une boulangerie.",
+            order: 4,
             question: "Quel symbole culinaire français a été inscrit au patrimoine immatériel de l'UNESCO en 2022 ?",
             result: .undefined
         ),
@@ -87,6 +91,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "À la Chandeleur (2 février), la tradition veut que l'on prépare et mange des crêpes.",
             goodAnswerFact: "La tradition dit qu'il faut faire sauter la crêpe de la main droite avec une pièce dans la main gauche.",
+            order: 5,
             question: "Que cuisine-t-on traditionnellement en France lors de la fête de la Chandeleur ?",
             result: .undefined
         ),
@@ -99,6 +104,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "La célèbre Fête du Citron a lieu chaque année à Menton, sur la Côte d'Azur.",
             goodAnswerFact: "Des sculptures géantes faites exclusivement d'agrumes y sont exposées.",
+            order: 6,
             question: "Dans quelle ville de la Côte d'Azur célèbre-t-on chaque année la « Fête du Citron » ?",
             result: .undefined
         ),
@@ -111,6 +117,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "La Fête nationale française commémore le 14 juillet 1789 (prise de la Bastille).",
             goodAnswerFact: "Le traditionnel défilé militaire sur les Champs-Élysées existe depuis 1880.",
+            order: 7,
             question: "À quelle date célèbre-t-on la Fête nationale en France ?",
             result: .undefined
         ),
@@ -123,6 +130,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "C'est le Beaujolais nouveau qui est débouché le 3e jeudi de novembre.",
             goodAnswerFact: "L'événement donne lieu à la célèbre expression : « Le Beaujolais nouveau est arrivé ! »",
+            order: 8,
             question: "Quel vin célèbre fête son arrivée le troisième jeudi de novembre ?",
             result: .undefined
         ),
@@ -135,6 +143,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "La Fête des Lumières est une tradition emblématique de la ville de Lyon.",
             goodAnswerFact: "Les Lyonnais posent des lumignons à leurs fenêtres chaque 8 décembre en l'honneur de la Vierge Marie.",
+            order: 9,
             question: "Quelle grande ville française célèbre la « Fête des Lumières » début décembre ?",
             result: .undefined
         ),
@@ -147,6 +156,7 @@ extension QuizQuestion {
             ],
             badAnswerExplanation: "La bûche est le dessert traditionnel du repas de Noël.",
             goodAnswerFact: "À l'origine, il s'agissait d'une vraie bûche de bois qu'on brûlait dans l'âtre pour porter bonheur.",
+            order: 10,
             question: "Quel dessert incontournable clôture traditionnellement le repas du réveillon de Noël ?",
             result: .undefined
         )

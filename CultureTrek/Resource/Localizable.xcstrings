@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "fr",
   "strings" : {
+    "" : {
+
+    },
+    "%llu points gagnés" : {
+
+    },
+    "Ajouter photo" : {
+
+    },
     "Bienvenue" : {
       "localizations" : {
         "en" : {
@@ -16,6 +25,9 @@
           }
         }
       }
+    },
+    "Énigme %llu validée" : {
+
     },
     "Hello, world!" : {
 
@@ -37,7 +49,10 @@
         }
       }
     },
-    "SpaceGrotesk" : {
+    "Je suis arrivé·e" : {
+
+    },
+    "Space Grotesky" : {
 
     }
   },
