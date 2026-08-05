@@ -1,5 +1,5 @@
 //
-//  RiddleInvalidatedPopupView.swift
+//  BadActionPopupView.swift
 //  CultureTrek
 //  
 //  Created by Mathieu Nivelles on 04/08/2026.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct RiddleInvalidatedPopupView: View {
+struct BadActionPopupView: View {
     let title: String
     let content: String
     
@@ -119,6 +119,6 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleInvalidatedPopupView(title: "Énigme non validée",
+    BadActionPopupView(title: "Énigme non validée",
                                content: "Ce n’est pas le bon endroit… mais ne lâche rien ! »")
 }

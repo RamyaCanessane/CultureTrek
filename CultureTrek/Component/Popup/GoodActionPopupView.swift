@@ -1,5 +1,5 @@
 //
-//  RiddleValidatedPopupView.swift
+//  GoodActionPopupView.swift
 //  CultureTrek
 //  
 //  Created by Mathieu Nivelles on 03/08/2026.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct RiddleValidatedPopupView: View {
-    let riddleOrder: UInt
+struct GoodActionPopupView: View {
+    let title: String
     let obtainedXPPoints: UInt
     
     @State private var isFirstPresented: Bool = false
@@ -77,7 +77,7 @@ struct RiddleValidatedPopupView: View {
     }
     
     private var titleView: some View {
-        Text("Énigme \(riddleOrder) validée")
+        Text(title)
             .font(Styles.titleFont)
             .textCase(Styles.titleTextCase)
             .foregroundStyle(Styles.titleColor)
@@ -128,6 +128,6 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleValidatedPopupView(riddleOrder: 7,
-                             obtainedXPPoints: 154)
+    GoodActionPopupView(title: "Énigme 7 validée",
+                        obtainedXPPoints: 154)
 }
