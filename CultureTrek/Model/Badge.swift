@@ -8,7 +8,24 @@
 
 import SwiftUI
 
-struct Badge {
+struct Badge: Identifiable {
+    let id = UUID()
     let icon: Image
     let name: String
+}
+
+extension Badge {
+    
+    static let examples: [Badge] = [
+        .init(icon: AppImage.badgeTest,
+              name: "Et consequatur"),
+        .init(icon: AppImage.badgeTest,
+              name: "Velit dolor"),
+        .init(icon: AppImage.badgeTest,
+              name: "Iure voluptas velit"),
+        .init(icon: AppImage.badgeTest,
+              name: "Facilis"),
+        .init(icon: AppImage.badgeTest,
+              name: "Quia"),
+    ]
 }

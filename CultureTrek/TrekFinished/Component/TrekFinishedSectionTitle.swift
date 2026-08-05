@@ -1,5 +1,5 @@
 //
-//  RiddleSectionTitle.swift
+//  TrekFinishedSectionTitle.swift
 //  CultureTrek
 //  
 //  Created by Mathieu Nivelles on 03/08/2026.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct RiddleSectionTitle: View {
+struct TrekFinishedSectionTitle: View {
     let title: String
     
     init(_ title: String) {
@@ -35,7 +35,7 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleSectionTitle("Voluptate Suscipit Dignissimos")
+    TrekFinishedSectionTitle("Voluptate Suscipit Dignissimos")
         .padding()
         .background(AppColor.background)
 }

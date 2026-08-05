@@ -1,17 +1,17 @@
 //
 //  NeubrutHeroButtonStyle.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 05/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import SwiftUI
 
 struct NeubrutHeroButtonStyle: ButtonStyle {
     let icon: Image
     let kind: Kind
-
+    
     enum Kind {
         case primary
         case secondary
@@ -87,14 +87,14 @@ struct NeubrutHeroButtonStyle: ButtonStyle {
             }
             .animation(Styles.pressedAnimation,
                        value: configuration.isPressed)
-//            .padding(50)
-//            .background {
-//                Rectangle()
-//                    .foregroundStyle(.image(
-//                        icon
-//                    ))
-//                    .font(.system(size: 50))
-//            }
+        //            .padding(50)
+        //            .background {
+        //                Rectangle()
+        //                    .foregroundStyle(.image(
+        //                        icon
+        //                    ))
+        //                    .font(.system(size: 50))
+        //            }
     }
     
     private var borderColor: Color {
@@ -112,8 +112,8 @@ struct NeubrutHeroButtonStyle: ButtonStyle {
         
         switch kind {
         case .primary,
-             .secondary,
-             .neutral:
+                .secondary,
+                .neutral:
             return Styles.label
         }
     }
@@ -131,6 +131,13 @@ struct NeubrutHeroButtonStyle: ButtonStyle {
         case .neutral:
             return Styles.neutral
         }
+    }
+}
+
+extension ButtonStyle where Self == NeubrutHeroButtonStyle {
+    
+    static func neubrutHero(icon: Image, kind: NeubrutHeroButtonStyle.Kind) -> Self {
+        Self(icon: icon, kind: kind)
     }
 }
 
@@ -195,16 +202,16 @@ fileprivate enum Styles {
 #Preview {
     VStack {
         Button("Temporibus commodi eveniet") {}
-            .buttonStyle(NeubrutHeroButtonStyle(icon: Image(systemName: "book.pages"),
-                                                kind: .primary))
+            .buttonStyle(.neubrutHero(icon: Image(systemName: "book.pages"),
+                                      kind: .primary))
         
         Button("Vitae quia") {}
-            .buttonStyle(NeubrutHeroButtonStyle(icon: Image(systemName: "point.bottomleft.filled.forward.to.point.topright.scurvepath"),
-                                                kind: .secondary))
+            .buttonStyle(.neubrutHero(icon: Image(systemName: "point.bottomleft.filled.forward.to.point.topright.scurvepath"),
+                                      kind: .secondary))
         
         Button("Consectetur eos") {}
-            .buttonStyle(NeubrutHeroButtonStyle(icon: Image(systemName: "questionmark.circle.dashed"),
-                                                kind: .neutral))
+            .buttonStyle(.neubrutHero(icon: Image(systemName: "questionmark.circle.dashed"),
+                                      kind: .neutral))
     }
     .padding()
 }
