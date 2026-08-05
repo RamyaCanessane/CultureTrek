@@ -16,7 +16,7 @@ struct RiddlePhotoListSection: View {
     var body: some View {
         VStack(alignment: .leading,
                spacing: Styles.vSpacing) {
-            RiddleSectionTitle(title: "Photos")
+            RiddleSectionTitle("Photos")
                 .padding(.horizontal)
             
             ScrollView(.horizontal) {

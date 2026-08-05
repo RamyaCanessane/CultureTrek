@@ -11,6 +11,8 @@ import SwiftUI
 enum AppImage {
     
     static let riddleTestPicture = Image(.riddleTestPicture)
+    static let badgeTest = Image(.badgeTest)
+    
     static let xpPointsIcon = Image(.xpPointsIcon)
     
     enum Icon {
@@ -23,6 +25,9 @@ enum AppImage {
         case popupValid
         case popupInvalid
         case popupClue
+        case trekDuration
+        case trekRanking
+        case trekFinishedMapPattern
         
         var systemName: String {
             switch self {
@@ -44,6 +49,12 @@ enum AppImage {
                 "xmark.circle"
             case .popupClue:
                 "lightbulb.max.fill"
+            case .trekDuration:
+                "stopwatch"
+            case .trekRanking:
+                "crown"
+            case .trekFinishedMapPattern:
+                "point.topright.arrow.triangle.backward.to.point.bottomleft.filled.scurvepath"
             }
         }
         
