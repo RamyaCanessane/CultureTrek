@@ -33,7 +33,12 @@ struct LabeledProgressBar: View {
                     .frame(height: 24)
                     .frame(maxWidth: .infinity)
                     .overlay(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: AppToken.cornerRadius)
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: AppToken.Primitive.radiusNone,
+                            bottomLeadingRadius: AppToken.Primitive.radiusNone,
+                            bottomTrailingRadius: current == total ? AppToken.Primitive.radiusNone : AppToken.cornerRadius,
+                            topTrailingRadius: current == total ? AppToken.Primitive.radiusNone : AppToken.cornerRadius
+                        )
                             .fill(AppColor.accentSecondary)
                             .strokeBorder(AppColor.border,
                                           lineWidth: AppToken.borderWidth)
@@ -47,7 +52,7 @@ struct LabeledProgressBar: View {
 }
 
 #Preview {
-    LabeledProgressBar(current: 1, total: 1)
+    LabeledProgressBar(current: 10, total: 10)
         .padding()
 }
 
