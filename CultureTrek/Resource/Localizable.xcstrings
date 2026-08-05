@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "#%llu" : {
+
+    },
     "%@" : {
 
     },
@@ -18,6 +21,9 @@
       }
     },
     "%llu" : {
+
+    },
+    "%llu points" : {
 
     },
     "%llu points gagnés" : {
@@ -55,9 +61,6 @@
     "dans " : {
 
     },
-    "Énigme %llu validée" : {
-
-    },
     "Hello, world!" : {
 
     },
@@ -88,6 +91,9 @@
 
     },
     "Space Grotesky" : {
+
+    },
+    "Voir le parcours" : {
 
     }
   },
