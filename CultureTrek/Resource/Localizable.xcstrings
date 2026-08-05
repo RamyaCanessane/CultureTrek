@@ -4,6 +4,22 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
+    "%@ %@ %@ %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@ %3$@ %4$@"
+          }
+        }
+      }
+    },
+    "%llu" : {
+
+    },
     "%llu points gagnés" : {
 
     },
@@ -36,6 +52,9 @@
         }
       }
     },
+    "dans " : {
+
+    },
     "Énigme %llu validée" : {
 
     },
@@ -59,7 +78,13 @@
         }
       }
     },
+    "Indice" : {
+
+    },
     "Je suis arrivé·e" : {
+
+    },
+    "Prochain rang: " : {
 
     },
     "Space Grotesky" : {

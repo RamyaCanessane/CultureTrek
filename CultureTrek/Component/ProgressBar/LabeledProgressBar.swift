@@ -21,6 +21,7 @@ struct LabeledProgressBar: View {
             self.progression = 0
         }
     }
+    
     var body: some View {
         HStack(spacing: 12) {
             Text("\(current)/\(total)")
@@ -39,11 +40,10 @@ struct LabeledProgressBar: View {
                             bottomTrailingRadius: current == total ? AppToken.Primitive.radiusNone : AppToken.cornerRadius,
                             topTrailingRadius: current == total ? AppToken.Primitive.radiusNone : AppToken.cornerRadius
                         )
-                            .fill(AppColor.accentSecondary)
-                            .strokeBorder(AppColor.border,
-                                          lineWidth: AppToken.borderWidth)
-                            .frame(width: geo.size.width * progression - 8, height: 16)
-                            .offset(x: 4)
+                        .fill(AppColor.accentSecondary)
+                        .strokeBorder(AppColor.border, lineWidth: AppToken.borderWidth)
+                        .frame(width: geo.size.width * progression - 8, height: 16)
+                        .offset(x: 4)
                     }
             }
             .frame(height: 24)

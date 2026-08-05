@@ -30,6 +30,7 @@ enum AppColor {
     static let popupBadAnswerForeground: Color = .primitivePopupBadAnswerForeground
     static let popupGoodAnswerBackground: Color = .primitivePopupGoodAnswerBackground
     static let popupGoodAnswerForeground: Color = .primitivePopupGoodAnswerForeground
+    static let xpPoints: Color = .primitiveXpPoints
     static let shadow: Color = .primitiveShadow
     static let success: Color = .primitiveSuccess
     static let warning: Color = .primitiveWarning
