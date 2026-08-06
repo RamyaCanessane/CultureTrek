@@ -63,7 +63,7 @@ fileprivate enum Styles {
     static let hSpacing = AppToken.Primitive.spacing3
     static let maxWidth: Double = 120
     
-    static let badgeIconSize: Double = 56
+    static let badgeIconSize: Double = 72
     static let badgeLabelFont: Font = .spaceGrotesk(size: 15,
                                                     weight: .medium)
     static let badgeLabelColor = AppColor.Label.primary
