@@ -6,7 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
-import Foundation
+import SwiftUI
 
 struct Trek {
     let accessibility: Accessibility
@@ -21,6 +21,7 @@ struct Trek {
     let goodToKnow: [String]
     let isLiked: Bool
     let name: String
+    let picture: Image
     let riddles: [Riddle]
     let quizQuestions: [QuizQuestion]
     let region: String
