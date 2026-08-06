@@ -51,6 +51,7 @@ enum AppToken {
         
         // Spacing
         static let spacing0: Double = 0
+        static let spacing0_5: Double = 2
         static let spacing1: Double = 4
         static let spacing2: Double = 8
         static let spacing3: Double = 12

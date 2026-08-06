@@ -4,40 +4,18 @@
     "" : {
 
     },
-    "#%llu" : {
-
-    },
-    "%@" : {
-
-    },
-    "%@ %@ %@ %@" : {
+    "%@ • %@" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ %2$@ %3$@ %4$@"
+            "value" : "%1$@ • %2$@"
           }
         }
       }
-    },
-    "%llu" : {
-
-    },
-    "%llu points" : {
-
     },
     "%llu points gagnés" : {
 
-    },
-    "%llu/%llu" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$llu/%2$llu"
-          }
-        }
-      }
     },
     "Ajouter photo" : {
 
@@ -58,7 +36,7 @@
         }
       }
     },
-    "dans " : {
+    "Énigme %llu validée" : {
 
     },
     "Hello, world!" : {
@@ -81,19 +59,10 @@
         }
       }
     },
-    "Indice" : {
-
-    },
     "Je suis arrivé·e" : {
 
     },
-    "Prochain rang: " : {
-
-    },
     "Space Grotesky" : {
-
-    },
-    "Voir le parcours" : {
 
     }
   },
