@@ -22,10 +22,11 @@ struct HeroTrekTitle: View {
             HeroTrekTitlePic(picture: trekPicture, tag: sectionTag)
             HeroTrekTitleLabels(title: trekTitle, city: trekCity, region: trekRegion, department: trekDepartment)
         }
+        .border( Styles.heroBorderColor, width: Styles.heroBorderWidth)
         .mask {
             RoundedRectangle(cornerRadius: Styles.heroCornerRadius)
         }
-        .border( Styles.heroBorderColor, width: Styles.heroBorderWidth)
+
     }
 }
 
