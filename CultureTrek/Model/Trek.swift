@@ -47,3 +47,25 @@ struct Trek {
         let unlockedBadges: [Badge]
     }
 }
+
+extension Trek {
+    
+    static let example = Trek(accessibility: .init(bike: true, stroller: true, walking: true, wheelchair: true),
+                              badgesToUnlock: Badge.examples,
+                              city: "Paris",
+                              completion: nil,
+                              department: nil,
+                              distance: .init(value: 2.4, unit: .init(forLocale: .autoupdatingCurrent, usage: .road)),
+                              duration: .seconds((60*60)+(20*60)),
+                              elevation: .low,
+                              goal: "Delectus quod inventore dolores impedit nulla aliquid vel voluptas in non.",
+                              goodToKnow: ["Rerum ut vitae suscipit expedita aliquam odit.", "Veniam et quo", "Excepturi et quos quam"],
+                              isLiked: true,
+                              name: "Numquam natus nam deleniti",
+                              picture: AppImage.trekTestPicture,
+                              riddles: [.init(clue: nil, goodToKnow: "", isCompleted: true, order: 1, picture: AppImage.riddleTestPicture, summary: ""), .init(clue: nil, goodToKnow: "", isCompleted: false, order: 2, picture: AppImage.riddleTestPicture, summary: "")],
+                              quizQuestions: QuizQuestion.examples,
+                              region: "Île-de-France",
+                              summary: "Et quasi ad aut omnis eligendi. Est deserunt ducimus maxime id omnis sed velit numquam nihil. Dolorem consequatur natus facere totam beatae error distinctio sunt.")
+    
+}

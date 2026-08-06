@@ -13,6 +13,9 @@ enum AppImage {
     static let riddleTestPicture = Image(.riddleTestPicture)
     static let badgeTest = Image(.badgeTest)
     
+    static let heroTestPicture = Image(.heroTestPicture)
+    static let trekTestPicture = Image(.trekTestPicture)
+    
     static let xpPointsIcon = Image(.xpPointsIcon)
     
     enum Icon {
