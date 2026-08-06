@@ -23,6 +23,13 @@ struct TrekFinishedScene: View {
                                        points: 456,
                                        rank: (current: 42, total: 154))
                 
+                LevelWithProgressBar(newPoints: 456,
+                                     currentPoints: 320,
+                                     totalPoints: 1_000,
+                                     currentLevel: "Bois",
+                                     nextLevel: "Pierre")
+                .padding(.horizontal)
+                
                 Button("Voir le parcours", action: {})
                     .buttonStyle(.neubrutHero(icon: AppImage.Icon.trekFinishedMapPattern.image,
                                               kind: .neutral))
