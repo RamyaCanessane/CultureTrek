@@ -52,6 +52,9 @@
     "Ajouter photo" : {
 
     },
+    "Aucune énigme n'est disponible" : {
+
+    },
     "Bienvenue" : {
       "localizations" : {
         "en" : {
@@ -67,6 +70,15 @@
           }
         }
       }
+    },
+    "Choisir une photo" : {
+
+    },
+    "Close" : {
+
+    },
+    "Commencer le quiz" : {
+
     },
     "dans " : {
 
@@ -97,10 +109,25 @@
     "Je suis arrivé·e" : {
 
     },
+    "Passer le quiz" : {
+
+    },
+    "Prendre une photo" : {
+
+    },
     "Prochain rang: " : {
 
     },
+    "QUIZ" : {
+
+    },
     "Space Grotesky" : {
+
+    },
+    "Trek Final Path" : {
+
+    },
+    "Trek Path" : {
 
     },
     "Voir le parcours" : {
