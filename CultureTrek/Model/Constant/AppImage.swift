@@ -19,9 +19,10 @@ enum AppImage {
         case riddleCompletedTitlePrefix
         case riddleClue
         case riddleTime
-        case riddleMap
+        case riddlePath
         case riddleBack
         case riddleNext
+        case riddleClose
         case popupValid
         case popupInvalid
         case popupClue
@@ -37,12 +38,14 @@ enum AppImage {
                 "lightbulb.max.fill"
             case .riddleTime:
                 "stopwatch"
-            case .riddleMap:
+            case .riddlePath:
                 "map"
             case .riddleBack:
                 "arrow.left"
             case .riddleNext:
                 "arrow.right"
+            case .riddleClose:
+                "xmark"
             case .popupValid:
                 "checkmark.circle"
             case .popupInvalid:

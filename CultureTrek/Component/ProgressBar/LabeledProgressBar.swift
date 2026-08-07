@@ -31,6 +31,10 @@ struct LabeledProgressBar: View {
                 RoundedRectangle(cornerRadius: AppToken.cornerRadius)
                     .strokeBorder(AppColor.border,
                                   lineWidth: AppToken.borderWidth)
+                    .background {
+                        RoundedRectangle(cornerRadius: AppToken.cornerRadius)
+                            .fill(AppColor.accentNeutral)
+                    }
                     .frame(height: 24)
                     .frame(maxWidth: .infinity)
                     .overlay(alignment: .leading) {
@@ -52,7 +56,8 @@ struct LabeledProgressBar: View {
 }
 
 #Preview {
-    LabeledProgressBar(current: 10, total: 10)
+    LabeledProgressBar(current: 7, total: 10)
         .padding()
+        .background(AppColor.background)
 }
 

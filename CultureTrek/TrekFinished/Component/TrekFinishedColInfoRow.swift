@@ -9,22 +9,28 @@
 import SwiftUI
 
 struct TrekFinishedColInfoRow: View {
-    let duration: Duration
-    let points: UInt
-    let rank: (current: UInt, total: UInt)
+    let duration: Duration?
+    let points: UInt?
+    let rank: (current: UInt, total: UInt)?
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack(alignment: .top,
                    spacing: Styles.hSpacing) {
-                TrekFinishedDurationColInfo(label: "Durée",
-                                            duration: duration)
+                if let duration {
+                    TrekFinishedDurationColInfo(label: "Durée",
+                                                duration: duration)
+                }
                 
-                TrekFinishedPointsColInfo(label: "Points",
-                                          points: points)
+                if let points {
+                    TrekFinishedPointsColInfo(label: "Points",
+                                              points: points)
+                }
                 
-                TrekFinishedRankingColInfo(label: "Classement",
-                                           rank: rank)
+                if let rank {
+                    TrekFinishedRankingColInfo(label: "Classement",
+                                               rank: rank)
+                }
             }
                    .padding(.horizontal)
         }

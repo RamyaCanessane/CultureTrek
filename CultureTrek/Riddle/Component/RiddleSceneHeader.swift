@@ -1,15 +1,16 @@
 //
 //  RiddleSceneHeader.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 02/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import SwiftUI
 
 struct RiddleSceneHeader: View {
     let title: String
+    let onPressPath: () -> Void
     
     var body: some View {
         HStack(alignment: .center,
@@ -20,10 +21,8 @@ struct RiddleSceneHeader: View {
             
             Spacer(minLength: Styles.spacing)
             
-            Button {
-                
-            } label: {
-                AppImage.Icon.riddleMap.image
+            Button(action: onPressPath) {
+                AppImage.Icon.riddlePath.image
             }
             .buttonStyle(.neubrutIcon(kind: .info))
         }
@@ -42,9 +41,11 @@ fileprivate enum Styles {
 
 #Preview {
     VStack(spacing: 24) {
-        RiddleSceneHeader(title: "In Soluta Esse")
+        RiddleSceneHeader(title: "In Soluta Esse",
+                          onPressPath: {})
         
-        RiddleSceneHeader(title: "Nulla libero voluptas repellat voluptatem qui quas est")
+        RiddleSceneHeader(title: "Nulla libero voluptas repellat voluptatem qui quas est",
+                          onPressPath: {})
     }
     .padding()
     .background(AppColor.background)

@@ -14,7 +14,8 @@ struct BadActionPopupView: View {
     
     @State private var isFirstPresented: Bool = false
     
-    private let delay: Double = 1
+    private let startDelay: Double = 0.4
+    private let delay: Double = 0.6
     
     var body: some View {
         VStack(alignment: .center,
@@ -57,7 +58,7 @@ struct BadActionPopupView: View {
                }
                .task {
                    do {
-                       try await Task.sleep(for: .seconds(delay))
+                       try await Task.sleep(for: .seconds(startDelay))
                        
                        isFirstPresented = true
                    } catch {
