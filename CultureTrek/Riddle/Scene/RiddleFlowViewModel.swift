@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //
 
+import PhotosUI
 import SwiftUI
 
 @Observable
@@ -15,7 +16,10 @@ final class RiddleFlowViewModel {
     
     private var currentRiddleIndex: Int
     private let trekTitle: String
-    private var photos: [RiddlePhoto]
+    
+    var selectedPhotoItem: PhotosPickerItem?
+    
+    var isPhotoPickerPresented: Bool = false
     
     var validRiddlePopupData: ValidRiddlePopupData? = nil
     var isInvalidRiddlePopupPresented: Bool = false
@@ -29,6 +33,8 @@ final class RiddleFlowViewModel {
     
     private var startDate: Date?
     private var duration: Duration?
+    
+    private let riddleMaxPhotos: UInt = 3
     
     struct ValidRiddlePopupData: Equatable {
         let title: String
@@ -47,7 +53,6 @@ final class RiddleFlowViewModel {
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
-        self.photos = []
     }
     
     var currentView: any View {
@@ -90,6 +95,7 @@ final class RiddleFlowViewModel {
                            duration: duration,
                            currentRiddleOrder: currentRiddleOrder,
                            totalRiddle: totalRiddle,
+                           isAddPhotoDisabled: riddle.photos.count >= riddleMaxPhotos,
                            previousButton: previousButton,
                            nextButton: nextButton,
                            onSubmit: submitRiddle,
@@ -97,7 +103,9 @@ final class RiddleFlowViewModel {
                            onPressPath: showPath,
                            onPressPhotoItem:{ data, index in
             self.showImageViewer(images: data, index: index)
-        })
+        },
+                           onPressOpenCamera: {},
+                           onPressOpenPhotoLibrary: showPhotoLibrary)
     }
     
     var previousButton: (icon: Image, kind: NeubrutIconButtonStyle.Kind, isEnabled: Bool, action: () -> Void) {
@@ -143,6 +151,24 @@ final class RiddleFlowViewModel {
             ? nil
             : Duration.seconds(Date.now.timeIntervalSince(startDate ?? .now))
         }
+    }
+    
+    func addPhotoToRiddle(data: Data) {
+        selectedPhotoItem = nil
+        
+        guard let riddle = riddles[safe: currentRiddleIndex] else {
+            return
+        }
+        
+        guard riddle.photos.count < riddleMaxPhotos else {
+            return
+        }
+        
+        guard let image = UIImage(data: data) else {
+            return
+        }
+        
+        riddles[currentRiddleIndex].photos.append(image)
     }
     
     private func goToFinishedTrekScene() {
@@ -223,6 +249,10 @@ final class RiddleFlowViewModel {
     
     private func showImageViewer(images: [UIImage], index: Int) {
         imageViewerData = .init(images: images, index: index)
+    }
+    
+    private func showPhotoLibrary() {
+        isPhotoPickerPresented = true
     }
 }
 

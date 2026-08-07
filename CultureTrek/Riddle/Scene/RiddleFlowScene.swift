@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
+import PhotosUI
 import PopupView
 import SwiftUI
 
@@ -66,6 +67,14 @@ struct RiddleFlowScene: View {
             .fullScreenCover(item: $vm.imageViewerData) { data in
                 ImageViewer(images: data.images,
                             initialImageIndex: data.index)
+            }
+            .photosPicker(isPresented: $vm.isPhotoPickerPresented,
+                          selection: $vm.selectedPhotoItem,
+                          matching: .images)
+            .task(id: vm.selectedPhotoItem) {
+                if let data = try? await vm.selectedPhotoItem?.loadTransferable(type: Data.self) {
+                    vm.addPhotoToRiddle(data: data)
+                }
             }
     }
 }

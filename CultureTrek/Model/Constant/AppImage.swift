@@ -36,6 +36,8 @@ enum AppImage {
         case trekUnliked
         case trekLiked
         case trekSectionForward
+        case openCamera
+        case openPhotoLibrary
         
         var systemName: String {
             switch self {
@@ -73,6 +75,10 @@ enum AppImage {
                 "heart.fill"
             case .trekSectionForward:
                 "chevron.forward"
+            case .openCamera:
+                "camera"
+            case .openPhotoLibrary:
+                "photo.on.rectangle.angled"
             }
         }
         
