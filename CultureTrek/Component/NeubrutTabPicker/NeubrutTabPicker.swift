@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct NeubrutTabPicker: View {
-    let nameTabTwo: String
-//    let nameTabOne: String
+    let nameFirstTab: String
+    let nameSecondTab: String
+    
+    //    @State var state: TabState = .first
+    @State var state: TabState = .second
+    
+    enum TabState{
+        case first
+        case second
+    }
     
     var body: some View {
-        HStack(spacing: TabPickerStyles.spacing){
-            Text(nameTabTwo)
-                .font(TabPickerStyles.nameFont)
-                .foregroundStyle(TabPickerStyles.textColor)
+        HStack(spacing: TabPickerStyles.spacingZero){
+            TabSelection(nameTab: nameFirstTab, isOn: state == .first)
+            TabSelection(nameTab: nameSecondTab, isOn: state == .second)
         }
-        .padding(.horizontal, TabPickerStyles.paddingInter)
-        .frame(maxWidth: .infinity, alignment: .center)
+        .padding(.horizontal, TabPickerStyles.paddingExtern)
+        .frame(maxWidth: .infinity)
         .frame(height: TabPickerStyles.heightExtern)
         .clipShape(TabPickerStyles.shape)
         .background {
@@ -31,14 +38,41 @@ struct NeubrutTabPicker: View {
                               lineWidth: TabPickerStyles.borderWidth)
         }
         .background{
-                TabPickerStyles.shape
-                    .fill(TabPickerStyles.shadowColor)
-                    .frame(height: TabPickerStyles.heightExtern)
-                    .padding(.leading,
-                             TabPickerStyles.shadowSize)
-                    .padding(.top, TabPickerStyles.shadowSize * 2)
-                    .padding(.trailing, -TabPickerStyles.shadowSize)
-                    .padding(.bottom, 0)
+            TabPickerStyles.shape
+                .fill(TabPickerStyles.shadowColor)
+                .frame(height: TabPickerStyles.heightExtern)
+                .padding(.leading,
+                         TabPickerStyles.shadowSize)
+                .padding(.top, TabPickerStyles.shadowSize * 2)
+                .padding(.trailing, -TabPickerStyles.shadowSize)
+                .padding(.bottom, 0)
+        }
+    }
+}
+
+struct TabSelection: View {
+    let nameTab: String
+    let isOn: Bool
+    
+    var body: some View {
+        HStack(spacing: TabPickerStyles.spacing){
+            Text(nameTab)
+                .font(TabPickerStyles.nameFont)
+                .foregroundStyle(TabPickerStyles.textColor)
+        }
+        .padding(.horizontal, TabPickerStyles.paddingInter)
+        .frame(maxWidth: .infinity, alignment: .center)
+        .frame(height: TabPickerStyles.heightInter)
+        .background(isOn ?
+                    TabPickerStyles.backgroundIsSelected
+                    : TabPickerStyles.backgroundNoSelected)
+        .clipShape(TabPickerStyles.shape)
+        .overlay {
+            TabPickerStyles.shape
+                .strokeBorder(isOn ?
+                              TabPickerStyles.borderColor
+                              : Color.clear,
+                              lineWidth: TabPickerStyles.borderWidth)
         }
     }
 }
@@ -58,42 +92,17 @@ struct TabPickerStyles {
     static let shadowSize = AppToken.shadowSize
     static let shape = RoundedRectangle(cornerRadius: cornerRadius)
     static let spacing = AppToken.Primitive.spacing2
+    static let spacingZero = AppToken.Primitive.spacing0
     static let paddingInter = AppToken.Primitive.padding5
+    static let paddingExtern = AppToken.Primitive.padding1
     static let textColor = AppColor.Label.primary
-}
-
-struct TabSelected: View {
-    let nameTabSelected: String
-    
-    var body: some View {
-        HStack(spacing: TabPickerStyles.spacing){
-            Text(nameTabSelected)
-                .font(TabPickerStyles.nameFont)
-                .foregroundStyle(TabPickerStyles.textColor)
-        }
-        .padding(.horizontal, TabPickerStyles.paddingInter)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .frame(height: TabPickerStyles.heightInter)
-        .background(TabPickerStyles.backgroundIsSelected)
-        .clipShape(TabPickerStyles.shape)
-        .overlay {
-            TabPickerStyles.shape
-                .strokeBorder(TabPickerStyles.borderColor,
-                              lineWidth: TabPickerStyles.borderWidth)
-        }
-    }
 }
 
 #Preview {
     VStack{
-        NeubrutTabPicker(nameTabTwo: "Carte")
+        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte")
     }
     .padding()
-    .background(AppColor.background)
-    
-    VStack{
-        TabSelected(nameTabSelected: "Liste")
-    }
-    .padding()
+    .frame(width: 200)
     .background(AppColor.background)
 }
