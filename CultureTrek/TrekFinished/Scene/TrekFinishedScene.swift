@@ -12,9 +12,11 @@ struct TrekFinishedScene: View {
     let duration: Duration?
     let points: UInt?
     let rank: (current: UInt, total: UInt)?
+    let photos: [RiddlePhoto]
     let onPressPath: () -> Void
     let onPressStartQuiz: () -> Void
     let onPressSkipQuiz: () -> Void
+    let onPressPhotoItem: ([RiddlePhoto], Int) -> Void
     
     private let user: User
     private let progressBarData: LevelCalculator.ProgressBarData?
@@ -22,12 +24,15 @@ struct TrekFinishedScene: View {
     init(duration: Duration?,
          points: UInt?,
          rank: (current: UInt, total: UInt)?,
+         photos: [RiddlePhoto],
          onPressPath: @escaping () -> Void,
          onPressStartQuiz: @escaping () -> Void,
-         onPressSkipQuiz: @escaping () -> Void) {
+         onPressSkipQuiz: @escaping () -> Void,
+         onPressPhotoItem: @escaping ([RiddlePhoto], Int) -> Void) {
         self.duration = duration
         self.points = points
         self.rank = rank
+        self.photos = photos
         
         #warning("Utiliser le vrai utilisateur")
         self.user = .init(currentXPPoints: 1100,
@@ -44,6 +49,7 @@ struct TrekFinishedScene: View {
         self.onPressPath = onPressPath
         self.onPressStartQuiz = onPressStartQuiz
         self.onPressSkipQuiz = onPressSkipQuiz
+        self.onPressPhotoItem = onPressPhotoItem
     }
     
     var body: some View {
@@ -81,13 +87,11 @@ struct TrekFinishedScene: View {
                 TrekFinishedBadgeListSection(badges: Badge.examples)
                     .padding(.horizontal)
                 
-                TrekFinishedPhotoListSection(photos: [
-                    AppImage.riddleTestPicture,
-                    AppImage.riddleTestPicture,
-                    AppImage.riddleTestPicture,
-                    AppImage.riddleTestPicture,
-                    AppImage.riddleTestPicture
-                ])
+                if !photos.isEmpty {
+                    TrekFinishedPhotoListSection(photos: photos) {
+                        onPressPhotoItem(photos, $0)
+                    }
+                }
             }
                    .padding(.bottom)
         }
@@ -155,7 +159,13 @@ fileprivate enum Styles {
     TrekFinishedScene(duration: Duration.seconds(2 * 3600 + 23 * 60 + 45),
                       points: 220,
                       rank: (23, 302),
+                      photos: [
+                        .init(riddleOrder: 1, image: UIImage(resource: .riddleTestPicture)),
+                        .init(riddleOrder: 2, image: UIImage(resource: .trekTestPicture)),
+                        .init(riddleOrder: 2, image: UIImage(resource: .riddleTestPicture)),
+                      ],
                       onPressPath: {},
                       onPressStartQuiz: {},
-                      onPressSkipQuiz: {})
+                      onPressSkipQuiz: {},
+                      onPressPhotoItem: { _,_  in })
 }

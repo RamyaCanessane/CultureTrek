@@ -15,11 +15,14 @@ final class RiddleFlowViewModel {
     
     private var currentRiddleIndex: Int
     private let trekTitle: String
+    private var photos: [RiddlePhoto]
     
     var validRiddlePopupData: ValidRiddlePopupData? = nil
     var isInvalidRiddlePopupPresented: Bool = false
     var riddleClueForPopup: String? = nil
     var isPathPresented: Bool = false
+    
+    var imageViewerData: ImageViewerData? = nil
     
     var isTrekFinishedPresented: Bool = false
     var isFinalPathPresented: Bool = false
@@ -32,12 +35,19 @@ final class RiddleFlowViewModel {
         let points: UInt
     }
     
+    struct ImageViewerData: Identifiable {
+        let id = UUID()
+        let images: [UIImage]
+        let index: Int
+    }
+    
     init(trek: Trek = RiddleFlowViewModel.testTrek) {
         self.trekTitle = trek.name
         self.riddles = trek.riddles
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
+        self.photos = []
     }
     
     var currentView: any View {
@@ -50,12 +60,24 @@ final class RiddleFlowViewModel {
             
             let rank: (current: UInt, total: UInt) = (UInt.random(in: 5...40), UInt.random(in: 100...150))
             
+            let photos = riddles.flatMap { riddle in
+                riddle.photos.map({ photo in
+                    RiddlePhoto(riddleOrder: riddle.order,
+                                image: photo)
+                })
+            }
+            
             return TrekFinishedScene(duration: duration,
                                      points: points,
                                      rank: rank,
+                                     photos: photos,
                                      onPressPath: showFinalPath,
                                      onPressStartQuiz: {},
-                                     onPressSkipQuiz: {})
+                                     onPressSkipQuiz: {},
+                                     onPressPhotoItem: { data, index in
+                let images = data.map { $0.image }
+                self.showImageViewer(images: images, index: index)
+            })
         }
         
         guard let riddle = riddles[safe: currentRiddleIndex] else {
@@ -72,7 +94,10 @@ final class RiddleFlowViewModel {
                            nextButton: nextButton,
                            onSubmit: submitRiddle,
                            onPressClue: showClue,
-                           onPressPath: showPath)
+                           onPressPath: showPath,
+                           onPressPhotoItem:{ data, index in
+            self.showImageViewer(images: data, index: index)
+        })
     }
     
     var previousButton: (icon: Image, kind: NeubrutIconButtonStyle.Kind, isEnabled: Bool, action: () -> Void) {
@@ -194,6 +219,10 @@ final class RiddleFlowViewModel {
     
     private func showFinalPath() {
         isFinalPathPresented = true
+    }
+    
+    private func showImageViewer(images: [UIImage], index: Int) {
+        imageViewerData = .init(images: images, index: index)
     }
 }
 

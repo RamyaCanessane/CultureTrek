@@ -63,6 +63,10 @@ struct RiddleFlowScene: View {
                     }
                 }
             }
+            .fullScreenCover(item: $vm.imageViewerData) { data in
+                ImageViewer(images: data.images,
+                            initialImageIndex: data.index)
+            }
     }
 }
 

@@ -26,6 +26,7 @@ struct RiddleScene: View {
     let onSubmit: () -> Void
     let onPressClue: () -> Void
     let onPressPath: () -> Void
+    let onPressPhotoItem: ([UIImage], Int) -> Void
     
     var body: some View {
         ScrollView {
@@ -47,11 +48,10 @@ struct RiddleScene: View {
                 .padding(.horizontal)
                 
                 if riddle.isCompleted {
-                    RiddlePhotoListSection(photos: [
-                        Image(.riddleTestPicture),
-                        Image(.riddleTestPicture),
-                        Image(.riddleTestPicture)
-                    ],
+                    RiddlePhotoListSection(photos: riddle.photos,
+                                           onPressItem: {
+                        onPressPhotoItem(riddle.photos, $0)
+                    },
                                            isAddDisabled: false,
                                            onAddPressed: {})
                     
@@ -176,6 +176,11 @@ fileprivate let riddleExample = Riddle(
     isCompleted: true,
     order: 3,
     picture: AppImage.riddleTestPicture,
+    photos: [
+        UIImage(resource: .trekTestPicture),
+        UIImage(resource: .riddleTestPicture),
+        UIImage(resource: .trekTestPicture)
+    ],
     summary: "Autem aperiam aut velit delectus voluptatibus ut qui aut. Illo est qui et nostrum eligendi ut soluta accusamus deleniti voluptas repellendus cum excepturi.",
     validationPoints: 40
 )
@@ -197,5 +202,6 @@ fileprivate let riddleExample = Riddle(
                              action: {}),
                 onSubmit: {},
                 onPressClue: {},
-                onPressPath: {})
+                onPressPath: {},
+                onPressPhotoItem: { _, _ in })
 }

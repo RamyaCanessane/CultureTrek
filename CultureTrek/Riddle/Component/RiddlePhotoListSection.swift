@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct RiddlePhotoListSection: View {
-    let photos: [Image]
+    let photos: [UIImage]
+    let onPressItem: (Int) -> Void
     let isAddDisabled: Bool
     let onAddPressed: () -> Void
     
@@ -24,6 +25,9 @@ struct RiddlePhotoListSection: View {
                        spacing: Styles.hSpacing) {
                     ForEach(photos.enumerated(), id: \.offset) { item in
                         PhotoItem(image: item.element)
+                            .onTapGesture {
+                                onPressItem(item.offset)
+                            }
                     }
                     
                     Button("Ajouter photo", action: onAddPressed)
@@ -40,10 +44,10 @@ struct RiddlePhotoListSection: View {
 }
 
 fileprivate struct PhotoItem: View {
-    let image: Image
+    let image: UIImage
     
     var body: some View {
-        image
+        Image(uiImage: image)
             .resizable()
             .scaledToFill()
             .frame(width: Styles.itemSize,
@@ -155,10 +159,11 @@ fileprivate enum Styles {
 
 #Preview {
     RiddlePhotoListSection(photos: [
-        Image(.riddleTestPicture),
-        Image(.riddleTestPicture),
-        Image(.riddleTestPicture)
+        UIImage(resource: .riddleTestPicture),
+        UIImage(resource: .riddleTestPicture),
+        UIImage(resource: .riddleTestPicture)
     ],
+                           onPressItem: { _ in },
                     isAddDisabled: false,
                     onAddPressed: {})
 }

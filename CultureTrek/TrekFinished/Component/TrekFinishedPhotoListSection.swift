@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct TrekFinishedPhotoListSection: View {
-    let photos: [Image]
+    let photos: [RiddlePhoto]
+    let onPressItem: (Int) -> Void
     
     var body: some View {
         VStack(alignment: .leading,
@@ -21,8 +22,11 @@ struct TrekFinishedPhotoListSection: View {
                 HStack(alignment: .top,
                        spacing: Styles.hSpacing) {
                     ForEach(photos.enumerated(), id: \.offset) { item in
-                        PhotoItem(image: item.element,
-                                  riddleOrder: UInt.random(in: 1...12))
+                        PhotoItem(image: item.element.image,
+                                  riddleOrder: item.element.riddleOrder)
+                        .onTapGesture {
+                            onPressItem(item.offset)
+                        }
                     }
                 }
                 .padding(.horizontal)
@@ -35,11 +39,11 @@ struct TrekFinishedPhotoListSection: View {
 }
 
 fileprivate struct PhotoItem: View {
-    let image: Image
+    let image: UIImage
     let riddleOrder: UInt
     
     var body: some View {
-        image
+        Image(uiImage: image)
             .resizable()
             .scaledToFill()
             .frame(width: Styles.itemSize,
@@ -86,10 +90,10 @@ fileprivate enum Styles {
 
 #Preview {
     TrekFinishedPhotoListSection(photos: [
-        Image(.riddleTestPicture),
-        Image(.riddleTestPicture),
-        Image(.riddleTestPicture),
-        Image(.riddleTestPicture),
-        Image(.riddleTestPicture)
-    ])
+        .init(riddleOrder: 2, image: UIImage(resource: .riddleTestPicture)),
+        .init(riddleOrder: 2, image: UIImage(resource: .trekTestPicture)),
+        .init(riddleOrder: 3, image: UIImage(resource: .trekTestPicture)),
+        .init(riddleOrder: 3, image: UIImage(resource: .riddleTestPicture)),
+    ],
+                                 onPressItem: { _ in })
 }

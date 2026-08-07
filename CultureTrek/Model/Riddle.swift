@@ -15,10 +15,10 @@ struct Riddle {
     var isCompleted: Bool
     let order: UInt
     let picture: Image?
+    var photos: [UIImage]
     let summary: String // description
     let validationPoints: UInt
 //    var coordinate: CLLocationCoordinate2D
-    //    var photos: [UIImage]
 }
 
 extension Riddle {
@@ -29,6 +29,9 @@ extension Riddle {
               isCompleted: false,
               order: 1,
               picture: Image(.riddleTestPicture),
+              photos: [
+                .init(resource: .riddleTestPicture)
+              ],
               summary: "Repudiandae atque adipisci dolores maxime esse voluptatem eveniet sunt similique eius tenetur delectus eum quo. Laboriosam error nulla voluptatum nemo nisi temporibus aut sunt.",
              validationPoints: 10),
         .init(clue: nil,
@@ -36,6 +39,10 @@ extension Riddle {
               isCompleted: false,
               order: 2,
               picture: nil,
+              photos: [
+                .init(resource: .trekTestPicture),
+                .init(resource: .riddleTestPicture)
+              ],
               summary: "Omnis dolores molestias cum voluptas quod reprehenderit tempore labore et architecto in assumenda.",
               validationPoints: 20),
         .init(clue: "Illo voluptatem rerum esse id nihil eum tenetur.",
@@ -43,6 +50,9 @@ extension Riddle {
               isCompleted: false,
               order: 3,
               picture: Image(.riddleTestPicture),
+              photos: [
+                .init(resource: .trekTestPicture)
+              ],
               summary: "Qui sed quis nulla libero nam et nesciunt adipisci. Quaerat voluptatem ut animi aliquam nostrum et labore.",
               validationPoints: 30)
     ]

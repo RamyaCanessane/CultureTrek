@@ -16,6 +16,7 @@ enum AppImage {
     static let xpPointsIcon = Image(.xpPointsIcon)
     
     enum Icon {
+        case close
         case riddleCompletedTitlePrefix
         case riddleClue
         case riddleTime
@@ -32,6 +33,8 @@ enum AppImage {
         
         var systemName: String {
             switch self {
+            case .close:
+                "xmark"
             case .riddleCompletedTitlePrefix:
                 "checkmark.square.fill"
             case .riddleClue:
