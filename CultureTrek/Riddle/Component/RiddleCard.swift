@@ -13,6 +13,9 @@ struct RiddleCard: View {
     let picture: Image?
     let content: String
     let isCompleted: Bool
+    let hasClue: Bool
+    let onSubmit: () -> Void
+    let onAskClue: () -> Void
     
     var body: some View {
         if let picture {
@@ -34,18 +37,17 @@ struct RiddleCard: View {
     private var actions: some View {
         HStack(alignment: .center,
                spacing: Styles.actionsSpacing) {
-            Button("Je suis arrivé·e") {
-                
-            }
+            Button("Je suis arrivé·e",
+                   action: onSubmit)
             .buttonStyle(.neubrutProminent(kind: .neutral,
                                            isFullWidth: true))
             
-            Button {
-                
-            } label: {
-                AppImage.Icon.riddleClue.image
+            if hasClue {
+                Button(action: onAskClue) {
+                    AppImage.Icon.riddleClue.image
+                }
+                .buttonStyle(.neubrutIcon(kind: .secondary))
             }
-            .buttonStyle(.neubrutIcon(kind: .secondary))
         }
     }
     
@@ -97,12 +99,18 @@ fileprivate enum Styles {
         RiddleCard(order: 2,
                    picture: nil,
                    content: "Minima nam quo dolor modi sequi cumque alias sunt ut quo sapiente molestias ut voluptate quae.",
-                   isCompleted: true)
+                   isCompleted: true,
+                   hasClue: true,
+                   onSubmit: {},
+                   onAskClue: {})
         
         RiddleCard(order: 2,
                    picture: AppImage.riddleTestPicture,
                    content: "Minima nam quo dolor modi sequi cumque alias sunt ut quo sapiente molestias ut voluptate quae.",
-                   isCompleted: false)
+                   isCompleted: false,
+                   hasClue: true,
+                   onSubmit: {},
+                   onAskClue: {})
     }
     .padding()
     .background(AppColor.background)

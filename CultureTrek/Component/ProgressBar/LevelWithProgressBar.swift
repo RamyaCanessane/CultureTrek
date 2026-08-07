@@ -11,16 +11,44 @@ struct LevelWithProgressBar: View {
     private let newPoints: UInt
     private let currentPoints: UInt
     private let totalPoints: UInt
+    private let remainingPoints: UInt
     private let progression: Double
     private let progressionNew: Double
     private let currentLevel: String
     private let nextLevel: String
         
-    init(newPoints: UInt, currentPoints: UInt, totalPoints: UInt, currentLevel: String, nextLevel: String) {
+    init(newPoints: UInt,
+         currentPoints: UInt,
+         totalPoints: UInt,
+         remainingPoints: UInt,
+         currentLevel: String,
+         nextLevel: String,
+    ) {
         self.currentPoints = currentPoints
         self.newPoints = newPoints
         self.progressionNew = Double(newPoints) / Double(totalPoints)
         self.totalPoints = totalPoints
+        self.remainingPoints = remainingPoints
+        if currentPoints <= totalPoints && totalPoints > 0 {
+            self.progression = Double(currentPoints) / Double(totalPoints)
+        } else {
+            self.progression = 0
+        }
+        self.currentLevel = currentLevel
+        self.nextLevel = nextLevel
+    }
+    
+    init(newPoints: UInt,
+         currentPoints: UInt,
+         totalPoints: UInt,
+         currentLevel: String,
+         nextLevel: String,
+    ) {
+        self.currentPoints = currentPoints
+        self.newPoints = newPoints
+        self.progressionNew = Double(newPoints) / Double(totalPoints)
+        self.totalPoints = totalPoints
+        self.remainingPoints = totalPoints - (currentPoints + newPoints)
         if currentPoints <= totalPoints && totalPoints > 0 {
             self.progression = Double(currentPoints) / Double(totalPoints)
         } else {
@@ -85,10 +113,6 @@ struct LevelWithProgressBar: View {
             \(Text("Prochain rang: ")) \(Text("\(nextLevel)").fontWeight(.bold)) \(Text("dans ")) \(Text("\(remainingPoints)").fontWeight(.bold))
             """
         )
-    }
-    
-    private var remainingPoints: UInt {
-        totalPoints - (currentPoints + newPoints)
     }
 }
 

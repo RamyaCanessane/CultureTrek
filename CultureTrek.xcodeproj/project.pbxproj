@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D719CD723024BA0D005EF44E /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = D719CD713024BA0D005EF44E /* PopupView */; };
 		F8F60C85301A305C00CCA393 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F8F60C84301A305C00CCA393 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D719CD723024BA0D005EF44E /* PopupView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +88,7 @@
 			);
 			name = CultureTrek;
 			packageProductDependencies = (
+				D719CD713024BA0D005EF44E /* PopupView */,
 			);
 			productName = CultureTrek;
 			productReference = F8F60C76301A2F7400CCA393 /* CultureTrek.app */;
@@ -115,6 +118,9 @@
 			);
 			mainGroup = F8F60C6D301A2F7400CCA393;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D719CD703024BA0D005EF44E /* XCRemoteSwiftPackageReference "PopupView" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F8F60C77301A2F7400CCA393 /* Products */;
 			projectDirPath = "";
@@ -362,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D719CD703024BA0D005EF44E /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D719CD713024BA0D005EF44E /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D719CD703024BA0D005EF44E /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8F60C6E301A2F7400CCA393 /* Project object */;
 }

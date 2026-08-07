@@ -13,7 +13,8 @@ struct RiddleCluePopupView: View {
     
     @State private var isFirstPresented: Bool = false
     
-    private let delay: Double = 1
+    private let startDelay: Double = 0.4
+    private let delay: Double = 0.6
     
     var body: some View {
         VStack(alignment: .center,
@@ -54,9 +55,10 @@ struct RiddleCluePopupView: View {
                        .strokeBorder(Styles.borderColor,
                                      lineWidth: Styles.borderWidth)
                }
+               .frame(maxWidth: 300)
                .task {
                    do {
-                       try await Task.sleep(for: .seconds(delay))
+                       try await Task.sleep(for: .seconds(startDelay))
                        
                        isFirstPresented = true
                    } catch {
@@ -86,10 +88,9 @@ struct RiddleCluePopupView: View {
             .font(Styles.subtitleFont)
             .foregroundStyle(Styles.subtitleColor)
             .multilineTextAlignment(Styles.subtitleTextAlignment)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
-
-#warning("Ajouter une couleur jaune pour Clue dans variables Figma et AppColor et l'utiliser ici.")
 
 fileprivate enum Styles {
     

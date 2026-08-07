@@ -9,7 +9,12 @@
 import SwiftUI
 
 struct RiddleTime: View {
-    let duration: Duration
+    let time: Time
+    
+    enum Time {
+        case stopWatch(startDate: Date)
+        case duration(Duration)
+    }
     
     var body: some View {
         HStack(alignment: .center,
@@ -18,9 +23,23 @@ struct RiddleTime: View {
                 .font(Styles.iconFont)
                 .foregroundStyle(Styles.iconColor)
             
-            Text(duration.formatted(.units(width: .abbreviated)))
+            switch time {
+            case .stopWatch(let startDate):
+                TimelineView(.periodic(from: startDate, by: 1)) { context in
+                    let duration = Duration.seconds(context.date.timeIntervalSince(startDate))
+                    Text(duration.formatted(.units(allowed: [.hours, .minutes, .seconds],
+                                                   width: .abbreviated)))
+                    .font(Styles.labelFont)
+                    .foregroundStyle(Styles.labelColor)
+                }
+            case .duration(let duration):
+                Text(duration.formatted(.units(allowed: [.hours, .minutes, .seconds],
+                                               width: .abbreviated)))
                 .font(Styles.labelFont)
                 .foregroundStyle(Styles.labelColor)
+            }
+            
+            
         }
     }
 }
@@ -39,5 +58,9 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleTime(duration: .seconds(12 * 60 + 27))
+    VStack {
+        RiddleTime(time: .stopWatch(startDate: .now))
+        
+        RiddleTime(time: .duration(.seconds(15 * 60 + 3)))
+    }
 }
