@@ -12,7 +12,8 @@ struct RiddlePhotoListSection: View {
     let photos: [UIImage]
     let onPressItem: (Int) -> Void
     let isAddDisabled: Bool
-    let onAddPressed: () -> Void
+    let onPressOpenCamera: () -> Void
+    let onPressOpenPhotoLibrary: () -> Void
     
     var body: some View {
         VStack(alignment: .leading,
@@ -30,9 +31,21 @@ struct RiddlePhotoListSection: View {
                             }
                     }
                     
-                    Button("Ajouter photo", action: onAddPressed)
-                        .buttonStyle(AddButtonStyle())
-                        .disabled(isAddDisabled)
+                    Menu {
+                        Button(action: onPressOpenCamera) {
+                            Label("Prendre une photo",
+                                  systemImage: AppImage.Icon.openCamera.systemName)
+                        }
+                        
+                        Button(action: onPressOpenPhotoLibrary) {
+                            Label("Choisir une photo",
+                                  systemImage: AppImage.Icon.openPhotoLibrary.systemName)
+                        }
+                    } label: {
+                        Button("Ajouter photo", action: {})
+                    }
+                    .buttonStyle(AddButtonStyle())
+                    .disabled(isAddDisabled)
                 }
                 .padding(.horizontal)
             }
@@ -165,5 +178,6 @@ fileprivate enum Styles {
     ],
                            onPressItem: { _ in },
                     isAddDisabled: false,
-                    onAddPressed: {})
+                           onPressOpenCamera: {},
+                           onPressOpenPhotoLibrary: {})
 }

@@ -30,6 +30,8 @@ enum AppImage {
         case trekDuration
         case trekRanking
         case trekFinishedMapPattern
+        case openCamera
+        case openPhotoLibrary
         
         var systemName: String {
             switch self {
@@ -61,6 +63,10 @@ enum AppImage {
                 "crown"
             case .trekFinishedMapPattern:
                 "point.topright.arrow.triangle.backward.to.point.bottomleft.filled.scurvepath"
+            case .openCamera:
+                "camera"
+            case .openPhotoLibrary:
+                "photo.on.rectangle.angled"
             }
         }
         

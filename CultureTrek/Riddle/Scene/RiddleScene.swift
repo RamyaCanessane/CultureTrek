@@ -15,6 +15,7 @@ struct RiddleScene: View {
     let duration: Duration?
     let currentRiddleOrder: UInt
     let totalRiddle: UInt
+    let isAddPhotoDisabled: Bool
     let previousButton: (icon: Image,
                          kind: NeubrutIconButtonStyle.Kind,
                          isEnabled: Bool,
@@ -27,6 +28,8 @@ struct RiddleScene: View {
     let onPressClue: () -> Void
     let onPressPath: () -> Void
     let onPressPhotoItem: ([UIImage], Int) -> Void
+    let onPressOpenCamera: () -> Void
+    let onPressOpenPhotoLibrary: () -> Void
     
     var body: some View {
         ScrollView {
@@ -52,8 +55,9 @@ struct RiddleScene: View {
                                            onPressItem: {
                         onPressPhotoItem(riddle.photos, $0)
                     },
-                                           isAddDisabled: false,
-                                           onAddPressed: {})
+                                           isAddDisabled: isAddPhotoDisabled,
+                                           onPressOpenCamera: onPressOpenCamera,
+                                           onPressOpenPhotoLibrary: onPressOpenPhotoLibrary)
                     
                     if let goodToKnow = riddle.goodToKnow {
                         RiddleGoodToKnow(content: goodToKnow)
@@ -70,24 +74,24 @@ struct RiddleScene: View {
                        alignment: .center) {
             RiddleSceneHeader(title: trekTitle,
                               onPressPath: onPressPath)
-                .padding(.horizontal)
-                .padding(.bottom, Styles.vPadding)
-                .background {
-                    Rectangle()
-                        .fill(
-                            LinearGradient(colors: [
-                                Styles.background.opacity(0.64),
-                                Styles.background.opacity(1),
-                                Styles.background.opacity(1)
-                            ],
-                                           startPoint: .bottom,
-                                           endPoint: .top)
-                        )
-                        .padding(-20)
-                        .blur(radius: 10)
-                        .padding(20)
-                        .padding(.top, -20)
-                }
+            .padding(.horizontal)
+            .padding(.bottom, Styles.vPadding)
+            .background {
+                Rectangle()
+                    .fill(
+                        LinearGradient(colors: [
+                            Styles.background.opacity(0.64),
+                            Styles.background.opacity(1),
+                            Styles.background.opacity(1)
+                        ],
+                                       startPoint: .bottom,
+                                       endPoint: .top)
+                    )
+                    .padding(-20)
+                    .blur(radius: 10)
+                    .padding(20)
+                    .padding(.top, -20)
+            }
         }
                        .safeAreaInset(edge: .top,
                                       alignment: .center) {
@@ -192,6 +196,7 @@ fileprivate let riddleExample = Riddle(
                 duration: nil,
                 currentRiddleOrder: 7,
                 totalRiddle: 12,
+                isAddPhotoDisabled: false,
                 previousButton: (icon: AppImage.Icon.riddlePath.image,
                                  kind: NeubrutIconButtonStyle.Kind.info,
                                  isEnabled: true,
@@ -203,5 +208,7 @@ fileprivate let riddleExample = Riddle(
                 onSubmit: {},
                 onPressClue: {},
                 onPressPath: {},
-                onPressPhotoItem: { _, _ in })
+                onPressPhotoItem: { _, _ in },
+                onPressOpenCamera: {},
+                onPressOpenPhotoLibrary: {})
 }
