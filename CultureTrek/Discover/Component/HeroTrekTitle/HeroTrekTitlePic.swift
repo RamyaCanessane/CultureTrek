@@ -21,7 +21,7 @@ struct HeroTrekTitlePic: View {
                 .clipped()
                 .overlay(alignment: .topLeading) {
                     VStack{
-                        UITagFontStyle(content: tag.uppercased(), size: Styles.tagFontSize, weight: .heavy, width: .condensed, foreground: Styles.tagForeground)
+                        UISectionTitleFontStyle(content: tag.uppercased(), size: Styles.tagFontSize, weight: .heavy, width: .condensed, foreground: Styles.tagForeground)
                             .frame(maxWidth: Styles.tagUIStyleWidth, maxHeight: Styles.tagUIStyleHeight)
                     }
                         .padding(.horizontal, Styles.tagHorizontalPadding)
@@ -44,33 +44,6 @@ fileprivate struct Styles {
     
     static let tagUIStyleWidth = CGFloat(168)
     static let tagUIStyleHeight = CGFloat(20)
-    
-}
-
-fileprivate struct UITagFontStyle : UIViewRepresentable {
-    
-    let content : String
-    
-    let size : CGFloat
-    let weight : UIFont.Weight
-    let width : UIFont.Width
-    
-    let foreground : Color
-    
-    func makeUIView(context: Context) -> UILabel {
-        
-        let label = UILabel()
-        label.text = content
-        label.font = UIFont.systemFont(ofSize: size, weight: weight, width: width)
-        label.textColor = UIColor(foreground)
-        label.textAlignment = .left
-        return label
-        
-    }
-    
-    func updateUIView(_ uiView: UILabel, context: Context) {
-        uiView.text = content
-    }
     
 }
 

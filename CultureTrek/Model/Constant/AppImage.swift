@@ -31,6 +31,9 @@ enum AppImage {
         case trekDuration
         case trekRanking
         case trekFinishedMapPattern
+        case trekUnliked
+        case trekLiked
+        case trekSectionForward
         
         var systemName: String {
             switch self {
@@ -58,6 +61,12 @@ enum AppImage {
                 "crown"
             case .trekFinishedMapPattern:
                 "point.topright.arrow.triangle.backward.to.point.bottomleft.filled.scurvepath"
+            case .trekUnliked:
+                "heart"
+            case .trekLiked:
+                "heart.fill"
+            case .trekSectionForward:
+                "chevron.forward"
             }
         }
         

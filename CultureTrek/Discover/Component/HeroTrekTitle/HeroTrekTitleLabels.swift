@@ -18,7 +18,7 @@ struct HeroTrekTitleLabels: View {
     var body: some View {
         VStack(alignment : .leading, spacing : Styles.labelsSpacing){
             
-            UITitleFontStyle(content: title, size: Styles.titleFontSize, weight: .heavy, width: .condensed, foreground: Styles.titleForeground)
+            UISectionTitleFontStyle(content: title, size: Styles.titleFontSize, weight: .heavy, width: .condensed, foreground: Styles.titleForeground)
                 .frame(maxWidth: .infinity, maxHeight: Styles.titleUIStyleHeight)
                 .lineLimit(2, reservesSpace: true)
             
@@ -57,32 +57,6 @@ fileprivate struct Styles {
     static let subtitleSpacing = AppToken.Primitive.spacing0
     
     static let titleUIStyleHeight = CGFloat(32)
-    
-}
-
-fileprivate struct UITitleFontStyle : UIViewRepresentable {
-    
-    let content : String
-    
-    let size : CGFloat
-    let weight : UIFont.Weight
-    let width : UIFont.Width
-    
-    let foreground : Color
-    
-    func makeUIView(context: Context) -> UILabel {
-        
-        let label = UILabel()
-        label.text = content
-        label.font = UIFont.systemFont(ofSize: size, weight: weight, width: width)
-        label.textColor = UIColor(foreground)
-        return label
-        
-    }
-    
-    func updateUIView(_ uiView: UILabel, context: Context) {
-        uiView.text = content
-    }
     
 }
 
