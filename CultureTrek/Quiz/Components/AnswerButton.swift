@@ -14,14 +14,14 @@ struct AnswerButton: View {
     var body: some View {
         Text(label)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .font(.spaceGrotesk(size: 17, weight: .medium))
-            .padding(16)
+            .font(.spaceGrotesk(size: 17, weight: .regular))
+            .padding(AppToken.Primitive.padding4)
             .border(AppColor.border, width: AppToken.borderWidth)
             .background(
                 RoundedRectangle(cornerRadius: AppToken.cornerRadius)
                     .fill(isSelected ? .primitiveAccentSecondary : .primitiveAccentNeutral)
                     .shadow(color: isSelected ? .clear : AppColor.shadow,
-                            radius: 0,
+                            radius: AppToken.Primitive.radiusNone,
                             x: isSelected ? 0 : AppToken.shadowSize,
                             y: isSelected ? 0 : AppToken.shadowSize
                            )
