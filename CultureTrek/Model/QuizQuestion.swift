@@ -22,7 +22,7 @@ struct QuizQuestion {
         case undefined
     }
     
-    enum Answer {
+    enum Answer: Hashable {
         case good(String)
         case bad(String)
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AnswerButton: View {
-    @State private var isSelected: Bool = false
+    @State var isSelected: Bool = false
     let label: String
     
     var body: some View {
