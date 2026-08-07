@@ -13,6 +13,9 @@ enum AppImage {
     static let riddleTestPicture = Image(.riddleTestPicture)
     static let badgeTest = Image(.badgeTest)
     
+    static let heroTestPicture = Image(.heroTestPicture)
+    static let trekTestPicture = Image(.trekTestPicture)
+    
     static let xpPointsIcon = Image(.xpPointsIcon)
     
     enum Icon {
@@ -30,6 +33,9 @@ enum AppImage {
         case trekDuration
         case trekRanking
         case trekFinishedMapPattern
+        case trekUnliked
+        case trekLiked
+        case trekSectionForward
         
         var systemName: String {
             switch self {
@@ -61,6 +67,12 @@ enum AppImage {
                 "crown"
             case .trekFinishedMapPattern:
                 "point.topright.arrow.triangle.backward.to.point.bottomleft.filled.scurvepath"
+            case .trekUnliked:
+                "heart"
+            case .trekLiked:
+                "heart.fill"
+            case .trekSectionForward:
+                "chevron.forward"
             }
         }
         
