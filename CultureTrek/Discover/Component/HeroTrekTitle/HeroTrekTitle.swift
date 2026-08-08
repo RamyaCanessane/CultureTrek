@@ -26,6 +26,7 @@ struct HeroTrekTitle: View {
         .mask {
             RoundedRectangle(cornerRadius: Styles.heroCornerRadius)
         }
+        .padding(Styles.heroPadding)
 
     }
 }
@@ -37,6 +38,7 @@ fileprivate struct Styles {
     static let heroBorderWidth = AppToken.borderWidth
     static let heroCornerRadius = AppToken.cornerRadius
     static let heroSpacing = AppToken.Primitive.spacing0
+    static let heroPadding = AppToken.Primitive.spacing4
     
 }
 
