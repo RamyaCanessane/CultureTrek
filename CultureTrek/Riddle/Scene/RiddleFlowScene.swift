@@ -46,6 +46,14 @@ struct RiddleFlowScene: View {
                     .closeOnTapOutside(true)
                     .backgroundColor(Styles.popupBackground)
             }
+            .popup(item: $vm.badgeForPopup) { badge in
+                BadgePopupView(badge: badge)
+            } customize: {
+                $0
+                    .closeOnTap(true)
+                    .closeOnTapOutside(true)
+                    .backgroundColor(Styles.popupBackground)
+            }
             .fullScreenCover(isPresented: $vm.isPathPresented) {
                 VStack {
                     Text("Trek Path")

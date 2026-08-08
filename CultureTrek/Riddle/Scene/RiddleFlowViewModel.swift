@@ -16,6 +16,7 @@ final class RiddleFlowViewModel {
     
     private var currentRiddleIndex: Int
     private let trekTitle: String
+    private let trekBadges: [Badge]
     
     var selectedPhotoItem: PhotosPickerItem?
     
@@ -24,6 +25,8 @@ final class RiddleFlowViewModel {
     var validRiddlePopupData: ValidRiddlePopupData? = nil
     var isInvalidRiddlePopupPresented: Bool = false
     var riddleClueForPopup: String? = nil
+    var badgeForPopup: Badge? = nil
+    
     var isPathPresented: Bool = false
     
     var imageViewerData: ImageViewerData? = nil
@@ -53,17 +56,18 @@ final class RiddleFlowViewModel {
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
+        self.trekBadges = trek.badgesToUnlock
     }
     
     var currentView: any View {
         if riddles.allSatisfy(\.isCompleted) && isTrekFinishedPresented {
             #warning("use points calculator to calculate points base on completionPoints and duration")
             
-            let points = riddles.map(\.validationPoints).reduce(0, +) + 0 // Add points base on duration
+            let points = riddles.map(\.validationPoints).reduce(0, +) + 0 // TODO: Ajouter des points en se basant sur la durée
             
             #warning("utilisation de fausses données pour rank")
             
-            let rank: (current: UInt, total: UInt) = (UInt.random(in: 5...40), UInt.random(in: 100...150))
+            let rank: (current: UInt, total: UInt) = (24, 127)
             
             let photos = riddles.flatMap { riddle in
                 riddle.photos.map({ photo in
@@ -72,17 +76,21 @@ final class RiddleFlowViewModel {
                 })
             }
             
+            let badges = trekBadges // TODO: Ajouter seulement les badges obtenus
+            
             return TrekFinishedScene(duration: duration,
                                      points: points,
                                      rank: rank,
                                      photos: photos,
+                                     badges: badges,
                                      onPressPath: showFinalPath,
                                      onPressStartQuiz: {},
                                      onPressSkipQuiz: {},
                                      onPressPhotoItem: { data, index in
                 let images = data.map { $0.image }
                 self.showImageViewer(images: images, index: index)
-            })
+            },
+                                     onPressBadgeItem: showBadge)
         }
         
         guard let riddle = riddles[safe: currentRiddleIndex] else {
@@ -242,6 +250,10 @@ final class RiddleFlowViewModel {
         riddleClueForPopup = clue
     }
     
+    private func showBadge(badge: Badge) {
+        badgeForPopup = badge
+    }
+    
     private func showPath() {
         isPathPresented = true
     }
@@ -270,7 +282,7 @@ extension RiddleFlowViewModel {
                                                stroller: false,
                                                walking: false,
                                                wheelchair: false),
-        badgesToUnlock: [],
+        badgesToUnlock: Badge.examples,
         city: "Saint-Denis",
         completion: nil,
         department: "Seine-Saint-Denis",

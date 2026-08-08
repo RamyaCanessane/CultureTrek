@@ -13,10 +13,12 @@ struct TrekFinishedScene: View {
     let points: UInt?
     let rank: (current: UInt, total: UInt)?
     let photos: [RiddlePhoto]
+    let badges: [Badge]
     let onPressPath: () -> Void
     let onPressStartQuiz: () -> Void
     let onPressSkipQuiz: () -> Void
     let onPressPhotoItem: ([RiddlePhoto], Int) -> Void
+    let onPressBadgeItem: (Badge) -> Void
     
     private let user: User
     private let progressBarData: LevelCalculator.ProgressBarData?
@@ -25,14 +27,17 @@ struct TrekFinishedScene: View {
          points: UInt?,
          rank: (current: UInt, total: UInt)?,
          photos: [RiddlePhoto],
+         badges: [Badge],
          onPressPath: @escaping () -> Void,
          onPressStartQuiz: @escaping () -> Void,
          onPressSkipQuiz: @escaping () -> Void,
-         onPressPhotoItem: @escaping ([RiddlePhoto], Int) -> Void) {
+         onPressPhotoItem: @escaping ([RiddlePhoto], Int) -> Void,
+         onPressBadgeItem: @escaping (Badge) -> Void) {
         self.duration = duration
         self.points = points
         self.rank = rank
         self.photos = photos
+        self.badges = badges
         
         #warning("Utiliser le vrai utilisateur")
         self.user = .init(currentXPPoints: 1100,
@@ -50,6 +55,7 @@ struct TrekFinishedScene: View {
         self.onPressStartQuiz = onPressStartQuiz
         self.onPressSkipQuiz = onPressSkipQuiz
         self.onPressPhotoItem = onPressPhotoItem
+        self.onPressBadgeItem = onPressBadgeItem
     }
     
     var body: some View {
@@ -84,10 +90,14 @@ struct TrekFinishedScene: View {
                                               kind: .neutral))
                     .padding(.horizontal)
                 
-                TrekFinishedBadgeListSection(badges: Badge.examples)
-                    .padding(.horizontal)
+                if badges.isNotEmpty {
+                    TrekFinishedBadgeListSection(badges: badges) {
+                        onPressBadgeItem($0)
+                    }
+                        .padding(.horizontal)
+                }
                 
-                if !photos.isEmpty {
+                if photos.isNotEmpty {
                     TrekFinishedPhotoListSection(photos: photos) {
                         onPressPhotoItem(photos, $0)
                     }
@@ -164,8 +174,10 @@ fileprivate enum Styles {
                         .init(riddleOrder: 2, image: UIImage(resource: .trekTestPicture)),
                         .init(riddleOrder: 2, image: UIImage(resource: .riddleTestPicture)),
                       ],
+                      badges: Badge.examples,
                       onPressPath: {},
                       onPressStartQuiz: {},
                       onPressSkipQuiz: {},
-                      onPressPhotoItem: { _,_  in })
+                      onPressPhotoItem: { _,_  in },
+                      onPressBadgeItem: { _ in })
 }

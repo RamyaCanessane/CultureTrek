@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TrekFinishedBadgeListSection: View {
     let badges: [Badge]
+    let onPressItem: (Badge) -> Void
     
     private let columns = [
         GridItem(.adaptive(minimum: Styles.maxWidth),
@@ -25,7 +26,9 @@ struct TrekFinishedBadgeListSection: View {
             LazyVGrid(columns: columns,
                       spacing: Styles.hSpacing) {
                 ForEach(badges) { badge in
-                    BadgeView(badge)
+                    BadgeView(badge) {
+                        onPressItem(badge)
+                    }
                 }
             }
         }
@@ -35,24 +38,29 @@ struct TrekFinishedBadgeListSection: View {
 
 fileprivate struct BadgeView: View {
     let badge: Badge
+    let action: () -> Void
     
-    init(_ badge: Badge) {
+    init(_ badge: Badge,
+         action: @escaping () -> Void) {
         self.badge = badge
+        self.action = action
     }
     
     var body: some View {
-        VStack(spacing: Styles.vSpacing) {
-            badge.icon
-                .resizable()
-                .scaledToFit()
-                .frame(width: Styles.badgeIconSize,
-                       height: Styles.badgeIconSize)
-            
-            Text(badge.name)
-                .font(Styles.badgeLabelFont)
-                .foregroundStyle(Styles.badgeLabelColor)
-                .multilineTextAlignment(Styles.badgeLabelAlignment)
-                .lineLimit(2)
+        Button(action: action) {
+            VStack(spacing: Styles.vSpacing) {
+                badge.icon
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: Styles.badgeIconSize,
+                           height: Styles.badgeIconSize)
+                
+                Text(badge.name)
+                    .font(Styles.badgeLabelFont)
+                    .foregroundStyle(Styles.badgeLabelColor)
+                    .multilineTextAlignment(Styles.badgeLabelAlignment)
+                    .lineLimit(2)
+            }
         }
     }
 }
@@ -71,7 +79,8 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekFinishedBadgeListSection(badges: Badge.examples)
+    TrekFinishedBadgeListSection(badges: Badge.examples,
+                                 onPressItem: { _ in })
         .padding(.vertical)
         .background(AppColor.background)
 }

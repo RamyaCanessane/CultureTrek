@@ -56,15 +56,15 @@ struct GoodActionPopupView: View {
                        .strokeBorder(Styles.borderColor,
                                      lineWidth: Styles.borderWidth)
                }
-        .task {
-            do {
-                try await Task.sleep(for: .seconds(startDelay))
-                
-                isFirstPresented = true
-            } catch {
-                
-            }
-        }
+               .task {
+                   do {
+                       try await Task.sleep(for: .seconds(startDelay))
+                       
+                       isFirstPresented = true
+                   } catch {
+                       
+                   }
+               }
     }
     
     private var iconView: some View {
