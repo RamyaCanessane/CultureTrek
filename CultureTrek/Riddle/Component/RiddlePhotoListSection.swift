@@ -10,8 +10,9 @@ import SwiftUI
 
 struct RiddlePhotoListSection: View {
     let photos: [UIImage]
-    let onPressItem: (Int) -> Void
     let isAddDisabled: Bool
+    let onPressItem: (Int) -> Void
+    let onPressDelete: (Int) -> Void
     let onPressOpenCamera: () -> Void
     let onPressOpenPhotoLibrary: () -> Void
     
@@ -22,13 +23,12 @@ struct RiddlePhotoListSection: View {
                 .padding(.horizontal)
             
             ScrollView(.horizontal) {
-                HStack(alignment: .top,
-                       spacing: Styles.hSpacing) {
+                HStack(alignment: .bottom,
+                       spacing: Styles.hSpacing - Styles.deleteButtonOverflow) {
                     ForEach(photos.enumerated(), id: \.offset) { item in
-                        PhotoItem(image: item.element)
-                            .onTapGesture {
-                                onPressItem(item.offset)
-                            }
+                        PhotoItem(image: item.element,
+                                  action: { onPressItem(item.offset) },
+                                  onPressDelete: { onPressDelete(item.offset) })
                     }
                     
                     Menu {
@@ -58,6 +58,8 @@ struct RiddlePhotoListSection: View {
 
 fileprivate struct PhotoItem: View {
     let image: UIImage
+    let action: () -> Void
+    let onPressDelete: () -> Void
     
     var body: some View {
         Image(uiImage: image)
@@ -71,6 +73,33 @@ fileprivate struct PhotoItem: View {
                     .strokeBorder(Styles.itemBorderColor,
                                   lineWidth: Styles.itemBorderWidth)
             }
+            .onTapGesture(perform: action)
+            .overlay(alignment: .topTrailing) {
+                DeleteButton(action: onPressDelete)
+                    .offset(x: Styles.deleteButtonOverflow,
+                            y: -Styles.deleteButtonOverflow)
+            }
+            .padding(.top, Styles.deleteButtonOverflow)
+            .padding(.trailing, Styles.deleteButtonOverflow)
+    }
+}
+
+fileprivate struct DeleteButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "minus.circle.fill")
+                .font(Styles.deleteButtonFont)
+                .foregroundStyle(.red)
+                .background {
+                    Image(systemName: "circle.fill")
+                        .font(Styles.deleteButtonFont)
+                        .foregroundStyle(.white)
+                }
+                .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
     }
 }
 
@@ -139,7 +168,7 @@ fileprivate enum Styles {
     
     static let pressedAnimation = AppToken.buttonPressedAnimation
     
-    static let vSpacing = AppToken.Primitive.spacing2
+    static let vSpacing = AppToken.Primitive.spacing0
     static let hSpacing = AppToken.Primitive.spacing4
     
     static let itemSize: Double = 100
@@ -149,6 +178,9 @@ fileprivate enum Styles {
     
     static let itemBorderColor = AppColor.border
     static let itemBorderWidth = AppToken.borderWidth
+    
+    static let deleteButtonFont: Font = .system(size: 32)
+    static let deleteButtonOverflow: Double = 12
     
     static let addButtonSize = itemSize
     static let addButtonShape = itemShape
@@ -176,8 +208,9 @@ fileprivate enum Styles {
         UIImage(resource: .riddleTestPicture),
         UIImage(resource: .riddleTestPicture)
     ],
+                           isAddDisabled: false,
                            onPressItem: { _ in },
-                    isAddDisabled: false,
+                           onPressDelete: { _ in },
                            onPressOpenCamera: {},
                            onPressOpenPhotoLibrary: {})
 }

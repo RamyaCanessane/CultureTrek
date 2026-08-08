@@ -101,8 +101,11 @@ final class RiddleFlowViewModel {
                            onSubmit: submitRiddle,
                            onPressClue: showClue,
                            onPressPath: showPath,
-                           onPressPhotoItem:{ data, index in
-            self.showImageViewer(images: data, index: index)
+                           onPressPhotoItem:{ images, index in
+            self.showImageViewer(images: images, index: index)
+        },
+                           onPressDeletePhotoItem: { images, index in
+            self.deletePhotoItem(images: images, index: index)
         },
                            onPressOpenCamera: {},
                            onPressOpenPhotoLibrary: showPhotoLibrary)
@@ -253,6 +256,10 @@ final class RiddleFlowViewModel {
     
     private func showPhotoLibrary() {
         isPhotoPickerPresented = true
+    }
+    
+    private func deletePhotoItem(images: [UIImage], index: Int) {
+        riddles[currentRiddleIndex].photos.remove(at: index)
     }
 }
 

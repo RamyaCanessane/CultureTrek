@@ -81,7 +81,7 @@ struct RiddleFlowScene: View {
 
 fileprivate enum Styles {
     
-    static let popupBackground: Color = .black.opacity(0.24)
+    static let popupBackground: Color = .black.opacity(0.32)
     static let popupHPadding = AppToken.Primitive.padding8
 }
 

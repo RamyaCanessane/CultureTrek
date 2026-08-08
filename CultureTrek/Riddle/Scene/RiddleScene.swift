@@ -28,6 +28,7 @@ struct RiddleScene: View {
     let onPressClue: () -> Void
     let onPressPath: () -> Void
     let onPressPhotoItem: ([UIImage], Int) -> Void
+    let onPressDeletePhotoItem: ([UIImage], Int) -> Void
     let onPressOpenCamera: () -> Void
     let onPressOpenPhotoLibrary: () -> Void
     
@@ -52,10 +53,13 @@ struct RiddleScene: View {
                 
                 if riddle.isCompleted {
                     RiddlePhotoListSection(photos: riddle.photos,
+                                           isAddDisabled: isAddPhotoDisabled,
                                            onPressItem: {
                         onPressPhotoItem(riddle.photos, $0)
                     },
-                                           isAddDisabled: isAddPhotoDisabled,
+                                           onPressDelete: {
+                        onPressDeletePhotoItem(riddle.photos, $0)
+                    },
                                            onPressOpenCamera: onPressOpenCamera,
                                            onPressOpenPhotoLibrary: onPressOpenPhotoLibrary)
                     
@@ -209,6 +213,7 @@ fileprivate let riddleExample = Riddle(
                 onPressClue: {},
                 onPressPath: {},
                 onPressPhotoItem: { _, _ in },
+                onPressDeletePhotoItem: { _, _ in },
                 onPressOpenCamera: {},
                 onPressOpenPhotoLibrary: {})
 }
