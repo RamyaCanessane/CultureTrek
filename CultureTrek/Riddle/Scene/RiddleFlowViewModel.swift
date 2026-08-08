@@ -145,12 +145,6 @@ final class RiddleFlowViewModel {
     
     func validRiddle() {
         riddles[currentRiddleIndex].isCompleted = true
-        
-        if currentRiddleIndex >= riddles.count - 1 {
-            self.duration = startDate == nil
-            ? nil
-            : Duration.seconds(Date.now.timeIntervalSince(startDate ?? .now))
-        }
     }
     
     func addPhotoToRiddle(data: Data) {
@@ -211,6 +205,12 @@ final class RiddleFlowViewModel {
         let isValid = true // TODO: add random to simulate valid and invalid riddle
         
         if isValid {
+            if currentRiddleIndex >= riddles.count - 1 {
+                self.duration = startDate == nil
+                ? nil
+                : Duration.seconds(Date.now.timeIntervalSince(startDate ?? .now))
+            }
+            
             showValidRiddlePopup()
         } else {
             showInvalidRiddlePopup()
