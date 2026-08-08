@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Badge: Identifiable {
+struct Badge: Identifiable, Equatable {
     let id = UUID()
     let icon: Image
     let name: String
