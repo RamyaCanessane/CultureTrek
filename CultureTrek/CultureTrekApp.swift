@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CultureTrekApp: App {
+    
+    @State private var trekStore = TrekStore()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(trekStore)
         }
     }
 }

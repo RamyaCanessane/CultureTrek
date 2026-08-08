@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ProfileButton: View {
     
-    let firstname : String
-    let lastname : String
+    let currentUser : User
     
     var body: some View {
         
@@ -21,7 +20,7 @@ struct ProfileButton: View {
                 .fill(Styles.buttonBackground)
                 .strokeBorder(Styles.buttonBorderColor, lineWidth: Styles.buttonBorderWidth)
                 .overlay {
-                    Text(firstname.first!.uppercased() + lastname.first!.uppercased())
+                    Text(currentUser.getNameInitials())
                         .font(.spaceGrotesk(size: 24, weight: .bold))
                         .foregroundStyle(Styles.buttonForeground)
                 }
@@ -44,5 +43,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    ProfileButton(firstname: User.example.firstName, lastname: User.example.lastName)
+    ProfileButton(currentUser: User.example)
 }

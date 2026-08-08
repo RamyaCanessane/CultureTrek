@@ -9,8 +9,7 @@ import SwiftUI
 
 struct DiscoverHeader: View {
     
-    let userFirstname : String
-    let userLastname : String
+    let user : User
     
     var body: some View {
         
@@ -21,7 +20,7 @@ struct DiscoverHeader: View {
             
             Spacer()
             
-            ProfileButton(firstname: userFirstname, lastname: userLastname)
+            ProfileButton(currentUser: user)
             
         }
         .padding(.horizontal, Styles.titleHorizontalPadding)
@@ -38,5 +37,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    DiscoverHeader(userFirstname: User.example.firstName, userLastname: User.example.lastName)
+    DiscoverHeader(user: User.example)
 }

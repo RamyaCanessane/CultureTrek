@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DiscoverSectionTitle: View {
     
-    var icon : Image? = nil
+    var icon : Image?
     let title : String
     
     var body: some View {

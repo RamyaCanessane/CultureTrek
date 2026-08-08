@@ -12,9 +12,20 @@ struct User {
     let currentXPPoints: UInt
     let firstName: String
     let lastName: String
+    //let location: String
     let picture: Image
 }
 
 extension User {
-    static let example = User(currentXPPoints: 15, firstName: "Lena", lastName: "Villamore", picture: AppImage.heroTestPicture)
+    static let example = User(currentXPPoints: 15, firstName: "Lena", lastName: "Villamore"/*, location: "Paris"*/, picture: AppImage.heroTestPicture)
+}
+
+extension User {
+    
+    func getNameInitials() -> String{
+        let firstInitial = self.firstName.first!.uppercased()
+        let secondInitial = self.lastName.first!.uppercased()
+        
+        return firstInitial + secondInitial
+    }
 }
