@@ -90,14 +90,14 @@ struct TrekFinishedScene: View {
                                               kind: .neutral))
                     .padding(.horizontal)
                 
-                if !badges.isEmpty {
+                if badges.isNotEmpty {
                     TrekFinishedBadgeListSection(badges: badges) {
                         onPressBadgeItem($0)
                     }
                         .padding(.horizontal)
                 }
                 
-                if !photos.isEmpty {
+                if photos.isNotEmpty {
                     TrekFinishedPhotoListSection(photos: photos) {
                         onPressPhotoItem(photos, $0)
                     }
