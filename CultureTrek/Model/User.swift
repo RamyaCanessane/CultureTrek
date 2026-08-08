@@ -14,3 +14,7 @@ struct User {
     let lastName: String
     let picture: Image
 }
+
+extension User {
+    static let example = User(currentXPPoints: 15, firstName: "Lena", lastName: "Villamore", picture: AppImage.heroTestPicture)
+}
