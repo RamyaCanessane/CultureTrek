@@ -11,7 +11,11 @@ import PopupView
 import SwiftUI
 
 struct RiddleFlowScene: View {
-    @State private var vm: RiddleFlowViewModel = .init()
+    @State private var vm: RiddleFlowViewModel
+    
+    init(trek: Trek) {
+        self._vm = State(initialValue: .init(trek: trek))
+    }
     
     var body: some View {
         AnyView(vm.currentView)
@@ -94,5 +98,28 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleFlowScene()
+    RiddleFlowScene(trek: testTrek)
 }
+
+fileprivate let testTrek: Trek = .init(
+    accessibility: Trek.Accessibility.init(bike: false,
+                                           stroller: false,
+                                           walking: false,
+                                           wheelchair: false),
+    badgesToUnlock: Badge.examples,
+    city: "Saint-Denis",
+    completion: nil,
+    department: "Seine-Saint-Denis",
+    distance: .init(value: 2.1, unit: .kilometers),
+    duration: .seconds(1 * 3600 + 15 * 60),
+    elevation: .low,
+    goal: nil,
+    goodToKnow: [],
+    isLiked: false,
+    name: "Paris, art et rues",
+    picture: Image(.trekTestPicture),
+    riddles: Riddle.examples,
+    quizQuestions: [],
+    region: "Île-de-France",
+    summary: nil
+)

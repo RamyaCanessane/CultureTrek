@@ -58,7 +58,7 @@ final class RiddleFlowViewModel {
         let index: Int
     }
     
-    init(trek: Trek = RiddleFlowViewModel.testTrek) {
+    init(trek: Trek) {
         self.sourceTrek = trek
         self.sourceRiddles = trek.riddles
         self.isTrekSettingsPresented = true
@@ -326,30 +326,4 @@ final class RiddleFlowViewModel {
     private func deletePhotoItem(images: [UIImage], index: Int) {
         riddles[currentRiddleIndex].photos.remove(at: index)
     }
-}
-
-extension RiddleFlowViewModel {
-    
-    static let testTrek: Trek = .init(
-        accessibility: Trek.Accessibility.init(bike: false,
-                                               stroller: false,
-                                               walking: false,
-                                               wheelchair: false),
-        badgesToUnlock: Badge.examples,
-        city: "Saint-Denis",
-        completion: nil,
-        department: "Seine-Saint-Denis",
-        distance: .init(value: 2.1, unit: .kilometers),
-        duration: .seconds(1 * 3600 + 15 * 60),
-        elevation: .low,
-        goal: nil,
-        goodToKnow: [],
-        isLiked: false,
-        name: "Paris, art et rues",
-        picture: Image(.trekTestPicture),
-        riddles: Riddle.examples,
-        quizQuestions: [],
-        region: "Île-de-France",
-        summary: nil
-    )
 }
