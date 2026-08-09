@@ -15,7 +15,7 @@ struct DiscoverHeader: View {
         
         HStack{
             
-            UITitleFontStyle(content: "Découvrir".uppercased(), size: 40, weight: .black, width: .condensed, foreground: Styles.titleForeground)
+            UITitleFontStyle(content: "Découvrir".uppercased(), size: Styles.titleFontSize, weight: .black, width: .condensed, foreground: Styles.titleForeground)
             
             Spacer()
             
@@ -31,6 +31,8 @@ fileprivate struct Styles {
     static let titleForeground = AppColor.Label.primary
     
     static let titleHorizontalPadding = AppToken.Primitive.padding4
+    
+    static let titleFontSize = CGFloat(40)
     
 }
 

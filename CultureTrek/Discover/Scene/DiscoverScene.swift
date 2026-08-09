@@ -14,7 +14,9 @@ struct DiscoverScene: View {
     let heroTitle : String = "En vedette aujourd'hui"
     
     var body: some View {
-        ScrollView{
+        
+        ScrollView {
+            
             VStack {
 
                 HeroTrekTitle(trekTitle: vm.store.heroTrek.name, trekCity: vm.store.heroTrek.city, trekDepartment: vm.store.heroTrek.department, trekRegion: vm.store.heroTrek.region, trekPicture: vm.store.heroTrek.picture, sectionTag: heroTitle)
