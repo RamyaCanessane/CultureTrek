@@ -10,12 +10,10 @@ import SwiftUI
 struct QuizScene: View {
     let questions: [QuizQuestion] = QuizQuestion.examples
     var currentIndex: Int = 0
-    var selectedAnswerIndex: Int? = nil
-    var answerSelected: Bool = false
+    @State private var selectedAnswer: QuizQuestion.Answer? = nil
     
     init(questions: [QuizQuestion], selectedAnswerIndex: Int?) {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont.systemFont(ofSize: 40, weight: .black, width: .condensed)]
-        self.selectedAnswerIndex = selectedAnswerIndex ?? nil
     }
     
     private var currentQuestion: QuizQuestion {
@@ -32,13 +30,7 @@ struct QuizScene: View {
                 
                 VStack(spacing: 12) {
                     ForEach(currentQuestion.answers, id: \.self) { answer in
-                        switch answer {
-                        case .good(let text):
-                            AnswerButton(label: text)
-                            
-                        case .bad(let text):
-                            AnswerButton(label: text)
-                        }
+                        AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
                     }
                 }
                 .padding(16)

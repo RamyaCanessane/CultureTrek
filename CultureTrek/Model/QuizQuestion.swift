@@ -162,3 +162,23 @@ extension QuizQuestion {
         )
     ]
 }
+
+extension QuizQuestion.Answer {
+    var text: String {
+        switch self {
+        case .good(let text):
+            return text
+        
+        case .bad(let text):
+            return text
+        }
+    }
+    
+    var isGood: Bool {
+        if case.good(let string) = self {
+            return true
+        } else {
+            return false
+        }
+    }
+}
