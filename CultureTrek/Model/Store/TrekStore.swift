@@ -12,14 +12,20 @@ class TrekStore : Identifiable {
     
     var treks : [Trek] = []
     
+    var sections : [TrekSection] = []
+    
     var heroTrek : Trek = Trek.example
     
-    func add(_ trek: Trek){
+    func addTrek(_ trek: Trek){
         treks.append(trek)
     }
     
     func addMoreTreks(_ treksToAdd: [Trek]){
         treks.append(contentsOf: treksToAdd)
+    }
+    
+    func addSections(_ trekSections: [TrekSection]){
+        sections.append(contentsOf: trekSections)
     }
     
 }

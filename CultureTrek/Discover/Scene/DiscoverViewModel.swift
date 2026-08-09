@@ -10,11 +10,12 @@ import SwiftUI
 
 @Observable
 final class DiscoverViewModel {
+    
     //Etat de l'écran
-    var section1 : (name: String, icon: Image?, treks: [Trek]) = (name: "", icon: nil, treks: [])
-    var section2 : (name: String, icon: Image?, treks: [Trek]) = (name: "", icon: nil, treks: [])
-    var section3 : (name: String, icon: Image?, treks: [Trek]) = (name: "", icon: nil, treks: [])
-    var section4 : (name: String, icon: Image?, treks: [Trek]) = (name: "", icon: nil, treks: []) 
+    var section1 : TrekSection = TrekSection(name: TrekSection.aroundUser.name, icon: TrekSection.aroundUser.icon, treks: [])
+    var section2 : TrekSection = TrekSection(name: TrekSection.userFavorites.name, icon: TrekSection.userFavorites.icon, treks: [])
+    var section3 : TrekSection = TrekSection(name: TrekSection.parisSecrets.name, icon: TrekSection.parisSecrets.icon, treks: [])
+    var section4 : TrekSection = TrekSection(name: TrekSection.alongMarne.name, icon: TrekSection.alongMarne.icon, treks: [])
     
     //Données
     var store : TrekStore
@@ -49,10 +50,13 @@ final class DiscoverViewModel {
     }
     
     func fillTrekSections(){
-        section1 = (name: TrekSection.aroundUser.name, icon: nil, treks: around)
-        section2 = (name: TrekSection.userFavorites.name, icon: TrekSection.userFavorites.icon, treks: favorites)
-        section3 = (name: TrekSection.parisSecrets.name, icon: nil, treks: paris)
-        section4 = (name: TrekSection.alongMarne.name, icon: nil, treks: marne)
+
+        section1.treks = around
+        section2.treks = favorites
+        section3.treks = paris
+        section4.treks = marne
+        
+        store.addSections([section1, section2, section3, section4])
     }
     
 }

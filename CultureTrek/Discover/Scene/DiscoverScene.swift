@@ -20,13 +20,12 @@ struct DiscoverScene: View {
                 HeroTrekTitle(trekTitle: vm.store.heroTrek.name, trekCity: vm.store.heroTrek.city, trekDepartment: vm.store.heroTrek.department, trekRegion: vm.store.heroTrek.region, trekPicture: vm.store.heroTrek.picture, sectionTag: heroTitle)
                 
                 VStack(spacing: Styles.sectionSpacing){
-                    DiscoverSection(sectionTitle: vm.section1.name, sectionIcon: vm.section1.icon , sectionTreks: vm.section1.treks)
                     
-                    DiscoverSection(sectionTitle: vm.section2.name, sectionIcon: vm.section2.icon , sectionTreks: vm.section2.treks)
-                    
-                    DiscoverSection(sectionTitle: vm.section3.name, sectionIcon: vm.section3.icon , sectionTreks: vm.section3.treks)
-                    
-                    DiscoverSection(sectionTitle: vm.section4.name, sectionIcon: vm.section4.icon , sectionTreks: vm.section4.treks)
+                    ForEach(vm.store.sections){ section in
+                        
+                        DiscoverSection(sectionTitle: section.name, sectionIcon: section.icon , sectionTreks: section.treks)
+                        
+                    }
                 }
                 .padding(.vertical, Styles.sectionVerticalPadding)
                 
