@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GoodActionPopupView: View {
     let title: String
-    let obtainedXPPoints: UInt
+    let obtainedXPPoints: UInt?
     
     @State private var isFirstPresented: Bool = false
     
@@ -37,13 +37,15 @@ struct GoodActionPopupView: View {
                     }
                 }
             
-            contentView
-            .opacity(0)
-            .overlay {
-                if isFirstPresented {
-                    contentView
-                        .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
-                }
+            if obtainedXPPoints != nil {
+                contentView
+                    .opacity(0)
+                    .overlay {
+                        if isFirstPresented {
+                            contentView
+                                .transition(.blurReplace.animation(.smooth.delay(delay * 1.64)))
+                        }
+                    }
             }
         }
                .padding(Styles.padding)
@@ -92,7 +94,7 @@ struct GoodActionPopupView: View {
                 .frame(width: Styles.xpPointsIconSize,
                        height: Styles.xpPointsIconSize)
             
-            Text("\(obtainedXPPoints) points gagnés")
+            Text("\(obtainedXPPoints, default: "N/A") points gagnés")
                 .font(Styles.subtitleFont)
                 .foregroundStyle(Styles.subtitleColor)
         }
@@ -128,7 +130,12 @@ fileprivate enum Styles {
     static let xpPointsIconSize: Double = 32
 }
 
-#Preview {
+#Preview("With points") {
     GoodActionPopupView(title: "Énigme 7 validée",
                         obtainedXPPoints: 154)
+}
+
+#Preview("No points") {
+    GoodActionPopupView(title: "Énigme 7 validée",
+                        obtainedXPPoints: nil)
 }
