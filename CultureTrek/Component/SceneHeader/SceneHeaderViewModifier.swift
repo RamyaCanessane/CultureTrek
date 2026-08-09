@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct SceneHeaderViewModifier: ViewModifier {
-    let title: String
-    let onDismiss: (() -> Void)?
-    let trailingContent: AnyView?
+    private let title: String
+    private let onDismiss: (() -> Void)?
+    private let trailingContent: AnyView?
     
     init(title: String) {
         self.title = title

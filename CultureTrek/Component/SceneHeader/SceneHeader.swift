@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct SceneHeader: View {
-    let titleText: Text
-    let content: AnyView?
+    private let titleText: Text
+    private let content: AnyView?
     
     init(title: String) {
         self.titleText = Text(title)
