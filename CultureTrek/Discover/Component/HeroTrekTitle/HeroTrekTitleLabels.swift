@@ -18,7 +18,7 @@ struct HeroTrekTitleLabels: View {
     var body: some View {
         VStack(alignment : .leading, spacing : Styles.labelsSpacing){
             
-            UISectionTitleFontStyle(content: title, size: Styles.titleFontSize, weight: .heavy, width: .condensed, foreground: Styles.titleForeground)
+            UITitleFontStyle(content: title, size: Styles.titleFontSize, weight: .heavy, width: .condensed, foreground: Styles.titleForeground)
                 .lineLimit(2, reservesSpace: true)
             
             HStack(spacing : Styles.subtitleSpacing){
