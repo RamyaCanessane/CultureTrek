@@ -62,6 +62,7 @@ struct QuizScene: View {
                     Image(systemName: "checkmark")
                 }
                 .buttonStyle(.neubrutIcon(kind: .success))
+                .disabled(selectedAnswer == nil)
             }
             .padding(16)
         }
