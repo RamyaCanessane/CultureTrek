@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuizScene: View {
     let questions: [QuizQuestion]
-    var currentIndex: Int = 0
+    @State private var currentIndex: Int
     @State private var selectedAnswer: QuizQuestion.Answer? = nil
     @State private var isAnswerSubmitted: Bool = false
     @State private var showPopup: Bool = false
@@ -93,22 +93,28 @@ struct QuizScene: View {
     }
     private var bottomBar: some View {
         HStack(spacing: 16) {
-            Button(action: {}) {
-                Image(systemName: "chevron.left")
-            }
-            .buttonStyle(.neubrutIcon(kind: .primary))
-            
-            LabeledProgressBar(current: 1, total: 10)
-            
             Button() {
-                if selectedAnswer != nil {
-                    isAnswerSubmitted = true
-                    showPopup = true
+                if currentIndex > 0 {
+                    currentIndex -= 1
                 }
             } label: {
-                Image(systemName: "checkmark")
+                Image(systemName: "arrow.left")
             }
-            .buttonStyle(.neubrutIcon(kind: .success))
+            .buttonStyle(.neubrutIcon(kind: .primary))
+            .disabled(currentIndex == 0)
+            
+            LabeledProgressBar(current: UInt(currentIndex + 1), total: UInt(questions.count))
+            
+            Button() {
+                if !isAnswerSubmitted {
+                    validateAnswer()
+                } else {
+                    nextQuestion()
+                }
+            } label: {
+                Image(systemName: isAnswerSubmitted ? "arrow.right" : "checkmark")
+            }
+            .buttonStyle(.neubrutIcon(kind: isAnswerSubmitted ? .primary : .success))
             .disabled(selectedAnswer == nil)
         }
         .padding(16)
@@ -129,6 +135,23 @@ struct QuizScene: View {
                 BadActionPopupView(title: "MAUVAISE RÉPONSE", content: "La bonne réponse était: \(correctAnswer?.text ?? "")")
                     .padding(16)
             }
+        }
+    }
+    
+    private func nextQuestion() {
+        if currentIndex < questions.count - 1 {
+            currentIndex += 1
+            selectedAnswer = nil
+            isAnswerSubmitted = false
+        } else {
+            print("Quiz terminé")
+        }
+    }
+    
+    private func validateAnswer() {
+        if selectedAnswer != nil {
+            isAnswerSubmitted = true
+            showPopup = true
         }
     }
 }
