@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RiddleScene: View {
     let trekTitle: String
+    let trekMode: Trek.Mode
     let riddle: Riddle
     let startDate: Date?
     let duration: Duration?
@@ -36,9 +37,11 @@ struct RiddleScene: View {
         ScrollView {
             VStack(alignment: .center,
                    spacing: Styles.vSpacing) {
-                if let duration {
+                if trekMode == .ranked,
+                   let duration {
                     RiddleTime(time: .duration(duration))
-                } else if let startDate {
+                } else if trekMode == .ranked,
+                          let startDate {
                     RiddleTime(time: .stopWatch(startDate: startDate))
                 }
                 
@@ -74,74 +77,13 @@ struct RiddleScene: View {
         .scrollBounceBehavior(.basedOnSize)
         .frame(maxWidth: .infinity)
         .background(Styles.background)
-        .safeAreaInset(edge: .top,
-                       alignment: .center) {
+        .sceneHeader {
             RiddleSceneHeader(title: trekTitle,
                               onPressPath: onPressPath)
-            .padding(.horizontal)
-            .padding(.bottom, Styles.vPadding)
-            .background {
-                Rectangle()
-                    .fill(
-                        LinearGradient(colors: [
-                            Styles.background.opacity(0.64),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1)
-                        ],
-                                       startPoint: .bottom,
-                                       endPoint: .top)
-                    )
-                    .padding(-20)
-                    .blur(radius: 10)
-                    .padding(20)
-                    .padding(.top, -20)
-            }
         }
-                       .safeAreaInset(edge: .top,
-                                      alignment: .center) {
-                           Text("")
-                               .frame(maxWidth: .infinity)
-                               .background {
-                                   Rectangle()
-                                       .fill(Styles.background)
-                                       .ignoresSafeArea(.all,
-                                                        edges: .top)
-                               }
-                       }
-                                      .safeAreaInset(edge: .bottom) {
-                                          actionsProgressBar
-                                              .padding(.horizontal)
-                                              .padding(.top, Styles.vPadding)
-                                              .padding(.bottom, Styles.actionsBottomPadding)
-                                              .background {
-                                                  Rectangle()
-                                                      .fill(
-                                                        LinearGradient(colors: [
-                                                            Styles.background.opacity(1),
-                                                            Styles.background.opacity(1),
-                                                            Styles.background.opacity(1),
-                                                            Styles.background.opacity(0.64)
-                                                        ],
-                                                                       startPoint: .bottom,
-                                                                       endPoint: .top)
-                                                      )
-                                                      .padding(-20)
-                                                      .blur(radius: 10)
-                                                      .padding(20)
-                                                      .padding(.bottom, -20)
-                                              }
-                                      }
-                                      .safeAreaInset(edge: .bottom,
-                                                     alignment: .center) {
-                                          Text("")
-                                              .frame(maxWidth: .infinity)
-                                              .background {
-                                                  Rectangle()
-                                                      .fill(Styles.background)
-                                                      .ignoresSafeArea(.all,
-                                                                       edges: .bottom)
-                                              }
-                                      }
+        .sceneFooter {
+            actionsProgressBar
+        }
     }
     
     private var actionsProgressBar: some View {
@@ -195,6 +137,7 @@ fileprivate let riddleExample = Riddle(
 
 #Preview {
     RiddleScene(trekTitle: "Numquam natus nam deleniti",
+                trekMode: .casual,
                 riddle: riddleExample,
                 startDate: .now,
                 duration: nil,

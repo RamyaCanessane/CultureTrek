@@ -12,7 +12,7 @@ enum AppImage {
     
     static let riddleTestPicture = Image(.riddleTestPicture)
     static let badgeTest = Image(.badgeTest)
-    
+    static let qrCodeTest = Image(.qrCodeTest)
     static let heroTestPicture = Image(.heroTestPicture)
     static let trekTestPicture = Image(.trekTestPicture)
     
@@ -20,6 +20,8 @@ enum AppImage {
     
     enum Icon {
         case close
+        case dropdownDisclosure
+        case download
         case riddleCompletedTitlePrefix
         case riddleClue
         case riddleTime
@@ -43,6 +45,10 @@ enum AppImage {
             switch self {
             case .close:
                 "xmark"
+            case .dropdownDisclosure:
+                "chevron.down"
+            case .download:
+                "arrow.down.to.line"
             case .riddleCompletedTitlePrefix:
                 "checkmark.square.fill"
             case .riddleClue:
