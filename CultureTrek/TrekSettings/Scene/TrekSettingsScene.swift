@@ -10,10 +10,26 @@ import SwiftUI
 
 struct TrekSettingsScene: View {
     let duration: Duration
+    let onPressStart: (Trek.Mode, Trek.PlayFormat, Bool) -> Void
+    let onDismiss: () -> Void
     
-    @State private var mode: Trek.Mode = .casual
-    @State private var playFormat: Trek.PlayFormat = .solo
-    @State private var isDownloaded: Bool = false
+    @State private var mode: Trek.Mode
+    @State private var playFormat: Trek.PlayFormat
+    @State private var isDownloaded: Bool
+    
+    init(duration: Duration,
+         mode: Trek.Mode,
+         playFormat: Trek.PlayFormat,
+         isDownloaded: Bool,
+         onPressStart: @escaping (Trek.Mode, Trek.PlayFormat, Bool) -> Void,
+         onDismiss: @escaping () -> Void) {
+        self.duration = duration
+        self.mode = mode
+        self.playFormat = playFormat
+        self.isDownloaded = isDownloaded
+        self.onPressStart = onPressStart
+        self.onDismiss = onDismiss
+    }
     
     var body: some View {
         ScrollView {
@@ -38,9 +54,11 @@ struct TrekSettingsScene: View {
         .frame(maxWidth: .infinity)
         .background(Styles.background)
         .sceneHeader("Paramètres",
-                     onDismiss: {})
+                     onDismiss: onDismiss)
         .sceneFooter {
-            Button("Voir la première énigme", action: {})
+            Button("Voir la première énigme") {
+                onPressStart(mode, playFormat, isDownloaded)
+            }
                 .buttonStyle(.neubrutProminent(kind: .primary,
                                                isFullWidth: true))
         }
@@ -140,5 +158,11 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekSettingsScene(duration: .seconds(1 * 3600 + 20 * 60))
+    TrekSettingsScene(
+        duration: .seconds(1 * 3600 + 20 * 60),
+        mode: .ranked,
+        playFormat: .solo,
+        isDownloaded: false,
+        onPressStart: { _, _, _ in },
+        onDismiss: {})
 }

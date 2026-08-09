@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RiddleScene: View {
     let trekTitle: String
+    let trekMode: Trek.Mode
     let riddle: Riddle
     let startDate: Date?
     let duration: Duration?
@@ -36,9 +37,11 @@ struct RiddleScene: View {
         ScrollView {
             VStack(alignment: .center,
                    spacing: Styles.vSpacing) {
-                if let duration {
+                if trekMode == .ranked,
+                   let duration {
                     RiddleTime(time: .duration(duration))
-                } else if let startDate {
+                } else if trekMode == .ranked,
+                          let startDate {
                     RiddleTime(time: .stopWatch(startDate: startDate))
                 }
                 
@@ -134,6 +137,7 @@ fileprivate let riddleExample = Riddle(
 
 #Preview {
     RiddleScene(trekTitle: "Numquam natus nam deleniti",
+                trekMode: .casual,
                 riddle: riddleExample,
                 startDate: .now,
                 duration: nil,

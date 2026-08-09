@@ -12,7 +12,15 @@ import SwiftUI
 @Observable
 final class RiddleFlowViewModel {
     
+    private let sourceTrek: Trek
+    private let sourceRiddles: [Riddle]
     var riddles: [Riddle]
+    
+    private var isTrekSettingsPresented: Bool
+    private let estimatedTrekDuration: Duration
+    private var trekMode: Trek.Mode
+    private var trekPlayFormat: Trek.PlayFormat
+    private var trekIsDownloaded: Bool
     
     private var currentRiddleIndex: Int
     private let trekTitle: String
@@ -41,7 +49,7 @@ final class RiddleFlowViewModel {
     
     struct ValidRiddlePopupData: Equatable {
         let title: String
-        let points: UInt
+        let points: UInt?
     }
     
     struct ImageViewerData: Identifiable {
@@ -51,15 +59,39 @@ final class RiddleFlowViewModel {
     }
     
     init(trek: Trek = RiddleFlowViewModel.testTrek) {
+        self.sourceTrek = trek
+        self.sourceRiddles = trek.riddles
+        self.isTrekSettingsPresented = true
+        
+        self.estimatedTrekDuration = trek.duration
         self.trekTitle = trek.name
-        self.riddles = trek.riddles
+        self.trekBadges = trek.badgesToUnlock
+        
+        self.trekMode = .ranked
+        self.trekPlayFormat = .solo
+        self.trekIsDownloaded = false
+        
+        self.riddles = self.sourceRiddles
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
-        self.trekBadges = trek.badgesToUnlock
+        
     }
     
     var currentView: any View {
+        if isTrekSettingsPresented {
+            return TrekSettingsScene(duration: estimatedTrekDuration,
+                                     mode: trekMode,
+                                     playFormat: trekPlayFormat,
+                                     isDownloaded: trekIsDownloaded,
+                                     onPressStart: { mode, playFormat, isDownloaded in
+                self.startTrek(mode: mode,
+                               playFormat: playFormat,
+                               isDownloaded: isDownloaded)
+            },
+                                     onDismiss: {})
+        }
+        
         if riddles.allSatisfy(\.isCompleted) && isTrekFinishedPresented {
             #warning("use points calculator to calculate points base on completionPoints and duration")
             
@@ -83,6 +115,7 @@ final class RiddleFlowViewModel {
                                      rank: rank,
                                      photos: photos,
                                      badges: badges,
+                                     trekMode: trekMode,
                                      onPressPath: showFinalPath,
                                      onPressStartQuiz: {},
                                      onPressSkipQuiz: {},
@@ -98,6 +131,7 @@ final class RiddleFlowViewModel {
         }
         
         return RiddleScene(trekTitle: trekTitle,
+                           trekMode: trekMode,
                            riddle: riddle,
                            startDate: startDate,
                            duration: duration,
@@ -176,6 +210,21 @@ final class RiddleFlowViewModel {
         riddles[currentRiddleIndex].photos.append(image)
     }
     
+    private func startTrek(mode: Trek.Mode, playFormat: Trek.PlayFormat, isDownloaded: Bool) {
+        trekMode = mode
+        trekPlayFormat = playFormat
+        trekIsDownloaded = isDownloaded
+        
+        isTrekSettingsPresented = false
+    }
+    
+    private func resetTrek() {
+        self.riddles = self.sourceRiddles
+        self.currentRiddleIndex = 0
+        self.startDate = nil
+        self.duration = nil
+    }
+    
     private func goToFinishedTrekScene() {
         isTrekFinishedPresented = true
     }
@@ -189,7 +238,9 @@ final class RiddleFlowViewModel {
     }
     
     private func closeRiddleFlow() {
-        // TODO: close RiddleFlow
+        isTrekSettingsPresented = true
+        
+        resetTrek()
     }
     
     private func goToPreviousRiddle() {
@@ -234,7 +285,9 @@ final class RiddleFlowViewModel {
         }
         
         validRiddlePopupData = .init(title: "Énigme \(riddle.order) validée",
-                                     points: riddle.validationPoints)
+                                     points: trekMode == .ranked
+                                             ? riddle.validationPoints
+                                             : nil)
     }
     
     private func showInvalidRiddlePopup() {
@@ -287,7 +340,7 @@ extension RiddleFlowViewModel {
         completion: nil,
         department: "Seine-Saint-Denis",
         distance: .init(value: 2.1, unit: .kilometers),
-        duration: .seconds(1 * 3600 + 30 * 60),
+        duration: .seconds(1 * 3600 + 15 * 60),
         elevation: .low,
         goal: nil,
         goodToKnow: [],
