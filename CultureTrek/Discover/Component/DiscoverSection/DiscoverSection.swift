@@ -9,17 +9,19 @@ import SwiftUI
 
 struct DiscoverSection: View {
     
-    let sectionTitle : String
-    var sectionIcon : Image?
-    let sectionTreks : [Trek]
+    let section : TrekSection
     
     var body: some View {
         
         VStack(spacing : Styles.sectionSpacing){
             
-            DiscoverSectionTitle(icon: sectionIcon, title: sectionTitle)
+            NavigationLink {
+                TrekListScene(sectionTitle: section.name, sectionTitleIcon: section.icon, sectionTrekList: section.treks)
+            } label: {
+                DiscoverSectionTitle(icon: section.icon, title: section.name)
+            }
             
-            DiscoverSectionCells(treks: sectionTreks)
+            DiscoverSectionCells(treks: section.treks)
             
         }
         
@@ -33,5 +35,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    DiscoverSection(sectionTitle: "Autour de toi", sectionIcon: nil, sectionTreks: Trek.examples)
+    DiscoverSection(section: TrekSection.userFavorites)
 }
