@@ -108,7 +108,7 @@ struct TrekFinishedScene: View {
         .scrollBounceBehavior(.basedOnSize)
         .frame(maxWidth: .infinity)
         .background(Styles.background)
-        .safeAreaInset(edge: .bottom) {
+        .sceneFooter {
             VStack(spacing: Styles.actionsSpacing) {
                 Button("Commencer le quiz", action: onPressStartQuiz)
                     .buttonStyle(.neubrutProminent(kind: .primary,
@@ -118,39 +118,6 @@ struct TrekFinishedScene: View {
                     .buttonStyle(.neubrutProminent(kind: .neutral,
                                                    isFullWidth: true))
             }
-            .padding(.horizontal)
-            .padding(.bottom, Styles.actionsBottomPadding)
-            .background {
-                Rectangle()
-                    .fill(
-                        LinearGradient(colors: [
-                            Styles.background.opacity(0.64),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1)
-                        ],
-                                       startPoint: .bottom,
-                                       endPoint: .top)
-                    )
-                    .padding(-20)
-                    .blur(radius: 10)
-                    .padding(20)
-                    .padding(.top, -20)
-            }
-        }
-        .safeAreaInset(edge: .bottom,
-                       alignment: .center) {
-            Text("")
-                .frame(maxWidth: .infinity)
-                .background {
-                    Rectangle()
-                        .fill(Styles.background)
-                        .ignoresSafeArea(.all,
-                                         edges: .bottom)
-                }
         }
     }
 }

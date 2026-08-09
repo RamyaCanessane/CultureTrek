@@ -12,11 +12,13 @@ struct SceneHeaderViewModifier: ViewModifier {
     private let title: String
     private let onDismiss: (() -> Void)?
     private let trailingContent: AnyView?
+    private let allContent: AnyView?
     
     init(title: String) {
         self.title = title
         self.onDismiss = nil
         self.trailingContent = nil
+        self.allContent = nil
     }
     
     init(title: String,
@@ -24,6 +26,7 @@ struct SceneHeaderViewModifier: ViewModifier {
         self.title = title
         self.onDismiss = onDismiss
         self.trailingContent = nil
+        self.allContent = nil
     }
     
     init(title: String,
@@ -31,6 +34,14 @@ struct SceneHeaderViewModifier: ViewModifier {
         self.title = title
         self.onDismiss = nil
         self.trailingContent = AnyView(trailingContent())
+        self.allContent = nil
+    }
+    
+    init(allContent: () -> any View) {
+        self.title = ""
+        self.onDismiss = nil
+        self.trailingContent = nil
+        self.allContent = AnyView(allContent())
     }
     
     func body(content: Content) -> some View {
@@ -55,6 +66,8 @@ struct SceneHeaderViewModifier: ViewModifier {
                         } else if let trailingContent {
                             SceneHeader(title: title,
                                         trailingContent: trailingContent)
+                        } else if let allContent {
+                            allContent
                         } else {
                             SceneHeader(title: title)
                         }
@@ -99,6 +112,10 @@ extension View {
         modifier(SceneHeaderViewModifier(title: title,
                                          trailingContent: trailingContent))
     }
+    
+    func sceneHeader(content: () -> any View) -> some View {
+        modifier(SceneHeaderViewModifier(allContent: content))
+    }
 }
 
 fileprivate enum Styles {
@@ -119,7 +136,7 @@ fileprivate enum Styles {
     .sceneHeader("Quibusdam Ut")
 }
 
-#Preview("Title + Dismiss") {
+#Preview("Dismiss") {
     ScrollView {
         VStack(spacing: 16) {
             ForEach(0..<40, id: \.self) { index in
@@ -131,7 +148,7 @@ fileprivate enum Styles {
                  onDismiss: {})
 }
 
-#Preview("Title + TrailingContent") {
+#Preview("Trailing") {
     ScrollView {
         VStack(spacing: 16) {
             ForEach(0..<40, id: \.self) { index in
@@ -143,5 +160,27 @@ fileprivate enum Styles {
         Circle()
             .fill(.cyan)
             .frame(width: 48, height: 48)
+    }
+}
+
+#Preview("All") {
+    ScrollView {
+        VStack(spacing: 16) {
+            ForEach(0..<40, id: \.self) { index in
+                Text("Item \(index + 1)")
+            }
+        }
+    }
+    .sceneHeader {
+        HStack {
+            Text("Dicta")
+            
+            Spacer()
+            
+            Button("Iure") {}
+                .buttonStyle(.neubrutProminent(kind: .primary,
+                                               icon: nil,
+                                               isFullWidth: false))
+        }
     }
 }

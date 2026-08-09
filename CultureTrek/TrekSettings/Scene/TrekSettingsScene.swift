@@ -39,6 +39,11 @@ struct TrekSettingsScene: View {
         .background(Styles.background)
         .sceneHeader("Paramètres",
                      onDismiss: {})
+        .sceneFooter {
+            Button("Voir la première énigme", action: {})
+                .buttonStyle(.neubrutProminent(kind: .primary,
+                                               isFullWidth: true))
+        }
     }
     
     private var durationString: String {
