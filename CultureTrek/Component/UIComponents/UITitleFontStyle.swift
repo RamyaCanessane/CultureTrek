@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct UISectionTitleFontStyle : UIViewRepresentable {
+struct UITitleFontStyle : UIViewRepresentable {
     
     let content : String
     
@@ -26,6 +26,12 @@ struct UISectionTitleFontStyle : UIViewRepresentable {
         label.textColor = UIColor(foreground)
         label.textAlignment = .left
         
+        label.setContentHuggingPriority(.required, for: .vertical)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        
         return label
         
     }
@@ -39,7 +45,7 @@ struct UISectionTitleFontStyle : UIViewRepresentable {
 fileprivate struct UIComponent: View {
     
     var body: some View {
-        UISectionTitleFontStyle(content: "Hey", size: 24, weight: .heavy, width: .condensed, foreground: AppColor.Label.primary)
+        UITitleFontStyle(content: "Hey", size: 24, weight: .heavy, width: .condensed, foreground: AppColor.Label.primary)
         
     }
 }

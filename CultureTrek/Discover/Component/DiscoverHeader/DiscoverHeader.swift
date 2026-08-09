@@ -16,7 +16,6 @@ struct DiscoverHeader: View {
         HStack{
             
             UISectionTitleFontStyle(content: "Découvrir".uppercased(), size: 40, weight: .black, width: .condensed, foreground: Styles.titleForeground)
-                .frame(height: Styles.buttonHeight)
             
             Spacer()
             
@@ -32,7 +31,6 @@ fileprivate struct Styles {
     static let titleForeground = AppColor.Label.primary
     
     static let titleHorizontalPadding = AppToken.Primitive.padding4
-    static let buttonHeight = AppToken.buttonHeight
     
 }
 

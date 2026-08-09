@@ -19,7 +19,6 @@ struct HeroTrekTitleLabels: View {
         VStack(alignment : .leading, spacing : Styles.labelsSpacing){
             
             UISectionTitleFontStyle(content: title, size: Styles.titleFontSize, weight: .heavy, width: .condensed, foreground: Styles.titleForeground)
-                .frame(maxWidth: .infinity, maxHeight: Styles.titleUIStyleHeight)
                 .lineLimit(2, reservesSpace: true)
             
             HStack(spacing : Styles.subtitleSpacing){
@@ -35,6 +34,7 @@ struct HeroTrekTitleLabels: View {
             .foregroundStyle(Styles.subtitleForeground)
             
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, Styles.labelsHorizontalPadding)
         .padding(.vertical, Styles.labelsVerticalPadding)
         .background(Styles.labelsBackground)
@@ -55,8 +55,6 @@ fileprivate struct Styles {
     static let subtitleFontSize = CGFloat(15)
     
     static let subtitleSpacing = AppToken.Primitive.spacing0
-    
-    static let titleUIStyleHeight = CGFloat(32)
     
 }
 
