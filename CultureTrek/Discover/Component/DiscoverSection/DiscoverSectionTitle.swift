@@ -29,6 +29,7 @@ struct DiscoverSectionTitle: View {
                 .font(.system(size: 18, weight: .heavy))
             
         }
+        .foregroundStyle(Styles.sectionTitleForeground)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, Styles.sectionTitleHorizontalPadding)
     }

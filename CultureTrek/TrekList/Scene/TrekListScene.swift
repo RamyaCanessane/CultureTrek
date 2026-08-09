@@ -24,8 +24,11 @@ struct TrekListScene: View {
             }
             
         }
+        .navigationBarBackButtonHidden(true)
         .safeAreaBar(edge: .top, content: {
+            
             TrekListHeader(icon: sectionTitleIcon,title: sectionTitle)
+            
         })
         .scrollIndicators(.hidden)
         .background(AppColor.Page.background)

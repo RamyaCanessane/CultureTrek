@@ -15,34 +15,37 @@ struct DiscoverScene: View {
     
     var body: some View {
         
-        ScrollView {
+        NavigationStack {
             
-            VStack {
-
-                HeroTrekTitle(trekTitle: vm.store.heroTrek.name, trekCity: vm.store.heroTrek.city, trekDepartment: vm.store.heroTrek.department, trekRegion: vm.store.heroTrek.region, trekPicture: vm.store.heroTrek.picture, sectionTag: heroTitle)
+            ScrollView {
                 
-                VStack(spacing: Styles.sectionSpacing){
+                VStack {
                     
-                    ForEach(vm.store.sections){ section in
+                    HeroTrekTitle(trekTitle: vm.store.heroTrek.name, trekCity: vm.store.heroTrek.city, trekDepartment: vm.store.heroTrek.department, trekRegion: vm.store.heroTrek.region, trekPicture: vm.store.heroTrek.picture, sectionTag: heroTitle)
+                    
+                    VStack(spacing: Styles.sectionSpacing){
                         
-                        DiscoverSection(sectionTitle: section.name, sectionIcon: section.icon , sectionTreks: section.treks)
-                        
+                        ForEach(vm.store.sections){ section in
+                            
+                            DiscoverSection(section: section)
+                            
+                        }
                     }
+                    .padding(.vertical, Styles.sectionVerticalPadding)
+                    
                 }
-                .padding(.vertical, Styles.sectionVerticalPadding)
-                
             }
-        }
-        .safeAreaBar(edge: .top, content: {
-            
-            DiscoverHeader(user : vm.user)
-            
-        })
-        .scrollIndicators(.hidden)
-        .background(AppColor.Page.background)
-        .task {
-            vm.getAllTreks()
-            vm.fillTrekSections()
+            .safeAreaBar(edge: .top, content: {
+                
+                DiscoverHeader(user : vm.user)
+                
+            })
+            .scrollIndicators(.hidden)
+            .background(AppColor.Page.background)
+            .task {
+                vm.getAllTreks()
+                vm.fillTrekSections()
+            }
         }
     
     }
