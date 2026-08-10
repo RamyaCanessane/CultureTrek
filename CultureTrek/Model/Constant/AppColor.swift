@@ -33,6 +33,7 @@ enum AppColor {
     static let xpPoints: Color = .primitiveXpPoints
     static let shadow: Color = .primitiveShadow
     static let success: Color = .primitiveSuccess
+    static let tabViewBackground: Color = .primitiveTabViewBackground
     static let warning: Color = .primitiveWarning
     
     enum Page {

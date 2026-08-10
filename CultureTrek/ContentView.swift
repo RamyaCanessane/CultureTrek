@@ -9,45 +9,38 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-          
-            Text("Bienvenue")
+        NeubrutTabView {
+            NeubrutTab(activeIcon: AppTab.discover.activeIcon,
+                       inactiveIcon: AppTab.discover.inactiveIcon) {
+                AppTab.discover.rootView
+            }
             
-            Text(.homeWelcomeMessage)
+            NeubrutTab(activeIcon: AppTab.history.activeIcon,
+                       inactiveIcon: AppTab.history.inactiveIcon) {
+                AppTab.history.rootView
+            }
             
-            Text(String(localized: .homeWelcomeMessage))
+            NeubrutTab(activeIcon: AppTab.ranking.activeIcon,
+                       inactiveIcon: AppTab.ranking.inactiveIcon) {
+                AppTab.ranking.rootView
+            }
             
-            AppImage.xpPointsIcon
-                .resizable()
-                .scaledToFit()
-                .frame(width: 72,
-                       height: 72)
+            NeubrutTab(activeIcon: AppTab.achievement.activeIcon,
+                       inactiveIcon: AppTab.achievement.inactiveIcon) {
+                AppTab.achievement.rootView
+            }
             
-            Text("Space Grotesky")
-                .font(.spaceGrotesk(size: 32,
-                                    weight: .semibold))
-            
-            RoundedRectangle(cornerRadius: 8)
-                .fill(.red)
-                .frame(width: 200, height: 100)
-            
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(.red, lineWidth: 8)
-                .frame(width: 200, height: 100)
-            
-            RoundedRectangle(cornerRadius: 8 + 4)
-                .strokeBorder(.red, lineWidth: 8)
-                .frame(width: 200, height: 100)
+            NeubrutTab(activeIcon: AppTab.search.activeIcon,
+                       inactiveIcon: AppTab.search.inactiveIcon) {
+                AppTab.search.rootView
+            }
         }
-        .padding()
-        .environment(\.locale, .init(identifier: "en"))
     }
 }
 
 #Preview {
+    let trekStore = TrekStore()
+    
     ContentView()
+        .environment(trekStore)
 }
