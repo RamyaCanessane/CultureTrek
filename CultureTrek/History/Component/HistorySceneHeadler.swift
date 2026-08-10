@@ -21,13 +21,13 @@ struct HistorySceneHeadler: View {
 }
 
 struct HistoryHeadlerStyles {
-    static let spacer = AppToken.Primitive.spacing4
+    static let spacer = AppToken.Primitive.spacing20
     static let padding = AppToken.Primitive.padding4
 }
 
 #Preview {
     VStack{
-        HistorySceneHeadler(firstTab: "Lalal", secondTab: "Malal")
+        HistorySceneHeadler(firstTab: "Liste", secondTab: "Carte")
     }
     .padding()
     .background(AppColor.background)
