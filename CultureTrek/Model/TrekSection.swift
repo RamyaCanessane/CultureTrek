@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct TrekSection {
+struct TrekSection : Identifiable {
+    let id = UUID()
     
     let name : String
     let icon : Image?
+    var treks : [Trek] = []
     
 }
 

@@ -14,6 +14,7 @@ struct TrekFinishedScene: View {
     let rank: (current: UInt, total: UInt)?
     let photos: [RiddlePhoto]
     let badges: [Badge]
+    let trekMode: Trek.Mode
     let onPressPath: () -> Void
     let onPressStartQuiz: () -> Void
     let onPressSkipQuiz: () -> Void
@@ -28,6 +29,7 @@ struct TrekFinishedScene: View {
          rank: (current: UInt, total: UInt)?,
          photos: [RiddlePhoto],
          badges: [Badge],
+         trekMode: Trek.Mode,
          onPressPath: @escaping () -> Void,
          onPressStartQuiz: @escaping () -> Void,
          onPressSkipQuiz: @escaping () -> Void,
@@ -38,6 +40,7 @@ struct TrekFinishedScene: View {
         self.rank = rank
         self.photos = photos
         self.badges = badges
+        self.trekMode = trekMode
         
         #warning("Utiliser le vrai utilisateur")
         self.user = .init(currentXPPoints: 1100,
@@ -68,13 +71,15 @@ struct TrekFinishedScene: View {
                                                   paragraph: "Mission accomplie ! Tu as percé tous les mystères de ce parcours.")
                 .padding(.horizontal)
                 
-                if duration != nil || points != nil || rank != nil {
+                if trekMode == .ranked
+                   && (duration != nil || points != nil || rank != nil) {
                     TrekFinishedColInfoRow(duration: duration,
                                            points: points,
                                            rank: rank)
                 }
                 
-                if let progressBarData {
+                if trekMode == .ranked,
+                   let progressBarData {
                     LevelWithProgressBar(newPoints: progressBarData.newPoints,
                                          currentPoints: progressBarData.currentPoints,
                                          totalPoints: progressBarData.totalPoints,
@@ -108,7 +113,7 @@ struct TrekFinishedScene: View {
         .scrollBounceBehavior(.basedOnSize)
         .frame(maxWidth: .infinity)
         .background(Styles.background)
-        .safeAreaInset(edge: .bottom) {
+        .sceneFooter {
             VStack(spacing: Styles.actionsSpacing) {
                 Button("Commencer le quiz", action: onPressStartQuiz)
                     .buttonStyle(.neubrutProminent(kind: .primary,
@@ -118,39 +123,6 @@ struct TrekFinishedScene: View {
                     .buttonStyle(.neubrutProminent(kind: .neutral,
                                                    isFullWidth: true))
             }
-            .padding(.horizontal)
-            .padding(.bottom, Styles.actionsBottomPadding)
-            .background {
-                Rectangle()
-                    .fill(
-                        LinearGradient(colors: [
-                            Styles.background.opacity(0.64),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1),
-                            Styles.background.opacity(1)
-                        ],
-                                       startPoint: .bottom,
-                                       endPoint: .top)
-                    )
-                    .padding(-20)
-                    .blur(radius: 10)
-                    .padding(20)
-                    .padding(.top, -20)
-            }
-        }
-        .safeAreaInset(edge: .bottom,
-                       alignment: .center) {
-            Text("")
-                .frame(maxWidth: .infinity)
-                .background {
-                    Rectangle()
-                        .fill(Styles.background)
-                        .ignoresSafeArea(.all,
-                                         edges: .bottom)
-                }
         }
     }
 }
@@ -175,6 +147,7 @@ fileprivate enum Styles {
                         .init(riddleOrder: 2, image: UIImage(resource: .riddleTestPicture)),
                       ],
                       badges: Badge.examples,
+                      trekMode: .ranked,
                       onPressPath: {},
                       onPressStartQuiz: {},
                       onPressSkipQuiz: {},

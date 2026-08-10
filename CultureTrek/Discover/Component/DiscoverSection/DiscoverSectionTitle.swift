@@ -19,16 +19,18 @@ struct DiscoverSectionTitle: View {
                 
                 if let hasIcon = icon {
                     hasIcon
-                        .font(.system(size: 24, weight: .heavy))
+                        .font(.system(size: Styles.sectionLabelFontSize, weight: .heavy))
                 }
                 
-                UITitleFontStyle(content: title.uppercased(), size: 24, weight: .heavy, width: .condensed, foreground: Styles.sectionTitleForeground)
+                UITitleFontStyle(content: title.uppercased(), size: Styles.sectionLabelFontSize, weight: .heavy, width: .condensed, foreground: Styles.sectionTitleForeground)
             }
             
             Styles.sectionTitleIcon
                 .font(.system(size: 18, weight: .heavy))
-                .frame(maxWidth: .infinity, alignment: .leading)
+            
         }
+        .foregroundStyle(Styles.sectionTitleForeground)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, Styles.sectionTitleHorizontalPadding)
     }
 }
@@ -42,6 +44,7 @@ fileprivate struct Styles {
     static let sectionIconSpacing = AppToken.Primitive.spacing0_5
     
     static let sectionTitleIcon = AppImage.Icon.trekSectionForward.image
+    static let sectionLabelFontSize = CGFloat(24)
     
 }
 
