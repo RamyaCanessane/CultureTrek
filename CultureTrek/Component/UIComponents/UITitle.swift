@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-struct UITitleFontStyle : UIViewRepresentable {
+struct UITitle : UIViewRepresentable {
     
     let content : String
     
@@ -45,7 +45,7 @@ struct UITitleFontStyle : UIViewRepresentable {
 fileprivate struct UIComponent: View {
     
     var body: some View {
-        UITitleFontStyle(content: "Hey", size: 24, weight: .heavy, width: .condensed, foreground: AppColor.Label.primary)
+        UITitle(content: "Hey", size: 24, weight: .heavy, width: .condensed, foreground: AppColor.Label.primary)
         
     }
 }

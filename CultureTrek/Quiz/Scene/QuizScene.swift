@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct QuizScene: View {
     let questions: [QuizQuestion]
     @State private var currentIndex: Int
     @State private var selectedAnswer: QuizQuestion.Answer? = nil
     @State private var isAnswerSubmitted: Bool = false
-    @State private var showPopup: Bool = false
+    @State private var isGoodPopupPresented: Bool = false
+    @State private var isBadPopupPresented: Bool = false
     
     init(questions: [QuizQuestion] = QuizQuestion.examples, currentIndex: Int = 0) {
         self.questions = questions
@@ -36,58 +38,65 @@ struct QuizScene: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                TitledCard(title: "Question \(currentIndex + 1)", content: currentQuestion.question, kind: .secondary)
-                    .padding(16)
-                    .padding(.top, 32)
-                
-                if !isAnswerSubmitted {
-                    VStack(spacing: 12) {
-                        ForEach(currentQuestion.answers, id: \.self) { answer in
-                            AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
-                        }
-                    }
-                    .padding(16)
-                } else {
-                    if let selected = selectedAnswer {
-                        VStack(spacing: 24) {
-                            if let correct = correctAnswer {
-                                CorrectAnswerCard(answer: correct)
-                            }
-                            
-                            if selected.isGood == true {
-                                if let fact = currentQuestion.goodAnswerFact {
-                                    TitledCard(title: "À RETENIR", content: fact, kind: .info)
-                                }
-                            } else {
-                                if let explanation = currentQuestion.badAnswerExplanation {
-                                    TitledCard(title: "EXPLICATION", content: explanation, kind: .warning)
-                                }
+                VStack(spacing: 24) {
+                    TitledCard(title: "Question \(currentIndex + 1)", content: currentQuestion.question, kind: .secondary)
+                    
+                    if !isAnswerSubmitted {
+                        Spacer()
+                        
+                        VStack(spacing: 12) {
+                            ForEach(currentQuestion.answers, id: \.self) { answer in
+                                AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
                             }
                         }
-                        .padding(16)
+                    } else {
+                        if let selected = selectedAnswer {
+                            VStack(spacing: 24) {
+                                if let correct = correctAnswer {
+                                    CorrectAnswerCard(answer: correct)
+                                }
+                                
+                                if selected.isGood == true {
+                                    if let fact = currentQuestion.goodAnswerFact {
+                                        TitledCard(title: "À RETENIR", content: fact, kind: .info)
+                                    }
+                                } else {
+                                    if let explanation = currentQuestion.badAnswerExplanation {
+                                        TitledCard(title: "EXPLICATION", content: explanation, kind: .warning)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+                .padding(.horizontal)
+                .padding(.top, 32)
             }
             .background(AppColor.background)
             .scrollBounceBehavior(.basedOnSize)
-            .navigationTitle("QUIZ")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {}) {
-                        Image(systemName: "xmark")
-                    }
-                    .buttonStyle(.neubrutIcon(kind: .destructive))
-                    .offset(y: 50)
-                }
-                .sharedBackgroundVisibility(.hidden)
-            }
-            .overlay(alignment: .bottom) {
+            .sceneHeader("Quiz", onDismiss: {})
+            .sceneFooter {
                 bottomBar
             }
-            .overlay {
-                if showPopup, let selected = selectedAnswer {
-                    popUpOverlay(answer: selected)
-                }
+            .popup(isPresented: $isGoodPopupPresented) {
+                GoodActionPopupView(title: "BONNE RÉPONSE !", obtainedXPPoints: 10)
+                    .padding(32)
+            } customize: {
+                $0
+                    .autohideIn(4)
+                    .closeOnTap(true)
+                    .closeOnTapOutside(false)
+                    .backgroundColor(Color.black.opacity(0.32))
+            }
+            .popup(isPresented: $isBadPopupPresented) {
+                BadActionPopupView(title: "MAUVAISE RÉPONSE", content: "La bonne réponse était: \(correctAnswer?.text ?? "")")
+                    .padding(32)
+            } customize: {
+                $0
+                    .autohideIn(4)
+                    .closeOnTap(true)
+                    .closeOnTapOutside(false)
+                    .backgroundColor(Color.black.opacity(0.32))
             }
         }
     }
@@ -104,6 +113,7 @@ struct QuizScene: View {
             .disabled(currentIndex == 0)
             
             LabeledProgressBar(current: UInt(currentIndex + 1), total: UInt(questions.count))
+                .animation(.bouncy, value: currentIndex + 1)
             
             Button() {
                 if !isAnswerSubmitted {
@@ -116,25 +126,6 @@ struct QuizScene: View {
             }
             .buttonStyle(.neubrutIcon(kind: isAnswerSubmitted ? .primary : .success))
             .disabled(selectedAnswer == nil)
-        }
-        .padding(16)
-    }
-    
-    private func popUpOverlay(answer: QuizQuestion.Answer) -> some View {
-        ZStack {
-            Color.primitiveInverseBackground.opacity(0.4)
-                .ignoresSafeArea()
-                .onTapGesture {
-                    showPopup = false
-                }
-            
-            if answer.isGood {
-                GoodActionPopupView(title: "BONNE RÉPONSE !", obtainedXPPoints: 10)
-                    .padding(16)
-            } else {
-                BadActionPopupView(title: "MAUVAISE RÉPONSE", content: "La bonne réponse était: \(correctAnswer?.text ?? "")")
-                    .padding(16)
-            }
         }
     }
     
@@ -151,7 +142,16 @@ struct QuizScene: View {
     private func validateAnswer() {
         if selectedAnswer != nil {
             isAnswerSubmitted = true
-            showPopup = true
+            
+            guard let selected = selectedAnswer else {
+                return
+            }
+            
+            if selected.isGood {
+                isGoodPopupPresented = true
+            } else {
+                isBadPopupPresented = true
+            }
         }
     }
 }

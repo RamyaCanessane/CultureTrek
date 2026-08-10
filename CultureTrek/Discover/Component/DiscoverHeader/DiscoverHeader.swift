@@ -15,7 +15,7 @@ struct DiscoverHeader: View {
         
         HStack{
             
-            UITitleFontStyle(content: "Découvrir".uppercased(), size: Styles.titleFontSize, weight: .black, width: .condensed, foreground: Styles.titleForeground)
+            UITitle(content: "Découvrir".uppercased(), size: Styles.titleFontSize, weight: .black, width: .condensed, foreground: Styles.titleForeground)
             
             Spacer()
             

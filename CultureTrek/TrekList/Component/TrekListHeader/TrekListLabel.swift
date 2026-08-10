@@ -21,7 +21,7 @@ struct TrekListLabel: View {
                     .font(.system(size: Styles.labelFontSize, weight: .black))
             }
             
-            UITitleFontStyle(content: title.uppercased(), size: Styles.labelFontSize, weight: .black, width: .condensed, foreground: Styles.labelForeground)
+            UITitle(content: title.uppercased(), size: Styles.labelFontSize, weight: .black, width: .condensed, foreground: Styles.labelForeground)
             
         }
         .frame(maxWidth: .infinity, alignment: .leading)

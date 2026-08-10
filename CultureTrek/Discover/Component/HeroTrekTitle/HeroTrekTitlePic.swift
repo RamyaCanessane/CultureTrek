@@ -21,7 +21,7 @@ struct HeroTrekTitlePic: View {
                 .clipped()
                 .overlay(alignment: .topLeading) {
                     VStack{
-                        UITitleFontStyle(content: tag.uppercased(), size: Styles.tagFontSize, weight: .heavy, width: .condensed, foreground: Styles.tagForeground)
+                        UITitle(content: tag.uppercased(), size: Styles.tagFontSize, weight: .heavy, width: .condensed, foreground: Styles.tagForeground)
                             .frame(maxWidth: Styles.tagUIStyleWidth, maxHeight: Styles.tagUIStyleHeight)
                     }
                         .padding(.horizontal, Styles.tagHorizontalPadding)
