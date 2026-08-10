@@ -11,38 +11,6 @@ struct FilterButton: View {
     let filterAction: () -> Void
     
     var body: some View {
-<<<<<<< HEAD
-        icon: do {
-            Image(
-                systemName: filterIcon
-            )
-            .font(
-                FilterButtonStyles.iconFont
-            )
-            .foregroundStyle(
-                FilterButtonStyles.iconColor
-            )
-            .padding(
-                FilterButtonStyles.padding
-            )
-            .frame(
-                width: FilterButtonStyles.buttonSize,
-                height: FilterButtonStyles.buttonSize
-            )
-            .background(
-                FilterButtonStyles.background
-            )
-            .clipShape(
-                FilterButtonStyles.shape
-            )
-            .overlay {
-                FilterButtonStyles.shape
-                    .strokeBorder(
-                        FilterButtonStyles.borderColor,
-                        lineWidth: FilterButtonStyles.borderWidth
-                    )
-            }
-=======
         VStack(alignment: .trailing){
             Button(action: filterAction){
                 Image(systemName: FilterButtonStyles.filterIcon)
@@ -60,7 +28,6 @@ struct FilterButton: View {
                     }
             }
             .buttonStyle(.neubrutIcon(kind: .neutral))
->>>>>>> feature/history
         }
     }
 }
@@ -72,17 +39,8 @@ struct FilterButtonStyles {
     static let borderWidth = AppToken.borderWidth
     
     static let cornerRadius = AppToken.cornerRadius
-    
-<<<<<<< HEAD
-    static let iconFont: Font = .system(
-        size: buttonSize / 2,
-        weight: .regular,
-        design: .default
-    )
-=======
     static let iconFont: Font = .system(size: 20,
                                         weight: .heavy)
->>>>>>> feature/history
     static let padding = AppToken.Primitive.padding1
     
     static let shadowColor = AppColor.shadow
@@ -98,16 +56,8 @@ struct FilterButtonStyles {
 
 #Preview {
     VStack {
-<<<<<<< HEAD
-        FilterButton(
-            filterIcon: "line.3.horizontal.decrease"
-        )
-=======
         FilterButton(filterAction: {})
->>>>>>> feature/history
     }
     .padding()
-    .background(
-        AppColor.background
-    )
+    .background(AppColor.background)
 }
