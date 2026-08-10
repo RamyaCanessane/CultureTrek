@@ -83,7 +83,7 @@ fileprivate enum Styles {
     
     static let spacing = AppToken.Primitive.spacing3
     
-    static let titleFont: Font = .system(size: 40,
+    static let titleFont: Font = .system(size: 32,
                                          weight: .heavy)
         .width(.condensed)
     static let titleTextCase: Text.Case = .uppercase
