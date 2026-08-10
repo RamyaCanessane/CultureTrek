@@ -6,18 +6,25 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
+import CoreLocation
 import SwiftUI
 
 struct User {
+    let coordinate: CLLocationCoordinate2D
     let currentXPPoints: UInt
     let firstName: String
     let lastName: String
-    //let location: String
     let picture: Image
 }
 
 extension User {
-    static let example = User(currentXPPoints: 15, firstName: "Lena", lastName: "Villamore"/*, location: "Paris"*/, picture: AppImage.heroTestPicture)
+    static let example = User(
+        coordinate: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522),
+        currentXPPoints: 15,
+        firstName: "Lena",
+        lastName: "Villamore",
+        picture: AppImage.heroTestPicture
+    )
 }
 
 extension User {

@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct RiddleScene: View {
@@ -122,6 +123,7 @@ fileprivate enum Styles {
 
 fileprivate let riddleExample = Riddle(
     clue: "Quasi modi nihil consequuntur. Dicta praesentium quia sequi et ex qui sunt ut.",
+    coordinate: CLLocationCoordinate2D(latitude: 48.8530, longitude: 2.3499),
     goodToKnow: "Illum vel quos temporibus temporibus architecto eveniet et minima ad amet.",
     isCompleted: true,
     order: 3,

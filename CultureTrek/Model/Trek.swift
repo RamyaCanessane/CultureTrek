@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //  
 
+import CoreLocation
 import SwiftUI
 
 class Trek : Identifiable {
@@ -89,6 +90,7 @@ extension Trek {
         riddles: [
             .init(
                 clue: nil,
+                coordinate: CLLocationCoordinate2D(latitude: 48.8584, longitude: 2.2945),
                 goodToKnow: "",
                 isCompleted: true,
                 order: 1,
@@ -99,6 +101,7 @@ extension Trek {
             ),
             .init(
                 clue: nil,
+                coordinate: CLLocationCoordinate2D(latitude: 48.8606, longitude: 2.3376),
                 goodToKnow: "",
                 isCompleted: false,
                 order: 2,
@@ -130,6 +133,7 @@ extension Trek {
         riddles: [
             .init(
                 clue: nil,
+                coordinate: CLLocationCoordinate2D(latitude: 48.8530, longitude: 2.3499),
                 goodToKnow: "",
                 isCompleted: true,
                 order: 1,
@@ -140,6 +144,7 @@ extension Trek {
             ),
             .init(
                 clue: nil,
+                coordinate: CLLocationCoordinate2D(latitude: 48.8584, longitude: 2.2945),
                 goodToKnow: "",
                 isCompleted: false,
                 order: 2,
@@ -171,6 +176,7 @@ extension Trek {
         riddles: [
             .init(
                 clue: nil,
+                coordinate: CLLocationCoordinate2D(latitude: 48.8606, longitude: 2.3376),
                 goodToKnow: "",
                 isCompleted: true,
                 order: 1,
@@ -181,6 +187,7 @@ extension Trek {
             ),
             .init(
                 clue: nil,
+                coordinate: CLLocationCoordinate2D(latitude: 48.8530, longitude: 2.3499),
                 goodToKnow: "",
                 isCompleted: false,
                 order: 2,
