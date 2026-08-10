@@ -24,7 +24,7 @@ struct DiscoverSectionCells: View {
                 
                 ForEach(treks) { trek in
                     
-                    TrekCell(city: trek.city, department: trek.department, name: trek.name, picture: trek.picture, region: trek.region, isBig: true)
+                    TrekCell(city: trek.city, department: trek.department, name: trek.name, picture: trek.picture, region: trek.region, isBig: false)
                     
                 }
                 

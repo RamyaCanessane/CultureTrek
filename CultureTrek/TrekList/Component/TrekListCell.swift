@@ -16,7 +16,7 @@ struct TrekListCell: View {
             VStack(spacing: Styles.listCellSpacing){
                 ForEach(treks) { trek in
                     
-                    TrekCell(city: trek.city, department: trek.department, name: trek.name, picture: trek.picture, region: trek.region, isBig: false)
+                    TrekCell(city: trek.city, department: trek.department, name: trek.name, picture: trek.picture, region: trek.region, isBig: true)
                     
                 }
             }
