@@ -9,18 +9,12 @@ import SwiftUI
 import PopupView
 
 struct QuizScene: View {
-    let questions: [QuizQuestion]
-    @State private var currentIndex: Int
+    let questions: [QuizQuestion] = QuizQuestion.examples
+    @State private var currentIndex: Int = 0
     @State private var selectedAnswer: QuizQuestion.Answer? = nil
     @State private var isAnswerSubmitted: Bool = false
     @State private var isGoodPopupPresented: Bool = false
     @State private var isBadPopupPresented: Bool = false
-    
-    init(questions: [QuizQuestion] = QuizQuestion.examples, currentIndex: Int = 0) {
-        self.questions = questions
-        self.currentIndex = currentIndex
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont.systemFont(ofSize: 40, weight: .black, width: .condensed)]
-    }
     
     private var currentQuestion: QuizQuestion {
         questions[currentIndex]
@@ -157,6 +151,6 @@ struct QuizScene: View {
 }
 
 #Preview() {
-    QuizScene(currentIndex: 0)
+    QuizScene()
 }
 
