@@ -22,7 +22,7 @@ struct DiscoverSectionTitle: View {
                         .font(.system(size: Styles.sectionLabelFontSize, weight: .heavy))
                 }
                 
-                UITitleFontStyle(content: title.uppercased(), size: Styles.sectionLabelFontSize, weight: .heavy, width: .condensed, foreground: Styles.sectionTitleForeground)
+                UITitle(content: title.uppercased(), size: Styles.sectionLabelFontSize, weight: .heavy, width: .condensed, foreground: Styles.sectionTitleForeground)
             }
             
             Styles.sectionTitleIcon

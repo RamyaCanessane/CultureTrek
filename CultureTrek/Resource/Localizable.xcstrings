@@ -36,9 +36,6 @@
     "%llu points" : {
 
     },
-    "%llu points gagnés" : {
-
-    },
     "%llu/%llu" : {
       "localizations" : {
         "fr" : {
@@ -121,9 +118,6 @@
     "Prochain rang: " : {
 
     },
-    "QUIZ" : {
-
-    },
     "Space Grotesky" : {
 
     },
@@ -131,6 +125,9 @@
 
     },
     "Trek Path" : {
+
+    },
+    "Voir la première énigme" : {
 
     },
     "Voir le parcours" : {
