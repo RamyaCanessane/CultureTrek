@@ -22,6 +22,8 @@ final class DiscoverViewModel {
     
     init(store: TrekStore) {
         self.store = store
+        
+        fillTrekSections()
     }
 
     var sections : [TrekSection] = []
@@ -49,7 +51,7 @@ final class DiscoverViewModel {
     }
     
     //Intention
-    func fillTrekSections(){
+    private func fillTrekSections(){
 
         section1.treks = around
         section2.treks = favorites

@@ -10,9 +10,23 @@ import SwiftUI
 struct DiscoverScene: View {
     
     @Environment(TrekStore.self) private var store
-    @State private var vm = DiscoverViewModel(store: store)
+    
+    var body: some View {
+        DiscoverSceneInternal(store: store)
+    }
+}
+
+
+struct DiscoverSceneInternal: View {
+    
+    
+    @State private var vm: DiscoverViewModel
     
     let heroTitle : String = "En vedette aujourd'hui"
+    
+    init(store: TrekStore) {
+        self._vm = State(initialValue: .init(store: store))
+    }
     
     var body: some View {
         
@@ -22,11 +36,18 @@ struct DiscoverScene: View {
                 
                 VStack {
                     
-                    HeroTrekTitle(trekTitle: vm.store.heroTrek.name, trekCity: vm.store.heroTrek.city, trekDepartment: vm.store.heroTrek.department, trekRegion: vm.store.heroTrek.region, trekPicture: vm.store.heroTrek.picture, sectionTag: heroTitle)
+                    HeroTrekTitle(
+                        trekTitle: vm.heroTrek.name,
+                        trekCity: vm.heroTrek.city,
+                        trekDepartment: vm.heroTrek.department,
+                        trekRegion: vm.heroTrek.region,
+                        trekPicture: vm.heroTrek.picture,
+                        sectionTag: heroTitle
+                    )
                     
                     VStack(spacing: Styles.sectionSpacing){
                         
-                        ForEach(vm.store.sections){ section in
+                        ForEach(vm.sections) { section in
                             
                             DiscoverSection(section: section)
                             
@@ -43,12 +64,7 @@ struct DiscoverScene: View {
             })
             .scrollIndicators(.hidden)
             .background(AppColor.Page.background)
-            .task {
-                vm.getAllTreks()
-                vm.fillTrekSections()
-            }
         }
-    
     }
 }
 

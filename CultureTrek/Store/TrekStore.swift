@@ -15,13 +15,4 @@ class TrekStore : Identifiable {
     init(treks: [Trek] = Trek.examples) {
         self.treks = treks
     }
-    
-//    func addTrek(_ trek: Trek){
-//        treks.append(trek)
-//    }
-    
-//    func addMoreTreks(_ treksToAdd: [Trek]){
-//        treks.append(contentsOf: treksToAdd)
-//    }
-    
 }
