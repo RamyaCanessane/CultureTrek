@@ -15,17 +15,7 @@ struct FilterButton: View {
             Button(action: filterAction){
                 Image(systemName: FilterButtonStyles.filterIcon)
                     .font(FilterButtonStyles.iconFont)
-//                    .foregroundStyle(FilterButtonStyles.iconColor)
                     .padding(FilterButtonStyles.padding)
-                    .frame(width: FilterButtonStyles.buttonSize,
-                           height: FilterButtonStyles.buttonSize)
-                    .background(FilterButtonStyles.background)
-                    .clipShape(FilterButtonStyles.shape)
-                    .overlay {
-                        FilterButtonStyles.shape
-                            .strokeBorder(FilterButtonStyles.borderColor,
-                                          lineWidth: FilterButtonStyles.borderWidth)
-                    }
             }
             .buttonStyle(.neubrutIcon(kind: .neutral))
         }
@@ -33,25 +23,10 @@ struct FilterButton: View {
 }
 
 struct FilterButtonStyles {
-    static let background = AppColor.accentNeutral
-    
-    static let borderColor = AppColor.border
-    static let borderWidth = AppToken.borderWidth
-    
-    static let cornerRadius = AppToken.cornerRadius
     static let iconFont: Font = .system(size: 20,
                                         weight: .heavy)
     static let padding = AppToken.Primitive.padding1
-    
-    static let shadowColor = AppColor.shadow
-    static let shadowSize = AppToken.shadowSize
-    
-    static let shape = RoundedRectangle(
-        cornerRadius: cornerRadius
-    )
-    static let buttonSize: Double = AppToken.buttonHeight
     static let filterIcon: String = "line.3.horizontal.decrease"
-    static let iconColor = AppColor.Label.primary
 }
 
 #Preview {

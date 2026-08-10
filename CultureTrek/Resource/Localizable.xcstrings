@@ -36,9 +36,6 @@
     "%llu points" : {
 
     },
-    "%llu points gagnés" : {
-
-    },
     "%llu/%llu" : {
       "localizations" : {
         "fr" : {
@@ -131,6 +128,9 @@
 
     },
     "Trek Path" : {
+
+    },
+    "Voir la première énigme" : {
 
     },
     "Voir le parcours" : {
