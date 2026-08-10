@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Trek : Identifiable {
+class Trek : Identifiable {
     let id = UUID()
     
     let accessibility: Accessibility
@@ -29,6 +29,26 @@ struct Trek : Identifiable {
     let region: String
     let summary: String? // description
 
+    init(accessibility: Accessibility, badgesToUnlock: [Badge], city: String, completion: CompletionData?, department: String?, distance: Measurement<UnitLength>, duration: Duration, elevation: Elevation, goal: String?, goodToKnow: [String], isLiked: Bool, name: String, picture: Image, riddles: [Riddle], quizQuestions: [QuizQuestion], region: String, summary: String?) {
+        self.accessibility = accessibility
+        self.badgesToUnlock = badgesToUnlock
+        self.city = city
+        self.completion = completion
+        self.department = department
+        self.distance = distance
+        self.duration = duration
+        self.elevation = elevation
+        self.goal = goal
+        self.goodToKnow = goodToKnow
+        self.isLiked = isLiked
+        self.name = name
+        self.picture = picture
+        self.riddles = riddles
+        self.quizQuestions = quizQuestions
+        self.region = region
+        self.summary = summary
+    }
+    
     enum Elevation {
         case low
         case medium
