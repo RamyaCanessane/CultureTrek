@@ -11,10 +11,12 @@ import SwiftUI
 struct SceneHeader: View {
     private let titleText: Text
     private let content: AnyView?
+    private let backButton: AnyView?
     
     init(title: String) {
         self.titleText = Text(title)
         self.content = nil
+        self.backButton = nil
     }
     
     init(title: String,
@@ -27,34 +29,53 @@ struct SceneHeader: View {
             .buttonStyle(.neubrutIcon(kind: .destructive))
         
         self.content = AnyView(button)
+        self.backButton = nil
     }
     
     init(title: String,
          trailingContent: () -> any View) {
         self.titleText = Text(title)
         self.content = AnyView(trailingContent())
+        self.backButton = nil
     }
     
     init(title: String,
          trailingContent: AnyView) {
         self.titleText = Text(title)
         self.content = trailingContent
+        self.backButton = nil
+    }
+    
+    init(title: String,
+         onPressBack: @escaping () -> Void) {
+        self.titleText = Text(title)
+        self.content = nil
+        self.backButton = AnyView(Button(action: onPressBack) {
+            AppImage.Icon.sceneBack.image
+        }
+        .buttonStyle(.neubrutIcon(kind: .neutral)))
     }
     
     var body: some View {
         HStack(alignment: .center,
                spacing: .zero) {
+            if let backButton {
+                backButton
+                    .padding(.trailing, Styles.titleBackButtonSpacing)
+            }
+            
             titleText
                 .font(Styles.titleFont)
                 .foregroundStyle(Styles.titleColor)
                 .textCase(Styles.titleTextCase)
             
-            Spacer(minLength: Styles.spacing)
-            
             if let content {
+                Spacer(minLength: Styles.spacing)
+                
                 content
             }
         }
+               .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -67,6 +88,8 @@ fileprivate enum Styles {
         .width(.condensed)
     static let titleTextCase: Text.Case = .uppercase
     static let titleColor = AppColor.Label.primary
+    
+    static let titleBackButtonSpacing = AppToken.Primitive.spacing4
 }
 
 #Preview {
@@ -84,5 +107,8 @@ fileprivate enum Styles {
         
         SceneHeader(title: "Consectetur Expedita Aut Rem",
                     onDismiss: {})
+        
+        SceneHeader(title: "Ut Libero",
+                    onPressBack: {})
     }
 }

@@ -22,6 +22,7 @@ enum AppImage {
         case close
         case dropdownDisclosure
         case download
+        case sceneBack
         case riddleCompletedTitlePrefix
         case riddleClue
         case riddleTime
@@ -49,6 +50,8 @@ enum AppImage {
                 "chevron.down"
             case .download:
                 "arrow.down.to.line"
+            case .sceneBack:
+                "chevron.backward"
             case .riddleCompletedTitlePrefix:
                 "checkmark.square.fill"
             case .riddleClue:

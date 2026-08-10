@@ -13,12 +13,14 @@ struct SceneHeaderViewModifier: ViewModifier {
     private let onDismiss: (() -> Void)?
     private let trailingContent: AnyView?
     private let allContent: AnyView?
+    private let onPressBack: (() -> Void)?
     
     init(title: String) {
         self.title = title
         self.onDismiss = nil
         self.trailingContent = nil
         self.allContent = nil
+        self.onPressBack = nil
     }
     
     init(title: String,
@@ -27,6 +29,7 @@ struct SceneHeaderViewModifier: ViewModifier {
         self.onDismiss = onDismiss
         self.trailingContent = nil
         self.allContent = nil
+        self.onPressBack = nil
     }
     
     init(title: String,
@@ -35,6 +38,7 @@ struct SceneHeaderViewModifier: ViewModifier {
         self.onDismiss = nil
         self.trailingContent = AnyView(trailingContent())
         self.allContent = nil
+        self.onPressBack = nil
     }
     
     init(allContent: () -> any View) {
@@ -42,6 +46,16 @@ struct SceneHeaderViewModifier: ViewModifier {
         self.onDismiss = nil
         self.trailingContent = nil
         self.allContent = AnyView(allContent())
+        self.onPressBack = nil
+    }
+    
+    init(title: String,
+         onPressBack: @escaping () -> Void) {
+        self.title = title
+        self.onDismiss = nil
+        self.trailingContent = nil
+        self.allContent = nil
+        self.onPressBack = onPressBack
     }
     
     func body(content: Content) -> some View {
@@ -68,6 +82,9 @@ struct SceneHeaderViewModifier: ViewModifier {
                                         trailingContent: trailingContent)
                         } else if let allContent {
                             allContent
+                        } else if let onPressBack {
+                            SceneHeader(title: title,
+                                        onPressBack: onPressBack)
                         } else {
                             SceneHeader(title: title)
                         }
@@ -115,6 +132,12 @@ extension View {
     
     func sceneHeader(content: () -> any View) -> some View {
         modifier(SceneHeaderViewModifier(allContent: content))
+    }
+    
+    func sceneHeader(_ title: String,
+                     onPressBack: @escaping () -> Void) -> some View {
+        modifier(SceneHeaderViewModifier(title: title,
+                                         onPressBack: onPressBack))
     }
 }
 
@@ -183,4 +206,16 @@ fileprivate enum Styles {
                                                isFullWidth: false))
         }
     }
+}
+
+#Preview("Back") {
+    ScrollView {
+        VStack(spacing: 16) {
+            ForEach(0..<40, id: \.self) { index in
+                Text("Item \(index + 1)")
+            }
+        }
+    }
+    .sceneHeader("Dolores",
+                 onPressBack: {})
 }
