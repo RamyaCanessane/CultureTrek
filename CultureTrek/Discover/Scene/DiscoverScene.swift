@@ -9,7 +9,8 @@ import SwiftUI
 
 struct DiscoverScene: View {
     
-    @State private var vm = DiscoverViewModel()
+    @Environment(TrekStore.self) private var store
+    @State private var vm = DiscoverViewModel(store: store)
     
     let heroTitle : String = "En vedette aujourd'hui"
     

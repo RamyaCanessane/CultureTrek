@@ -20,10 +20,14 @@ final class DiscoverViewModel {
     //Données
     var store : TrekStore
     
-    init() {
-        self.store = TrekStore()
+    init(store: TrekStore) {
+        self.store = store
     }
+
+    var sections : [TrekSection] = []
     
+    var heroTrek : Trek = Trek.example
+   
     //Sortie pour affichage
     var user : User = User.example
 
@@ -45,10 +49,6 @@ final class DiscoverViewModel {
     }
     
     //Intention
-    func getAllTreks(){
-        store.addMoreTreks(Trek.examples)
-    }
-    
     func fillTrekSections(){
 
         section1.treks = around
@@ -56,7 +56,7 @@ final class DiscoverViewModel {
         section3.treks = paris
         section4.treks = marne
         
-        store.addSections([section1, section2, section3, section4])
+        sections = [section1, section2, section3, section4]
     }
     
 }
