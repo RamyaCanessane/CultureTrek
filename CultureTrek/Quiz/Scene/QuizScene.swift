@@ -36,41 +36,44 @@ struct QuizScene: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                TitledCard(title: "Question \(currentIndex + 1)", content: currentQuestion.question, kind: .secondary)
-                    .padding(16)
-                    .padding(.top, 32)
-                
-                if !isAnswerSubmitted {
-                    VStack(spacing: 12) {
-                        ForEach(currentQuestion.answers, id: \.self) { answer in
-                            AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
-                        }
-                    }
-                    .padding(16)
-                } else {
-                    if let selected = selectedAnswer {
-                        VStack(spacing: 24) {
-                            if let correct = correctAnswer {
-                                CorrectAnswerCard(answer: correct)
-                            }
-                            
-                            if selected.isGood == true {
-                                if let fact = currentQuestion.goodAnswerFact {
-                                    TitledCard(title: "À RETENIR", content: fact, kind: .info)
-                                }
-                            } else {
-                                if let explanation = currentQuestion.badAnswerExplanation {
-                                    TitledCard(title: "EXPLICATION", content: explanation, kind: .warning)
-                                }
+                VStack(spacing: 24) {
+                    TitledCard(title: "Question \(currentIndex + 1)", content: currentQuestion.question, kind: .secondary)
+                    
+                    if !isAnswerSubmitted {
+                        Spacer()
+                        
+                        VStack(spacing: 12) {
+                            ForEach(currentQuestion.answers, id: \.self) { answer in
+                                AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
                             }
                         }
-                        .padding(16)
+                    } else {
+                        if let selected = selectedAnswer {
+                            VStack(spacing: 24) {
+                                if let correct = correctAnswer {
+                                    CorrectAnswerCard(answer: correct)
+                                }
+                                
+                                if selected.isGood == true {
+                                    if let fact = currentQuestion.goodAnswerFact {
+                                        TitledCard(title: "À RETENIR", content: fact, kind: .info)
+                                    }
+                                } else {
+                                    if let explanation = currentQuestion.badAnswerExplanation {
+                                        TitledCard(title: "EXPLICATION", content: explanation, kind: .warning)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+                .padding(.horizontal)
+                .padding(.top, 32)
             }
             .background(AppColor.background)
             .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("QUIZ")
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}) {
