@@ -29,6 +29,10 @@ class Trek : Identifiable {
     let quizQuestions: [QuizQuestion]
     let region: String
     let summary: String? // description
+    
+    var coordinate: CLLocationCoordinate2D {
+        riddles.first?.coordinate ?? .init(latitude: 0, longitude: 0)
+    }
 
     init(accessibility: Accessibility, badgesToUnlock: [Badge], city: String, completion: CompletionData?, department: String?, distance: Measurement<UnitLength>, duration: Duration, elevation: Elevation, goal: String?, goodToKnow: [String], isLiked: Bool, name: String, picture: Image, riddles: [Riddle], quizQuestions: [QuizQuestion], region: String, summary: String?) {
         self.accessibility = accessibility
@@ -71,6 +75,8 @@ class Trek : Identifiable {
     }
 }
 
+#warning("Mettre l'unité dans les Trek.distance")
+
 extension Trek {
     
     static let example = Trek(
@@ -79,7 +85,7 @@ extension Trek {
         city: "Paris",
         completion: nil,
         department: nil,
-        distance: .init(value: 2.4, unit: .init(forLocale: .autoupdatingCurrent, usage: .road)),
+        distance: .init(value: 2.4, unit: UnitLength.kilometers),
         duration: .seconds((60*60)+(20*60)),
         elevation: .low,
         goal: "Delectus quod inventore dolores impedit nulla aliquid vel voluptas in non.",
