@@ -17,13 +17,8 @@ struct TrekDetailSingleInfo: View {
         
         VStack(alignment: .leading, spacing: Styles.infoSpacing){
             
-<<<<<<< HEAD
-            UITitleFontStyle(
-                content: kind.uppercased(),
-=======
             UITitle(
-                content: kind.rawValue.uppercased(),
->>>>>>> feature/add-mock-data
+                content: kind/*.rawValue*/.uppercased(),
                 size: Styles.infoTitleFontSize,
                 weight: .heavy,
                 width: .condensed,

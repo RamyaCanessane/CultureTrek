@@ -17,15 +17,12 @@ struct TrekDetailInfo: View {
         
         HStack(spacing: Styles.infoSpacing){
             
-<<<<<<< HEAD
             TrekDetailSingleInfo(
                 trek: trek,
                 kind: vm.distanceSection.rawValue,
                 icon: vm.distanceSection.icon
             )
-=======
 //            TrekDetailSingleInfo(trek: trek, kind: vm)
->>>>>>> feature/add-mock-data
             
             TrekDetailSingleInfo(
                 trek: trek,
@@ -57,14 +54,11 @@ fileprivate struct Styles {
     
 }
 
-<<<<<<< HEAD
 #Preview {
     TrekDetailInfo(trek: Trek.example)
 }
-=======
 
 
 //#Preview {
 //    TrekDetailInfo(trek: Trek.example)
 //}
->>>>>>> feature/add-mock-data
