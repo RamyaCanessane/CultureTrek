@@ -27,5 +27,9 @@ struct HistorySceneSection: View {
 }
 
 #Preview {
-    HistorySceneSection(sectionTitle: Text("43 GSgf 3453"), city: "GSRG", department: "GS4Fge", name: "GZFfdaer", picture: Image(.trekTestPicture), region: "GDFZzc")
+    VStack{
+        HistorySceneSection(sectionTitle: Text("43 GSgf 3453"), city: "GSRG", department: "GS4Fge", name: "GZFfdaer", picture: Image(.trekTestPicture), region: "GDFZzc")
+    }
+    .padding()
+    .background(AppColor.Page.background)
 }
