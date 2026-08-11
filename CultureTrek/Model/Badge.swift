@@ -16,9 +16,12 @@ struct Badge: Identifiable, Equatable {
 
 extension Badge {
     
+    static let marathonien = Badge(icon: AppImage.Badge.distanceLv1.image, name: "Marche nordique")
+    static let paname = Badge(icon: AppImage.Badge.paname.image, name: "Paname")
+    
     static let examples: [Badge] = [
-        .init(icon: AppImage.badgeTest,
-              name: "Et consequatur"),
+        .init(icon: AppImage.Badge.distanceLv1.image,
+              name: "Marathonien"),
         .init(icon: AppImage.badgeTest,
               name: "Velit dolor"),
         .init(icon: AppImage.badgeTest,

@@ -142,10 +142,10 @@ fileprivate struct Styles {
     static let infoOffIconForeground = infoForeground.opacity(0.24)
     static let infoForeground = AppColor.Label.primary
     
-    static let infoSpacing = AppToken.Primitive.spacing2
+    static let infoSpacing = AppToken.Primitive.spacing1
     static let infoIconSpacing = AppToken.Primitive.spacing0
     
-    static let infoFontSize = CGFloat(15)
+    static let infoFontSize = CGFloat(14)
     
 }
 

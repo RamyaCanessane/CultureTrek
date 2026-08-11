@@ -113,4 +113,49 @@ enum AppImage {
             Image(systemName: systemName)
         }
     }
+    
+    enum Badge {
+        case distanceLv1
+        case distanceLv2
+        case distanceLv3
+        case distanceLv4
+        case distanceLv5
+        case durationLv1
+        case durationLv2
+        case durationLv3
+        case durationLv4
+        case durationLv5
+        case paname
+        
+        var name: String {
+            switch self {
+            case .distanceLv1:
+                "distanceLv1"
+            case .distanceLv2:
+                "distanceLv2"
+            case .distanceLv3:
+                "distanceLv3"
+            case .distanceLv4:
+                "distanceLv4"
+            case .distanceLv5:
+                "distanceLv5"
+            case .durationLv1:
+                "durationLv1"
+            case .durationLv2:
+                "durationLv2"
+            case .durationLv3:
+                "durationLv3"
+            case .durationLv4:
+                "durationLv4"
+            case .durationLv5:
+                "durationLv5"
+            case .paname:
+                "paname"
+            }
+        }
+        
+        var image: Image {
+            Image(name)
+        }
+    }
 }

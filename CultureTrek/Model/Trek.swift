@@ -74,7 +74,7 @@ extension Trek {
     
     static let example = Trek(
         accessibility: .init(bike: true, stroller: true, walking: true, wheelchair: true),
-        badgesToUnlock: Badge.examples,
+        badgesToUnlock: [ Badge.marathonien, Badge.paname],
         city: "Paris",
         completion: nil,
         department: nil,
