@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum AppTab: String, CaseIterable, Identifiable {
+enum AppTab: String, Identifiable {
     case discover
     case history
     case ranking
