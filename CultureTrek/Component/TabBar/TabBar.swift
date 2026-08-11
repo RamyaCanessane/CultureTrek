@@ -37,8 +37,8 @@ struct NeubrutTabView: View {
     
     init<T>(selection: Int = 0,
             @ViewBuilder content: () -> TupleView<T>) {
-        self.selection = selection
         self.content = content().getViews()
+        self.selection = selection
     }
     
     var body: some View {

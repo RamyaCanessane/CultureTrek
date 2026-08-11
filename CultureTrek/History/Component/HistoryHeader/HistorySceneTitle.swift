@@ -11,30 +11,51 @@ struct HistorySceneTitle: View {
     let sceneTitle: Text
     
     var body: some View {
-        HStack(alignment: .center,
-               spacing: .zero) {
+        HStack(
+            alignment: .center,
+            spacing: .zero
+        ) {
             sceneTitle
-                .font(HistoryTitleStyles.titleFont)
-                .foregroundStyle(HistoryTitleStyles.titleColor)
-                .textCase(HistoryTitleStyles.titleTextCase)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(
+                    HistoryTitleStyles.titleFont
+                )
+                .foregroundStyle(
+                    HistoryTitleStyles.titleColor
+                )
+                .textCase(
+                    HistoryTitleStyles.titleTextCase
+                )
+                .frame(
+                    maxWidth: .infinity,
+                    alignment: .leading
+                )
         }
     }
 }
 
 struct HistoryTitleStyles {
     
-    static let titleFont: Font = .system(size: 40,
-                                         weight: .heavy)
-        .width(.condensed)
+    static let titleFont: Font = .system(
+        size: 40,
+        weight: .heavy
+    )
+        .width(
+            .condensed
+        )
     static let titleColor = AppColor.Label.primary
     static let titleTextCase: Text.Case = .uppercase
 }
 
 #Preview {
     VStack{
-        HistorySceneTitle(sceneTitle: Text("historique"))
+        HistorySceneTitle(
+            sceneTitle: Text(
+                "historique"
+            )
+        )
     }
-//    .background(AppColor.background)
+    .background(
+        AppColor.Page.background
+    )
     .padding()
 }

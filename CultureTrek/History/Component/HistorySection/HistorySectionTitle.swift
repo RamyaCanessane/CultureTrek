@@ -36,6 +36,6 @@ struct HistorySectionTitleStyles {
     VStack{
         HistorySectionTitle(title: Text("GEseqrfg"))
     }
-//    .background(AppColor.background)
     .padding()
+    .background(AppColor.Page.background)
 }

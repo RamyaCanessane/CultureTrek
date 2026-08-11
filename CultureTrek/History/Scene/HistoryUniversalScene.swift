@@ -36,7 +36,6 @@ struct HistoryUniversalScene: View {
     VStack{
         HistoryUniversalScene(mainTitle: Text("history"), tabOne: "Kiso", tabTwo: "Miso", section: Text("23 Avril 2042"), city: "Plasir", departament: "Yvelines", name: "Decouverte verte", picture: Image(.trekTestPicture), region: "Ile-de-France")
     }
-//    .background(AppColor.background)
     .padding()
-    
+    .background(AppColor.Page.background)
 }
