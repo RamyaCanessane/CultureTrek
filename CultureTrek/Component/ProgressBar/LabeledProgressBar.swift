@@ -26,6 +26,7 @@ struct LabeledProgressBar: View {
         HStack(spacing: 12) {
             Text("\(current)/\(total)")
                 .font(.spaceGrotesk(size: 20, weight: .bold))
+                .foregroundStyle(AppColor.Label.primary)
             
             GeometryReader { geo in
                 RoundedRectangle(cornerRadius: AppToken.cornerRadius)

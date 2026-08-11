@@ -84,7 +84,7 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleFlowScene(trek: testTrek)
+    RiddleFlowScene(trek: .liveDemoExamples.first ?? testTrek)
 }
 
 fileprivate let testTrek: Trek = .init(
