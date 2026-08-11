@@ -19,6 +19,10 @@ enum AppImage {
     static let xpPointsIcon = Image(.xpPointsIcon)
     
     enum Icon {
+        case accessibilityBike
+        case accessibilityStroller
+        case accessibilityWalk
+        case accessibilityWheelchair
         case close
         case distance
         case dropdownDisclosure
@@ -46,6 +50,14 @@ enum AppImage {
         
         var systemName: String {
             switch self {
+            case .accessibilityBike:
+                "bicycle"
+            case .accessibilityWalk:
+                "figure.walk"
+            case .accessibilityWheelchair:
+                "wheelchair"
+            case .accessibilityStroller:
+                "stroller"
             case .close:
                 "xmark"
             case .distance:

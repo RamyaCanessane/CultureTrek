@@ -12,6 +12,19 @@ import SwiftUI
 final class TrekDetailInfoViewModel {
     
     //Etat de l'écran
+    let distanceSection = TrekDetailInfoContent.distance
+    let durationSection = TrekDetailInfoContent.duration
+    let elevationSection = TrekDetailInfoContent.elevation
+    let riddlesSection = TrekDetailInfoContent.riddles
+
+    //Données
+    var kind : TrekDetailInfoContent? = nil
+    
+    init(kind: TrekDetailInfoContent? = nil) {
+        self.kind = kind
+    }
+    
+    //Intention
     enum TrekDetailInfoContent : String {
         case distance = "Distance"
         case duration = "Durée"
@@ -33,21 +46,5 @@ final class TrekDetailInfoViewModel {
             
         }
     }
-    
-    let distanceSection = TrekDetailInfoContent.distance
-    let durationSection = TrekDetailInfoContent.duration
-    let elevationSection = TrekDetailInfoContent.elevation
-    let riddlesSection = TrekDetailInfoContent.riddles
-
-    //Données
-    var kind : TrekDetailInfoContent? = nil
-    
-    init(kind: TrekDetailInfoContent? = nil) {
-        self.kind = kind
-    }
-    
-    //Intention
-
-    
     
 }
