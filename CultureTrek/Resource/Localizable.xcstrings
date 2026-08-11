@@ -30,6 +30,9 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "%llu" : {
 
     },
@@ -45,6 +48,9 @@
           }
         }
       }
+    },
+    "~" : {
+
     },
     "Achievement scene" : {
 
@@ -73,9 +79,6 @@
       }
     },
     "Choisir une photo" : {
-
-    },
-    "Close" : {
 
     },
     "Commencer le quiz" : {
@@ -126,12 +129,6 @@
 
     },
     "Search scene" : {
-
-    },
-    "Trek Final Path" : {
-
-    },
-    "Trek Path" : {
 
     },
     "Voir la première énigme" : {
