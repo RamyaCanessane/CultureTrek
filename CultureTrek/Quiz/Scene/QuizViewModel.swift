@@ -9,19 +9,56 @@ import Foundation
 
 @Observable
 class QuizViewModel {
-    var questions: [QuizQuestion]
+    let questions: [QuizQuestion] = QuizQuestion.examples
     var currentIndex: Int = 0
-    var isSubmitted: Bool
-    var selectedAnswerIndex: Int?
-    var score: Int?
+    var selectedAnswer: QuizQuestion.Answer? = nil
+    var isGoodPopupPresented: Bool = false
+    var isBadPopupPresented: Bool = false
+    var answers: [QuizQuestion.Answer?] = Array(repeating: nil, count: QuizQuestion.examples.count)
     
-    init(questions: [QuizQuestion], currentIndex: Int, isSubmitted: Bool, selectedAnswerIndex: Int? = nil, score: Int? = nil) {
-        self.questions = questions
-        self.currentIndex = currentIndex
-        self.isSubmitted = isSubmitted
-        self.selectedAnswerIndex = selectedAnswerIndex
-        self.score = score
+    var currentQuestion: QuizQuestion {
+        questions[currentIndex]
+    }
+    
+    var correctAnswer: QuizQuestion.Answer? {
+        for answer in currentQuestion.answers {
+            if answer.isGood {
+                return answer
+            }
+        }
+        return nil
+    }
+    
+    var currentAnswer: QuizQuestion.Answer? {
+        answers[currentIndex]
     }
     
     
+    func nextQuestion() {
+        if currentIndex < questions.count - 1 {
+            currentIndex += 1
+            selectedAnswer = nil
+        } else {
+            print("Quiz terminé")
+        }
+    }
+    
+    func previousQuestion() {
+        if currentIndex > 0 {
+            currentIndex -= 1
+            selectedAnswer = nil
+        }
+    }
+    
+    func validateAnswer() {
+        if let selected = selectedAnswer {
+            answers[currentIndex] = selected
+                        
+            if selected.isGood {
+                isGoodPopupPresented = true
+            } else {
+                isBadPopupPresented = true
+            }
+        }
+    }
 }
