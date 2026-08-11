@@ -78,7 +78,7 @@ extension Trek {
         city: "Paris",
         completion: nil,
         department: nil,
-        distance: .init(value: 2.4, unit: .init(forLocale: .autoupdatingCurrent, usage: .road)),
+        distance: .init(value: 2.4, unit: .kilometers),
         duration: .seconds((60*60)+(20*60)),
         elevation: .low,
         goal: "Delectus quod inventore dolores impedit nulla aliquid vel voluptas in non.",
@@ -119,7 +119,7 @@ extension Trek {
         city: "Paris",
         completion: nil,
         department: nil,
-        distance: .init(value: 2.4, unit: .init(forLocale: .autoupdatingCurrent, usage: .road)),
+        distance: .init(value: 2.4, unit: .kilometers),
         duration: .seconds((60*60)+(20*60)),
         elevation: .low,
         goal: "Delectus quod inventore dolores impedit nulla aliquid vel voluptas in non.",
@@ -160,7 +160,7 @@ extension Trek {
         city: "Paris",
         completion: nil,
         department: nil,
-        distance: .init(value: 2.4, unit: .init(forLocale: .autoupdatingCurrent, usage: .road)),
+        distance: .init(value: 2.4, unit: .kilometers),
         duration: .seconds((60*60)+(20*60)),
         elevation: .low,
         goal: "Delectus quod inventore dolores impedit nulla aliquid vel voluptas in non.",
@@ -196,5 +196,28 @@ extension Trek {
     )
     
     static let examples = [Trek.example, Trek.example2, Trek.example3]
+    
+}
+
+extension Trek {
+    
+    func distanceToString() -> String {
+        
+        let autoLocale = Locale.autoupdatingCurrent
+        
+        return self.distance.formatted(.measurement(width: .abbreviated, usage: .general).locale(autoLocale))
+    }
+    
+    func durationToString() -> String {
+        
+        let autoLocale = Locale.autoupdatingCurrent
+        
+        let autoLocaleFormat = Duration.TimeFormatStyle(pattern: .hourMinute, locale: Locale(identifier: autoLocale.identifier)).format(self.duration)
+        
+        let autoUnits = Duration.UnitsFormatStyle(allowedUnits: [.hours], width: .abbreviated).format(self.duration)
+        
+        return autoLocaleFormat.replacingOccurrences(of: ":", with: "\(autoUnits)")
+        
+    }
     
 }

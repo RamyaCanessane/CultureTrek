@@ -30,13 +30,13 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "%llu" : {
 
     },
     "%llu points" : {
-
-    },
-    "%llu points gagnés" : {
 
     },
     "%llu/%llu" : {
@@ -48,6 +48,9 @@
           }
         }
       }
+    },
+    "~" : {
+
     },
     "Ajouter photo" : {
 
@@ -131,6 +134,9 @@
 
     },
     "Trek Path" : {
+
+    },
+    "Voir la première énigme" : {
 
     },
     "Voir le parcours" : {
