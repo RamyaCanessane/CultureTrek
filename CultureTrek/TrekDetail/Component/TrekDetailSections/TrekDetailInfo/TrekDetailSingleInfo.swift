@@ -10,21 +10,22 @@ import SwiftUI
 struct TrekDetailSingleInfo: View {
     
     let trek : Trek
-    let kind : TrekDetailInfoContent
+    let kind : String
+    let icon : Image?
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: Styles.infoSpacing){
             
             UITitleFontStyle(
-                content: kind.rawValue.uppercased(),
+                content: kind.uppercased(),
                 size: Styles.infoTitleFontSize,
                 weight: .heavy,
                 width: .condensed,
                 foreground: Styles.infoForeground
             )
             
-            SingleInfoContent(trek: trek, kind: kind)
+            SingleInfoContent(trek: trek, kind: kind.capitalized, icon: icon)
             
         }
         
@@ -42,5 +43,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    TrekDetailSingleInfo(trek: Trek.example, kind: .distance)
+    TrekDetailSingleInfo(trek: Trek.example, kind: "énigmes".capitalized, icon: TrekDetailInfoViewModel().riddlesSection.icon)
 }
