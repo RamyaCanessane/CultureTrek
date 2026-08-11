@@ -11,7 +11,6 @@ import SwiftUI
 
 class Trek : Identifiable {
     let id = UUID()
-    
     let accessibility: Accessibility
     let badgesToUnlock: [Badge]
     let city: String
@@ -68,6 +67,7 @@ class Trek : Identifiable {
     }
     
     struct CompletionData {
+        let date: Date
         let duration: Duration
         let earnedPoints: UInt
         let photos: [String] // TODO: to update
