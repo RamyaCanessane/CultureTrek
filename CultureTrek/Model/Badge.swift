@@ -29,3 +29,19 @@ extension Badge {
               name: "Quia"),
     ]
 }
+
+extension Badge {
+    
+    static let paname = Badge(icon: AppImage.badgeTest,
+                              name: "Paname")
+    static let water = Badge(icon: AppImage.badgeTest,
+                             name: "Au fil de l'eau")
+    static let climber = Badge(icon: AppImage.badgeTest,
+                               name: "Grimpeur")
+    static let marathonRunner = Badge(icon: AppImage.badgeTest,
+                                      name: "Marathonien")
+    static let investigator = Badge(icon: AppImage.badgeTest,
+                                    name: "L'Enquêteur")
+    static let withDisabilities = Badge(icon: AppImage.badgeTest,
+                                        name: "Accessible à tous")
+}
