@@ -16,7 +16,6 @@ struct HistoryMap: View {
             ForEach(
                 treks
             ){ trek in
-                //                Marker("\(item.offset)", coordinate: item.element)
                 Annotation(
                     trek.name,
                     coordinate: trek.coordinate
