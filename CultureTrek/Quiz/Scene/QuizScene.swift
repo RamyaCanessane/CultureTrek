@@ -12,10 +12,10 @@ struct QuizScene: View {
     let questions: [QuizQuestion] = QuizQuestion.examples
     @State private var currentIndex: Int = 0
     @State private var selectedAnswer: QuizQuestion.Answer? = nil
-    @State private var isAnswerSubmitted: Bool = false
     @State private var isGoodPopupPresented: Bool = false
     @State private var isBadPopupPresented: Bool = false
-    
+    @State private var answers: [QuizQuestion.Answer?] = Array(repeating: nil, count: QuizQuestion.examples.count)
+
     private var currentQuestion: QuizQuestion {
         questions[currentIndex]
     }
@@ -29,28 +29,32 @@ struct QuizScene: View {
         return nil
     }
     
+    private var currentAnswer: QuizQuestion.Answer? {
+        answers[currentIndex]
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    TitledCard(title: "Question \(currentIndex + 1)", content: currentQuestion.question, kind: .secondary)
-                    
-                    if !isAnswerSubmitted {
+                    TitledCard(title: "Question \(currentQuestion.order)", content: currentQuestion.question, kind: .secondary)
+
+                    if currentAnswer == nil {
                         Spacer()
-                        
+
                         VStack(spacing: 12) {
                             ForEach(currentQuestion.answers, id: \.self) { answer in
                                 AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
                             }
                         }
                     } else {
-                        if let selected = selectedAnswer {
+                        if let selected = currentAnswer {
                             VStack(spacing: 24) {
                                 if let correct = correctAnswer {
                                     CorrectAnswerCard(answer: correct)
                                 }
                                 
-                                if selected.isGood == true {
+                                if selected.isGood {
                                     if let fact = currentQuestion.goodAnswerFact {
                                         TitledCard(title: "À RETENIR", content: fact, kind: .info)
                                     }
@@ -99,6 +103,7 @@ struct QuizScene: View {
             Button() {
                 if currentIndex > 0 {
                     currentIndex -= 1
+                    selectedAnswer = nil
                 }
             } label: {
                 Image(systemName: "arrow.left")
@@ -109,17 +114,19 @@ struct QuizScene: View {
             LabeledProgressBar(current: UInt(currentIndex + 1), total: UInt(questions.count))
                 .animation(.bouncy, value: currentIndex + 1)
             
+            let isAnswered = currentAnswer != nil
+            
             Button() {
-                if !isAnswerSubmitted {
-                    validateAnswer()
-                } else {
+                if isAnswered {
                     nextQuestion()
+                } else {
+                    validateAnswer()
                 }
             } label: {
-                Image(systemName: isAnswerSubmitted ? "arrow.right" : "checkmark")
+                Image(systemName: isAnswered ? "arrow.right" : "checkmark")
             }
-            .buttonStyle(.neubrutIcon(kind: isAnswerSubmitted ? .primary : .success))
-            .disabled(selectedAnswer == nil)
+            .buttonStyle(.neubrutIcon(kind: isAnswered ? .primary : .success))
+            .disabled(!isAnswered && selectedAnswer == nil)
         }
     }
     
@@ -127,20 +134,15 @@ struct QuizScene: View {
         if currentIndex < questions.count - 1 {
             currentIndex += 1
             selectedAnswer = nil
-            isAnswerSubmitted = false
         } else {
             print("Quiz terminé")
         }
     }
     
     private func validateAnswer() {
-        if selectedAnswer != nil {
-            isAnswerSubmitted = true
-            
-            guard let selected = selectedAnswer else {
-                return
-            }
-            
+        if let selected = selectedAnswer {
+            answers[currentIndex] = selected
+                        
             if selected.isGood {
                 isGoodPopupPresented = true
             } else {
