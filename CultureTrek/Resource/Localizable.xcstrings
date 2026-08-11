@@ -46,6 +46,9 @@
         }
       }
     },
+    "Achievement scene" : {
+
+    },
     "Ajouter photo" : {
 
     },
@@ -53,6 +56,7 @@
 
     },
     "Bienvenue" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -80,10 +84,10 @@
     "dans " : {
 
     },
-    "Hello, world!" : {
+    "Hello, World!" : {
 
     },
-    "Hello, World!" : {
+    "History scene" : {
 
     },
     "home.welcome_message" : {
@@ -118,7 +122,10 @@
     "Prochain rang: " : {
 
     },
-    "Space Grotesky" : {
+    "Ranking scene" : {
+
+    },
+    "Search scene" : {
 
     },
     "Trek Final Path" : {

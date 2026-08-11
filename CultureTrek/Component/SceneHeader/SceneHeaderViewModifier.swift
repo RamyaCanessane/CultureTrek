@@ -143,7 +143,7 @@ extension View {
 
 fileprivate enum Styles {
     
-    static let background = AppColor.background
+    static let background = AppColor.Page.background
     
     static let bottomPading = AppToken.Primitive.spacing6
 }

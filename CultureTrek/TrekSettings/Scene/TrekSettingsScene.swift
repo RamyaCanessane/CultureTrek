@@ -146,7 +146,7 @@ fileprivate enum Styles {
     
     static let vSpacing = AppToken.Primitive.spacing6
     
-    static let background = AppColor.background
+    static let background = AppColor.Page.background
     
     static let sectionVSpacing = AppToken.Primitive.spacing3
     

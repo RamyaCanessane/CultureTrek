@@ -30,5 +30,5 @@ struct HistoryHeadlerStyles {
         HistorySceneHeadler(firstTab: "Lalal", secondTab: "Malal")
     }
     .padding()
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }

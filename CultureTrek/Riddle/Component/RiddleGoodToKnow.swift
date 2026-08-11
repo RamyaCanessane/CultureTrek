@@ -21,5 +21,5 @@ struct RiddleGoodToKnow: View {
 #Preview {
     RiddleGoodToKnow(content: "Molestiae est impedit hic et suscipit dolor. Animi rerum porro neque perferendis enim animi ut sed consequatur fugiat eos vitae hic illo.")
         .padding()
-        .background(AppColor.background)
+        .background(AppColor.Page.background)
 }

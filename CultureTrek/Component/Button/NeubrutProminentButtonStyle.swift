@@ -227,5 +227,5 @@ fileprivate struct Styles {
             )
     }
     .padding(32)
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }

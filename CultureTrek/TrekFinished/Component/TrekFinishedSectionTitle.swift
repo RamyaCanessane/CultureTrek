@@ -37,5 +37,5 @@ fileprivate enum Styles {
 #Preview {
     TrekFinishedSectionTitle("Voluptate Suscipit Dignissimos")
         .padding()
-        .background(AppColor.background)
+        .background(AppColor.Page.background)
 }

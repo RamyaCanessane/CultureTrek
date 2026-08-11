@@ -13,7 +13,6 @@ enum AppColor {
     static let accentNeutral: Color = .primitiveAccentNeutral
     static let accentPrimary: Color = .primitiveAccentPrimary
     static let accentSecondary: Color = .primitiveAccentSecondary
-    static let background: Color = .primitiveBackground
     static let border: Color = .primitiveBorder
     static let clue: Color = .primitiveClue
     static let disabledBackground: Color = .primitiveDisabledBackground
@@ -37,7 +36,7 @@ enum AppColor {
     static let warning: Color = .primitiveWarning
     
     enum Page {
-        static let background: Color = AppColor.background
+        static let background: Color = .primitiveBackground
     }
     
     enum Label {

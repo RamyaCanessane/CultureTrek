@@ -59,5 +59,5 @@ struct FilterButtonStyles {
         FilterButton(filterAction: {})
     }
     .padding()
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }

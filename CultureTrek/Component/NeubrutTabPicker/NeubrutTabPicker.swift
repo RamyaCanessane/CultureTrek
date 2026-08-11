@@ -104,5 +104,5 @@ struct TabPickerStyles {
     }
     .padding()
     .frame(width: 200)
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }

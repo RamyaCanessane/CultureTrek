@@ -58,6 +58,6 @@ struct LabeledProgressBar: View {
 #Preview {
     LabeledProgressBar(current: 7, total: 10)
         .padding()
-        .background(AppColor.background)
+        .background(AppColor.Page.background)
 }
 

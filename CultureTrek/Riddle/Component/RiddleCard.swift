@@ -113,5 +113,5 @@ fileprivate enum Styles {
                    onAskClue: {})
     }
     .padding()
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }

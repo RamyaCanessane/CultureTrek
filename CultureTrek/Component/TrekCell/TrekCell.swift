@@ -106,5 +106,5 @@ struct TrekCellStyles {
         )
     }
     .padding()
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }

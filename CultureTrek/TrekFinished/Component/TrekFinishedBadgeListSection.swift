@@ -82,5 +82,5 @@ fileprivate enum Styles {
     TrekFinishedBadgeListSection(badges: Badge.examples,
                                  onPressItem: { _ in })
         .padding(.vertical)
-        .background(AppColor.background)
+        .background(AppColor.Page.background)
 }

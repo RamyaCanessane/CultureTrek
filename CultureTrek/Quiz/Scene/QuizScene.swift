@@ -72,7 +72,7 @@ struct QuizScene: View {
                 .padding(.horizontal)
                 .padding(.top, 32)
             }
-            .background(AppColor.background)
+            .background(AppColor.Page.background)
             .scrollBounceBehavior(.basedOnSize)
             .sceneHeader("Quiz", onDismiss: {})
             .sceneFooter {

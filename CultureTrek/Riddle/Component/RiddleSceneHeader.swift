@@ -48,5 +48,5 @@ fileprivate enum Styles {
                           onPressPath: {})
     }
     .padding()
-    .background(AppColor.background)
+    .background(AppColor.Page.background)
 }
