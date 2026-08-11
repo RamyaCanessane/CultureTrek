@@ -18,6 +18,7 @@ struct RiddleScene: View {
     let currentRiddleOrder: UInt
     let totalRiddle: UInt
     let isAddPhotoDisabled: Bool
+    let isPathButtonDisabled: Bool
     let previousButton: (icon: Image,
                          kind: NeubrutIconButtonStyle.Kind,
                          isEnabled: Bool,
@@ -81,6 +82,7 @@ struct RiddleScene: View {
         .sceneHeader {
             RiddleSceneHeader(title: trekTitle,
                               onPressPath: onPressPath)
+            .disabled(isPathButtonDisabled)
         }
         .sceneFooter {
             actionsProgressBar
@@ -146,6 +148,7 @@ fileprivate let riddleExample = Riddle(
                 currentRiddleOrder: 7,
                 totalRiddle: 12,
                 isAddPhotoDisabled: false,
+                isPathButtonDisabled: false,
                 previousButton: (icon: AppImage.Icon.riddlePath.image,
                                  kind: NeubrutIconButtonStyle.Kind.info,
                                  isEnabled: true,
