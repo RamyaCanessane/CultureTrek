@@ -1,10 +1,10 @@
 //
 //  TabBar.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 10/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 // https://github.com/Gioevi90/FloatingTabView
 
@@ -32,6 +32,7 @@ struct NeubrutTabView: View {
     let content: [NeubrutTab]
     
     @State private var selection = 0
+    @State private var visibility: NeubrutTabViewVisibility = .visible
     @Namespace private var namespace
     
     init<T>(selection: Int = 0,
@@ -47,10 +48,29 @@ struct NeubrutTabView: View {
                 ForEach(content.indices) { index in
                     content[index]
                         .frame(maxHeight: .infinity)
-//                        .ignoresSafeArea(.all, edges: .top)
+                        .background(Styles.pageBackground.ignoresSafeArea(.all))
                 }
                 .toolbar(.hidden, for: .tabBar)
             }
+            
+            if visibility == .visible {
+                tabBarContent
+                    .transition(.move(edge: .bottom))
+            }
+        }
+               .background(Styles.background)
+               .onPreferenceChange(NeubrutTabViewVisibilityPreferenceKey.self) { v in
+                   withAnimation(.bouncy(extraBounce: 0.1)) {
+                       visibility = v
+                   }
+               }
+    }
+    
+    private var tabBarContent: some View {
+        VStack(spacing: .zero) {
+            Rectangle()
+                .fill(Styles.borderColor)
+                .frame(height: Styles.borderWidth)
             
             HStack(spacing: .zero) {
                 Spacer()
@@ -101,11 +121,6 @@ struct NeubrutTabView: View {
             }
             .padding(.top, Styles.topPadding)
             .background(Styles.background)
-            .overlay(alignment: .top) {
-                Rectangle()
-                    .fill(Styles.borderColor)
-                    .frame(height: Styles.borderWidth)
-            }
         }
     }
 }
@@ -127,9 +142,44 @@ extension TupleView {
     }
 }
 
+enum NeubrutTabViewVisibility {
+    case visible
+    case hidden
+}
+
+struct NeubrutTabViewVisibilityPreferenceKey: PreferenceKey {
+    static var defaultValue: NeubrutTabViewVisibility = .visible
+    
+    static func reduce(value: inout NeubrutTabViewVisibility,
+                       nextValue: () -> NeubrutTabViewVisibility) {
+        if nextValue() == .hidden {
+            value = .hidden
+        }
+    }
+}
+
+struct NeubrutTabViewVisibilityViewModifier: ViewModifier {
+    let visibility: NeubrutTabViewVisibility
+    
+    func body(content: Content) -> some View {
+        content
+            .preference(key: NeubrutTabViewVisibilityPreferenceKey.self,
+                        value: visibility)
+    }
+}
+
+extension View {
+    
+    func neubrutTabViewVisibility(_ visibility: NeubrutTabViewVisibility) -> some View {
+        self.modifier(NeubrutTabViewVisibilityViewModifier(visibility: visibility))
+    }
+}
+
 fileprivate enum Styles {
     
     static let topPadding = AppToken.Primitive.padding3
+    
+    static let pageBackground = AppColor.Page.background
     
     static let background = AppColor.tabViewBackground
     

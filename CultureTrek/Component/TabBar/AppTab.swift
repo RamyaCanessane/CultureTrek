@@ -56,12 +56,16 @@ enum AppTab: String, CaseIterable, Identifiable {
             DiscoverScene()
         case .history:
             Text("History scene")
+                .frame(maxWidth: .infinity)
         case .ranking:
             Text("Ranking scene")
+                .frame(maxWidth: .infinity)
         case .achievement:
             Text("Achievement scene")
+                .frame(maxWidth: .infinity)
         case .search:
             Text("Search scene")
+                .frame(maxWidth: .infinity)
         }
     }
 }

@@ -24,6 +24,7 @@ struct TrekListScene: View {
             }
             
         }
+        .neubrutTabViewVisibility(.hidden)
         .navigationBarBackButtonHidden(true)
         .safeAreaBar(edge: .top, content: {
             
@@ -32,7 +33,6 @@ struct TrekListScene: View {
         })
         .scrollIndicators(.hidden)
         .background(AppColor.Page.background)
-        
     }
 }
 
