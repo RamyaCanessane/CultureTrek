@@ -11,19 +11,35 @@ struct TrekDetailInfo: View {
     
     let trek : Trek
     
-    @State private var vm: TrekDetailInfoViewModel
+    @State private var vm = TrekDetailInfoViewModel()
     
     var body: some View {
         
         HStack(spacing: Styles.infoSpacing){
             
-            TrekDetailSingleInfo(trek: trek, kind: vm)
+            TrekDetailSingleInfo(
+                trek: trek,
+                kind: vm.distanceSection.rawValue,
+                icon: vm.distanceSection.icon
+            )
             
-            TrekDetailSingleInfo(trek: trek, kind: TrekDetailInfoContent.duration)
+            TrekDetailSingleInfo(
+                trek: trek,
+                kind: vm.durationSection.rawValue,
+                icon: vm.durationSection.icon
+            )
             
-            TrekDetailSingleInfo(trek: trek, kind: TrekDetailInfoContent.elevation)
+            TrekDetailSingleInfo(
+                trek: trek,
+                kind: vm.elevationSection.rawValue,
+                icon: vm.elevationSection.icon
+            )
             
-            TrekDetailSingleInfo(trek: trek, kind: TrekDetailInfoContent.riddles)
+            TrekDetailSingleInfo(
+                trek: trek,
+                kind: vm.riddlesSection.rawValue,
+                icon: vm.riddlesSection.icon
+            )
             
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -31,20 +47,11 @@ struct TrekDetailInfo: View {
     }
 }
 
-enum TrekDetailInfoContent : String {
-    case distance = "Distance"
-    case duration = "Durée"
-    case elevation = "Dénivelé"
-    case riddles = "Énigmes"
-}
-
 fileprivate struct Styles {
     
     static let infoSpacing = AppToken.Primitive.padding6
     
 }
-
-
 
 #Preview {
     TrekDetailInfo(trek: Trek.example)
