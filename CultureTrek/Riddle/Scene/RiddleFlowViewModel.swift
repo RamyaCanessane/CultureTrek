@@ -100,7 +100,7 @@ final class RiddleFlowViewModel {
         if riddles.allSatisfy(\.isCompleted) && isTrekFinishedPresented {
             #warning("use points calculator to calculate points base on completionPoints and duration")
             
-            let points = riddles.map(\.validationPoints).reduce(0, +) + 0 // TODO: Ajouter des points en se basant sur la durée
+            let points = calculatePoints()
             
             #warning("utilisation de fausses données pour rank")
             
@@ -113,7 +113,7 @@ final class RiddleFlowViewModel {
                 })
             }
             
-            let badges = trekBadges // TODO: Ajouter seulement les badges obtenus
+            let badges = getUnlockedBadges()
             
             return TrekFinishedScene(duration: duration,
                                      points: points,
@@ -122,8 +122,8 @@ final class RiddleFlowViewModel {
                                      badges: badges,
                                      trekMode: trekMode,
                                      onPressPath: showFinalPath,
-                                     onPressStartQuiz: {},
-                                     onPressSkipQuiz: {},
+                                     onPressStartQuiz: startQuiz,
+                                     onPressSkipQuiz: skipQuiz,
                                      onPressPhotoItem: { data, index in
                 let images = data.map { $0.image }
                 self.showImageViewer(images: images, index: index)
@@ -345,5 +345,46 @@ final class RiddleFlowViewModel {
     
     private func deletePhotoItem(images: [UIImage], index: Int) {
         riddles[currentRiddleIndex].photos.remove(at: index)
+    }
+    
+    private func startQuiz() {
+        completeTrek()
+    }
+    
+    private func skipQuiz() {
+        completeTrek()
+    }
+    
+    private func completeTrek() {
+        print(sourceTrek.completion ?? "Completion is nil")
+        
+        let points = calculatePoints()
+        let photos = getPhotosFromRiddles()
+        let badges = getUnlockedBadges()
+        
+        sourceTrek.complete(date: .now,
+                            duration: duration ?? .seconds(0),
+                            earnedPoints: points,
+                            photos: photos,
+                            unlockedBadges: badges)
+        
+        print(sourceTrek.completion ?? "After update, completion is nil")
+    }
+    
+    private func calculatePoints() -> UInt {
+        riddles.map(\.validationPoints).reduce(0, +) + 0 // TODO: Ajouter des points en se basant sur la durée
+    }
+    
+    private func getPhotosFromRiddles() -> [RiddlePhoto] {
+        riddles.flatMap { riddle in
+            riddle.photos.map({ photo in
+                RiddlePhoto(riddleOrder: riddle.order,
+                            image: photo)
+            })
+        }
+    }
+    
+    private func getUnlockedBadges() -> [Badge] {
+        trekBadges // TODO: Ajouter seulement les badges obtenus
     }
 }

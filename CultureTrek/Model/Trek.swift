@@ -14,7 +14,7 @@ class Trek : Identifiable {
     let accessibility: Accessibility
     let badgesToUnlock: [Badge]
     let city: String
-    let completion: CompletionData?
+    var completion: CompletionData?
     let department: String?
     let distance: Measurement<UnitLength>
     let duration: Duration
@@ -84,12 +84,32 @@ class Trek : Identifiable {
         let wheelchair: Bool
     }
     
-    struct CompletionData {
+    struct CompletionData: CustomStringConvertible {
         let date: Date
         let duration: Duration
         let earnedPoints: UInt
-        let photos: [UIImage]
+        let photos: [RiddlePhoto]
         let unlockedBadges: [Badge]
+        
+        var description: String {
+            "[\nDate: \(date.formatted(date: .abbreviated, time: .shortened))\nduration: \(duration.formatted())\nPoints: \(earnedPoints)\nPhotos: \(photos.count)\nBadges: \(unlockedBadges.count)\n]"
+        }
+    }
+    
+    func complete(
+        date: Date,
+        duration: Duration,
+        earnedPoints: UInt,
+        photos: [RiddlePhoto],
+        unlockedBadges: [Badge]
+    ) {
+        self.completion = .init(
+            date: date,
+            duration: duration,
+            earnedPoints: earnedPoints,
+            photos: photos,
+            unlockedBadges: unlockedBadges
+        )
     }
 }
 
@@ -249,11 +269,4 @@ extension Trek {
         
     }
     
-}
-
-extension Trek {
-    
-    static let liveDemoExamples: [Trek] = [
-        
-    ]
 }
