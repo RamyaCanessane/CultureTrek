@@ -20,9 +20,12 @@ enum AppImage {
     
     enum Icon {
         case close
+        case distance
         case dropdownDisclosure
         case download
         case sceneBack
+        case elevation
+        case riddle
         case riddleCompletedTitlePrefix
         case riddleClue
         case riddleTime
@@ -46,12 +49,18 @@ enum AppImage {
             switch self {
             case .close:
                 "xmark"
+            case .distance:
+                "point.bottomleft.forward.to.point.topright.filled.scurvepath"
             case .dropdownDisclosure:
                 "chevron.down"
             case .download:
                 "arrow.down.to.line"
             case .sceneBack:
                 "chevron.backward"
+            case .elevation:
+                "righttriangle.fill"
+            case .riddle:
+                "flag.fill"
             case .riddleCompletedTitlePrefix:
                 "checkmark.square.fill"
             case .riddleClue:

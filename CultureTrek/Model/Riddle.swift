@@ -9,7 +9,8 @@
 import CoreLocation
 import SwiftUI
 
-struct Riddle {
+struct Riddle: Identifiable {
+    let id = UUID()
     let clue: String?
     let coordinate: CLLocationCoordinate2D
     let goodToKnow: String?

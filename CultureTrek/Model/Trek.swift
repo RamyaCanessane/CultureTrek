@@ -211,3 +211,26 @@ extension Trek {
     static let examples = [Trek.example, Trek.example2, Trek.example3]
     
 }
+
+extension Trek {
+    
+    func distanceToString() -> String {
+        
+        let autoLocale = Locale.autoupdatingCurrent
+        
+        return self.distance.formatted(.measurement(width: .abbreviated, usage: .general).locale(autoLocale))
+    }
+    
+    func durationToString() -> String {
+        
+        let autoLocale = Locale.autoupdatingCurrent
+        
+        let autoLocaleFormat = Duration.TimeFormatStyle(pattern: .hourMinute, locale: Locale(identifier: autoLocale.identifier)).format(self.duration)
+        
+        let autoUnits = Duration.UnitsFormatStyle(allowedUnits: [.hours], width: .abbreviated).format(self.duration)
+        
+        return autoLocaleFormat.replacingOccurrences(of: ":", with: "\(autoUnits)")
+        
+    }
+    
+}

@@ -34,13 +34,12 @@ final class RiddleFlowViewModel {
     var isInvalidRiddlePopupPresented: Bool = false
     var riddleClueForPopup: String? = nil
     var badgeForPopup: Badge? = nil
-    
-    var isPathPresented: Bool = false
+
+    var trekPathData: TrekPathData? = nil
     
     var imageViewerData: ImageViewerData? = nil
     
     var isTrekFinishedPresented: Bool = false
-    var isFinalPathPresented: Bool = false
     
     private var startDate: Date?
     private var duration: Duration?
@@ -56,6 +55,12 @@ final class RiddleFlowViewModel {
         let id = UUID()
         let images: [UIImage]
         let index: Int
+    }
+    
+    struct TrekPathData: Identifiable {
+        let id = UUID()
+        let riddles: [Riddle]
+        let hasLastRiddle: Bool
     }
     
     init(trek: Trek) {
@@ -138,6 +143,7 @@ final class RiddleFlowViewModel {
                            currentRiddleOrder: currentRiddleOrder,
                            totalRiddle: totalRiddle,
                            isAddPhotoDisabled: riddle.photos.count >= riddleMaxPhotos,
+                           isPathButtonDisabled: isPathButtonDisabled,
                            previousButton: previousButton,
                            nextButton: nextButton,
                            onSubmit: submitRiddle,
@@ -208,6 +214,14 @@ final class RiddleFlowViewModel {
         }
         
         riddles[currentRiddleIndex].photos.append(image)
+    }
+    
+    private var isPathButtonDisabled: Bool {
+        if riddles.count(where: { $0.isCompleted }) < 1 {
+            return true
+        }
+        
+        return false
     }
     
     private func startTrek(mode: Trek.Mode, playFormat: Trek.PlayFormat, isDownloaded: Bool) {
@@ -308,11 +322,17 @@ final class RiddleFlowViewModel {
     }
     
     private func showPath() {
-        isPathPresented = true
+        let pathRiddles = riddles.filter(\.isCompleted)
+        
+        trekPathData = .init(riddles: pathRiddles,
+                             hasLastRiddle: pathRiddles.count == riddles.count)
     }
     
     private func showFinalPath() {
-        isFinalPathPresented = true
+        let pathRiddles = riddles.filter(\.isCompleted)
+        
+        trekPathData = .init(riddles: pathRiddles,
+                             hasLastRiddle: true)
     }
     
     private func showImageViewer(images: [UIImage], index: Int) {
