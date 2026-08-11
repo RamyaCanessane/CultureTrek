@@ -13,6 +13,7 @@ struct HistoryUniversalScene: View {
     let tabTwo: String
     let section: Text
     let city: String
+    let departament: String
     let name: String
     let picture: Image
     let region: String
@@ -23,14 +24,19 @@ struct HistoryUniversalScene: View {
             
             HistorySceneHeadler(firstTab: tabOne, secondTab: tabTwo)
             
-            HistorySceneSection(sectionTitle: section, city: city, department: "", name: name, picture: picture, region: region)
-            HistorySceneSection(sectionTitle: section, city: city, department: "", name: name, picture: picture, region: region)
-            HistorySceneSection(sectionTitle: section, city: city, department: "", name: name, picture: picture, region: region)
+            HistorySceneSection(sectionTitle: section, city: city, department: departament, name: name, picture: picture, region: region)
+            HistorySceneSection(sectionTitle: section, city: city, department: departament, name: name, picture: picture, region: region)
             
         }
+        .padding()
     }
 }
 
 #Preview {
-    HistoryUniversalScene(mainTitle: Text("history"), tabOne: "Kiso", tabTwo: "Miso", section: Text("23 Avril 2042"), city: "GEZFc", name: "GZFAz", picture: Image(.trekTestPicture), region: "GGEgzez")
+    VStack{
+        HistoryUniversalScene(mainTitle: Text("history"), tabOne: "Kiso", tabTwo: "Miso", section: Text("23 Avril 2042"), city: "Plasir", departament: "Yvelines", name: "Decouverte verte", picture: Image(.trekTestPicture), region: "Ile-de-France")
+    }
+    .background(AppColor.background)
+    .padding()
+    
 }

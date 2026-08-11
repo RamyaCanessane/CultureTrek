@@ -83,6 +83,9 @@
     "Hello, world!" : {
 
     },
+    "Hello, World!" : {
+
+    },
     "home.welcome_message" : {
       "extractionState" : "manual",
       "localizations" : {
