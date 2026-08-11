@@ -13,6 +13,10 @@ final class PathCalculator {
     static func getFullPath(with coordinates: [CLLocationCoordinate2D]) async -> [MKRoute] {
         var routes: [MKRoute] = []
         
+        guard coordinates.count >= 2 else {
+            return []
+        }
+        
         for i in 0..<(coordinates.count - 1) {
             let route = await getPath(from: coordinates[i],
                                       to: coordinates[i + 1])
