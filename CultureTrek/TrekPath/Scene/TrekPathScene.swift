@@ -15,8 +15,16 @@ struct TrekPathScene: View {
     
     @State private var path: [MKRoute] = []
     
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Map {
+        Map(
+            bounds: MapCameraBounds(
+                centerCoordinateBounds: rect,
+                minimumDistance: 250,
+                maximumDistance: 10_000_000
+            )
+        ) {
             ForEach(riddles) { riddle in
                 Annotation("", coordinate: riddle.coordinate) {
                     TrekPathMarker(riddle: riddle,
@@ -35,10 +43,25 @@ struct TrekPathScene: View {
         .task {
             self.path = await PathCalculator.getFullPath(with: coordinates)
         }
+        .overlay(alignment: .topTrailing) {
+            Button {
+                dismiss()
+            } label: {
+                AppImage.Icon.close.image
+            }
+            .buttonStyle(.neubrutIcon(kind: .destructive))
+            .padding(.trailing)
+        }
     }
     
     private var coordinates: [CLLocationCoordinate2D] {
         riddles.map(\.coordinate)
+    }
+    
+    private var rect: MKMapRect {
+        coordinates
+            .map { MKMapRect(origin: .init($0), size: .init(width: 1, height: 1)) }
+            .reduce(MKMapRect.null) { $0.union($1) }
     }
     
     private func getTrekPathMarkerKind(riddle: Riddle) -> TrekPathMarker.Kind {
