@@ -1,19 +1,19 @@
 //
-//  TrekFinishedPointsColInfo.swift
+//  PointsColInfo.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 05/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import SwiftUI
 
-struct TrekFinishedPointsColInfo: View {
+struct PointsColInfo: View {
     let label: String
     let points: UInt
     
     var body: some View {
-        TrekFinishedColInfo(label: label) {
+        ColInfo(label: label) {
             HStack(alignment: .center,
                    spacing: Styles.hSpacing) {
                 AppImage.xpPointsIcon
@@ -42,6 +42,6 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekFinishedPointsColInfo(label: "Points",
-                              points: 152)
+    PointsColInfo(label: "Points",
+                  points: 152)
 }

@@ -1,5 +1,5 @@
 //
-//  TrekFinishedColInfo.swift
+//  ColInfo.swift
 //  CultureTrek
 //  
 //  Created by Mathieu Nivelles on 05/08/2026.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TrekFinishedColInfo: View {
+struct ColInfo: View {
     let label: String
     let content: AnyView
     
@@ -56,7 +56,7 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekFinishedColInfo(label: "Fugiat") {
+    ColInfo(label: "Fugiat") {
         Text("Quisquam")
     }
 }

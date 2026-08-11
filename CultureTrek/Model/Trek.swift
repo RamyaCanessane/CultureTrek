@@ -33,7 +33,25 @@ class Trek : Identifiable {
         riddles.first?.coordinate ?? .init(latitude: 0, longitude: 0)
     }
 
-    init(accessibility: Accessibility, badgesToUnlock: [Badge], city: String, completion: CompletionData?, department: String?, distance: Measurement<UnitLength>, duration: Duration, elevation: Elevation, goal: String?, goodToKnow: [String], isLiked: Bool, name: String, picture: Image, riddles: [Riddle], quizQuestions: [QuizQuestion], region: String, summary: String?) {
+    init(
+        accessibility: Accessibility,
+        badgesToUnlock: [Badge],
+        city: String,
+        completion: CompletionData?,
+        department: String?,
+        distance: Measurement<UnitLength>,
+        duration: Duration,
+        elevation: Elevation,
+        goal: String?,
+        goodToKnow: [String],
+        isLiked: Bool,
+        name: String,
+        picture: Image,
+        riddles: [Riddle],
+        quizQuestions: [QuizQuestion],
+        region: String,
+        summary: String?
+    ) {
         self.accessibility = accessibility
         self.badgesToUnlock = badgesToUnlock
         self.city = city
@@ -70,12 +88,10 @@ class Trek : Identifiable {
         let date: Date
         let duration: Duration
         let earnedPoints: UInt
-        let photos: [String] // TODO: to update
+        let photos: [UIImage]
         let unlockedBadges: [Badge]
     }
 }
-
-#warning("Mettre l'unité dans les Trek.distance")
 
 extension Trek {
     
@@ -233,4 +249,11 @@ extension Trek {
         
     }
     
+}
+
+extension Trek {
+    
+    static let liveDemoExamples: [Trek] = [
+        
+    ]
 }

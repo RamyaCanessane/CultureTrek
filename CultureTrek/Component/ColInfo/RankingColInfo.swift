@@ -1,19 +1,19 @@
 //
-//  TrekFinishedRankingColInfo.swift
+//  RankingColInfo.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 05/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import SwiftUI
 
-struct TrekFinishedRankingColInfo: View {
+struct RankingColInfo: View {
     let label: String
     let rank: (current: UInt, total: UInt)
     
     var body: some View {
-        TrekFinishedColInfo(label: label) {
+        ColInfo(label: label) {
             HStack(alignment: .center,
                    spacing: Styles.hSpacing) {
                 AppImage.Icon.trekRanking.image
@@ -42,7 +42,7 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekFinishedRankingColInfo(label: "Classement",
-                               rank: (current: 17,
-                                      total: 452))
+    RankingColInfo(label: "Classement",
+                   rank: (current: 17,
+                          total: 452))
 }

@@ -17,7 +17,7 @@ struct TrekDetailText: View {
         VStack(alignment: .leading, spacing: Styles.detailSpacing) {
             
             if let hasArticle = article {
-                UITitleFontStyle(content: title, size: Styles.detailTitleFontSize, weight: .heavy, width: .condensed, foreground: Styles.detailForeground)
+                UITitle(content: title, size: Styles.detailTitleFontSize, weight: .heavy, width: .condensed, foreground: Styles.detailForeground)
                 
                 Text("""
                 \(hasArticle)

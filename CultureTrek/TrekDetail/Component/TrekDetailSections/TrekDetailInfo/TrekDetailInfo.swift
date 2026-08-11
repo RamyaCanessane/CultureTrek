@@ -17,7 +17,7 @@ struct TrekDetailInfo: View {
         
         HStack(spacing: Styles.infoSpacing){
             
-            TrekDetailSingleInfo(trek: trek, kind: vm)
+//            TrekDetailSingleInfo(trek: trek, kind: vm)
             
             TrekDetailSingleInfo(trek: trek, kind: TrekDetailInfoContent.duration)
             
@@ -46,6 +46,6 @@ fileprivate struct Styles {
 
 
 
-#Preview {
-    TrekDetailInfo(trek: Trek.example)
-}
+//#Preview {
+//    TrekDetailInfo(trek: Trek.example)
+//}
