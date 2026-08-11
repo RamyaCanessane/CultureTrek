@@ -63,7 +63,7 @@ struct TrekCell: View {
     }
 }
 
-struct TrekCellStyles {
+fileprivate enum TrekCellStyles {
     static let background = AppColor.accentNeutral
     static let trailingPadding = AppToken.Primitive.padding2
     static let frameSize: Double = 72

@@ -33,7 +33,7 @@ struct HistorySceneTitle: View {
     }
 }
 
-struct HistoryTitleStyles {
+fileprivate enum HistoryTitleStyles {
     
     static let titleFont: Font = .system(
         size: 40,

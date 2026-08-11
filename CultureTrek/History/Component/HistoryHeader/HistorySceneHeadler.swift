@@ -22,7 +22,7 @@ struct HistorySceneHeadler: View {
     }
 }
 
-struct HistoryHeadlerStyles {
+fileprivate enum HistoryHeadlerStyles {
     static let spacer = AppToken.Primitive.spacing20
     static let padding = AppToken.Primitive.padding4
 }

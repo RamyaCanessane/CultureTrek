@@ -22,7 +22,7 @@ struct FilterButton: View {
     }
 }
 
-struct FilterButtonStyles {
+fileprivate enum FilterButtonStyles {
     static let iconFont: Font = .system(size: 20,
                                         weight: .heavy)
     static let padding = AppToken.Primitive.padding1

@@ -77,7 +77,7 @@ struct TabSelection: View {
     }
 }
 
-struct TabPickerStyles {
+fileprivate enum TabPickerStyles {
     static let backgroundIsSelected = AppColor.accentSecondary
     static let backgroundNoSelected = AppColor.accentNeutral
     static let borderColor = AppColor.border
