@@ -2,6 +2,7 @@
   "sourceLanguage" : "fr",
   "strings" : {
     "" : {
+
     },
     "#%llu" : {
 
@@ -48,6 +49,16 @@
         }
       }
     },
+    "%llu/%llu réussies" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$llu/%2$llu réussies"
+          }
+        }
+      }
+    },
     "~" : {
 
     },
@@ -58,6 +69,9 @@
 
     },
     "Aucune énigme n'est disponible" : {
+
+    },
+    "Bien joué ! Tu maîtrises bien le sujet, encore un petit effort pour le sans-faute !" : {
 
     },
     "Bienvenue" : {
@@ -95,6 +109,9 @@
     "Énigmes" : {
 
     },
+    "Fermer le quiz" : {
+
+    },
     "History scene" : {
 
     },
@@ -121,16 +138,19 @@
     "Je suis arrivé·e" : {
 
     },
-    "Pas de badges" : {
+    "Open Trek" : {
+
+    },
+    "Pas de badge" : {
 
     },
     "Pas de photo" : {
 
     },
-    "Passer le quiz" : {
+    "Pas de point" : {
 
     },
-    "Points indisponibles" : {
+    "Passer le quiz" : {
 
     },
     "Prendre une photo" : {
@@ -145,7 +165,13 @@
     "Ranking scene" : {
 
     },
+    "Réponses aux questions" : {
+
+    },
     "Search scene" : {
+
+    },
+    "User has %llu XP points" : {
 
     },
     "Voir la première énigme" : {

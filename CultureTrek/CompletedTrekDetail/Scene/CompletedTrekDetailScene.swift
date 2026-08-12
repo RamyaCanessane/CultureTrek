@@ -22,8 +22,6 @@ struct CompletedTrekDetailScene: View {
         case info = "Infos"
     }
         
-    
-    
     var body: some View {
         
         SceneDetail(trek: trek) {
