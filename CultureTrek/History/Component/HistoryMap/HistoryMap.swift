@@ -10,9 +10,12 @@ import SwiftUI
 
 struct HistoryMap: View {
     let treks: [Trek]
+    let firstTab: String
+    let secondTab: String
     
     var body: some View {
         Map {
+            //            NeubrutTabPicker(nameFirstTab: firstTab, nameSecondTab: secondTab)
             ForEach(
                 treks
             ){ trek in
@@ -46,6 +49,16 @@ struct HistoryMap: View {
                     }
                 }
             }
+        }
+        .overlay(
+            alignment: .topLeading
+        ) {
+            NeubrutTabPicker(
+                nameFirstTab: firstTab,
+                nameSecondTab: secondTab
+            )
+            .frame(width: 212, height: 100)
+            .padding()
         }
     }
 }
@@ -207,6 +220,8 @@ fileprivate enum HistoryMapStyles {
 
 #Preview {
     HistoryMap(
-        treks: trekList
+        treks: trekList,
+        firstTab: "Liste",
+        secondTab: "Carte"
     )
 }

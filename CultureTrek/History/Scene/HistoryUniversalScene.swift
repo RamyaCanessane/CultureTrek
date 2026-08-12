@@ -21,7 +21,7 @@ struct HistoryUniversalScene: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack{
+                VStack(spacing: AppToken.Primitive.spacing6){
                     HistorySceneTitle(
                         sceneTitle: mainTitle
                     )

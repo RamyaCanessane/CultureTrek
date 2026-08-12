@@ -18,7 +18,7 @@ struct HistorySceneHeadler: View {
             NeubrutTabPicker(nameFirstTab: firstTab,nameSecondTab: secondTab)
             FilterButton(filterAction: {})
         }
-        .padding(HistoryHeadlerStyles.padding)
+//        .padding(HistoryHeadlerStyles.padding)
     }
 }
 
