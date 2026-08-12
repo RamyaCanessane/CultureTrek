@@ -13,6 +13,8 @@ import SwiftUI
 struct RiddleFlowScene: View {
     @State private var vm: RiddleFlowViewModel
     
+    @Environment(\.dismiss) private var dismiss
+    
     init(trek: Trek, user: User) {
         self._vm = State(initialValue: .init(trek: trek,
                                              user: user))
@@ -70,10 +72,19 @@ struct RiddleFlowScene: View {
             .photosPicker(isPresented: $vm.isPhotoPickerPresented,
                           selection: $vm.selectedPhotoItem,
                           matching: .images)
+            .fullScreenCover(isPresented: $vm.isQuizPresented,
+                             onDismiss: {
+                dismiss()
+            }) {
+                QuizScene(questions: vm.getQuizQuestions())
+            }
             .task(id: vm.selectedPhotoItem) {
                 if let data = try? await vm.selectedPhotoItem?.loadTransferable(type: Data.self) {
                     vm.addPhotoToRiddle(data: data)
                 }
+            }
+            .onAppear {
+                vm.onDismiss = { dismiss() }
             }
     }
 }
@@ -85,8 +96,11 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleFlowScene(trek: .liveDemoExamples.first ?? testTrek,
-                    user: User.example)
+    let user = User.example
+    
+    RiddleFlowScene(trek: /*.liveDemoExamples.first ?? */testTrek,
+                    user: user)
+    .environment(AppStore(user: user))
 }
 
 fileprivate let testTrek: Trek = .init(

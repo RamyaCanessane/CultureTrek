@@ -39,8 +39,6 @@ fileprivate struct ColInfoLabel: View {
             .font(Styles.labelFont)
             .foregroundStyle(Styles.labelColor)
             .textCase(Styles.labelTextCase)
-            .frame(maxWidth: .infinity,
-                   alignment: .leading)
     }
 }
 

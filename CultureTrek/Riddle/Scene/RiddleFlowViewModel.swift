@@ -12,6 +12,8 @@ import SwiftUI
 @Observable
 final class RiddleFlowViewModel {
     
+    var onDismiss: () -> Void = {}
+    
     private let sourceUser: User
     private let sourceTrek: Trek
     private let savedRiddles: [Riddle]
@@ -41,6 +43,7 @@ final class RiddleFlowViewModel {
     var imageViewerData: ImageViewerData? = nil
     
     var isTrekFinishedPresented: Bool = false
+    var isQuizPresented: Bool = false
     
     private var startDate: Date?
     private var duration: Duration?
@@ -96,7 +99,7 @@ final class RiddleFlowViewModel {
                                playFormat: playFormat,
                                isDownloaded: isDownloaded)
             },
-                                     onDismiss: {})
+                                     onDismiss: onDismiss)
         }
         
         if riddles.allSatisfy(\.isCompleted) && isTrekFinishedPresented {
@@ -216,6 +219,10 @@ final class RiddleFlowViewModel {
         }
         
         riddles[currentRiddleIndex].photos.append(image)
+    }
+    
+    func getQuizQuestions() -> [QuizQuestion] {
+        sourceTrek.quizQuestions
     }
     
     private var isPathButtonDisabled: Bool {
@@ -351,6 +358,8 @@ final class RiddleFlowViewModel {
     
     private func startQuiz() {
         completeTrek()
+        
+        isQuizPresented = true
     }
     
     private func skipQuiz() {

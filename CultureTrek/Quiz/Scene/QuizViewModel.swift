@@ -9,12 +9,21 @@ import Foundation
 
 @Observable
 class QuizViewModel {
-    let questions: [QuizQuestion] = QuizQuestion.examples
+    let questions: [QuizQuestion]
     var currentIndex: Int = 0
     var selectedAnswer: QuizQuestion.Answer? = nil
     var isGoodPopupPresented: Bool = false
     var isBadPopupPresented: Bool = false
-    var answers: [QuizQuestion.Answer?] = Array(repeating: nil, count: QuizQuestion.examples.count)
+    var answers: [QuizQuestion.Answer?]
+    var isFinishedQuizPresented: Bool = false
+    var goodQuestionTexts: Set<String> = []
+    
+    let pointsForGoodAnswer: UInt = 30 // TODO: choisir le nombre de points obtenus pour chaque question
+
+    init(questions: [QuizQuestion]) {
+        self.questions = questions
+        self.answers = Array(repeating: nil, count: questions.count)
+    }
     
     var currentQuestion: QuizQuestion {
         questions[currentIndex]
@@ -33,13 +42,16 @@ class QuizViewModel {
         answers[currentIndex]
     }
     
+    var isLastQuestion: Bool {
+        currentIndex == questions.count - 1
+    }
     
     func nextQuestion() {
         if currentIndex < questions.count - 1 {
             currentIndex += 1
             selectedAnswer = nil
         } else {
-            print("Quiz terminé")
+            isFinishedQuizPresented = true
         }
     }
     
@@ -53,12 +65,25 @@ class QuizViewModel {
     func validateAnswer() {
         if let selected = selectedAnswer {
             answers[currentIndex] = selected
-                        
+
             if selected.isGood {
+                goodQuestionTexts.insert(selected.text)
                 isGoodPopupPresented = true
             } else {
                 isBadPopupPresented = true
             }
         }
+    }
+    
+    func getFinishedResult() -> UInt {
+        UInt(goodQuestionTexts.count)
+    }
+    
+    func getFinishedNumberOfQuestions() -> UInt {
+        UInt(questions.count)
+    }
+    
+    func getFinishedPoints() -> UInt {
+        UInt(goodQuestionTexts.count) * pointsForGoodAnswer
     }
 }

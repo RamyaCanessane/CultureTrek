@@ -9,7 +9,14 @@ import SwiftUI
 import PopupView
 
 struct QuizScene: View {
-    @State private var vm = QuizViewModel()
+    @State private var vm: QuizViewModel
+    
+    @Environment(AppStore.self) private var appStore
+    @Environment(\.dismiss) private var dismiss
+    
+    init(questions: [QuizQuestion]) {
+        self._vm = State(initialValue: .init(questions: questions))
+    }
     
     var body: some View {
         NavigationStack {
@@ -34,11 +41,11 @@ struct QuizScene: View {
                                 
                                 if selected.isGood {
                                     if let fact = vm.currentQuestion.goodAnswerFact {
-                                        TitledCard(title: "À RETENIR", content: fact, kind: .info)
+                                        TitledCard(title: "À retenir", content: fact, kind: .info)
                                     }
                                 } else {
                                     if let explanation = vm.currentQuestion.badAnswerExplanation {
-                                        TitledCard(title: "EXPLICATION", content: explanation, kind: .warning)
+                                        TitledCard(title: "Explication", content: explanation, kind: .warning)
                                     }
                                 }
                             }
@@ -54,23 +61,30 @@ struct QuizScene: View {
             .sceneFooter {
                 bottomBar
             }
+            .fullScreenCover(isPresented: $vm.isFinishedQuizPresented, onDismiss: {
+                dismiss()
+            }) {
+                FinishedQuizScene(vm: vm, user: appStore.user)
+            }
             .popup(isPresented: $vm.isGoodPopupPresented) {
-                GoodActionPopupView(title: "BONNE RÉPONSE !", obtainedXPPoints: 10)
+                GoodActionPopupView(title: "Bonne réponse !",
+                                    obtainedXPPoints: vm.pointsForGoodAnswer)
                     .padding(32)
             } customize: {
                 $0
                     .autohideIn(4)
-                    .closeOnTap(true)
+                    .closeOnTap(false)
                     .closeOnTapOutside(false)
                     .backgroundColor(Color.black.opacity(0.32))
             }
             .popup(isPresented: $vm.isBadPopupPresented) {
-                BadActionPopupView(title: "MAUVAISE RÉPONSE", content: "La bonne réponse était: \(vm.correctAnswer?.text ?? "")")
+                BadActionPopupView(title: "Mauvaise réponse",
+                                   content: "La bonne réponse était: \(vm.correctAnswer?.text ?? "")")
                     .padding(32)
             } customize: {
                 $0
                     .autohideIn(4)
-                    .closeOnTap(true)
+                    .closeOnTap(false)
                     .closeOnTapOutside(false)
                     .backgroundColor(Color.black.opacity(0.32))
             }
@@ -86,7 +100,12 @@ struct QuizScene: View {
             .buttonStyle(.neubrutIcon(kind: .primary))
             .disabled(vm.currentIndex == 0)
             
-            LabeledProgressBar(current: UInt(vm.currentIndex + 1), total: UInt(vm.questions.count))
+            LabeledProgressBar(
+                current: UInt(
+                    vm.currentIndex + 1
+                ),
+                total: UInt(vm.questions.count)
+            )
                 .animation(.bouncy, value: vm.currentIndex + 1)
             
             let isAnswered = vm.currentAnswer != nil
@@ -100,13 +119,16 @@ struct QuizScene: View {
             } label: {
                 Image(systemName: isAnswered ? "arrow.right" : "checkmark")
             }
-            .buttonStyle(.neubrutIcon(kind: isAnswered ? .primary : .success))
+            .buttonStyle(.neubrutIcon(kind: isAnswered
+                                      ? (vm.isLastQuestion ? .success : .primary)
+                                      : .success))
             .disabled(!isAnswered && vm.selectedAnswer == nil)
         }
     }
 }
 
 #Preview() {
-    QuizScene()
+    QuizScene(questions: QuizQuestion.examples)
+        .environment(AppStore(user: .example))
 }
 

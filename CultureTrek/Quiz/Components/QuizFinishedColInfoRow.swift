@@ -8,15 +8,33 @@
 import SwiftUI
 
 struct QuizFinishedColInfoRow: View {
+    let result: UInt
+    let numberOfQuestion: UInt
+    let xpPoints: UInt
+    
     var body: some View {
-        HStack(spacing: 20) {
-            ResultColInfo(result: 6, numberOfQuestion: 10)
-            PointsColInfo(label: "Points", points: 30)
-            RankingColInfo(label: "Classement", rank: (current: 81, total: 267))
+        HStack(alignment: .top, spacing: 20) {
+            QuizResultColInfo(
+                result: result,
+                numberOfQuestion: numberOfQuestion
+            )
+            PointsColInfo(
+                label: "Points",
+                points: xpPoints
+            )
+            
+            RankingColInfo(
+                label: "Classement",
+                rank: (
+                    current: 81,
+                    total: 267
+                )
+            )
+
         }
     }
 }
 
 #Preview {
-    QuizFinishedColInfoRow()
+    QuizFinishedColInfoRow(result: 5, numberOfQuestion: 12, xpPoints: 10)
 }

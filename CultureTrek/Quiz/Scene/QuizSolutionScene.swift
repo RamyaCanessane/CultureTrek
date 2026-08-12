@@ -8,27 +8,35 @@
 import SwiftUI
 
 struct QuizSolutionScene: View {
-    @State private var vm = QuizViewModel()
+    @Environment(\.dismiss) private var dismiss
+    
+    private let questions: [QuizQuestion]
+    
+    init(questions: [QuizQuestion]) {
+        self.questions = questions
+    }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(vm.questions) { question in
-                    let correctAnswer = vm.correctAnswer
-                    let explanation = vm.currentQuestion.badAnswerExplanation
-                    
-                    SolutionRow(question: "En quelle année la Révolution française a-t-elle commencé avec la prise de la Bastille ?", answer: "1789", explanation: "La Fête nationale française commémore le 14 juillet 1789 (prise de la Bastille).", order: 1)
-                    
-                    //                SolutionRow(question: question.question, answer: correctAnswer ?? "", explanation: explanation ?? "", order: question.order)
-                }
+        List {
+            ForEach(questions) { question in
+                SolutionRow(
+                    question: question.question,
+                    answer: question.goodAnswer ?? "",
+                    explanation: question.badAnswerExplanation ?? "",
+                    order: question.order
+                )
+                .listRowSeparator(.hidden)
+                .listRowInsets(.vertical, 8)
+                .listRowBackground(AppColor.Page.background)
             }
+            
         }
-        .padding(16)
+        .listStyle(.plain)
         .background(AppColor.Page.background)
-
+        .sceneHeader("Réponses", onDismiss: {dismiss()})
     }
 }
 
 #Preview {
-    QuizSolutionScene()
+    QuizSolutionScene(questions: QuizQuestion.examples)
 }
