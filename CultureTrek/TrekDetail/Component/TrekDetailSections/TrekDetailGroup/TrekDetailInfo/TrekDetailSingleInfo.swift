@@ -18,11 +18,7 @@ struct TrekDetailSingleInfo: View {
         VStack(alignment: .leading, spacing: Styles.infoSpacing){
             
             UITitle(
-<<<<<<< HEAD:CultureTrek/TrekDetail/Component/TrekDetailSections/TrekDetailInfo/TrekDetailSingleInfo.swift
-                content: kind.rawValue.uppercased(),
-=======
                 content: kind.uppercased(),
->>>>>>> 1a623d16885c6e44e6485743d1a03431c43d2c2f:CultureTrek/TrekDetail/Component/TrekDetailSections/TrekDetailGroup/TrekDetailInfo/TrekDetailSingleInfo.swift
                 size: Styles.infoTitleFontSize,
                 weight: .heavy,
                 width: .condensed,

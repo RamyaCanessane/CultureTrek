@@ -13,6 +13,8 @@ struct HistoryMap: View {
     let firstTab: String
     let secondTab: String
     
+    @State private var state : TabState = .first
+    
     var body: some View {
         Map {
             //            NeubrutTabPicker(nameFirstTab: firstTab, nameSecondTab: secondTab)
@@ -55,7 +57,7 @@ struct HistoryMap: View {
         ) {
             NeubrutTabPicker(
                 nameFirstTab: firstTab,
-                nameSecondTab: secondTab
+                nameSecondTab: secondTab, state: $state
             )
             .frame(width: 212, height: 100)
             .padding()

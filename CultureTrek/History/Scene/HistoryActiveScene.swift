@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct HistoryActiveScene: View {
     //    let treks: [Trek] = [.CompletionData(date: Date), .name, .city, .department, .region]
