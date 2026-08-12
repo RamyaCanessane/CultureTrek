@@ -22,7 +22,6 @@ struct TrekDetailInfo: View {
                 kind: vm.distanceSection.rawValue,
                 icon: vm.distanceSection.icon
             )
-//            TrekDetailSingleInfo(trek: trek, kind: vm)
             
             TrekDetailSingleInfo(
                 trek: trek,
@@ -57,8 +56,3 @@ fileprivate struct Styles {
 #Preview {
     TrekDetailInfo(trek: Trek.example)
 }
-
-
-//#Preview {
-//    TrekDetailInfo(trek: Trek.example)
-//}

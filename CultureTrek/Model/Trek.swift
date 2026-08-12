@@ -9,6 +9,7 @@
 import CoreLocation
 import SwiftUI
 
+@Observable
 class Trek : Identifiable {
     let id = UUID()
     let accessibility: Accessibility
@@ -21,7 +22,7 @@ class Trek : Identifiable {
     let elevation: Elevation
     let goal: String?
     let goodToKnow: [String]
-    let isLiked: Bool
+    var isLiked: Bool
     let name: String
     let picture: Image
     let riddles: [Riddle]
@@ -117,7 +118,7 @@ extension Trek {
     
     static let example = Trek(
         accessibility: .init(bike: true, stroller: true, walking: true, wheelchair: true),
-        badgesToUnlock: Badge.examples,
+        badgesToUnlock: [ Badge.marathonRunner, Badge.paname],
         city: "Paris",
         completion: nil,
         department: nil,

@@ -22,9 +22,15 @@ struct DiscoverSectionCells: View {
             
             LazyHGrid(rows: rows, alignment: .center, spacing: Styles.gridCellVerticalSpacing){
                 
-                ForEach(treks) { trek in
+                ForEach(treks.prefix(6)) { trek in
                     
-                    TrekCell(city: trek.city, department: trek.department, name: trek.name, picture: trek.picture, region: trek.region, isBig: false)
+                    NavigationLink {
+                        TrekDetailScene(trek: trek)
+                    } label: {
+                        
+                        TrekCell(city: trek.city, department: trek.department, name: trek.name, picture: trek.picture, region: trek.region, isBig: false)
+                        
+                    }
                     
                 }
                 

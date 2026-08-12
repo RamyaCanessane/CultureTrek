@@ -18,7 +18,7 @@ struct TrekDetailSingleInfo: View {
         VStack(alignment: .leading, spacing: Styles.infoSpacing){
             
             UITitle(
-                content: kind/*.rawValue*/.uppercased(),
+                content: kind.uppercased(),
                 size: Styles.infoTitleFontSize,
                 weight: .heavy,
                 width: .condensed,

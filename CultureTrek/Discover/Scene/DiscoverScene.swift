@@ -19,7 +19,6 @@ struct DiscoverScene: View {
 
 struct DiscoverSceneInternal: View {
     
-    
     @State private var vm: DiscoverViewModel
     
     let heroTitle : String = "En vedette aujourd'hui"
