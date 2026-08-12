@@ -29,7 +29,7 @@ struct RiddleFlowScene: View {
             } customize: {
                 $0
                     .autohideIn(4)
-                    .closeOnTap(true)
+                    .closeOnTap(false)
                     .closeOnTapOutside(false)
                     .backgroundColor(Styles.popupBackground)
                     .willDismissCallback(vm.validRiddle)
@@ -41,7 +41,7 @@ struct RiddleFlowScene: View {
             } customize: {
                 $0
                     .autohideIn(4)
-                    .closeOnTap(true)
+                    .closeOnTap(false)
                     .closeOnTapOutside(false)
                     .backgroundColor(Styles.popupBackground)
             }
