@@ -24,6 +24,7 @@ struct CompletedTrekDetailScene: View {
             
             VStack {
                 NeubrutTabPicker(nameFirstTab: PickerTab.summary.rawValue, nameSecondTab: PickerTab.info.rawValue, state: $state)
+                    .padding(.horizontal, Styles.pickerPadding)
                 
                 if state == .first {
                     
@@ -40,6 +41,12 @@ struct CompletedTrekDetailScene: View {
         }
         
     }
+}
+
+fileprivate struct Styles {
+    
+    static let pickerPadding = AppToken.Primitive.padding4
+    
 }
 
 
