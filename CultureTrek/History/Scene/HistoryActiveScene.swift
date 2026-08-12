@@ -1,64 +1,20 @@
 //
-//  HistoryMap.swift
+//  HistoryActiveScene.swift
 //  CultureTrek
 //
 //  Created by Apprenant162 on 11/08/2026.
 //
 
-import MapKit
 import SwiftUI
 
-struct HistoryMap: View {
-    let treks: [Trek]
-    let firstTab: String
-    let secondTab: String
+struct HistoryActiveScene: View {
+    //    let treks: [Trek] = [.CompletionData(date: Date), .name, .city, .department, .region]
+    //    let sortedTreks = treks.sorted()
+    //    let sortedAlpabet = treks.sorted(by: >)
     
     var body: some View {
-        Map {
-            //            NeubrutTabPicker(nameFirstTab: firstTab, nameSecondTab: secondTab)
-            ForEach(
-                treks
-            ){ trek in
-                Annotation(
-                    trek.name,
-                    coordinate: trek.coordinate
-                ) {
-                    Image(
-                        systemName: "flag.pattern.checkered"
-                    )
-                    .foregroundStyle(
-                        HistoryMapStyles.fillColor
-                    )
-                    .frame(
-                        width: 40,
-                        height: 40
-                    )
-                    .background(
-                        HistoryMapStyles.background,
-                        in: .circle
-                    )
-                    .clipShape(
-                        HistoryMapStyles.shape
-                    )
-                    .overlay {
-                        HistoryMapStyles.shape
-                            .strokeBorder(
-                                HistoryMapStyles.borderColor,
-                                lineWidth: HistoryMapStyles.borderWidth
-                            )
-                    }
-                }
-            }
-        }
-        .overlay(
-            alignment: .topLeading
-        ) {
-            NeubrutTabPicker(
-                nameFirstTab: firstTab,
-                nameSecondTab: secondTab
-            )
-            .frame(width: 212, height: 100)
-            .padding()
+        VStack{
+           
         }
     }
 }
@@ -207,21 +163,6 @@ fileprivate let trekList: [Trek] = [
     )
 ]
 
-fileprivate enum HistoryMapStyles {
-    static let background = AppColor.accentPrimary // ou Secondary
-    static let borderColor = AppColor.border
-    static let borderWidth = AppToken.borderWidth
-    static let cornerRadius = AppToken.cornerRadius
-    static let fillColor = Color.black
-    static let shape = RoundedRectangle(
-        cornerRadius: 99
-    )
-}
-
 #Preview {
-    HistoryMap(
-        treks: trekList,
-        firstTab: "Liste",
-        secondTab: "Carte"
-    )
+    HistoryActiveScene()
 }
