@@ -17,7 +17,6 @@ struct HistoryMap: View {
     
     var body: some View {
         Map {
-            //            NeubrutTabPicker(nameFirstTab: firstTab, nameSecondTab: secondTab)
             ForEach(
                 treks
             ){ trek in
@@ -31,6 +30,9 @@ struct HistoryMap: View {
                     .foregroundStyle(
                         HistoryMapStyles.fillColor
                     )
+                    .onTapGesture {
+//                       NavigationLink{}
+                    }
                     .frame(
                         width: 40,
                         height: 40
@@ -57,9 +59,13 @@ struct HistoryMap: View {
         ) {
             NeubrutTabPicker(
                 nameFirstTab: firstTab,
-                nameSecondTab: secondTab, state: $state
+                nameSecondTab: secondTab,
+                state: $state
             )
-            .frame(width: 212, height: 100)
+            .frame(
+                width: 212,
+                height: 100
+            )
             .padding()
         }
     }
