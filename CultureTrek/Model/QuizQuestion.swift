@@ -8,10 +8,11 @@
 
 import Foundation
 
-struct QuizQuestion {
+struct QuizQuestion: Identifiable {
     let answers: [Answer]
     let badAnswerExplanation: String?
     let goodAnswerFact: String?
+    var id = UUID()
     let order: UInt
     let question: String
     let result: AnswerResult
