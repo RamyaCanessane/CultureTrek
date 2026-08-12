@@ -19,23 +19,63 @@ struct HistoryUniversalScene: View {
     let region: String
     
     var body: some View {
-        VStack{
-            HistorySceneTitle(sceneTitle: mainTitle)
-            
-            HistorySceneHeadler(firstTab: tabOne, secondTab: tabTwo)
-            
-            HistorySceneSection(sectionTitle: section, city: city, department: departament, name: name, picture: picture, region: region)
-            HistorySceneSection(sectionTitle: section, city: city, department: departament, name: name, picture: picture, region: region)
-            
+        NavigationStack {
+            ScrollView {
+                VStack{
+                    HistorySceneTitle(
+                        sceneTitle: mainTitle
+                    )
+                    
+                    HistorySceneHeadler(
+                        firstTab: tabOne,
+                        secondTab: tabTwo
+                    )
+                    
+                    HistorySceneSection(
+                        sectionTitle: section,
+                        city: city,
+                        department: departament,
+                        name: name,
+                        picture: picture,
+                        region: region
+                    )
+                    HistorySceneSection(
+                        sectionTitle: section,
+                        city: city,
+                        department: departament,
+                        name: name,
+                        picture: picture,
+                        region: region
+                    )
+                }
+            }
+            .background(AppColor.Page.background)
         }
-        .padding()
     }
 }
 
 #Preview {
     VStack{
-        HistoryUniversalScene(mainTitle: Text("history"), tabOne: "Kiso", tabTwo: "Miso", section: Text("23 Avril 2042"), city: "Plasir", departament: "Yvelines", name: "Decouverte verte", picture: Image(.trekTestPicture), region: "Ile-de-France")
+        HistoryUniversalScene(
+            mainTitle: Text(
+                "history"
+            ),
+            tabOne: "Kiso",
+            tabTwo: "Miso",
+            section: Text(
+                "23 Avril 2042"
+            ),
+            city: "Plasir",
+            departament: "Yvelines",
+            name: "Decouverte verte",
+            picture: Image(
+                .trekTestPicture
+            ),
+            region: "Ile-de-France"
+        )
     }
     .padding()
-    .background(AppColor.Page.background)
+    .background(
+        AppColor.Page.background
+    )
 }
