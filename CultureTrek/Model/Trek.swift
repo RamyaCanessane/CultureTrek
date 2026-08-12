@@ -29,6 +29,7 @@ class Trek : Identifiable {
     let quizQuestions: [QuizQuestion]
     let region: String
     let summary: String? // description
+    var isCompleted : Bool
     
     var coordinate: CLLocationCoordinate2D {
         riddles.first?.coordinate ?? .init(latitude: 0, longitude: 0)
@@ -70,6 +71,7 @@ class Trek : Identifiable {
         self.quizQuestions = quizQuestions
         self.region = region
         self.summary = summary
+        self.isCompleted = false
     }
     
     enum Elevation {
