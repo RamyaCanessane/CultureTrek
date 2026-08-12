@@ -7,9 +7,20 @@
 
 import SwiftUI
 
+//final class HistoryContentViewModel {
+//    
+//    enum HistoryViewContent {
+//        case dateSorting
+//        case citySorting
+//        case regionSorting
+//    }
+//}
+
 struct HistoryViewModel: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            
+        }
     }
 }
 
