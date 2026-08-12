@@ -13,8 +13,9 @@ import SwiftUI
 struct RiddleFlowScene: View {
     @State private var vm: RiddleFlowViewModel
     
-    init(trek: Trek) {
-        self._vm = State(initialValue: .init(trek: trek))
+    init(trek: Trek, user: User) {
+        self._vm = State(initialValue: .init(trek: trek,
+                                             user: user))
     }
     
     var body: some View {
@@ -84,7 +85,8 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleFlowScene(trek: .liveDemoExamples.first ?? testTrek)
+    RiddleFlowScene(trek: .liveDemoExamples.first ?? testTrek,
+                    user: User.example)
 }
 
 fileprivate let testTrek: Trek = .init(

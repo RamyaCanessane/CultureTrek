@@ -12,8 +12,9 @@ import SwiftUI
 @Observable
 final class RiddleFlowViewModel {
     
+    private let sourceUser: User
     private let sourceTrek: Trek
-    private let sourceRiddles: [Riddle]
+    private let savedRiddles: [Riddle]
     var riddles: [Riddle]
     
     private var isTrekSettingsPresented: Bool
@@ -63,9 +64,10 @@ final class RiddleFlowViewModel {
         let hasLastRiddle: Bool
     }
     
-    init(trek: Trek) {
+    init(trek: Trek, user: User) {
+        self.sourceUser = user
         self.sourceTrek = trek
-        self.sourceRiddles = trek.riddles
+        self.savedRiddles = trek.riddles
         self.isTrekSettingsPresented = true
         
         self.estimatedTrekDuration = trek.duration
@@ -76,7 +78,7 @@ final class RiddleFlowViewModel {
         self.trekPlayFormat = .solo
         self.trekIsDownloaded = false
         
-        self.riddles = self.sourceRiddles
+        self.riddles = self.savedRiddles
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
@@ -233,7 +235,7 @@ final class RiddleFlowViewModel {
     }
     
     private func resetTrek() {
-        self.riddles = self.sourceRiddles
+        self.riddles = self.savedRiddles
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
@@ -356,19 +358,37 @@ final class RiddleFlowViewModel {
     }
     
     private func completeTrek() {
-        print(sourceTrek.completion ?? "Completion is nil")
-        
-        let points = calculatePoints()
         let photos = getPhotosFromRiddles()
-        let badges = getUnlockedBadges()
         
-        sourceTrek.complete(date: .now,
-                            duration: duration ?? .seconds(0),
-                            earnedPoints: points,
-                            photos: photos,
-                            unlockedBadges: badges)
-        
-        print(sourceTrek.completion ?? "After update, completion is nil")
+        if trekMode == .ranked {
+            print(sourceTrek.completion ?? "Completion is nil")
+            
+            let points = calculatePoints()
+            let badges = getUnlockedBadges()
+            
+            sourceTrek.complete(date: .now,
+                                duration: duration ?? .seconds(0),
+                                earnedPoints: points,
+                                photos: photos,
+                                unlockedBadges: badges)
+            
+            print(sourceTrek.completion ?? "After update, completion is nil")
+            
+            print(sourceUser)
+            
+            sourceUser.addXPPoints(points)
+            
+            print(sourceUser)
+        } else {
+            sourceTrek.complete(date: .now,
+                                photos: photos)
+            
+            print(sourceUser)
+            
+            sourceUser.addXPPoints(0)
+            
+            print(sourceUser)
+        }
     }
     
     private func calculatePoints() -> UInt {
