@@ -286,8 +286,18 @@ final class RiddleFlowViewModel {
         }
     }
     
+    private var testFailOnce: Bool = false
+    
     private func submitRiddle() {
-        let isValid = true // TODO: add random to simulate valid and invalid riddle
+        // Simule un échec de validation pour le 3ème Riddle
+        let isValid: Bool
+        
+        if currentRiddleIndex == 2 && !testFailOnce {
+            testFailOnce = true
+            isValid = false
+        } else {
+            isValid = true
+        }
         
         if isValid {
             if currentRiddleIndex >= riddles.count - 1 {
@@ -364,6 +374,8 @@ final class RiddleFlowViewModel {
     
     private func skipQuiz() {
         completeTrek()
+        
+        onDismiss()
     }
     
     private func completeTrek() {
