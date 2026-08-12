@@ -13,7 +13,7 @@ struct ExplanationAnswerCard: View {
     var body: some View {
         Text(explanation)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .font(.spaceGrotesk(size: 17, weight: .regular))
+            .fontWeight(.bold)
             .padding(AppToken.Primitive.padding4)
             .background(AppColor.warning.opacity(0.47))
             .cornerRadius(AppToken.cornerRadius)
