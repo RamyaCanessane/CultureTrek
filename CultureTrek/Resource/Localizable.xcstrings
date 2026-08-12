@@ -2,7 +2,6 @@
   "sourceLanguage" : "fr",
   "strings" : {
     "" : {
-
     },
     "#%llu" : {
 
@@ -81,6 +80,7 @@
     "Choisir une photo" : {
 
     },
+
     "Commencer" : {
 
     },

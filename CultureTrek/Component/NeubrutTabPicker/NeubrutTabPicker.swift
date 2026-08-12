@@ -12,17 +12,19 @@ struct NeubrutTabPicker: View {
     let nameSecondTab: String
     
     //    @State var state: TabState = .first
-    @State var state: TabState = .second
-    
-    enum TabState{
-        case first
-        case second
-    }
+    @Binding var state: TabState
     
     var body: some View {
         HStack(spacing: TabPickerStyles.spacingZero){
             TabSelection(nameTab: nameFirstTab, isOn: state == .first)
+                .onTapGesture {
+                    state = .first
+                }
+            
             TabSelection(nameTab: nameSecondTab, isOn: state == .second)
+                .onTapGesture {
+                    state = .second
+                }
         }
         .padding(.horizontal, TabPickerStyles.paddingExtern)
         .frame(maxWidth: .infinity)
@@ -47,7 +49,13 @@ struct NeubrutTabPicker: View {
                 .padding(.trailing, -TabPickerStyles.shadowSize)
                 .padding(.bottom, 0)
         }
+
     }
+}
+
+enum TabState{
+    case first
+    case second
 }
 
 struct TabSelection: View {
@@ -100,7 +108,7 @@ fileprivate enum TabPickerStyles {
 
 #Preview {
     VStack{
-        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte")
+        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte", state: .constant(.first))
     }
     .padding()
     .frame(width: 200)

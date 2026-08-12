@@ -1,0 +1,81 @@
+//
+//  HistoryUniversalScene.swift
+//  CultureTrek
+//
+//  Created by Apprenant162 on 10/08/2026.
+//
+
+import SwiftUI
+
+struct HistoryUniversalScene: View {
+    let mainTitle: Text
+    let tabOne: String
+    let tabTwo: String
+    let section: Text
+    let city: String
+    let department: String
+    let name: String
+    let picture: Image
+    let region: String
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: AppToken.Primitive.spacing6){
+                    HistorySceneTitle(
+                        sceneTitle: mainTitle
+                    )
+                    
+                    HistorySceneHeadler(
+                        firstTab: tabOne,
+                        secondTab: tabTwo
+                    )
+                    
+                    HistorySceneSection(
+                        sectionTitle: section,
+                        city: city,
+                        department: department,
+                        name: name,
+                        picture: picture,
+                        region: region
+                    )
+                    HistorySceneSection(
+                        sectionTitle: section,
+                        city: city,
+                        department: department,
+                        name: name,
+                        picture: picture,
+                        region: region
+                    )
+                }
+            }
+            .background(AppColor.Page.background)
+        }
+    }
+}
+
+#Preview {
+    VStack{
+        HistoryUniversalScene(
+            mainTitle: Text(
+                "history"
+            ),
+            tabOne: "Kiso",
+            tabTwo: "Miso",
+            section: Text(
+                "23 Avril 2042"
+            ),
+            city: "Plasir",
+            department: "Yvelines",
+            name: "Decouverte verte",
+            picture: Image(
+                .trekTestPicture
+            ),
+            region: "Ile-de-France"
+        )
+    }
+    .padding()
+    .background(
+        AppColor.Page.background
+    )
+}
