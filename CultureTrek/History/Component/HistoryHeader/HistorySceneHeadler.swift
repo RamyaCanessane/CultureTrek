@@ -10,12 +10,12 @@ import SwiftUI
 struct HistorySceneHeadler: View {
     let firstTab: String
     let secondTab: String
-    let isOn: Bool = false
-//    @State var state: TabState = .second
+//    let isOn: Bool = false
+    @State var state: TabState = .second
     
     var body: some View {
         HStack(spacing: HistoryHeadlerStyles.spacer){
-            NeubrutTabPicker(nameFirstTab: firstTab,nameSecondTab: secondTab)
+            NeubrutTabPicker(nameFirstTab: firstTab,nameSecondTab: secondTab, state: $state)
             FilterButton(filterAction: {})
         }
 //        .padding(HistoryHeadlerStyles.padding)
