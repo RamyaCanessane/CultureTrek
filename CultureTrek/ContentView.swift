@@ -40,8 +40,6 @@ struct ContentView: View {
                 VStack {
                     Button("Open Trek") {
                         isTrekOpen = true
-                        
-                        appStore.user.addXPPoints(100)
                     }
                     
                     Text("User has \(appStore.user.currentXPPoints) XP points")
@@ -56,8 +54,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    let trekStore = TrekStore()
-    let appStore = AppStore()
+    @Previewable @State var trekStore = TrekStore()
+    @Previewable @State var appStore = AppStore()
     
     ContentView()
         .environment(trekStore)

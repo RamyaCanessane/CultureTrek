@@ -9,6 +9,7 @@
 import CoreLocation
 import SwiftUI
 
+@Observable
 class User: CustomStringConvertible {
     let coordinate: CLLocationCoordinate2D
     var currentXPPoints: UInt
