@@ -29,6 +29,8 @@ struct FinishedQuizScene: View {
                     Text("Bien joué ! Tu maîtrises bien le sujet, encore un petit effort pour le sans-faute !")
                         .fontWeight(.semibold)
                     
+                    QuizFinishedColInfoRow()
+                    
                     LevelWithProgressBar(newPoints: 30, currentPoints: 40, totalPoints: 100, currentLevel: "Fer", nextLevel: "Bronze")
                     
                     Button {
