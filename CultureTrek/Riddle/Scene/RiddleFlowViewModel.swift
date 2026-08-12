@@ -12,6 +12,7 @@ import SwiftUI
 @Observable
 final class RiddleFlowViewModel {
     
+    private let user: User
     private let sourceTrek: Trek
     private let sourceRiddles: [Riddle]
     var riddles: [Riddle]
@@ -63,7 +64,8 @@ final class RiddleFlowViewModel {
         let hasLastRiddle: Bool
     }
     
-    init(trek: Trek) {
+    init(trek: Trek, user: User) {
+        self.user = user
         self.sourceTrek = trek
         self.sourceRiddles = trek.riddles
         self.isTrekSettingsPresented = true
@@ -369,6 +371,8 @@ final class RiddleFlowViewModel {
                             unlockedBadges: badges)
         
         print(sourceTrek.completion ?? "After update, completion is nil")
+        
+        #warning("Mettre à jour les points de User")
     }
     
     private func calculatePoints() -> UInt {

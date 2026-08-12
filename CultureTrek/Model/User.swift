@@ -9,12 +9,26 @@
 import CoreLocation
 import SwiftUI
 
-struct User {
+class User {
     let coordinate: CLLocationCoordinate2D
     let currentXPPoints: UInt
     let firstName: String
     let lastName: String
     let picture: Image
+    
+    init(
+        coordinate: CLLocationCoordinate2D,
+        currentXPPoints: UInt,
+        firstName: String,
+        lastName: String,
+        picture: Image
+    ) {
+        self.coordinate = coordinate
+        self.currentXPPoints = currentXPPoints
+        self.firstName = firstName
+        self.lastName = lastName
+        self.picture = picture
+    }
 }
 
 extension User {
