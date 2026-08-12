@@ -11,22 +11,9 @@ struct SingleInfoContent: View {
     
     let trek : Trek
     
-    let kind : TrekDetailInfoContent
+    let kind : String
     
-    var icon : Image? {
-        
-        switch kind {
-        case .distance:
-            return AppImage.Icon.distance.image
-        case .elevation:
-            return AppImage.Icon.elevation.image
-        case .riddles:
-            return AppImage.Icon.riddle.image
-        default :
-            return nil
-        }
-        
-    }
+    let icon : Image?
     
     var elevationToIcons : some View {
         
@@ -87,37 +74,60 @@ struct SingleInfoContent: View {
             
             switch kind {
                 
-            case .distance:
+            case "distance".capitalized :
                 
                 icon
-                    .font(.system(size: Styles.infoFontSize, weight: .semibold))
+                    .font(
+                        .system(
+                            size: Styles.infoFontSize,
+                            weight: .semibold
+                        )
+                    )
                     .foregroundStyle(Styles.infoIconForeground)
                 
                 Text(trek.distanceToString())
                     .foregroundStyle(Styles.infoForeground)
                 
-            case .duration:
+            case "durée".capitalized :
                 
                 Text("~")
-                    .font(.system(size: Styles.infoFontSize, weight: .semibold))
+                    .font(
+                        .system(
+                            size: Styles.infoFontSize,
+                            weight: .semibold
+                        )
+                    )
                     .foregroundStyle(Styles.infoIconForeground)
                 
                 Text(trek.durationToString())
                     .foregroundStyle(Styles.infoForeground)
                 
-            case .elevation:
+            case "dénivelé".capitalized :
                 
                 elevationToIcons
-                    .font(.system(size: Styles.infoFontSize, weight: .semibold))
+                    .font(
+                        .system(
+                            size: Styles.infoFontSize,
+                            weight: .semibold
+                        )
+                    )
                 
-            case .riddles:
+            case "énigmes".capitalized :
                 
                 icon
-                    .font(.system(size: Styles.infoFontSize, weight: .semibold))
+                    .font(
+                        .system(
+                            size: Styles.infoFontSize,
+                            weight: .semibold
+                        )
+                    )
                     .foregroundStyle(Styles.infoIconForeground)
                 
                 Text("\(trek.riddles.count)")
                     .foregroundStyle(Styles.infoForeground)
+                
+            default:
+                Text("")
             }
             
         }
@@ -132,13 +142,13 @@ fileprivate struct Styles {
     static let infoOffIconForeground = infoForeground.opacity(0.24)
     static let infoForeground = AppColor.Label.primary
     
-    static let infoSpacing = AppToken.Primitive.spacing2
-    static let infoIconSpacing = AppToken.Primitive.spacing0_5
+    static let infoSpacing = AppToken.Primitive.spacing1
+    static let infoIconSpacing = AppToken.Primitive.spacing0
     
-    static let infoFontSize = CGFloat(15)
+    static let infoFontSize = CGFloat(14)
     
 }
 
 #Preview {
-    SingleInfoContent(trek: Trek.example, kind: .riddles)
+    SingleInfoContent(trek: Trek.example, kind: "énigmes".capitalized , icon: TrekDetailInfoViewModel().riddlesSection.icon)
 }

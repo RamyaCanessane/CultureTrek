@@ -9,12 +9,34 @@
 import CoreLocation
 import SwiftUI
 
-struct User {
+class User: CustomStringConvertible {
     let coordinate: CLLocationCoordinate2D
-    let currentXPPoints: UInt
+    var currentXPPoints: UInt
     let firstName: String
     let lastName: String
     let picture: Image
+    
+    init(
+        coordinate: CLLocationCoordinate2D,
+        currentXPPoints: UInt,
+        firstName: String,
+        lastName: String,
+        picture: Image
+    ) {
+        self.coordinate = coordinate
+        self.currentXPPoints = currentXPPoints
+        self.firstName = firstName
+        self.lastName = lastName
+        self.picture = picture
+    }
+    
+    func addXPPoints(_ points: UInt) {
+        currentXPPoints += points
+    }
+    
+    var description: String {
+        "User: \(firstName) \(lastName) with \(currentXPPoints) XP points"
+    }
 }
 
 extension User {
@@ -25,6 +47,12 @@ extension User {
         lastName: "Villamore",
         picture: AppImage.heroTestPicture
     )
+    
+    static let liveDemoExample: User = .init(coordinate: CLLocationCoordinate2D(latitude: 48.848222, longitude: 2.395925),
+                                             currentXPPoints: 4105,
+                                             firstName: "Camille",
+                                             lastName: "Sawada",
+                                             picture: AppImage.heroTestPicture)
 }
 
 extension User {

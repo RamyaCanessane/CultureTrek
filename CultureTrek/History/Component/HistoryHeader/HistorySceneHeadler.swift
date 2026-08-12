@@ -10,7 +10,7 @@ import SwiftUI
 struct HistorySceneHeadler: View {
     let firstTab: String
     let secondTab: String
-//    let isOn: Bool = false
+    let isOn: Bool = false
 //    @State var state: TabState = .second
     
     var body: some View {

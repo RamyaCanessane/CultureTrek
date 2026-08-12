@@ -62,6 +62,7 @@ struct LevelWithProgressBar: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(currentLevel)
                 .font(.spaceGrotesk(size: 20, weight: .medium))
+                .foregroundStyle(AppColor.Label.primary)
             
             progressBar
             
@@ -69,6 +70,8 @@ struct LevelWithProgressBar: View {
                 summaryText
                 .font(.spaceGrotesk(size: 17,
                                     weight: .medium))
+                .foregroundStyle(AppColor.Label.primary)
+                
                 Image(.xpPointsIcon)
                     .resizable()
                     .frame(width: 25, height: 25)

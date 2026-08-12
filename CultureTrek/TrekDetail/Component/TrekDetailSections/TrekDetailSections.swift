@@ -8,11 +8,42 @@
 import SwiftUI
 
 struct TrekDetailSections: View {
+    
+    let trek : Trek
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack(alignment: .leading, spacing: Styles.detailSectionsSpacing ){
+            
+            TrekDetailInfo(trek: trek)
+            
+            TrekDetailText(title: "Objectif", article: trek.goal)
+            
+            TrekDetailText(title: "Description", article: trek.summary)
+            
+            TrekDetailAccessibility(trek: trek)
+            
+            TrekDetailGTK(goodToKnow: trek.goodToKnow)
+            
+            TrekDetailBadge(trek: trek)
+            
+        }
+        .padding(.horizontal, Styles.detailSectionsHorizontalPadding)
+        .padding(.vertical, Styles.detailSectionsVerticalPadding)
+        
     }
 }
 
+fileprivate struct Styles {
+    
+    static let detailSectionsSpacing = AppToken.Primitive.spacing8
+    static let detailSectionsVerticalPadding = AppToken.Primitive.spacing8
+    static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing4
+    
+}
+
 #Preview {
-    TrekDetailSections()
+    ScrollView{
+        TrekDetailSections(trek: Trek.example)
+    }
 }

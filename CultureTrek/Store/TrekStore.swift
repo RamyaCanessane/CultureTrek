@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class TrekStore : Identifiable {
+final class TrekStore {
     
     var treks : [Trek] = []
     

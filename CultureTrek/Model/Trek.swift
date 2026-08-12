@@ -9,19 +9,21 @@
 import CoreLocation
 import SwiftUI
 
+@Observable
 class Trek : Identifiable {
     let id = UUID()
     let accessibility: Accessibility
     let badgesToUnlock: [Badge]
     let city: String
-    let completion: CompletionData?
+    var completion: CompletionData?
     let department: String?
     let distance: Measurement<UnitLength>
     let duration: Duration
     let elevation: Elevation
     let goal: String?
     let goodToKnow: [String]
-    let isLiked: Bool
+    var isCompleted : Bool
+    var isLiked: Bool
     let name: String
     let picture: Image
     let riddles: [Riddle]
@@ -33,7 +35,25 @@ class Trek : Identifiable {
         riddles.first?.coordinate ?? .init(latitude: 0, longitude: 0)
     }
 
-    init(accessibility: Accessibility, badgesToUnlock: [Badge], city: String, completion: CompletionData?, department: String?, distance: Measurement<UnitLength>, duration: Duration, elevation: Elevation, goal: String?, goodToKnow: [String], isLiked: Bool, name: String, picture: Image, riddles: [Riddle], quizQuestions: [QuizQuestion], region: String, summary: String?) {
+    init(
+        accessibility: Accessibility,
+        badgesToUnlock: [Badge],
+        city: String,
+        completion: CompletionData?,
+        department: String?,
+        distance: Measurement<UnitLength>,
+        duration: Duration,
+        elevation: Elevation,
+        goal: String?,
+        goodToKnow: [String],
+        isLiked: Bool,
+        name: String,
+        picture: Image,
+        riddles: [Riddle],
+        quizQuestions: [QuizQuestion],
+        region: String,
+        summary: String?
+    ) {
         self.accessibility = accessibility
         self.badgesToUnlock = badgesToUnlock
         self.city = city
@@ -44,6 +64,7 @@ class Trek : Identifiable {
         self.elevation = elevation
         self.goal = goal
         self.goodToKnow = goodToKnow
+        self.isCompleted = false
         self.isLiked = isLiked
         self.name = name
         self.picture = picture
@@ -66,22 +87,50 @@ class Trek : Identifiable {
         let wheelchair: Bool
     }
     
-    struct CompletionData {
+    struct CompletionData: CustomStringConvertible {
         let date: Date
-        let duration: Duration
-        let earnedPoints: UInt
-        let photos: [String] // TODO: to update
+        let duration: Duration?
+        let earnedPoints: UInt?
+        let photos: [RiddlePhoto]
         let unlockedBadges: [Badge]
+        
+        var description: String {
+            "[\nDate: \(date.formatted(date: .abbreviated, time: .shortened))\nduration: \(duration?.formatted(), default: "N/A")\nPoints: \(earnedPoints, default: "N/A")\nPhotos: \(photos.count)\nBadges: \(unlockedBadges.count)\n]"
+        }
+    }
+    
+    func complete(date: Date, photos: [RiddlePhoto]) {
+        self.completion = .init(date: date,
+                                duration: nil,
+                                earnedPoints: nil,
+                                photos: photos,
+                                unlockedBadges: [])
+        self.isCompleted = true
+    }
+    
+    func complete(
+        date: Date,
+        duration: Duration,
+        earnedPoints: UInt,
+        photos: [RiddlePhoto],
+        unlockedBadges: [Badge]
+    ) {
+        self.completion = .init(
+            date: date,
+            duration: duration,
+            earnedPoints: earnedPoints,
+            photos: photos,
+            unlockedBadges: unlockedBadges
+        )
+        self.isCompleted = true
     }
 }
-
-#warning("Mettre l'unité dans les Trek.distance")
 
 extension Trek {
     
     static let example = Trek(
         accessibility: .init(bike: true, stroller: true, walking: true, wheelchair: true),
-        badgesToUnlock: Badge.examples,
+        badgesToUnlock: [ Badge.marathonRunner, Badge.paname],
         city: "Paris",
         completion: nil,
         department: nil,
