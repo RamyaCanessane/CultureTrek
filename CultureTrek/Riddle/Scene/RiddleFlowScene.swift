@@ -58,23 +58,9 @@ struct RiddleFlowScene: View {
                     .closeOnTapOutside(true)
                     .backgroundColor(Styles.popupBackground)
             }
-            .fullScreenCover(isPresented: $vm.isPathPresented) {
-                VStack {
-                    Text("Trek Path")
-                    
-                    Button("Close") {
-                        vm.isPathPresented = false
-                    }
-                }
-            }
-            .fullScreenCover(isPresented: $vm.isFinalPathPresented) {
-                VStack {
-                    Text("Trek Final Path")
-                    
-                    Button("Close") {
-                        vm.isFinalPathPresented = false
-                    }
-                }
+            .fullScreenCover(item: $vm.trekPathData) { data in
+                TrekPathScene(riddles: data.riddles,
+                              hasLastRiddle: data.hasLastRiddle)
             }
             .fullScreenCover(item: $vm.imageViewerData) { data in
                 ImageViewer(images: data.images,
@@ -98,7 +84,7 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    RiddleFlowScene(trek: testTrek)
+    RiddleFlowScene(trek: .liveDemoExamples.first ?? testTrek)
 }
 
 fileprivate let testTrek: Trek = .init(

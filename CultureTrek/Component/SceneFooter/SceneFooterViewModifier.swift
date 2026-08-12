@@ -54,7 +54,7 @@ extension View {
 
 fileprivate enum Styles {
     
-    static let background = AppColor.background
+    static let background = AppColor.Page.background
     
     static let blurTopPadding: Double = 8
     static let blurHPadding: Double = -16

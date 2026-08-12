@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct RiddleScene: View {
@@ -17,6 +18,7 @@ struct RiddleScene: View {
     let currentRiddleOrder: UInt
     let totalRiddle: UInt
     let isAddPhotoDisabled: Bool
+    let isPathButtonDisabled: Bool
     let previousButton: (icon: Image,
                          kind: NeubrutIconButtonStyle.Kind,
                          isEnabled: Bool,
@@ -80,6 +82,7 @@ struct RiddleScene: View {
         .sceneHeader {
             RiddleSceneHeader(title: trekTitle,
                               onPressPath: onPressPath)
+            .disabled(isPathButtonDisabled)
         }
         .sceneFooter {
             actionsProgressBar
@@ -111,7 +114,7 @@ struct RiddleScene: View {
 
 fileprivate enum Styles {
     
-    static let background = AppColor.background
+    static let background = AppColor.Page.background
     
     static let vSpacing = AppToken.Primitive.spacing6
     static let vPadding = AppToken.Primitive.spacing6
@@ -122,6 +125,7 @@ fileprivate enum Styles {
 
 fileprivate let riddleExample = Riddle(
     clue: "Quasi modi nihil consequuntur. Dicta praesentium quia sequi et ex qui sunt ut.",
+    coordinate: CLLocationCoordinate2D(latitude: 48.8530, longitude: 2.3499),
     goodToKnow: "Illum vel quos temporibus temporibus architecto eveniet et minima ad amet.",
     isCompleted: true,
     order: 3,
@@ -144,6 +148,7 @@ fileprivate let riddleExample = Riddle(
                 currentRiddleOrder: 7,
                 totalRiddle: 12,
                 isAddPhotoDisabled: false,
+                isPathButtonDisabled: false,
                 previousButton: (icon: AppImage.Icon.riddlePath.image,
                                  kind: NeubrutIconButtonStyle.Kind.info,
                                  isEnabled: true,

@@ -6,6 +6,7 @@
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct TrekFinishedScene: View {
@@ -43,7 +44,8 @@ struct TrekFinishedScene: View {
         self.trekMode = trekMode
         
         #warning("Utiliser le vrai utilisateur")
-        self.user = .init(currentXPPoints: 1100,
+        self.user = .init(coordinate: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522), // Hôtel de Ville de Paris
+                          currentXPPoints: 1100,
                           firstName: "Nanashi",
                           lastName: "Yamada",
                           picture: Image(.riddleTestPicture))
@@ -129,7 +131,7 @@ struct TrekFinishedScene: View {
 
 fileprivate enum Styles {
     
-    static let background = AppColor.background
+    static let background = AppColor.Page.background
     
     static let vSpacing = AppToken.Primitive.spacing8
     

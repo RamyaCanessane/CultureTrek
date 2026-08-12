@@ -37,5 +37,5 @@ fileprivate enum Styles {
 #Preview {
     RiddleSectionTitle("Voluptate Suscipit Dignissimos")
         .padding()
-        .background(AppColor.background)
+        .background(AppColor.Page.background)
 }

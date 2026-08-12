@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "TabIcon - Discover.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -62,5 +62,5 @@ fileprivate enum Styles {
 #Preview {
     TrekSettingsDropdownView(label: "Est Uty")
         .padding(40)
-        .background(AppColor.background)
+        .background(AppColor.Page.background)
 }

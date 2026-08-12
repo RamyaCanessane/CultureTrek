@@ -30,6 +30,9 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "%llu" : {
 
     },
@@ -46,6 +49,12 @@
         }
       }
     },
+    "~" : {
+
+    },
+    "Achievement scene" : {
+
+    },
     "Ajouter photo" : {
 
     },
@@ -53,6 +62,7 @@
 
     },
     "Bienvenue" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -71,7 +81,7 @@
     "Choisir une photo" : {
 
     },
-    "Close" : {
+    "Commencer" : {
 
     },
     "Commencer le quiz" : {
@@ -80,10 +90,10 @@
     "dans " : {
 
     },
-    "Hello, world!" : {
+    "Hello, World!" : {
 
     },
-    "Hello, World!" : {
+    "History scene" : {
 
     },
     "home.welcome_message" : {
@@ -118,13 +128,10 @@
     "Prochain rang: " : {
 
     },
-    "Space Grotesky" : {
+    "Ranking scene" : {
 
     },
-    "Trek Final Path" : {
-
-    },
-    "Trek Path" : {
+    "Search scene" : {
 
     },
     "Voir la première énigme" : {

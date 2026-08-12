@@ -1,19 +1,19 @@
 //
-//  TrekFinishedDurationColInfo.swift
+//  DurationColInfo.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 05/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import SwiftUI
 
-struct TrekFinishedDurationColInfo: View {
+struct DurationColInfo: View {
     let label: String
     let duration: Duration
     
     var body: some View {
-        TrekFinishedColInfo(label: label) {
+        ColInfo(label: label) {
             HStack(alignment: .center,
                    spacing: Styles.hSpacing) {
                 AppImage.Icon.trekDuration.image
@@ -42,6 +42,6 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekFinishedDurationColInfo(label: "Durée",
-                                duration: Duration.seconds(1 * 60 * 60 + 5 * 60                         ))
+    DurationColInfo(label: "Durée",
+                    duration: Duration.seconds(1 * 60 * 60 + 5 * 60                         ))
 }

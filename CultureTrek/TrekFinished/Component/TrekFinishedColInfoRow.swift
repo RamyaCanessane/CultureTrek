@@ -1,10 +1,10 @@
 //
 //  TrekFinishedColInfoRow.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 05/08/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import SwiftUI
 
@@ -18,18 +18,18 @@ struct TrekFinishedColInfoRow: View {
             HStack(alignment: .top,
                    spacing: Styles.hSpacing) {
                 if let duration {
-                    TrekFinishedDurationColInfo(label: "Durée",
-                                                duration: duration)
+                    DurationColInfo(label: "Durée",
+                                    duration: duration)
                 }
                 
                 if let points {
-                    TrekFinishedPointsColInfo(label: "Points",
-                                              points: points)
+                    PointsColInfo(label: "Points",
+                                  points: points)
                 }
                 
                 if let rank {
-                    TrekFinishedRankingColInfo(label: "Classement",
-                                               rank: rank)
+                    RankingColInfo(label: "Classement",
+                                   rank: rank)
                 }
             }
                    .padding(.horizontal)

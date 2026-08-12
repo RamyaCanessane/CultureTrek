@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "TabIcon - History.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
