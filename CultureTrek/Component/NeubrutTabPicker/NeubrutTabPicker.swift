@@ -11,7 +11,6 @@ struct NeubrutTabPicker: View {
     let nameFirstTab: String
     let nameSecondTab: String
     
-    //    @State var state: TabState = .first
     @Binding var state: TabState
     
     var body: some View {
@@ -49,7 +48,6 @@ struct NeubrutTabPicker: View {
                 .padding(.trailing, -TabPickerStyles.shadowSize)
                 .padding(.bottom, 0)
         }
-
     }
 }
 
@@ -108,7 +106,7 @@ fileprivate enum TabPickerStyles {
 
 #Preview {
     VStack{
-        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte", state: .constant(.first))
+        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte", state: .constant(.second))
     }
     .padding()
     .frame(width: 200)
