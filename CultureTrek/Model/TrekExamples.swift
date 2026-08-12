@@ -403,7 +403,7 @@ fileprivate let trekQuartierLatin = Trek(
     isLiked: false,
     name: "L'Âme du Quartier Latin",
     picture: Image("trek_latin"),
-    // Photo URL: https://images.unsplash.com/photo-1549402585-783282245b0f?q=80&w=1000
+    // Photo URL: https://images.unsplash.com/photo-1549402585-783282245b0f?q=80&w=1000 //lien non valide
     riddles: [
         Riddle(
             clue: "Près de Notre-Dame.",
@@ -541,7 +541,7 @@ fileprivate let trekIleDeLaCite = Trek(
     goodToKnow: ["Le parcours est court mais riche.", "Possibilité d'ajouter la visite de la Sainte-Chapelle."],
     isLiked: false,
     name: "Cœur de l'Île de la Cité",
-    picture: Image("trek_cite"), // Photo URL: https://images.unsplash.com/photo-1594916892523-88390b1e4c70?q=80&w=1000
+    picture: Image("trek_cite"), // Photo URL: https://images.unsplash.com/photo-1594916892523-88390b1e4c70?q=80&w=1000 //lien non valide
     riddles: [
         Riddle(
             clue: "L'arrêt de métro sur l'île.",
@@ -672,7 +672,7 @@ fileprivate let trekPassagesCouverts = Trek(
     goodToKnow: ["Les passages sont fermés le dimanche pour la plupart.", "Idéal pour une journée de pluie."],
     isLiked: false,
     name: "Les Passages Couverts",
-    picture: Image("trek_passages"), // Photo URL: https://images.unsplash.com/photo-1549402585-783282245b0f?q=80&w=1000
+    picture: Image("trek_passages"), // Photo URL: https://images.unsplash.com/photo-1549402585-783282245b0f?q=80&w=1000 //lien non valide
     riddles: [
         Riddle(
             clue: "Ligne 8 ou 9.",
@@ -806,7 +806,7 @@ fileprivate let trekCanalSaintMartin = Trek(
     goodToKnow: ["Idéal pour une balade à vélo.", "Le canal est partiellement souterrain."],
     isLiked: false,
     name: "Balade sur le Canal Saint-Martin",
-    picture: Image("trek_canal"), // Photo URL: https://images.unsplash.com/photo-1590013915160-b6f1f4b00511?q=80&w=1000
+    picture: Image("trek_canal"), // Photo URL: https://images.unsplash.com/photo-1590013915160-b6f1f4b00511?q=80&w=1000 //lien non valide
     riddles: [
         Riddle(
             clue: "Grande place avec une statue.",
@@ -948,7 +948,7 @@ fileprivate let trekJardinTuileries = Trek(
     isLiked: false,
     name: "Les Jardins du Roi (Tuileries)",
     picture: Image("trek_tuileries"),
-    // Photo URL: https://images.unsplash.com/photo-1549402585-783282245b0f?q=80&w=1000
+    // Photo URL: https://images.unsplash.com/photo-1549402585-783282245b0f?q=80&w=1000 //lien non valide
     riddles: [
         Riddle(
             clue: "Près de la place de la Concorde.",
