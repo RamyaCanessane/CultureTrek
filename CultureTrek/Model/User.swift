@@ -9,7 +9,7 @@
 import CoreLocation
 import SwiftUI
 
-class User {
+class User: CustomStringConvertible {
     let coordinate: CLLocationCoordinate2D
     var currentXPPoints: UInt
     let firstName: String
@@ -32,6 +32,10 @@ class User {
     
     func addXPPoints(_ points: UInt) {
         currentXPPoints += points
+    }
+    
+    var description: String {
+        "User: \(firstName) \(lastName) with \(currentXPPoints) XP points"
     }
 }
 

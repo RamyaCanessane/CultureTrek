@@ -12,9 +12,9 @@ import SwiftUI
 @Observable
 final class RiddleFlowViewModel {
     
-    private let user: User
+    private let sourceUser: User
     private let sourceTrek: Trek
-    private let sourceRiddles: [Riddle]
+    private let savedRiddles: [Riddle]
     var riddles: [Riddle]
     
     private var isTrekSettingsPresented: Bool
@@ -65,9 +65,9 @@ final class RiddleFlowViewModel {
     }
     
     init(trek: Trek, user: User) {
-        self.user = user
+        self.sourceUser = user
         self.sourceTrek = trek
-        self.sourceRiddles = trek.riddles
+        self.savedRiddles = trek.riddles
         self.isTrekSettingsPresented = true
         
         self.estimatedTrekDuration = trek.duration
@@ -78,7 +78,7 @@ final class RiddleFlowViewModel {
         self.trekPlayFormat = .solo
         self.trekIsDownloaded = false
         
-        self.riddles = self.sourceRiddles
+        self.riddles = self.savedRiddles
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
@@ -235,7 +235,7 @@ final class RiddleFlowViewModel {
     }
     
     private func resetTrek() {
-        self.riddles = self.sourceRiddles
+        self.riddles = self.savedRiddles
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
@@ -374,12 +374,20 @@ final class RiddleFlowViewModel {
             
             print(sourceTrek.completion ?? "After update, completion is nil")
             
-            #warning("Mettre à jour les points de User")
+            print(sourceUser)
+            
+            sourceUser.addXPPoints(points)
+            
+            print(sourceUser)
         } else {
             sourceTrek.complete(date: .now,
                                 photos: photos)
             
-            #warning("Mettre à jour les points de User")
+            print(sourceUser)
+            
+            sourceUser.addXPPoints(0)
+            
+            print(sourceUser)
         }
     }
     
