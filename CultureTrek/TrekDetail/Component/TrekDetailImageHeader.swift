@@ -17,7 +17,6 @@ struct TrekDetailImageHeader: View {
                 .resizable()
                 .frame(maxWidth: .infinity)
                 .aspectRatio(1/1, contentMode: .fit)
-                .ignoresSafeArea()
         
     }
 }

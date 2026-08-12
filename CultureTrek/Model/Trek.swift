@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@Observable
 class Trek : Identifiable {
     let id = UUID()
     
@@ -21,7 +22,7 @@ class Trek : Identifiable {
     let elevation: Elevation
     let goal: String?
     let goodToKnow: [String]
-    let isLiked: Bool
+    var isLiked: Bool
     let name: String
     let picture: Image
     let riddles: [Riddle]

@@ -38,7 +38,7 @@ fileprivate struct Styles {
     
     static let detailSectionsSpacing = AppToken.Primitive.spacing8
     static let detailSectionsVerticalPadding = AppToken.Primitive.spacing8
-    static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing8
+    static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing4
     
 }
 
