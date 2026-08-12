@@ -14,26 +14,10 @@ struct TrekDetailScene: View {
     @State private var showFullScreenCover = false
     
     var body: some View {
-        ScrollView{
+        
+        SceneDetail(trek: trek) {
             
-            VStack(spacing: Styles.contentSpacing){
-                
-                TrekDetailImageHeader(trek: trek)
-                
-                TrekDetailHeader(trek: trek)
-                
-                TrekDetailSections(trek: trek)
-                
-            }
-            
-        }
-        .ignoresSafeArea()
-        .scrollIndicators(.hidden)
-        .navigationBarBackButtonHidden(true)
-        .background(Styles.pageBackground)
-        .safeAreaBar(edge: .top) {
-            
-            TrekDetailActionBar(trek: trek)
+            TrekDetailSections(trek: trek)
             
         }
         .sceneFooter {
@@ -55,10 +39,6 @@ struct TrekDetailScene: View {
 }
 
 fileprivate struct Styles {
-    
-    static let pageBackground = AppColor.Page.background
-    
-    static let contentSpacing = AppToken.Primitive.spacing0
     
     static let buttonPadding = AppToken.Primitive.padding4
     
