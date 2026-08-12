@@ -79,7 +79,7 @@ struct QuizScene: View {
             }
             .popup(isPresented: $vm.isBadPopupPresented) {
                 BadActionPopupView(title: "Mauvaise réponse",
-                                   content: "La bonne réponse était: \(vm.correctAnswer?.text ?? "")")
+                                   content: "La bonne réponse était : \(vm.correctAnswer?.text ?? "")")
                     .padding(32)
             } customize: {
                 $0
