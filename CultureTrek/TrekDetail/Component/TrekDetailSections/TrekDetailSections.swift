@@ -13,7 +13,7 @@ struct TrekDetailSections: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: Styles.detailSectionsSpacing ){
+        SceneDetailSections(trek: trek){
             
             TrekDetailInfo(trek: trek)
             
@@ -26,20 +26,11 @@ struct TrekDetailSections: View {
             TrekDetailGTK(goodToKnow: trek.goodToKnow)
             
             TrekDetailBadge(trek: trek)
+                .grayscale(1)
             
         }
-        .padding(.horizontal, Styles.detailSectionsHorizontalPadding)
-        .padding(.vertical, Styles.detailSectionsVerticalPadding)
         
     }
-}
-
-fileprivate struct Styles {
-    
-    static let detailSectionsSpacing = AppToken.Primitive.spacing8
-    static let detailSectionsVerticalPadding = AppToken.Primitive.spacing8
-    static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing4
-    
 }
 
 #Preview {

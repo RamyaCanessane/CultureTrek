@@ -31,7 +31,7 @@ struct TrekDetailAccessibilityInternal: View {
 
     var body: some View {
         
-        TrekDetailGroup(title: title) {
+        SceneDetailGroup(title: title) {
             
             HStack(spacing: Styles.accessibilityInfoSpacing) {
                 

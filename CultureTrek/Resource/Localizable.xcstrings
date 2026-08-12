@@ -80,7 +80,6 @@
     "Choisir une photo" : {
 
     },
-
     "Commencer" : {
 
     },
@@ -90,7 +89,10 @@
     "dans " : {
 
     },
-    "Hello, World!" : {
+    "Date indisponible" : {
+
+    },
+    "Énigmes" : {
 
     },
     "History scene" : {
@@ -119,13 +121,25 @@
     "Je suis arrivé·e" : {
 
     },
+    "Pas de badges" : {
+
+    },
+    "Pas de photo" : {
+
+    },
     "Passer le quiz" : {
+
+    },
+    "Points indisponibles" : {
 
     },
     "Prendre une photo" : {
 
     },
     "Prochain rang: " : {
+
+    },
+    "Quiz" : {
 
     },
     "Ranking scene" : {

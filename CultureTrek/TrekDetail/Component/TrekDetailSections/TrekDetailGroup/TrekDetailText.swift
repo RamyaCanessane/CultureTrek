@@ -16,11 +16,15 @@ struct TrekDetailText: View {
         
         if let hasArticle = article {
             
-            Text("""
+            SceneDetailGroup(title: title) {
+                
+                Text("""
             \(hasArticle)
             """)
-            .font(.spaceGrotesk(size: Styles.detailArticleFontSize, weight: .regular))
-            .multilineTextAlignment(.leading)
+                .font(.spaceGrotesk(size: Styles.detailArticleFontSize, weight: .regular))
+                .multilineTextAlignment(.leading)
+                
+            }
         }
         
     }

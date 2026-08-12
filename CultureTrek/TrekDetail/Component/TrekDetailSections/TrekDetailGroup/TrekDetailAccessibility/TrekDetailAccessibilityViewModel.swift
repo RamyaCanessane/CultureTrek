@@ -26,7 +26,7 @@ final class TrekDetailAccessibilityViewModel {
         getAccessibilitySettings()
     }
     
-    //Intention
+    //Affichage
     func getAccessibilitySettings(){
         bikeAccessibility.value = accessibility.bike
         strollerAccessibility.value = accessibility.stroller
