@@ -32,7 +32,7 @@ struct CompletedTrekDetailBadge: View {
                     
                 } else {
                     
-                    Text("Pas de badges")
+                    Text("Pas de badge")
                         .font(.spaceGrotesk(size: Styles.detailFontSize, weight: .regular))
                         .foregroundStyle(Styles.detailForeground)
                     

@@ -50,7 +50,7 @@ struct SingleCompletionData: View {
                     
                 } else {
                     
-                    Text("Points indisponibles")
+                    Text("Pas de point")
                     
                 }
                 

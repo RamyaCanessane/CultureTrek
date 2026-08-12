@@ -13,18 +13,28 @@ struct CompletedTrekDetailScene: View {
     
     @State private var state: TabState = .first
     
+    @State private var showRiddleFullScreen = false
+    @State private var showQuizFullScreen = false
+    @State private var showMapFullScreen = false
+    
     enum PickerTab : String {
         case summary = "Résumé"
         case info = "Infos"
     }
         
+    
+    
     var body: some View {
         
         SceneDetail(trek: trek) {
             
             VStack(alignment: .leading, spacing: Styles.detailSectionsSpacing ){
                 
-                NeubrutTabPicker(nameFirstTab: PickerTab.summary.rawValue, nameSecondTab: PickerTab.info.rawValue, state: $state)
+                NeubrutTabPicker(
+                    nameFirstTab: PickerTab.summary.rawValue,
+                    nameSecondTab: PickerTab.info.rawValue,
+                    state: $state
+                )
                     .padding(.horizontal, Styles.pickerPadding)
                     .padding(.bottom, Styles.pickerBottomPadding)
                 
@@ -41,6 +51,22 @@ struct CompletedTrekDetailScene: View {
             }
             .padding(.vertical, Styles.detailSectionsVerticalPadding)
             .neubrutTabViewVisibility(.hidden)
+        }
+        .sceneFooter {
+            CompletedTrekDetailFooter(
+                showRiddleFullScreen: $showRiddleFullScreen,
+                showQuizFullScreen: $showQuizFullScreen,
+                showMapFullScreen: $showMapFullScreen
+            )
+        }
+        .fullScreenCover(isPresented: $showRiddleFullScreen) {
+            
+        }
+        .fullScreenCover(isPresented: $showQuizFullScreen) {
+            
+        }
+        .fullScreenCover(isPresented: $showMapFullScreen) {
+            
         }
         
     }

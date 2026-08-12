@@ -48,6 +48,7 @@ enum AppImage {
         case trekSectionForward
         case openCamera
         case openPhotoLibrary
+        case map
         
         var systemName: String {
             switch self {
@@ -109,6 +110,8 @@ enum AppImage {
                 "camera"
             case .openPhotoLibrary:
                 "photo.on.rectangle.angled"
+            case .map:
+                "map"
             }
         }
         
