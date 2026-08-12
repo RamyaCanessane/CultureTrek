@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct RiddlePhoto {
+struct RiddlePhoto : Hashable {
     let riddleOrder: UInt
     let image: UIImage
 }

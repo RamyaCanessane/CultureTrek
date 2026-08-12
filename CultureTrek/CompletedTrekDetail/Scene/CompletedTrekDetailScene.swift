@@ -22,22 +22,25 @@ struct CompletedTrekDetailScene: View {
         
         SceneDetail(trek: trek) {
             
-            VStack {
+            VStack(alignment: .leading, spacing: Styles.detailSectionsSpacing ){
+                
                 NeubrutTabPicker(nameFirstTab: PickerTab.summary.rawValue, nameSecondTab: PickerTab.info.rawValue, state: $state)
                     .padding(.horizontal, Styles.pickerPadding)
+                    .padding(.bottom, Styles.pickerBottomPadding)
                 
                 if state == .first {
                     
-                    //CompletedTrekDetail
+                    CompletedTrekDetailSections(trek: trek)
                     
                 } else {
                     
-                    TrekDetailSections(trek: trek)
+                    CompletedTrekDetailSectionsInfo(trek: trek)
                     
                 }
                 
             }
-            
+            .padding(.vertical, Styles.detailSectionsVerticalPadding)
+            .neubrutTabViewVisibility(.hidden)
         }
         
     }
@@ -45,10 +48,14 @@ struct CompletedTrekDetailScene: View {
 
 fileprivate struct Styles {
     
-    static let pickerPadding = AppToken.Primitive.padding4
+    static let pickerPadding = AppToken.Primitive.padding20
+    static let pickerBottomPadding = -AppToken.Primitive.padding8
+    
+    static let detailSectionsSpacing = AppToken.Primitive.spacing8
+    static let detailSectionsVerticalPadding = AppToken.Primitive.spacing8
+    static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing4
     
 }
-
 
 #Preview {
     CompletedTrekDetailScene(trek: Trek.example)

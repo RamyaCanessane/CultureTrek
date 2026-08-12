@@ -20,12 +20,10 @@ struct SingleBadgeContent: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: Styles.badgeIconSize, height: Styles.badgeIconSize)
-                .grayscale(1)
             
             Text(name)
                 .font(.spaceGrotesk(size: Styles.badgeLabelFontSize, weight: .medium))
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: Styles.badgeLabelWidth)
         }
         .foregroundStyle(Styles.badgeLabelForeground)
         
@@ -40,7 +38,6 @@ fileprivate struct Styles {
     
     static let badgeIconSize = CGFloat(56)
     
-    static let badgeLabelWidth = CGFloat(80)
     static let badgeLabelFontSize = CGFloat(17)
     
 }

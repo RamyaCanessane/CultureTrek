@@ -81,7 +81,6 @@
     "Choisir une photo" : {
 
     },
-
     "Commencer" : {
 
     },
@@ -89,6 +88,9 @@
 
     },
     "dans " : {
+
+    },
+    "Date indisponible" : {
 
     },
     "Hello, World!" : {
@@ -120,7 +122,16 @@
     "Je suis arrivé·e" : {
 
     },
+    "Pas de badges" : {
+
+    },
+    "Pas de photo" : {
+
+    },
     "Passer le quiz" : {
+
+    },
+    "Points indisponibles" : {
 
     },
     "Prendre une photo" : {
