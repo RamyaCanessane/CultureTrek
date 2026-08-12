@@ -22,6 +22,7 @@ class Trek : Identifiable {
     let elevation: Elevation
     let goal: String?
     let goodToKnow: [String]
+    var isCompleted : Bool
     var isLiked: Bool
     let name: String
     let picture: Image
@@ -29,7 +30,6 @@ class Trek : Identifiable {
     let quizQuestions: [QuizQuestion]
     let region: String
     let summary: String? // description
-    var isCompleted : Bool
     
     var coordinate: CLLocationCoordinate2D {
         riddles.first?.coordinate ?? .init(latitude: 0, longitude: 0)
@@ -64,6 +64,7 @@ class Trek : Identifiable {
         self.elevation = elevation
         self.goal = goal
         self.goodToKnow = goodToKnow
+        self.isCompleted = false
         self.isLiked = isLiked
         self.name = name
         self.picture = picture
@@ -71,7 +72,6 @@ class Trek : Identifiable {
         self.quizQuestions = quizQuestions
         self.region = region
         self.summary = summary
-        self.isCompleted = false
     }
     
     enum Elevation {
@@ -89,14 +89,23 @@ class Trek : Identifiable {
     
     struct CompletionData: CustomStringConvertible {
         let date: Date
-        let duration: Duration
-        let earnedPoints: UInt
+        let duration: Duration?
+        let earnedPoints: UInt?
         let photos: [RiddlePhoto]
         let unlockedBadges: [Badge]
         
         var description: String {
-            "[\nDate: \(date.formatted(date: .abbreviated, time: .shortened))\nduration: \(duration.formatted())\nPoints: \(earnedPoints)\nPhotos: \(photos.count)\nBadges: \(unlockedBadges.count)\n]"
+            "[\nDate: \(date.formatted(date: .abbreviated, time: .shortened))\nduration: \(duration?.formatted(), default: "N/A")\nPoints: \(earnedPoints, default: "N/A")\nPhotos: \(photos.count)\nBadges: \(unlockedBadges.count)\n]"
         }
+    }
+    
+    func complete(date: Date, photos: [RiddlePhoto]) {
+        self.completion = .init(date: date,
+                                duration: nil,
+                                earnedPoints: nil,
+                                photos: photos,
+                                unlockedBadges: [])
+        self.isCompleted = true
     }
     
     func complete(
@@ -113,6 +122,7 @@ class Trek : Identifiable {
             photos: photos,
             unlockedBadges: unlockedBadges
         )
+        self.isCompleted = true
     }
 }
 

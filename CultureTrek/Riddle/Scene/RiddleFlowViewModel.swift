@@ -358,21 +358,29 @@ final class RiddleFlowViewModel {
     }
     
     private func completeTrek() {
-        print(sourceTrek.completion ?? "Completion is nil")
-        
-        let points = calculatePoints()
         let photos = getPhotosFromRiddles()
-        let badges = getUnlockedBadges()
         
-        sourceTrek.complete(date: .now,
-                            duration: duration ?? .seconds(0),
-                            earnedPoints: points,
-                            photos: photos,
-                            unlockedBadges: badges)
-        
-        print(sourceTrek.completion ?? "After update, completion is nil")
-        
-        #warning("Mettre à jour les points de User")
+        if trekMode == .ranked {
+            print(sourceTrek.completion ?? "Completion is nil")
+            
+            let points = calculatePoints()
+            let badges = getUnlockedBadges()
+            
+            sourceTrek.complete(date: .now,
+                                duration: duration ?? .seconds(0),
+                                earnedPoints: points,
+                                photos: photos,
+                                unlockedBadges: badges)
+            
+            print(sourceTrek.completion ?? "After update, completion is nil")
+            
+            #warning("Mettre à jour les points de User")
+        } else {
+            sourceTrek.complete(date: .now,
+                                photos: photos)
+            
+            #warning("Mettre à jour les points de User")
+        }
     }
     
     private func calculatePoints() -> UInt {
