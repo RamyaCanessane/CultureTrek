@@ -14,8 +14,16 @@ struct HistoryActiveScene: View {
     //    let sortedAlpabet = treks.sorted(by: >)
     
     var body: some View {
+        let completedTreks = trekList.filter { trek in
+            trek.riddles.allSatisfy { $0.isCompleted }
+        }
+        
         VStack{
-           
+            List(completedTreks, id: \.name) { trek in
+                HStack{
+                    Text(trek.name)
+                }
+            }
         }
     }
 }

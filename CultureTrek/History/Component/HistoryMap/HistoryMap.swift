@@ -13,7 +13,7 @@ struct HistoryMap: View {
     let firstTab: String
     let secondTab: String
     
-    @State private var state : TabState = .first
+    @State private var state : TabState = .second
     
     var body: some View {
         Map {
@@ -24,32 +24,36 @@ struct HistoryMap: View {
                     trek.name,
                     coordinate: trek.coordinate
                 ) {
-                    Image(
-                        systemName: "flag.pattern.checkered"
-                    )
-                    .foregroundStyle(
-                        HistoryMapStyles.fillColor
-                    )
-                    .onTapGesture {
-//                       NavigationLink{}
-                    }
-                    .frame(
-                        width: 40,
-                        height: 40
-                    )
-                    .background(
-                        HistoryMapStyles.background,
-                        in: .circle
-                    )
-                    .clipShape(
-                        HistoryMapStyles.shape
-                    )
-                    .overlay {
-                        HistoryMapStyles.shape
-                            .strokeBorder(
-                                HistoryMapStyles.borderColor,
-                                lineWidth: HistoryMapStyles.borderWidth
-                            )
+                    NavigationLink {
+                        //                        TrekFinishedScene
+                        TrekDetailScene(
+                            trek: trek
+                        )
+                    } label: {
+                        Image(
+                            systemName: "flag.pattern.checkered"
+                        )
+                        .foregroundStyle(
+                            HistoryMapStyles.fillColor
+                        )
+                        .frame(
+                            width: 40,
+                            height: 40
+                        )
+                        .background(
+                            HistoryMapStyles.background,
+                            in: .circle
+                        )
+                        .clipShape(
+                            HistoryMapStyles.shape
+                        )
+                        .overlay {
+                            HistoryMapStyles.shape
+                                .strokeBorder(
+                                    HistoryMapStyles.borderColor,
+                                    lineWidth: HistoryMapStyles.borderWidth
+                                )
+                        }
                     }
                 }
             }
@@ -63,8 +67,8 @@ struct HistoryMap: View {
                 state: $state
             )
             .frame(
-                width: 212,
-                height: 100
+                width: 200,
+                height: 40
             )
             .padding()
         }
@@ -227,9 +231,12 @@ fileprivate enum HistoryMapStyles {
 }
 
 #Preview {
-    HistoryMap(
-        treks: trekList,
-        firstTab: "Liste",
-        secondTab: "Carte"
-    )
+    NavigationStack{
+        HistoryMap(
+            treks: Trek.examples,
+//            treks: trekList,
+            firstTab: "Liste",
+            secondTab: "Carte"
+        )
+    }
 }
