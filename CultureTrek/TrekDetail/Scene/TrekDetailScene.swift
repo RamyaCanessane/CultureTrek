@@ -48,15 +48,6 @@ struct TrekDetailScene: View {
         }
         .fullScreenCover(isPresented: $showFullScreenCover) {
             
-            TrekSettingsScene(
-                duration: trek.duration,
-                mode: .casual,
-                playFormat: .solo,
-                isDownloaded: false,
-                onPressStart: { _, _, _ in
-                },
-                onDismiss: {
-                })
             
         }
         
