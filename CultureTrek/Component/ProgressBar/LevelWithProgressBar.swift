@@ -101,7 +101,8 @@ struct LevelWithProgressBar: View {
                         )
                         .fill(AppColor.xpPoints)
                         .strokeBorder(AppColor.border, lineWidth: AppToken.borderWidth)
-                        .frame(width: geo.size.width * progressionNew - 4 + AppToken.borderWidth / 2.0, height: 16)
+                        .frame(width: geo.size.width * progressionNew - 4 + AppToken.borderWidth / 2.0 - (currentPoints < 1 ? 5 : 0), height: 16)
+                        .offset(x: currentPoints < 1 ? 2 : 0)
                     }
                     .offset(x: 4)
                 }
@@ -120,10 +121,19 @@ struct LevelWithProgressBar: View {
 }
 
 #Preview {
-    LevelWithProgressBar(newPoints: 4,
-                      currentPoints: 10,
-                      totalPoints: 20,
-                      currentLevel: "Fer",
-                      nextLevel: "Bronze")
-        .padding()
+    VStack {
+        LevelWithProgressBar(newPoints: 4,
+                             currentPoints: 10,
+                             totalPoints: 20,
+                             currentLevel: "Fer",
+                             nextLevel: "Bronze")
+        
+        LevelWithProgressBar(newPoints: 100,
+                             currentPoints: 0,
+                             totalPoints: 100,
+                             currentLevel: "Fer",
+                             nextLevel: "Bronze")
+       
+    }
+    .padding()
 }
