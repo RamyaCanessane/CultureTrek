@@ -12,15 +12,27 @@ struct HistorySceneHeadler: View {
     let secondTab: String
     let isOn: Bool = false
     @State var state: TabState = .second
+    @State var filterOption: FilterButton.Option = .date
     
     var body: some View {
-        HStack(spacing: HistoryHeadlerStyles.spacer){
-            NeubrutTabPicker(nameFirstTab: firstTab,nameSecondTab: secondTab, state: $state)
+        HStack(
+            spacing: HistoryHeadlerStyles.spacer
+        ){
+            NeubrutTabPicker(
+                nameFirstTab: firstTab,
+                nameSecondTab: secondTab,
+                state: $state
+            )
+            .frame(
+                width: 200,
+                height: 40
+            )
             if state == .first {
-                       FilterButton(filterAction: {})
-                   }
+                FilterButton(
+                    selection: $filterOption
+                )
+            }
         }
-//        .padding(HistoryHeadlerStyles.padding)
     }
 }
 
@@ -31,8 +43,13 @@ fileprivate enum HistoryHeadlerStyles {
 
 #Preview {
     VStack{
-        HistorySceneHeadler(firstTab: "Liste", secondTab: "Carte")
+        HistorySceneHeadler(
+            firstTab: "Liste",
+            secondTab: "Carte"
+        )
     }
     .padding()
-    .background(AppColor.Page.background)
+    .background(
+        AppColor.Page.background
+    )
 }

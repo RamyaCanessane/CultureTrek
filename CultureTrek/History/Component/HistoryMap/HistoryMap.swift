@@ -62,14 +62,7 @@ struct HistoryMap: View {
         .overlay(
             alignment: .topLeading
         ) {
-            NeubrutTabPicker(
-                nameFirstTab: firstTab,
-                nameSecondTab: secondTab,
-                state: $state
-            )
-            .frame(
-                width: 200,
-                height: 40
+            HistorySceneHeadler(firstTab: "Liste", secondTab: "Carte"
             )
             .padding()
         }

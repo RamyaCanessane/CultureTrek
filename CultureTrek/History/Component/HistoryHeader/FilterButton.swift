@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct FilterButton: View {
-    let filterAction: () -> Void
+    @Binding var selection: Option
+    
+    enum Option: String, CaseIterable, Identifiable {
+        case date
+        case city
+        case department
+        
+        var id: String {
+            rawValue
+        }
+        
+        var name: String {
+            switch self {
+            case .date:
+                "Date"
+            case .city:
+                "Ville"
+            case .department:
+                "Département"
+            }
+        }
+    }
     
     var body: some View {
-        VStack(alignment: .trailing){
-            Button(action: filterAction){
+        Menu {
+            Picker(selection.name,
+                   selection: $selection) {
+                ForEach(Option.allCases) { option in
+                    Text(option.name)
+                        .tag(option)
+                }
+            }
+        } label: {
+            Button(action: {}){
                 Image(systemName: FilterButtonStyles.filterIcon)
                     .font(FilterButtonStyles.iconFont)
                     .padding(FilterButtonStyles.padding)
@@ -30,8 +59,10 @@ fileprivate enum FilterButtonStyles {
 }
 
 #Preview {
+    @Previewable @State var selection: FilterButton.Option = .date
+    
     VStack {
-        FilterButton(filterAction: {})
+        FilterButton(selection: $selection)
     }
     .padding()
     .background(AppColor.Page.background)

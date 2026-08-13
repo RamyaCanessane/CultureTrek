@@ -9,33 +9,20 @@ import SwiftUI
 import CoreLocation
 
 struct HistoryActiveScene: View {
-    var sortedTreks: [Trek] {
-        trekList.sorted {
-            let date0 = $0.completion?.date ?? .distantPast
-            let date1 = $1.completion?.date ?? .distantPast
-
-            if date0 != date1 {
-                return date0 > date1
-            }
-
-            if $0.city != $1.city {
-                return $0.city < $1.city
-            }
-
-            if $0.department != $1.department {
-                return ($0.department ?? "") < ($1.department ?? "")
-            }
-
-            return $0.region < $1.region
-        }
+    
+    @State private var vm: HistoryViewModel
+    
+    init(treks: [Trek]) {
+        self._vm = State(initialValue: HistoryViewModel(treks: treks))
     }
     
     var body: some View {
         VStack{
-            List(sortedTreks, id: \.name) { trek in
-                TrekListCell(treks: Trek.examples)
-            }
+//            List(sortedTreks, id: \.name) { trek in
+//                TrekListCell(treks: Trek.examples)
+//            }
         }
+        .sceneHeader("Historique")
     }
 }
 
@@ -184,5 +171,5 @@ fileprivate let trekList: [Trek] = [
 ]
 
 #Preview {
-    HistoryActiveScene()
+    HistoryActiveScene(treks: Trek.liveDemoExamples)
 }
