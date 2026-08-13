@@ -12,6 +12,7 @@ struct HistoryMap: View {
     let treks: [Trek]
     let firstTab: String
     let secondTab: String
+//    let mapSelected: Bool
     
     @State private var state : TabState = .second
     

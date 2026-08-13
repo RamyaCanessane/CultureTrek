@@ -1,41 +1,101 @@
 //
-//  HistoryActiveScene.swift
+//  HistoryUniversalScene.swift
 //  CultureTrek
 //
-//  Created by Apprenant162 on 11/08/2026.
+//  Created by Apprenant162 on 10/08/2026.
 //
 
 import SwiftUI
-import CoreLocation
 
-struct HistoryActiveScene: View {
-    var sortedTreks: [Trek] {
-        trekList.sorted {
-            let date0 = $0.completion?.date ?? .distantPast
-            let date1 = $1.completion?.date ?? .distantPast
-
-            if date0 != date1 {
-                return date0 > date1
+struct HistoryUniversalScene: View {
+    let mainTitle: Text
+    let tabOne: String
+    let tabTwo: String
+    let treks: [Trek]
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(
+                    spacing: AppToken.Primitive.spacing6
+                ) {
+                    
+                    HistorySceneTitle(
+                        sceneTitle: mainTitle
+                    )
+                    
+                    HistorySceneHeadler(
+                        firstTab: tabOne,
+                        secondTab: tabTwo
+                    )
+                    
+                    ForEach(
+                        sortedTreks,
+                        id: \.name
+                    ) { trek in
+                        HistorySceneSection(
+                            sectionTitle: sectionTitle(
+                                for: trek
+                            ),
+                            city: trek.city,
+                            department: trek.department ?? "",
+                            name: trek.name,
+                            picture: trek.picture,
+                            region: trek.region
+                        )
+                    }
+                }
             }
-
-            if $0.city != $1.city {
-                return $0.city < $1.city
-            }
-
-            if $0.department != $1.department {
-                return ($0.department ?? "") < ($1.department ?? "")
-            }
-
-            return $0.region < $1.region
+            .background(
+                AppColor.Page.background
+            )
         }
     }
     
-    var body: some View {
-        VStack{
-            List(sortedTreks, id: \.name) { trek in
-                TrekListCell(treks: Trek.examples)
+    private var sortedTreks: [Trek] {
+        treks
+            .sorted {
+                let date0 = $0.completion?.date ?? .distantPast
+                let date1 = $1.completion?.date ?? .distantPast
+                
+                if date0 != date1 {
+                    return date0 > date1
+                }
+
+                if $0.city != $1.city {
+                    return $0.city < $1.city
+                }
+
+                let department0 = $0.department ?? ""
+                let department1 = $1.department ?? ""
+                
+                if department0 != department1 {
+                    return department0 < department1
+                }
+                return $0.region < $1.region
             }
+    }
+    
+    private func sectionTitle(
+        for trek: Trek
+    ) -> Text {
+        if let date = trek.completion?.date {
+            return Text(
+                date
+                    .formatted(
+                        .dateTime
+                            .day()
+                            .month(
+                                .wide
+                            )
+                            .year()
+                    )
+            )
         }
+        
+        return Text(
+            "Date inconnue"
+        )
     }
 }
 
@@ -184,5 +244,16 @@ fileprivate let trekList: [Trek] = [
 ]
 
 #Preview {
-    HistoryActiveScene()
+    HistoryUniversalScene(
+        mainTitle: Text(
+            "History"
+        ),
+        tabOne: "Kiso",
+        tabTwo: "Miso",
+        treks: trekList
+    )
+    .padding()
+    .background(
+        AppColor.Page.background
+    )
 }
