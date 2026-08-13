@@ -20,24 +20,28 @@ struct TrekDetailBadge: View {
         
         SceneDetailGroup(title: title) {
             
-            HStack(alignment: .top, spacing: Styles.badgeInfoSpacing) {
+            ScrollView(.horizontal) {
                 
-                ForEach(trek.completion?.unlockedBadges ?? trek.badgesToUnlock){ badge in
+                HStack(alignment: .top, spacing: Styles.badgeInfoSpacing) {
                     
-                    SingleBadgeContent(
-                        badge: badge.icon,
-                        name: badge.name
-                    )
-                    .onTapGesture {
-                        selectedBadge = badge
+                    ForEach(trek.completion?.unlockedBadges ?? trek.badgesToUnlock){ badge in
+                        
+                        SingleBadgeContent(
+                            badge: badge.icon,
+                            name: badge.name
+                        )
+                        .onTapGesture {
+                            selectedBadge = badge
+                        }
+                        
                     }
                     
                 }
+                .padding(.top, Styles.badgeInfoPaddingTop)
                 
             }
-            .padding(.top, Styles.badgeInfoPaddingTop)
-            
         }
+        .scrollIndicators(.hidden)
         .popup(item: $selectedBadge) { badge in
             BadgePopupView(obtained: trek.isCompleted, badge: badge)
         } customize: {

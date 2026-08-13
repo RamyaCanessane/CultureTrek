@@ -2309,7 +2309,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
     badgesToUnlock: [badgePanorama, badgeStreetArt, badgeVoixDeBelleville],
     city: "Paris",
     completion: nil,
-    department: "Paris",
+    department: "Île-de-France",
     distance: Measurement(value: 4.2, unit: UnitLength.kilometers),
     duration: .seconds(2 * 3600 + 30 * 60),
     elevation: .high,

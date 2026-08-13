@@ -28,34 +28,47 @@ struct CompletedTrekDetailPhotos: View {
         
         SceneDetailGroup(title: title) {
             
-            HStack(alignment: .top, spacing: Styles.photoSpacing) {
+            ScrollView(.horizontal){
                 
-                if let hasPhoto = trek.completion?.photos {
+                HStack(alignment: .top, spacing: Styles.photoSpacing) {
                     
-                    ForEach(hasPhoto.enumerated(), id: \.offset){ item in
+                    if let hasPhoto = trek.completion?.photos {
                         
-                        SinglePhotoCompletedDetail(
-                            photo: item.element.image,
-                            order: item.element.riddleOrder
-                        )
+                        ForEach(hasPhoto.enumerated(), id: \.offset){ item in
+                            
+                            SinglePhotoCompletedDetail(
+                                photo: item.element.image,
+                                order: item.element.riddleOrder
+                            )
                             .onTapGesture {
                                 selectedImage = .init(images: hasPhoto.map{ $0.image}, index: item.offset)
                             }
+                            
+                        }
+                        
+                        if hasPhoto.isEmpty {
+                            
+                            Text("Aucune photo prise pendant le parcours")
+                                .font(.spaceGrotesk(size: Styles.detailFontSize, weight: .regular))
+                                .foregroundStyle(Styles.detailForeground)
+                            
+                        }
+                        
+                        
+                    } else {
+                        
+                        Text("Pas de photo")
+                            .font(.spaceGrotesk(size: Styles.detailFontSize, weight: .regular))
+                            .foregroundStyle(Styles.detailForeground)
                         
                     }
                     
-                } else {
-                    
-                    Text("Pas de photo")
-                        .font(.spaceGrotesk(size: Styles.detailFontSize, weight: .regular))
-                        .foregroundStyle(Styles.detailForeground)
-                    
                 }
+                .padding(.top, Styles.photoPaddingTop)
                 
             }
-            .padding(.top, Styles.photoPaddingTop)
-            
         }
+        .scrollIndicators(.hidden)
         .fullScreenCover(item: $selectedImage) { data in
             ImageViewer(images: data.images,
                         initialImageIndex: data.index)

@@ -14,15 +14,19 @@ struct DiscoverSectionCells: View {
         GridItem(.fixed(Styles.gridCellSize)),
     ]
     
+    let oneItemRows = [
+        GridItem(.fixed(Styles.gridCellSize), spacing: Styles.gridCellHorizontalSpacing)
+    ]
+    
     let treks : [Trek]
     
     var body: some View {
         
         ScrollView(.horizontal){
             
-            LazyHGrid(rows: rows, alignment: .center, spacing: Styles.gridCellVerticalSpacing){
+            LazyHGrid(rows: treks.count > 1 ? rows : oneItemRows, alignment: .center, spacing: Styles.gridCellVerticalSpacing){
                 
-                ForEach(treks.prefix(6)) { trek in
+                ForEach(treks.count >= 1 ? treks.prefix(6) : treks.prefix(1)) { trek in
                     
                     NavigationLink {
                         TrekDetailScene(trek: trek)
@@ -37,7 +41,7 @@ struct DiscoverSectionCells: View {
             }
             .padding(.horizontal, Styles.gridCellHorizontalPadding)
         }
-        .frame(height: Styles.gridHeight)
+        .frame(maxHeight: Styles.gridHeight)
         .scrollIndicators(.hidden)
         
     }
