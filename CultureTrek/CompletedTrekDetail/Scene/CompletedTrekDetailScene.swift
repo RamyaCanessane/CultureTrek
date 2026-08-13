@@ -73,7 +73,7 @@ struct CompletedTrekDetailScene: View {
 
 fileprivate struct Styles {
     
-    static let pickerPadding = AppToken.Primitive.padding20
+    static let pickerPadding = AppToken.Primitive.padding10
     static let pickerBottomPadding = -AppToken.Primitive.padding8
     
     static let detailSectionsSpacing = AppToken.Primitive.spacing8
