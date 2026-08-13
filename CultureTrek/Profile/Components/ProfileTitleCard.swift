@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ProfileTitleCard: View {
-    let title: String = "MA LOCALISATION"
+    let title: String = "Ma localisation"
     var body: some View {
         Text(title)
+            .textCase(.uppercase)
             .fontWeight(.heavy)
             .fontWidth(.condensed)
             .font(.system(size: 20))

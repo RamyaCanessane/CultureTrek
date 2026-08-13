@@ -23,6 +23,7 @@ struct ProfileScene: View {
         .background(AppColor.Page.background)
         .scrollBounceBehavior(.basedOnSize)
         .sceneHeader("Profil", onDismiss: {dismiss()})
+        .foregroundStyle(AppColor.Label.primary)
     }
 }
 
@@ -30,8 +31,8 @@ struct ProfileScene: View {
     ProfileScene(user: User(
         coordinate: CLLocationCoordinate2D(latitude: 48.848222, longitude: 2.395925),
         currentXPPoints: 2100,
-        firstName: "CAMILLE",
-        lastName: "SAWADA",
+        firstName: "Camille",
+        lastName: "Sawada",
         picture: Image(""))
     )
 }
