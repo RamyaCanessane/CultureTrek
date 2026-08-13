@@ -74,10 +74,12 @@ struct RiddleFlowScene: View {
                           matching: .images)
             .fullScreenCover(isPresented: $vm.isQuizPresented,
                              onDismiss: {
+                vm.completeTrek()
                 dismiss()
             }) {
                 QuizScene(questions: vm.getQuizQuestions(),
-                          trekMode: vm.trekMode)
+                          trekMode: vm.trekMode,
+                          onCompletePoints: vm.completeQuiz)
             }
             .task(id: vm.selectedPhotoItem) {
                 if let data = try? await vm.selectedPhotoItem?.loadTransferable(type: Data.self) {

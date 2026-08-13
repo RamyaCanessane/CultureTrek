@@ -14,22 +14,33 @@ struct QuizScene: View {
     @Environment(AppStore.self) private var appStore
     @Environment(\.dismiss) private var dismiss
     
-    init(questions: [QuizQuestion], trekMode: Trek.Mode) {
+    private let onCompletePoints: (UInt) -> Void
+    
+    init(questions: [QuizQuestion],
+         trekMode: Trek.Mode,
+         onCompletePoints: @escaping (UInt) -> Void) {
+        print("--- Init of QuizScene")
+        
         self._vm = State(initialValue: .init(questions: questions,
                                              trekMode: trekMode))
+        self.onCompletePoints = onCompletePoints
+        print("--- /END Init of QuizScene")
     }
     
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                TitledCard(title: "Question \(vm.currentQuestion.order)", content: vm.currentQuestion.question, kind: .secondary)
+                TitledCard(title: "Question \(vm.currentQuestion.order)",
+                           content: vm.currentQuestion.question,
+                           kind: .secondary)
                 
                 if vm.currentAnswer == nil {
                     Spacer()
                     
                     VStack(spacing: 12) {
                         ForEach(vm.currentQuestion.answers, id: \.self) { answer in
-                            AnswerButton(selectedAnswer: $vm.selectedAnswer, answer: answer)
+                            AnswerButton(selectedAnswer: $vm.selectedAnswer,
+                                         answer: answer)
                         }
                     }
                 } else {
@@ -61,10 +72,13 @@ struct QuizScene: View {
         .sceneFooter {
             bottomBar
         }
-        .fullScreenCover(isPresented: $vm.isFinishedQuizPresented, onDismiss: {
+        .fullScreenCover(isPresented: $vm.isFinishedQuizPresented,
+                         onDismiss: {
             dismiss()
         }) {
-            FinishedQuizScene(vm: vm, user: appStore.user)
+            FinishedQuizScene(vm: vm,
+                              user: appStore.user,
+                              onCompletePoints: onCompletePoints)
         }
         .popup(isPresented: $vm.isGoodPopupPresented) {
             GoodActionPopupView(title: "Bonne réponse !",
@@ -129,7 +143,8 @@ struct QuizScene: View {
 
 #Preview() {
     QuizScene(questions: trekU.quizQuestions,//QuizQuestion.examples,
-              trekMode: Trek.Mode.ranked)
+              trekMode: Trek.Mode.ranked,
+              onCompletePoints: { _ in })
         .environment(AppStore(user: .example))
 }
 

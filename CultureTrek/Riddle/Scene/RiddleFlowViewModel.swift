@@ -44,6 +44,7 @@ final class RiddleFlowViewModel {
     
     var isTrekFinishedPresented: Bool = false
     var isQuizPresented: Bool = false
+    var quizEarnedPoints: UInt = 0
     
     private var startDate: Date?
     private var duration: Duration?
@@ -246,6 +247,7 @@ final class RiddleFlowViewModel {
         self.currentRiddleIndex = 0
         self.startDate = nil
         self.duration = nil
+        self.quizEarnedPoints = 0
     }
     
     private func goToFinishedTrekScene() {
@@ -367,8 +369,6 @@ final class RiddleFlowViewModel {
     }
     
     private func startQuiz() {
-        completeTrek()
-        
         isQuizPresented = true
     }
     
@@ -378,17 +378,20 @@ final class RiddleFlowViewModel {
         onDismiss()
     }
     
-    private func completeTrek() {
+    func completeQuiz(points: UInt) {
+        quizEarnedPoints = points
+    }
+    
+    func completeTrek() {
         let photos = getPhotosFromRiddles()
         
         if trekMode == .ranked {
             print(sourceTrek.completion ?? "Completion is nil")
             
-            let points = calculatePoints()
+            let points = calculatePoints() + quizEarnedPoints
             let badges = getUnlockedBadges()
             
-            sourceTrek.complete(date: .now,
-                                duration: duration ?? .seconds(0),
+            sourceTrek.complete(duration: duration ?? .seconds(0),
                                 earnedPoints: points,
                                 photos: photos,
                                 unlockedBadges: badges)
@@ -401,8 +404,7 @@ final class RiddleFlowViewModel {
             
             print(sourceUser)
         } else {
-            sourceTrek.complete(date: .now,
-                                photos: photos)
+            sourceTrek.complete(photos: photos)
             
             print(sourceUser)
             

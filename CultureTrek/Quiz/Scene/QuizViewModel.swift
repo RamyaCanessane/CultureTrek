@@ -24,7 +24,8 @@ class QuizViewModel {
     init(questions: [QuizQuestion], trekMode: Trek.Mode) {
         self.questions = questions
         self.trekMode = trekMode
-        self.answers = Array(repeating: nil, count: questions.count)
+        self.answers = Array(repeating: nil,
+                             count: questions.count)
     }
     
     var currentQuestion: QuizQuestion {

@@ -2334,7 +2334,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: nil,
             photos: [],
             summary: "Ce quartier populaire du nord-est parisien fut longtemps une commune indépendante, réputée pour ses vignes et ses guinguettes, avant d'être annexée à Paris en 1860. Son nom illustre à la fois sa vue dégagée sur la capitale et son ancienne réputation de « beau village ». Rends-toi à la station de métro (lignes 2 et 11) qui porte aujourd'hui ce même nom : le rendez-vous est à l'extérieur, côté boulevard.",
-            validationPoints: 10
+            validationPoints: 40
         ),
         Riddle(
             clue: "Le nom de cette rue rime avec celui de ses anciens tenanciers de bal, les Dénoyez.",
@@ -2345,7 +2345,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: Image("riddle_rue_denoyez"), // https://commons.wikimedia.org/wiki/File:Plaque_Rue_D%C3%A9noyez_-_Paris_XX_(FR75)_-_2021-06-10_-_1.jpg
             photos: [],
             summary: "Dans les années 1830, une famille du cru tenait ici un bal populaire surnommé la « Folie ». Aujourd'hui, ce sont des bombes de peinture, et non des violons, qui animent ses façades borgnes, changeant de visage presque chaque semaine. Trouve cette ruelle pavée de 150 mètres, tapie entre deux artères plus commerçantes, et immortalise le mur qui t'aura le plus marqué.",
-            validationPoints: 15
+            validationPoints: 50
         ),
         Riddle(
             clue: "Cherche le numéro pair, à deux chiffres, sur la rue qui donne son nom au quartier.",
@@ -2356,7 +2356,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: Image("riddle_plaque_piaf"), // https://commons.wikimedia.org/wiki/File:Plaque_%C3%89dith_Piaf,_72_rue_de_Belleville,_Paris_20e_1.jpg
             photos: [],
             summary: "Une plaque, posée par un autre monstre sacré de la chanson française, affirme qu'un bébé serait né sur les marches de cet immeuble en plein hiver 1915, « dans le plus grand dénuement ». Son état civil raconte une tout autre histoire, à l'hôpital voisin. Trouve l'adresse où la légende, plus belle que la vérité, continue de résonner.",
-            validationPoints: 15
+            validationPoints: 45
         ),
         Riddle(
             clue: "Cherche un petit temple de pierre rond, coiffé d'une sorte de lanterne, au milieu d'un jardin public du 19e arrondissement.",
@@ -2367,7 +2367,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: Image("riddle_regard_lanterne"), // https://commons.wikimedia.org/wiki/File:Regard_de_la_Lanterne_01.jpg
             photos: [],
             summary: "Sous la colline de Belleville coule une eau qu'on ne voit plus. Depuis le XVIIe siècle, un petit édifice rond, coiffé d'un dôme et d'un lanternon, veille sur son passage : c'est lui qui a donné son nom au jardin qui l'abrite aujourd'hui, coincé entre des tours des années 1970. Trouve ce vestige, aussi discret que précieux.",
-            validationPoints: 20
+            validationPoints: 30
         ),
         Riddle(
             clue: "Cherche un nom d'eau qui tombe, au singulier ou au pluriel selon les cartes.",
@@ -2378,7 +2378,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: nil,
             photos: [],
             summary: "Cette rue en pente doit son nom aux flots qui, avant d'être canalisés, dévalaient autrefois la colline. Ses maisons basses et ses ateliers d'artistes n'ont rien d'haussmannien : ils rappellent plutôt un village qui aurait refusé de disparaître. Descends cette rue qui relie les hauteurs de Belleville aux abords de la place des Fêtes.",
-            validationPoints: 15
+            validationPoints: 50
         ),
         Riddle(
             clue: "L'une de ses grilles d'entrée porte le nom de délicates fleurs à cinq pétales, symbole de paix.",
@@ -2389,7 +2389,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: nil,
             photos: [],
             summary: "Contrairement à son voisin des Buttes-Chaumont, ce jardin n'a rien d'haussmannien : il n'a même pas quarante ans. Construit sur d'anciennes carrières de gypse, il cultive pourtant, tout en haut, un souvenir bien plus ancien : une vigne. Entre par l'une de ses grilles, et prépare-toi à grimper.",
-            validationPoints: 15
+            validationPoints: 60
         ),
         Riddle(
             clue: "Le nom de ce point de vue rend hommage à un photographe humaniste du 20e arrondissement, célèbre pour ses clichés en noir et blanc de Paris.",
@@ -2400,7 +2400,7 @@ fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
             picture: Image("riddle_belvedere_willy_ronis"), // https://commons.wikimedia.org/wiki/File:Vue_depuis_le_Parc_de_Belleville.JPG
             photos: [],
             summary: "Tout en haut de la colline, à 108 mètres d'altitude, un pavillon domine tout Paris : la tour Eiffel, le Sacré-Cœur, et par temps clair, bien plus loin encore. Il porte le nom d'un photographe qui a consacré son œuvre au Paris populaire, et qui vivait justement dans cet arrondissement. Arrête-toi ici : c'est la plus belle vue gratuite de la capitale, et la fin de ce parcours.",
-            validationPoints: 25
+            validationPoints: 30
         )
     ],
     quizQuestions: [

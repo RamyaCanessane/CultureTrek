@@ -88,40 +88,41 @@ class Trek : Identifiable {
     }
     
     struct CompletionData: CustomStringConvertible {
-        let date: Date
-        let duration: Duration?
-        let earnedPoints: UInt?
-        let photos: [RiddlePhoto]
-        let unlockedBadges: [Badge]
+        var date: Date
+        var duration: Duration?
+        var earnedPoints: UInt?
+        var photos: [RiddlePhoto]
+        var unlockedBadges: [Badge]
         
         var description: String {
             "[\nDate: \(date.formatted(date: .abbreviated, time: .shortened))\nduration: \(duration?.formatted(), default: "N/A")\nPoints: \(earnedPoints, default: "N/A")\nPhotos: \(photos.count)\nBadges: \(unlockedBadges.count)\n]"
         }
     }
-    
-    func complete(date: Date, photos: [RiddlePhoto]) {
-        self.completion = .init(date: date,
+
+    func complete(photos: [RiddlePhoto]) {
+        self.completion = .init(date: .now,
                                 duration: nil,
                                 earnedPoints: nil,
                                 photos: photos,
                                 unlockedBadges: [])
+        
         self.isCompleted = true
     }
     
     func complete(
-        date: Date,
         duration: Duration,
         earnedPoints: UInt,
         photos: [RiddlePhoto],
         unlockedBadges: [Badge]
     ) {
         self.completion = .init(
-            date: date,
+            date: .now,
             duration: duration,
             earnedPoints: earnedPoints,
             photos: photos,
             unlockedBadges: unlockedBadges
         )
+        
         self.isCompleted = true
     }
 }

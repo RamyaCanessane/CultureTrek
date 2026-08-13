@@ -17,10 +17,14 @@ struct FinishedQuizScene: View {
     @State private var progressBarData: LevelCalculator.ProgressBarData?
     
     private let user: User
+    private let onCompletePoints: (UInt) -> Void
     
-    init(vm: QuizViewModel, user: User) {
+    init(vm: QuizViewModel,
+         user: User,
+         onCompletePoints: @escaping (UInt) -> Void) {
         self.vm = vm
         self.user = user
+        self.onCompletePoints = onCompletePoints
 
         let points = vm.getFinishedPoints()
         
@@ -86,11 +90,15 @@ struct FinishedQuizScene: View {
         .scrollBounceBehavior(.basedOnSize)
         .sceneFooter {
             Button("Fermer le quiz") {
-                dismiss()
+                let points = vm.getFinishedPoints()
                 
-                user.addXPPoints(vm.getFinishedPoints())
+                user.addXPPoints(points)
+                
+                onCompletePoints(points)
                 
                 print(user)
+                
+                dismiss()
             }
             .buttonStyle(.neubrutProminent(kind: .neutral, icon: nil, isFullWidth: true))
         }
@@ -102,5 +110,6 @@ struct FinishedQuizScene: View {
 
 #Preview {
     FinishedQuizScene(vm: QuizViewModel(questions: QuizQuestion.examples, trekMode: Trek.Mode.ranked),
-                      user: .example)
+                      user: .example,
+                      onCompletePoints: { _ in })
 }

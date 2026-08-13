@@ -50,7 +50,7 @@ extension User {
     )
     
     static let liveDemoExample: User = .init(coordinate: CLLocationCoordinate2D(latitude: 48.848222, longitude: 2.395925),
-                                             currentXPPoints: 4105,
+                                             currentXPPoints: 2305,
                                              firstName: "Sasha",
                                              lastName: "Lima",
                                              picture: AppImage.heroTestPicture)
