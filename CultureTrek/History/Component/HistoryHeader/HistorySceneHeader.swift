@@ -8,24 +8,23 @@
 import SwiftUI
 
 struct HistorySceneHeader: View {
+    @Environment(\.dismiss) private var dismiss
+    
     let firstTab: String
     let secondTab: String
     @Binding var tabState: NeubrutTabPicker.TabState
     @Binding var filterOption: FilterButton.Option
     
     var body: some View {
-        HStack(
-            spacing: HistoryHeadlerStyles.spacer
-        ){
+        HStack {
             NeubrutTabPicker(
                 nameFirstTab: firstTab,
                 nameSecondTab: secondTab,
                 state: $tabState
             )
-            .frame(
-                width: 200,
-                height: 40
-            )
+            
+            Spacer()
+            
             if tabState == .first {
                 FilterButton(
                     selection: $filterOption
@@ -33,11 +32,6 @@ struct HistorySceneHeader: View {
             }
         }
     }
-}
-
-fileprivate enum HistoryHeadlerStyles {
-    static let spacer = AppToken.Primitive.spacing20
-    static let padding = AppToken.Primitive.padding4
 }
 
 #Preview {

@@ -334,7 +334,7 @@ fileprivate let trekLouvreTuileries = Trek(
     badgesToUnlock: [badgeLouvre],
     city: "Paris",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 6),
+        date: Date.from(year: 2026, month: 7, day: 30),
         duration: .seconds(2 * 3600 + 10 * 60),
         earnedPoints: 560,
         photos: [],
@@ -642,7 +642,7 @@ fileprivate let trekRoisAthletes = Trek(
     ],
     city: "Saint-Denis",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 12),
         duration: .seconds(1 * 3600 + 45 * 60),
         earnedPoints: 450,
         photos: [],
@@ -786,7 +786,7 @@ fileprivate let trekOurcq = Trek(
     ],
     city: "Pantin",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 3),
         duration: .seconds(1 * 3600 + 10 * 60),
         earnedPoints: 280,
         photos: [],
@@ -908,7 +908,7 @@ fileprivate let trekMontreuil = Trek(
     ],
     city: "Montreuil",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 30),
         duration: .seconds(2 * 3600 + 15 * 60),
         earnedPoints: 520,
         photos: [],
@@ -1077,7 +1077,7 @@ fileprivate let trekSaintOuen = Trek(
     ],
     city: "Saint-Ouen-sur-Seine",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 8, day: 6),
         duration: .seconds(1 * 3600 + 30 * 60),
         earnedPoints: 310,
         photos: [],
@@ -1343,7 +1343,7 @@ fileprivate let trekSceaux = Trek(
     ],
     city: "Sceaux",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 16),
         duration: .seconds(1 * 3600 + 45 * 60),
         earnedPoints: 220,
         photos: [],
@@ -1464,7 +1464,7 @@ fileprivate let trekCourbevoie = Trek(
     ],
     city: "Courbevoie",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 30),
         duration: .seconds(2 * 3600 + 10 * 60),
         earnedPoints: 600,
         photos: [],
@@ -1631,7 +1631,7 @@ fileprivate let trekMeudon = Trek(
     ],
     city: "Meudon",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 3),
         duration: .seconds(1 * 3600 + 45 * 60),
         earnedPoints: 310,
         photos: [],
