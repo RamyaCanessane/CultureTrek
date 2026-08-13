@@ -74,7 +74,7 @@ fileprivate let trekQuartierLatin = Trek(
     ],
     isLiked: true,
     name: "Mystères du Quartier Latin",
-    picture: Image(.mystèresDuQuartierLatin), //"Mystères du Quartier Latin"
+    picture: Image("Mystères du Quartier Latin"), //"Mystères du Quartier Latin"
     riddles: [
         Riddle(
             clue: "La station se situe sur la ligne 7, dans le 5e arrondissement.",
@@ -524,7 +524,7 @@ fileprivate let trekMarais = Trek(
     ],
     isLiked: true,
     name: "Flânerie Médiévale dans le Marais",
-    picture: Image(.flânerieMédiévaleDansLeMarais), // Flânerie Médiévale dans le Marais
+    picture: Image("Flânerie Médiévale dans le Marais"), // Flânerie Médiévale dans le Marais
     riddles: [
         Riddle(
             clue: "Station de la ligne 9 située à l'ouest du Palais de Chaillot.",
@@ -1213,7 +1213,7 @@ fileprivate let trekBoulogne = Trek(
     goodToKnow: ["Prévois de bonnes chaussures, les trottoirs pavés sont nombreux."],
     isLiked: true,
     name: "L'âge d'or de Boulogne",
-    picture: Image(.lÂgeDOrDeBoulogne), // L'âge d'or de Boulogne
+    picture: Image("L'âge d'or de Boulogne"), // L'âge d'or de Boulogne
     riddles: [
         Riddle(
             clue: "La station porte le nom d'un célèbre homme politique socialiste.",
@@ -1357,7 +1357,7 @@ fileprivate let trekSceaux = Trek(
     goodToKnow: ["Le parc ferme ses grilles au coucher du soleil."],
     isLiked: false,
     name: "Les mystères du Domaine de Sceaux",
-    picture: Image(.lesMystèresDuDomaineDeSceaux), // Les mystères du Domaine de Sceaux
+    picture: Image("Les mystères du Domaine de Sceaux"), // Les mystères du Domaine de Sceaux
     riddles: [
         Riddle(
             clue: "Une gare RER de la ligne B.",
@@ -1478,7 +1478,7 @@ fileprivate let trekCourbevoie = Trek(
     goodToKnow: ["Le vent souffle souvent fort sur l'esplanade !"],
     isLiked: true,
     name: "L'art caché sous les tours",
-    picture: Image(.lArtCachéSousLesTours), // L'art caché sous les tours
+    picture: Image("L'art caché sous les tours"), // L'art caché sous les tours
     riddles: [
         Riddle(
             clue: "Un immense cube évidé blanc.",
