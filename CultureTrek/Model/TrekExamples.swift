@@ -14,7 +14,9 @@ extension Trek {
     static var liveDemoExamples: [Trek] {
         let list = parisTreks + seineSaintDenisTreks + alongTheMarneTreks
         
-        return list.shuffled()
+        let shuffled = list.shuffled()
+        
+        return [goldenTrekLesHauteursDeBelleville] + shuffled
     }
 }
 
@@ -2278,4 +2280,193 @@ fileprivate let trekTresorsLagny = Trek(
     ],
     region: "Île-de-France",
     summary: "Explore une cité médiévale riche en mystères, ayant accueilli Jeanne d'Arc."
+)
+
+// MARK: - Golden Trek
+
+fileprivate let badgePanorama = Badge(
+    icon: Image(systemName: "mountain.2.fill"),
+    name: "Panorama Conquis"
+)
+
+fileprivate let badgeStreetArt = Badge(
+    icon: Image(systemName: "paintpalette.fill"),
+    name: "Œil de Street-Artiste"
+)
+
+fileprivate let badgeVoixDeBelleville = Badge(
+    icon: Image(systemName: "music.mic"),
+    name: "Voix de Belleville"
+)
+
+fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
+    accessibility: Trek.Accessibility(
+        bike: false,
+        stroller: false,
+        walking: true,
+        wheelchair: false
+    ),
+    badgesToUnlock: [badgePanorama, badgeStreetArt, badgeVoixDeBelleville],
+    city: "Paris",
+    completion: nil,
+    department: "Paris",
+    distance: Measurement(value: 4.2, unit: UnitLength.kilometers),
+    duration: .seconds(2 * 3600 + 30 * 60),
+    elevation: .high,
+    goal: "Grimper la colline de Belleville sur les traces des vignerons, des artistes de rue et d'Édith Piaf, pour découvrir un Paris populaire loin des sentiers battus.",
+    goodToKnow: [
+        "Beaucoup d'escaliers et de pentes : prévoir de bonnes chaussures.",
+        "Le street art de la rue Dénoyez change très régulièrement, ne t'étonne pas si une œuvre a disparu depuis la dernière mise à jour.",
+        "L'intérieur du Regard de la Lanterne ne se visite qu'aux Journées européennes du Patrimoine ; le jardin, lui, est en accès libre toute l'année."
+    ],
+    isLiked: false,
+    name: "Les Hauteurs de Belleville",
+    picture: Image("trek_belleville_cover"), // https://commons.wikimedia.org/wiki/File:P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG
+    riddles: [
+        Riddle(
+            clue: "Pense à ce que l'on voit depuis les hauteurs, et à ce qui rend un lieu agréable à regarder.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.87189, longitude: 2.37716),
+            goodToKnow: "Belleville fut une commune indépendante jusqu'en 1860, année de son annexion par Paris, en même temps que Montmartre et Ménilmontant.",
+            isCompleted: false,
+            order: 1,
+            picture: nil,
+            photos: [],
+            summary: "Ce quartier populaire du nord-est parisien fut longtemps une commune indépendante, réputée pour ses vignes et ses guinguettes, avant d'être annexée à Paris en 1860. Son nom illustre à la fois sa vue dégagée sur la capitale et son ancienne réputation de « beau village ». Rends-toi à la station de métro (lignes 2 et 11) qui porte aujourd'hui ce même nom : le rendez-vous est à l'extérieur, côté boulevard.",
+            validationPoints: 10
+        ),
+        Riddle(
+            clue: "Le nom de cette rue rime avec celui de ses anciens tenanciers de bal, les Dénoyez.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.87160, longitude: 2.37850),
+            goodToKnow: "En mars 1918, un obus de la « Grosse Bertha » explosa au numéro 10 de cette rue, un souvenir aujourd'hui recouvert par les fresques.",
+            isCompleted: false,
+            order: 2,
+            picture: Image("riddle_rue_denoyez"), // https://commons.wikimedia.org/wiki/File:Plaque_Rue_D%C3%A9noyez_-_Paris_XX_(FR75)_-_2021-06-10_-_1.jpg
+            photos: [],
+            summary: "Dans les années 1830, une famille du cru tenait ici un bal populaire surnommé la « Folie ». Aujourd'hui, ce sont des bombes de peinture, et non des violons, qui animent ses façades borgnes, changeant de visage presque chaque semaine. Trouve cette ruelle pavée de 150 mètres, tapie entre deux artères plus commerçantes, et immortalise le mur qui t'aura le plus marqué.",
+            validationPoints: 15
+        ),
+        Riddle(
+            clue: "Cherche le numéro pair, à deux chiffres, sur la rue qui donne son nom au quartier.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.87330, longitude: 2.38230),
+            goodToKnow: "C'est Maurice Chevalier qui fit apposer cette plaque en 1963, l'année de la mort d'Édith Piaf. Son acte de naissance indique qu'elle est en réalité née à l'hôpital Tenon, tout proche.",
+            isCompleted: false,
+            order: 3,
+            picture: Image("riddle_plaque_piaf"), // https://commons.wikimedia.org/wiki/File:Plaque_%C3%89dith_Piaf,_72_rue_de_Belleville,_Paris_20e_1.jpg
+            photos: [],
+            summary: "Une plaque, posée par un autre monstre sacré de la chanson française, affirme qu'un bébé serait né sur les marches de cet immeuble en plein hiver 1915, « dans le plus grand dénuement ». Son état civil raconte une tout autre histoire, à l'hôpital voisin. Trouve l'adresse où la légende, plus belle que la vérité, continue de résonner.",
+            validationPoints: 15
+        ),
+        Riddle(
+            clue: "Cherche un petit temple de pierre rond, coiffé d'une sorte de lanterne, au milieu d'un jardin public du 19e arrondissement.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.87880, longitude: 2.39350),
+            goodToKnow: "Construit entre 1583 et 1613, le Regard de la Lanterne servait de tête de pont au grand aqueduc de Belleville, qui alimentait plusieurs fontaines de la rive droite. Il est classé monument historique depuis 1899.",
+            isCompleted: false,
+            order: 4,
+            picture: Image("riddle_regard_lanterne"), // https://commons.wikimedia.org/wiki/File:Regard_de_la_Lanterne_01.jpg
+            photos: [],
+            summary: "Sous la colline de Belleville coule une eau qu'on ne voit plus. Depuis le XVIIe siècle, un petit édifice rond, coiffé d'un dôme et d'un lanternon, veille sur son passage : c'est lui qui a donné son nom au jardin qui l'abrite aujourd'hui, coincé entre des tours des années 1970. Trouve ce vestige, aussi discret que précieux.",
+            validationPoints: 20
+        ),
+        Riddle(
+            clue: "Cherche un nom d'eau qui tombe, au singulier ou au pluriel selon les cartes.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.87300, longitude: 2.38650),
+            goodToKnow: "La rue des Cascades suit le tracé d'un ancien réseau d'aqueducs médiévaux et a longtemps été un lieu de villégiature prisé pour ses sources.",
+            isCompleted: false,
+            order: 5,
+            picture: nil,
+            photos: [],
+            summary: "Cette rue en pente doit son nom aux flots qui, avant d'être canalisés, dévalaient autrefois la colline. Ses maisons basses et ses ateliers d'artistes n'ont rien d'haussmannien : ils rappellent plutôt un village qui aurait refusé de disparaître. Descends cette rue qui relie les hauteurs de Belleville aux abords de la place des Fêtes.",
+            validationPoints: 15
+        ),
+        Riddle(
+            clue: "L'une de ses grilles d'entrée porte le nom de délicates fleurs à cinq pétales, symbole de paix.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.86980, longitude: 2.38330),
+            goodToKnow: "Inauguré en 1988 seulement, le Parc de Belleville a repris la tradition viticole de la colline, cultivée dès l'époque carolingienne par des moines.",
+            isCompleted: false,
+            order: 6,
+            picture: nil,
+            photos: [],
+            summary: "Contrairement à son voisin des Buttes-Chaumont, ce jardin n'a rien d'haussmannien : il n'a même pas quarante ans. Construit sur d'anciennes carrières de gypse, il cultive pourtant, tout en haut, un souvenir bien plus ancien : une vigne. Entre par l'une de ses grilles, et prépare-toi à grimper.",
+            validationPoints: 15
+        ),
+        Riddle(
+            clue: "Le nom de ce point de vue rend hommage à un photographe humaniste du 20e arrondissement, célèbre pour ses clichés en noir et blanc de Paris.",
+            coordinate: CLLocationCoordinate2D(latitude: 48.87083, longitude: 2.38472),
+            goodToKnow: "Le belvédère fut renommé en 2015 en hommage à Willy Ronis (1910-2009), photographe qui vécut de nombreuses années dans le 20e arrondissement et immortalisa le Paris populaire.",
+            isCompleted: false,
+            order: 7,
+            picture: Image("riddle_belvedere_willy_ronis"), // https://commons.wikimedia.org/wiki/File:Vue_depuis_le_Parc_de_Belleville.JPG
+            photos: [],
+            summary: "Tout en haut de la colline, à 108 mètres d'altitude, un pavillon domine tout Paris : la tour Eiffel, le Sacré-Cœur, et par temps clair, bien plus loin encore. Il porte le nom d'un photographe qui a consacré son œuvre au Paris populaire, et qui vivait justement dans cet arrondissement. Arrête-toi ici : c'est la plus belle vue gratuite de la capitale, et la fin de ce parcours.",
+            validationPoints: 25
+        )
+    ],
+    quizQuestions: [
+        QuizQuestion(
+            answers: [
+                .bad("1789"),
+                .bad("1900"),
+                .good("1860"),
+                .bad("1919")
+            ],
+            badAnswerExplanation: "Belleville a conservé son statut de commune jusqu'en 1860, année du grand agrandissement de Paris sous Napoléon III.",
+            goodAnswerFact: "En 1860, Paris annexe plusieurs communes limitrophes, dont Belleville, Montmartre et Auteuil, faisant passer la capitale de 12 à 20 arrondissements.",
+            order: 1,
+            question: "Jusqu'en quelle année Belleville fut-il une commune indépendante avant d'être annexé par Paris ?",
+            result: .undefined
+        ),
+        QuizQuestion(
+            answers: [
+                .bad("Le plus grand parc de Paris"),
+                .good("Le plus haut parc de Paris"),
+                .bad("Le plus ancien parc de Paris")
+            ],
+            badAnswerExplanation: "Avec ses 4,5 hectares, le Parc de Belleville est plutôt modeste en taille, et il fut inauguré seulement en 1988 : ni le plus grand, ni le plus ancien de la capitale.",
+            goodAnswerFact: "Culminant à 108 mètres, le Parc de Belleville offre le point de vue en plein air le plus élevé de la capitale, devançant même la Butte Montmartre.",
+            order: 2,
+            question: "Avec ses 108 mètres d'altitude, que peut-on dire du Parc de Belleville par rapport aux autres jardins parisiens ?",
+            result: .undefined
+        ),
+        QuizQuestion(
+            answers: [
+                .bad("D'un ancien maire de Belleville"),
+                .bad("D'un peintre qui y avait son atelier"),
+                .good("D'une famille qui tenait un bal populaire, la Folie Dénoyez"),
+                .bad("D'une variété de vigne locale")
+            ],
+            badAnswerExplanation: "Aucun de ces éléments n'est à l'origine du nom : c'est bien une famille de tenanciers de bal qui a légué son nom à la rue, bien avant l'arrivée du street art.",
+            goodAnswerFact: "Dans les années 1830, la famille Dénoyez tenait un bal public très populaire, la « Folie Dénoyez », qui a donné son nom à la rue.",
+            order: 3,
+            question: "D'où vient le nom de la rue Dénoyez, aujourd'hui célèbre pour son street art ?",
+            result: .undefined
+        ),
+        QuizQuestion(
+            answers: [
+                .bad("Dans une roulotte de cirque"),
+                .good("À l'hôpital Tenon, rue de la Chine"),
+                .bad("Sur les marches du 72 rue de Belleville"),
+                .bad("À l'hôpital Necker")
+            ],
+            badAnswerExplanation: "La légende de la naissance sur les marches, entretenue par Piaf elle-même puis par la plaque commémorative, n'est pas corroborée par l'état civil.",
+            goodAnswerFact: "Son acte de naissance indique qu'Édith Giovanna Gassion est née le 19 décembre 1915 à l'hôpital Tenon, situé rue de la Chine, à quelques centaines de mètres du 72 rue de Belleville.",
+            order: 4,
+            question: "Selon son acte de naissance officiel, où Édith Piaf est-elle réellement née ?",
+            result: .undefined
+        ),
+        QuizQuestion(
+            answers: [
+                .bad("À stocker des grains pendant les famines"),
+                .bad("À observer les astres depuis la colline"),
+                .good("À surveiller et capter les eaux de l'aqueduc de Belleville"),
+                .bad("À abriter les gardes de l'octroi")
+            ],
+            badAnswerExplanation: "Ce petit édifice n'a jamais eu de fonction militaire, agricole ou astronomique : sa forme et son emplacement sont directement liés à la gestion de l'eau.",
+            goodAnswerFact: "Construit entre 1583 et 1613, le Regard de la Lanterne permettait de surveiller et de collecter les eaux souterraines de la colline de Belleville, acheminées ensuite vers les fontaines parisiennes.",
+            order: 5,
+            question: "À quoi servait historiquement le Regard de la Lanterne, dans le jardin du même nom ?",
+            result: .undefined
+        )
+    ],
+    region: "Île-de-France",
+    summary: "Un parcours vallonné entre le 19e et le 20e arrondissement, entre vignes urbaines, fresques éphémères, vestiges hydrauliques médiévaux et légende de la môme Piaf, jusqu'au plus haut belvédère gratuit de la capitale."
 )
