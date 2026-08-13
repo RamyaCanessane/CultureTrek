@@ -10,7 +10,7 @@ import SwiftUI
 struct SinglePhotoCompletedDetail: View {
     
     let photo : UIImage?
-    let order : Int?
+    let order : UInt?
     
     var body: some View {
         
@@ -55,5 +55,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    SinglePhotoCompletedDetail(photo: Trek.liveDemoExamples.first?.completion?.photos.first!.image, order: 1)
+    SinglePhotoCompletedDetail(photo: Trek.liveDemoExamples.first?.completion?.photos.first!.image, order: Trek.liveDemoExamples.first?.completion?.photos.first!.riddleOrder)
 }

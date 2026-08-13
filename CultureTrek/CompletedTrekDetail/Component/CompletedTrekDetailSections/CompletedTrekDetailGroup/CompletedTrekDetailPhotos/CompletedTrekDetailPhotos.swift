@@ -38,7 +38,7 @@ struct CompletedTrekDetailPhotos: View {
                             
                             SinglePhotoCompletedDetail(
                                 photo: item.element.image,
-                                order: item.offset
+                                order: item.element.riddleOrder
                             )
                             .onTapGesture {
                                 selectedImage = .init(images: hasPhoto.map{ $0.image}, index: item.offset)
