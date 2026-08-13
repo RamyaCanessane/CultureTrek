@@ -58,10 +58,13 @@ struct HistorySceneInternal: View {
             )
             .padding(.horizontal)
         }
-        .sceneHeader(
-            "Historique"
-        )
+        .safeAreaInset(edge: .top) {
+            SceneHeader(title: "Historique")
+                .padding(.horizontal)
+                .padding(.bottom, AppToken.Primitive.spacing4)
+        }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarVisibility(.hidden, for: .navigationBar)
     }
     
     private var listView: some View {
@@ -102,6 +105,7 @@ struct HistorySceneInternal: View {
                     Text(
                         item.title
                     )
+                    .foregroundStyle(AppColor.Label.primary)
                 }
                 .headerProminence(
                     .increased
@@ -129,6 +133,7 @@ struct HistorySceneInternal: View {
             "Historique"
         )
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarVisibility(.hidden, for: .navigationBar)
     }
 }
 

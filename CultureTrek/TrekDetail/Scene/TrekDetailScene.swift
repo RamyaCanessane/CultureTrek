@@ -10,18 +10,26 @@ import SwiftUI
 struct TrekDetailScene: View {
     
     let trek : Trek
+    @State var trekIsCompleted: Bool = true
+    
+    @Environment(TrekStore.self) private var trekStore
     
     var body: some View {
-        
-        if trek.isCompleted {
-            
-            CompletedTrekDetailScene(trek: trek)
-                .frame(maxWidth: .infinity)
-            
-        } else {
-            
-            TrekDetailUncompletedScene(trek: trek)
-            
+        Group {
+            if trek.isCompleted {
+                CompletedTrekDetailScene(trek: trek)
+                    .frame(maxWidth: .infinity)
+            } else {
+                TrekDetailUncompletedScene(trek: trek)
+            }
+        }
+        .onAppear {
+            trekIsCompleted = trek.isCompleted
+        }
+        .onDisappear {
+            if trek.isCompleted && !trekIsCompleted {
+                trekStore.addTrekToHistory(trek)
+            }
         }
     }
     

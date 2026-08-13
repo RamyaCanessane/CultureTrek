@@ -18,4 +18,10 @@ final class TrekStore {
         self.treks = treks
         self.historyTreks = historyTreks
     }
+    
+    func addTrekToHistory(_ trek: Trek) {
+        if !historyTreks.contains(where: { $0.id == trek.id }) {
+            historyTreks.append(trek)
+        }
+    }
 }
