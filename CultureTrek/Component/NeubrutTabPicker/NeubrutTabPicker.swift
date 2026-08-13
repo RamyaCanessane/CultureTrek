@@ -13,6 +13,11 @@ struct NeubrutTabPicker: View {
     
     @Binding var state: TabState
     
+    enum TabState{
+        case first
+        case second
+    }
+    
     var body: some View {
         HStack(spacing: TabPickerStyles.spacingZero){
             TabSelection(nameTab: nameFirstTab, isOn: state == .first)
@@ -49,11 +54,6 @@ struct NeubrutTabPicker: View {
                 .padding(.bottom, 0)
         }
     }
-}
-
-enum TabState{
-    case first
-    case second
 }
 
 struct TabSelection: View {

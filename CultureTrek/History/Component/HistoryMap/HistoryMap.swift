@@ -10,12 +10,7 @@ import SwiftUI
 
 struct HistoryMap: View {
     let treks: [Trek]
-    let firstTab: String
-    let secondTab: String
-//    let mapSelected: Bool
-    
-    @State private var state : TabState = .second
-    
+
     var body: some View {
         Map {
             ForEach(
@@ -58,13 +53,6 @@ struct HistoryMap: View {
                     }
                 }
             }
-        }
-        .overlay(
-            alignment: .topLeading
-        ) {
-            HistorySceneHeadler(firstTab: "Liste", secondTab: "Carte"
-            )
-            .padding()
         }
     }
 }
@@ -227,10 +215,7 @@ fileprivate enum HistoryMapStyles {
 #Preview {
     NavigationStack{
         HistoryMap(
-            treks: Trek.examples,
-//            treks: trekList,
-            firstTab: "Liste",
-            secondTab: "Carte"
+            treks: Trek.examples
         )
     }
 }

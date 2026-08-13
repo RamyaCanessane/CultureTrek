@@ -1,64 +1,65 @@
 //
-//  HistoryUniversalScene.swift
+//  HistoryScene.swift
 //  CultureTrek
 //
-//  Created by Apprenant162 on 10/08/2026.
+//  Created by Apprenant162 on 11/08/2026.
 //
 
 import SwiftUI
+import CoreLocation
 
-struct HistoryUniversalScene: View {
-    let mainTitle: Text
-    let tabOne: String
-    let tabTwo: String
+struct HistoryScene: View {
+    
+    @State private var vm: HistoryViewModel
+    
+    init(treks: [Trek]) {
+        self._vm = State(initialValue: HistoryViewModel(treks: treks))
+    }
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(
-                    spacing: AppToken.Primitive.spacing6
-                ) {
-                    
-                    HistorySceneTitle(
-                        sceneTitle: mainTitle
-                    )
-                    
-                    HistorySceneHeadler(
-                        firstTab: tabOne,
-                        secondTab: tabTwo
-                    )
-                    
-//                    ForEach(
-//                        sortedTreks,
-//                        id: \.name
-//                    ) { trek in
-//                        HistorySceneSection(
-//                            sectionTitle: sectionTitle(
-//                                for: trek
-//                            ),
-//                            city: trek.city,
-//                            department: trek.department ,
-//                            name: trek.name,
-//                            picture: trek.picture,
-//                            region: trek.region
-//                        )
-//                    }
+        Group {
+            if vm.tabState == .first {
+                List {
+                    ForEach(vm.sortedTreks, id: \.title) { item in
+                        Section {
+                            ForEach(item.treks) { trek in
+                                TrekCell(
+                                    city: trek.city,
+                                    department: trek.department,
+                                    name: trek.name,
+                                    picture: trek.picture,
+                                    region: trek.region,
+                                    isBig: true
+                                )
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(.vertical, 8)
+                            }
+                        } header: {
+                            Text(item.title)
+                        }
+                        .headerProminence(.increased)
+                    }
                 }
+                .listStyle(.plain)
+                .background(AppColor.Page.background)
+            } else {
+                HistoryMap(treks: vm.treks)
             }
-            .background(
-                AppColor.Page.background
+        }
+        .safeAreaInset(edge: .top) {
+            HistorySceneHeader(
+                firstTab: "Liste",
+                secondTab: "Carte",
+                tabState: $vm.tabState,
+                filterOption: $vm.filterOption
             )
         }
+        .sceneHeader("Historique")
     }
 }
-//
-//    private var sortedTreks: [Trek] {
-//        treks
-//            .sorted {
-////mettre par date, ville etc
-//            }
-//    }
 
+/*
 fileprivate let trekList: [Trek] = [
     Trek(
         accessibility: .init(
@@ -202,17 +203,8 @@ fileprivate let trekList: [Trek] = [
         summary: nil
     )
 ]
+ */
 
 #Preview {
-    HistoryUniversalScene(
-        mainTitle: Text(
-            "History"
-        ),
-        tabOne: "Kiso",
-        tabTwo: "Miso",
-    )
-    .padding()
-    .background(
-        AppColor.Page.background
-    )
+    HistoryScene(treks: Trek.liveDemoHistoryExamples)
 }

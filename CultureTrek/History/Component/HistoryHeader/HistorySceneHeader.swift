@@ -1,5 +1,5 @@
 //
-//  HistorySceneHeadler.swift
+//  HistorySceneHeader.swift
 //  CultureTrek
 //
 //  Created by Apprenant162 on 09/08/2026.
@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-struct HistorySceneHeadler: View {
+struct HistorySceneHeader: View {
     let firstTab: String
     let secondTab: String
-    let isOn: Bool = false
-    @State var state: TabState = .second
-    @State var filterOption: FilterButton.Option = .date
+    @Binding var tabState: NeubrutTabPicker.TabState
+    @Binding var filterOption: FilterButton.Option
     
     var body: some View {
         HStack(
@@ -21,13 +20,13 @@ struct HistorySceneHeadler: View {
             NeubrutTabPicker(
                 nameFirstTab: firstTab,
                 nameSecondTab: secondTab,
-                state: $state
+                state: $tabState
             )
             .frame(
                 width: 200,
                 height: 40
             )
-            if state == .first {
+            if tabState == .first {
                 FilterButton(
                     selection: $filterOption
                 )
@@ -42,10 +41,15 @@ fileprivate enum HistoryHeadlerStyles {
 }
 
 #Preview {
+    @Previewable @State var state: NeubrutTabPicker.TabState = .first
+    @Previewable @State var filterOption: FilterButton.Option = .date
+    
     VStack{
-        HistorySceneHeadler(
+        HistorySceneHeader(
             firstTab: "Liste",
-            secondTab: "Carte"
+            secondTab: "Carte",
+            tabState: $state,
+            filterOption: $filterOption
         )
     }
     .padding()

@@ -11,7 +11,7 @@ struct CompletedTrekDetailScene: View {
     
     let trek : Trek
     
-    @State private var state: TabState = .first
+    @State private var state: NeubrutTabPicker.TabState = .first
     
     @State private var showRiddleFullScreen = false
     @State private var showQuizFullScreen = false

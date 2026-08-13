@@ -57,7 +57,7 @@ fileprivate let trekQuartierLatin = Trek(
     badgesToUnlock: [badgeQuartierLatin],
     city: "Paris",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 12),
         duration: .seconds(1 * 3600 + 35 * 60),
         earnedPoints: 480,
         photos: [],
@@ -207,7 +207,7 @@ fileprivate let trekMontmartre = Trek(
     badgesToUnlock: [badgeMontmartre],
     city: "Paris",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 7, day: 30),
         duration: .seconds(2 * 3600 + 0 * 60),
         earnedPoints: 390,
         photos: [],
@@ -334,7 +334,7 @@ fileprivate let trekLouvreTuileries = Trek(
     badgesToUnlock: [badgeLouvre],
     city: "Paris",
     completion: Trek.CompletionData(
-        date: Date.from(year: 2026, month: 8, day: 14),
+        date: Date.from(year: 2026, month: 8, day: 6),
         duration: .seconds(2 * 3600 + 10 * 60),
         earnedPoints: 560,
         photos: [],
