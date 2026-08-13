@@ -20,6 +20,8 @@ extension Trek {
     }
 }
 
+let trekU = goldenTrekLesHauteursDeBelleville
+
 // MARK: Trek à Paris
 
 fileprivate let parisTreks = [
@@ -2301,7 +2303,7 @@ fileprivate let badgeVoixDeBelleville = Badge(
 
 fileprivate let goldenTrekLesHauteursDeBelleville = Trek(
     accessibility: Trek.Accessibility(
-        bike: false,
+        bike: true,
         stroller: false,
         walking: true,
         wheelchair: false

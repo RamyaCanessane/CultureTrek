@@ -36,18 +36,7 @@ struct ContentView: View {
             
             NeubrutTab(activeIcon: AppTab.search.activeIcon,
                        inactiveIcon: AppTab.search.inactiveIcon) {
-//                AppTab.search.rootView
-                VStack {
-                    Button("Open Trek") {
-                        isTrekOpen = true
-                    }
-                    
-                    Text("User has \(appStore.user.currentXPPoints) XP points")
-                }
-                .fullScreenCover(isPresented: $isTrekOpen) {
-                    RiddleFlowScene(trek: Trek.liveDemoExamples.first!,
-                                    user: appStore.user)
-                }
+                AppTab.search.rootView
             }
         }
     }

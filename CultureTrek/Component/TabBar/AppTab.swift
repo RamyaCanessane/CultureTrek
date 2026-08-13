@@ -55,8 +55,7 @@ enum AppTab: String, Identifiable {
         case .discover:
             DiscoverScene()
         case .history:
-            Text("History scene")
-                .frame(maxWidth: .infinity)
+            HistoryScene()
         case .ranking:
             Text("Ranking scene")
                 .frame(maxWidth: .infinity)

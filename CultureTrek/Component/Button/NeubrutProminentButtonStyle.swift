@@ -153,7 +153,7 @@ fileprivate struct Styles {
     static let pressedAnimation = AppToken.buttonPressedAnimation
     
     static let height = AppToken.buttonHeight
-    static let hPadding = AppToken.Primitive.padding5
+    static let hPadding = AppToken.Primitive.padding3
     
     static let cornerRadius = AppToken.cornerRadius
     static let shape = RoundedRectangle(cornerRadius: cornerRadius)

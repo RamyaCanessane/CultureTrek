@@ -97,9 +97,9 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    let user = User.example
+    let user = User.liveDemoExample
     
-    RiddleFlowScene(trek: /*.liveDemoExamples.first ?? */testTrek,
+    RiddleFlowScene(trek: /*.liveDemoExamples.first ?? */trekU,
                     user: user)
     .environment(AppStore(user: user))
 }

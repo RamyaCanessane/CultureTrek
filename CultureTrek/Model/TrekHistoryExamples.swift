@@ -656,7 +656,7 @@ fileprivate let trekRoisAthletes = Trek(
     goodToKnow: ["Prévoir des chaussures confortables", "Accès facile en Métro 13"],
     isLiked: true,
     name: "Des Rois aux Athlètes",
-    picture: Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: "https://images.unsplash.com/photo-1549144511-f099e773c147")!))!),
+    picture: Image(.trekCite), // "https://images.unsplash.com/photo-1549144511-f099e773c147"
     riddles: [
         Riddle(
             clue: "Recherche la station 'Basilique de Saint-Denis' sur la ligne 13.",
@@ -800,7 +800,7 @@ fileprivate let trekOurcq = Trek(
     goodToKnow: ["Idéal à vélo ou à pied", "Nombreux cafés le long du canal"],
     isLiked: false,
     name: "L'Art au Fil de l'Ourcq",
-    picture: Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34")!))!),
+    picture: Image(.trekCite), // "https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
     riddles: [
         Riddle(
             clue: "Station Hoche ou Église de Pantin.",
@@ -924,7 +924,7 @@ fileprivate let trekMontreuil = Trek(
     goodToKnow: ["Dénivelé moyen", "Secteur préservé des Murs à pêches"],
     isLiked: true,
     name: "Les Secret des Murs à Pêches",
-    picture: Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: "https://images.unsplash.com/photo-1500382017468-9049fed747ef")!))!),
+    picture: Image(.trekCite), // "https://images.unsplash.com/photo-1500382017468-9049fed747ef"
     riddles: [
         Riddle(
             clue: "Place du Général de Gaulle / Mairie de Montreuil.",
@@ -1093,7 +1093,7 @@ fileprivate let trekSaintOuen = Trek(
     goodToKnow: ["Marché ouvert du samedi au lundi", "Attention à la foule le week-end"],
     isLiked: true,
     name: "L'Énigme des Puces",
-    picture: Image(uiImage: UIImage(data: try! Data(contentsOf: URL(string: "https://images.unsplash.com/photo-1513151233558-d860c5398176")!))!),
+    picture: Image(.trekCite), // "https://images.unsplash.com/photo-1513151233558-d860c5398176"
     riddles: [
         Riddle(
             clue: "Station Porte de Clignancourt.",

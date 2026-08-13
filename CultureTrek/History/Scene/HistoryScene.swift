@@ -10,6 +10,15 @@ import CoreLocation
 
 struct HistoryScene: View {
     
+    @Environment(TrekStore.self) private var store
+    
+    var body: some View {
+        HistorySceneInternal(treks: store.historyTreks)
+    }
+}
+
+struct HistorySceneInternal: View {
+    
     @State private var vm: HistoryViewModel
     
     init(
@@ -124,12 +133,11 @@ struct HistoryScene: View {
 }
 
 #Preview {
-    @Previewable @State var trekStore = TrekStore()
+    @Previewable @State var trekStore = TrekStore(treks: Trek.liveDemoExamples,
+                                                  historyTreks: Trek.liveDemoHistoryExamples)
     @Previewable @State var appStore = AppStore()
     
-    HistoryScene(
-        treks: Trek.liveDemoHistoryExamples
-    )
+    HistoryScene()
     .environment(trekStore)
     .environment(appStore)
 }

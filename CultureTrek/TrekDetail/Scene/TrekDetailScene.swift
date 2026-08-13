@@ -16,7 +16,7 @@ struct TrekDetailScene: View {
         if trek.isCompleted {
             
             CompletedTrekDetailScene(trek: trek)
-                .frame(width: .infinity)
+                .frame(maxWidth: .infinity)
             
         } else {
             

@@ -91,7 +91,7 @@ struct LevelWithProgressBar: View {
                         Rectangle()
                         .fill(AppColor.accentSecondary)
                         .strokeBorder(AppColor.border, lineWidth: AppToken.borderWidth)
-                        .frame(width: geo.size.width * progression - 4 + AppToken.borderWidth / 2.0, height: 16)
+                        .frame(width: max(geo.size.width * progression - 4 + AppToken.borderWidth / 2.0, 0), height: 16)
                         
                         UnevenRoundedRectangle(
                             topLeadingRadius: AppToken.Primitive.radiusNone,
@@ -101,7 +101,7 @@ struct LevelWithProgressBar: View {
                         )
                         .fill(AppColor.xpPoints)
                         .strokeBorder(AppColor.border, lineWidth: AppToken.borderWidth)
-                        .frame(width: geo.size.width * progressionNew - 4 + AppToken.borderWidth / 2.0 - (currentPoints < 1 ? 5 : 0), height: 16)
+                        .frame(width: max(geo.size.width * progressionNew - 4 + AppToken.borderWidth / 2.0 - (currentPoints < 1 ? 5 : 0), 0), height: 16)
                         .offset(x: currentPoints < 1 ? 2 : 0)
                     }
                     .offset(x: 4)

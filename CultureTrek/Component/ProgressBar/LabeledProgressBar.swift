@@ -47,7 +47,7 @@ struct LabeledProgressBar: View {
                         )
                         .fill(AppColor.accentSecondary)
                         .strokeBorder(AppColor.border, lineWidth: AppToken.borderWidth)
-                        .frame(width: geo.size.width * progression - 8, height: 16)
+                        .frame(width: max(geo.size.width * progression - 8, 0), height: 16)
                         .offset(x: 4)
                     }
             }

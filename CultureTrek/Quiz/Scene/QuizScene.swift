@@ -128,7 +128,8 @@ struct QuizScene: View {
 }
 
 #Preview() {
-    QuizScene(questions: QuizQuestion.examples, trekMode: Trek.Mode.ranked)
+    QuizScene(questions: trekU.quizQuestions,//QuizQuestion.examples,
+              trekMode: Trek.Mode.ranked)
         .environment(AppStore(user: .example))
 }
 

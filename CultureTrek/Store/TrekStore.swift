@@ -11,8 +11,11 @@ import Foundation
 final class TrekStore {
     
     var treks : [Trek] = []
+    var historyTreks : [Trek] = []
     
-    init(treks: [Trek] = Trek.examples) {
+    init(treks: [Trek] = Trek.examples,
+         historyTreks: [Trek] = Trek.liveDemoHistoryExamples) {
         self.treks = treks
+        self.historyTreks = historyTreks
     }
 }

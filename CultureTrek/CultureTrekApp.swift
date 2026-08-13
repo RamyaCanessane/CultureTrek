@@ -9,8 +9,9 @@ import SwiftUI
 
 @main
 struct CultureTrekApp: App {
-    let trekStore = TrekStore(treks: Trek.liveDemoExamples)
-    let appStore = AppStore()
+    let trekStore = TrekStore(treks: Trek.liveDemoExamples,
+                              historyTreks: Trek.liveDemoHistoryExamples)
+    let appStore = AppStore(user: User.liveDemoExample)
 
     var body: some Scene {
         WindowGroup {
