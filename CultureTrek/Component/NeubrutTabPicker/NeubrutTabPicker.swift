@@ -11,23 +11,40 @@ struct NeubrutTabPicker: View {
     let nameFirstTab: String
     let nameSecondTab: String
     
-    //    @State var state: TabState = .first
     @Binding var state: TabState
+    
+    @Namespace private var namespace
+    
+    enum TabState{
+        case first
+        case second
+    }
     
     var body: some View {
         HStack(spacing: TabPickerStyles.spacingZero){
-            TabSelection(nameTab: nameFirstTab, isOn: state == .first)
+            TabSelection(
+                nameTab: nameFirstTab,
+                isOn: state == .first,
+                namespace: namespace
+            )
                 .onTapGesture {
-                    state = .first
+                    withAnimation(.bouncy) {
+                        state = .first
+                    }
                 }
             
-            TabSelection(nameTab: nameSecondTab, isOn: state == .second)
+            TabSelection(
+                nameTab: nameSecondTab,
+                isOn: state == .second,
+                namespace: namespace
+            )
                 .onTapGesture {
-                    state = .second
+                    withAnimation(.bouncy) {
+                        state = .second
+                    }
                 }
         }
         .padding(.horizontal, TabPickerStyles.paddingExtern)
-        .frame(maxWidth: .infinity)
         .frame(height: TabPickerStyles.heightExtern)
         .clipShape(TabPickerStyles.shape)
         .background {
@@ -49,18 +66,13 @@ struct NeubrutTabPicker: View {
                 .padding(.trailing, -TabPickerStyles.shadowSize)
                 .padding(.bottom, 0)
         }
-
     }
-}
-
-enum TabState{
-    case first
-    case second
 }
 
 struct TabSelection: View {
     let nameTab: String
     let isOn: Bool
+    let namespace: Namespace.ID
     
     var body: some View {
         HStack(spacing: TabPickerStyles.spacing){
@@ -69,18 +81,22 @@ struct TabSelection: View {
                 .foregroundStyle(TabPickerStyles.textColor)
         }
         .padding(.horizontal, TabPickerStyles.paddingInter)
-        .frame(maxWidth: .infinity, alignment: .center)
         .frame(height: TabPickerStyles.heightInter)
-        .background(isOn ?
-                    TabPickerStyles.backgroundIsSelected
-                    : TabPickerStyles.backgroundNoSelected)
-        .clipShape(TabPickerStyles.shape)
-        .overlay {
-            TabPickerStyles.shape
-                .strokeBorder(isOn ?
-                              TabPickerStyles.borderColor
-                              : Color.clear,
-                              lineWidth: TabPickerStyles.borderWidth)
+        .background {
+            if isOn {
+                TabPickerStyles.shape
+                    .fill(TabPickerStyles.backgroundIsSelected)
+                    .overlay {
+                        TabPickerStyles.shape
+                            .strokeBorder(TabPickerStyles.borderColor,
+                                          lineWidth: TabPickerStyles.borderWidth)
+                    }
+                    .matchedGeometryEffect(id: "neubrut_tab_picker_item",
+                                           in: namespace)
+            } else {
+                TabPickerStyles.shape
+                    .fill(TabPickerStyles.backgroundNoSelected)
+            }
         }
     }
 }
@@ -107,8 +123,10 @@ fileprivate enum TabPickerStyles {
 }
 
 #Preview {
+    @Previewable @State var tab: NeubrutTabPicker.TabState = .first
+    
     VStack{
-        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte", state: .constant(.first))
+        NeubrutTabPicker(nameFirstTab: "Liste", nameSecondTab: "Carte", state: $tab)
     }
     .padding()
     .frame(width: 200)

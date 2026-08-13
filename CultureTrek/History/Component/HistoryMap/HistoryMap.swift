@@ -10,14 +10,9 @@ import SwiftUI
 
 struct HistoryMap: View {
     let treks: [Trek]
-    let firstTab: String
-    let secondTab: String
-    
-    @State private var state : TabState = .first
     
     var body: some View {
         Map {
-            //            NeubrutTabPicker(nameFirstTab: firstTab, nameSecondTab: secondTab)
             ForEach(
                 treks
             ){ trek in
@@ -25,189 +20,41 @@ struct HistoryMap: View {
                     trek.name,
                     coordinate: trek.coordinate
                 ) {
-                    Image(
-                        systemName: "flag.pattern.checkered"
-                    )
-                    .foregroundStyle(
-                        HistoryMapStyles.fillColor
-                    )
-                    .frame(
-                        width: 40,
-                        height: 40
-                    )
-                    .background(
-                        HistoryMapStyles.background,
-                        in: .circle
-                    )
-                    .clipShape(
-                        HistoryMapStyles.shape
-                    )
-                    .overlay {
-                        HistoryMapStyles.shape
-                            .strokeBorder(
-                                HistoryMapStyles.borderColor,
-                                lineWidth: HistoryMapStyles.borderWidth
-                            )
+                    NavigationLink {
+                        TrekDetailScene(trek: trek)
+                    } label: {
+                        Image(
+                            systemName: "flag.pattern.checkered"
+                        )
+                        .font(.system(size: 18,
+                                      weight: .bold))
+                        .foregroundStyle(
+                            HistoryMapStyles.fillColor
+                        )
+                        .frame(
+                            width: 40,
+                            height: 40
+                        )
+                        .background(
+                            HistoryMapStyles.background,
+                            in: .circle
+                        )
+                        .clipShape(
+                            HistoryMapStyles.shape
+                        )
+                        .overlay {
+                            HistoryMapStyles.shape
+                                .strokeBorder(
+                                    HistoryMapStyles.borderColor,
+                                    lineWidth: HistoryMapStyles.borderWidth
+                                )
+                        }
                     }
                 }
             }
         }
-        .overlay(
-            alignment: .topLeading
-        ) {
-            NeubrutTabPicker(
-                nameFirstTab: firstTab,
-                nameSecondTab: secondTab, state: $state
-            )
-            .frame(width: 212, height: 100)
-            .padding()
-        }
     }
 }
-
-fileprivate let trekList: [Trek] = [
-    Trek(
-        accessibility: .init(
-            bike: false,
-            stroller: false,
-            walking: false,
-            wheelchair: false
-        ),
-        badgesToUnlock: [],
-        city: "",
-        completion: nil,
-        department: nil,
-        distance: .init(
-            value: 1,
-            unit: UnitLength.kilometers
-        ),
-        duration:
-                .seconds(
-                    3600
-                ),
-        elevation: .low,
-        goal: nil,
-        goodToKnow: [],
-        isLiked: true,
-        name: "Hôtel de Ville",
-        picture: Image(
-            .trekTestPicture
-        ),
-        riddles: [
-            .init(
-                clue: nil,
-                coordinate: CLLocationCoordinate2D(
-                    latitude: 48.8566,
-                    longitude: 2.3522
-                ),
-                goodToKnow: nil,
-                isCompleted: true,
-                order: 1,
-                picture: nil,
-                photos: [],
-                summary: "",
-                validationPoints: 0
-            )
-        ],
-        quizQuestions: [],
-        region: "",
-        summary: nil
-    ),
-    Trek(
-        accessibility: .init(
-            bike: false,
-            stroller: false,
-            walking: false,
-            wheelchair: false
-        ),
-        badgesToUnlock: [],
-        city: "",
-        completion: nil,
-        department: nil,
-        distance: .init(
-            value: 1,
-            unit: UnitLength.kilometers
-        ),
-        duration:
-                .seconds(
-                    3600
-                ),
-        elevation: .low,
-        goal: nil,
-        goodToKnow: [],
-        isLiked: true,
-        name: "Tour Eiffel",
-        picture: Image(
-            .trekTestPicture
-        ),
-        riddles: [
-            .init(
-                clue: nil,
-                coordinate: CLLocationCoordinate2D(
-                    latitude: 48.8584,
-                    longitude: 2.2945
-                ),
-                goodToKnow: nil,
-                isCompleted: true,
-                order: 1,
-                picture: nil,
-                photos: [],
-                summary: "",
-                validationPoints: 0
-            )
-        ],
-        quizQuestions: [],
-        region: "",
-        summary: nil
-    ),
-    Trek(
-        accessibility: .init(
-            bike: false,
-            stroller: false,
-            walking: false,
-            wheelchair: false
-        ),
-        badgesToUnlock: [],
-        city: "",
-        completion: nil,
-        department: nil,
-        distance: .init(
-            value: 1,
-            unit: UnitLength.kilometers
-        ),
-        duration:
-                .seconds(
-                    3600
-                ),
-        elevation: .low,
-        goal: nil,
-        goodToKnow: [],
-        isLiked: true,
-        name: "Musée du Louvre",
-        picture: Image(
-            .trekTestPicture
-        ),
-        riddles: [
-            .init(
-                clue: nil,
-                coordinate: CLLocationCoordinate2D(
-                    latitude: 48.8606,
-                    longitude: 2.3376
-                ),
-                goodToKnow: nil,
-                isCompleted: true,
-                order: 1,
-                picture: nil,
-                photos: [],
-                summary: "",
-                validationPoints: 0
-            )
-        ],
-        quizQuestions: [],
-        region: "",
-        summary: nil
-    )
-]
 
 fileprivate enum HistoryMapStyles {
     static let background = AppColor.accentPrimary // ou Secondary
@@ -221,9 +68,9 @@ fileprivate enum HistoryMapStyles {
 }
 
 #Preview {
-    HistoryMap(
-        treks: trekList,
-        firstTab: "Liste",
-        secondTab: "Carte"
-    )
+    NavigationStack{
+        HistoryMap(
+            treks: Trek.liveDemoHistoryExamples
+        )
+    }
 }
