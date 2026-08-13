@@ -60,7 +60,6 @@ struct SolutionRow: View {
                 .opacity(isExpanded ? 1 : 0)
                 .blur(radius: isExpanded ? 0 : 10)
                 .frame(height: isExpanded ? nil : 0)
-//                .transition(.move(edge: .bottom).combined(with: .opacity))
         }
         .padding(AppToken.Primitive.padding4)
         .frame(maxWidth: .infinity, alignment: .leading)

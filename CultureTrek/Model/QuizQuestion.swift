@@ -74,19 +74,19 @@ extension QuizQuestion {
             question: "Quelle fête a été créée en France en 1982 et se déroule le jour du solstice d'été ?",
             result: .undefined
         ),
-//        QuizQuestion(
-//            answers: [
-//                .bad("Le camembert"),
-//                .bad("Le chausson aux pommes"),
-//                .good("La baguette"),
-//                .bad("Le croissant")
-//            ],
-//            badAnswerExplanation: "C'est « l'artisanat d'art et la culture de la baguette de pain » qui a été inscrit en 2022.",
-//            goodAnswerFact: "Chaque jour, environ 12 millions de Français poussent la porte d'une boulangerie.",
-//            order: 4,
-//            question: "Quel symbole culinaire français a été inscrit au patrimoine immatériel de l'UNESCO en 2022 ?",
-//            result: .undefined
-//        ),
+        QuizQuestion(
+            answers: [
+                .bad("Le camembert"),
+                .bad("Le chausson aux pommes"),
+                .good("La baguette"),
+                .bad("Le croissant")
+            ],
+            badAnswerExplanation: "C'est « l'artisanat d'art et la culture de la baguette de pain » qui a été inscrit en 2022.",
+            goodAnswerFact: "Chaque jour, environ 12 millions de Français poussent la porte d'une boulangerie.",
+            order: 4,
+            question: "Quel symbole culinaire français a été inscrit au patrimoine immatériel de l'UNESCO en 2022 ?",
+            result: .undefined
+        ),
 //        QuizQuestion(
 //            answers: [
 //                .bad("Des gaufres"),

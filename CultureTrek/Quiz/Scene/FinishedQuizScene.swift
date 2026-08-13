@@ -26,8 +26,7 @@ struct FinishedQuizScene: View {
         
         print("QuizFinished, currentPoints = \(user.currentXPPoints), earned: \(points)")
         
-        self._progressBarData = State(initialValue: LevelCalculator.getProgressBarData(currentXPPoints: user.currentXPPoints,
-                                                                                       newXPPoints: points))
+        self._progressBarData = State(initialValue: LevelCalculator.getProgressBarData(currentXPPoints: user.currentXPPoints, newXPPoints: points))
     }
     
     var body: some View {
@@ -55,7 +54,7 @@ struct FinishedQuizScene: View {
                         width: .condensed,
                         foreground: AppColor.Label.primary
                     )
-                    Text("Bien joué ! Tu maîtrises bien le sujet, encore un petit effort pour le sans-faute !")
+                    Text(vm.customResultMessage)
                         .font(.spaceGrotesk(size: 15, weight: .medium))
                         .foregroundStyle(AppColor.Label.primary)
                 }
