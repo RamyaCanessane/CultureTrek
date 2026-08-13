@@ -55,8 +55,10 @@ final class DiscoverViewModel {
     }
     
     var marne : [Trek] {
-        store.treks
-            .filter({ $0.city.lowercased().contains("Marne".lowercased()) })
+        
+        let treksWithDepartment = store.treks.filter({$0.department != nil})
+        
+        return treksWithDepartment.filter({ $0.department!.lowercased().contains("Marne".lowercased()) })
     }
     
     //Intention
