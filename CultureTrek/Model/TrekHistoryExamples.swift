@@ -74,7 +74,7 @@ fileprivate let trekQuartierLatin = Trek(
     ],
     isLiked: true,
     name: "Mystères du Quartier Latin",
-    picture: Image(systemName: "building.columns"), // https://images.unsplash.com/photo-1502602898657-3e91760cbb34
+    picture: Image(.mystèresDuQuartierLatin), //"Mystères du Quartier Latin"
     riddles: [
         Riddle(
             clue: "La station se situe sur la ligne 7, dans le 5e arrondissement.",
@@ -224,7 +224,7 @@ fileprivate let trekMontmartre = Trek(
     ],
     isLiked: false,
     name: "Les Secrets de Montmartre",
-    picture: Image(systemName: "paintpalette"), // https://images.unsplash.com/photo-1509299349698-dd22323b5963
+    picture: Image(.lesSecretsDeMontmartre), // Les Secrets de Montmartre
     riddles: [
         Riddle(
             clue: "Station de la ligne 12 célèbre pour son édicule Guimard.",
@@ -351,7 +351,7 @@ fileprivate let trekLouvreTuileries = Trek(
     ],
     isLiked: true,
     name: "L'Axe Historique du Louvre aux Tuileries",
-    picture: Image(systemName: "crown"), // https://images.unsplash.com/photo-1499856871958-5b9627545d1a
+    picture: Image(.lAxeHistoriqueDuLouvreAuxTuileries), // L'Axe Historique du Louvre aux Tuileries
     riddles: [
         Riddle(
             clue: "Station de la ligne 12 au bord du boulevard Saint-Germain.",
@@ -524,7 +524,7 @@ fileprivate let trekMarais = Trek(
     ],
     isLiked: true,
     name: "Flânerie Médiévale dans le Marais",
-    picture: Image(systemName: "building.columns"), // https://images.unsplash.com/photo-1549144511-f099e773c147
+    picture: Image(.flânerieMédiévaleDansLeMarais), // Flânerie Médiévale dans le Marais
     riddles: [
         Riddle(
             clue: "Station de la ligne 9 située à l'ouest du Palais de Chaillot.",
@@ -1213,7 +1213,7 @@ fileprivate let trekBoulogne = Trek(
     goodToKnow: ["Prévois de bonnes chaussures, les trottoirs pavés sont nombreux."],
     isLiked: true,
     name: "L'âge d'or de Boulogne",
-    picture: Image("boulogne_trek"), // URL: https://images.unsplash.com/photo-1522055745100-349f429fcdfb
+    picture: Image(.lÂgeDOrDeBoulogne), // L'âge d'or de Boulogne
     riddles: [
         Riddle(
             clue: "La station porte le nom d'un célèbre homme politique socialiste.",
@@ -1357,7 +1357,7 @@ fileprivate let trekSceaux = Trek(
     goodToKnow: ["Le parc ferme ses grilles au coucher du soleil."],
     isLiked: false,
     name: "Les mystères du Domaine de Sceaux",
-    picture: Image("sceaux_trek"), // URL: https://images.unsplash.com/photo-1596702657416-2d0bbdd47690
+    picture: Image(.lesMystèresDuDomaineDeSceaux), // Les mystères du Domaine de Sceaux
     riddles: [
         Riddle(
             clue: "Une gare RER de la ligne B.",
@@ -1478,7 +1478,7 @@ fileprivate let trekCourbevoie = Trek(
     goodToKnow: ["Le vent souffle souvent fort sur l'esplanade !"],
     isLiked: true,
     name: "L'art caché sous les tours",
-    picture: Image("defense_trek"), // URL: https://images.unsplash.com/photo-1550353127-b0ceaa6b18fa
+    picture: Image(.lArtCachéSousLesTours), // L'art caché sous les tours
     riddles: [
         Riddle(
             clue: "Un immense cube évidé blanc.",
@@ -1645,7 +1645,7 @@ fileprivate let trekMeudon = Trek(
     goodToKnow: ["Ça monte fort, prends de l'eau !", "La terrasse offre l'une des plus belles vues sur Paris."],
     isLiked: true,
     name: "L'Observatoire des Rois",
-    picture: Image("meudon_trek"), // URL: https://images.unsplash.com/photo-1451187580459-43490279c0fa
+    picture: Image(.lObservatoireDesRois), // L'Observatoire des Rois
     riddles: [
         Riddle(
             clue: "La gare RER se situe dans la vallée, cherche la ligne C.",
