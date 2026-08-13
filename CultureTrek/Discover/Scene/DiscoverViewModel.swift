@@ -36,8 +36,13 @@ final class DiscoverViewModel {
     var user : User = User.example
 
     var around : [Trek] {
-        //store.treks.filter({$0.city == user.location})
-        store.treks
+        store.treks.filter(
+            {
+                DistanceCalculator.calculateDistance(from: $0.coordinate, to: user.coordinate) < Measurement(
+                    value: 5.0,
+                    unit: .kilometers
+                )
+            })
     }
     
     var favorites : [Trek] {
@@ -45,11 +50,13 @@ final class DiscoverViewModel {
     }
     
     var paris : [Trek] {
-        store.treks.filter({$0.city.lowercased() == "Paris".lowercased()})
+        store.treks
+            .filter({$0.city.lowercased() == "Paris".lowercased()})
     }
     
     var marne : [Trek] {
-        store.treks.filter({$0.region.lowercased() == "Val-de-Marne".lowercased()})
+        store.treks
+            .filter({ $0.region.lowercased().contains("Marne".lowercased()) })
     }
     
     //Intention
