@@ -57,7 +57,7 @@ struct QuizScene: View {
             }
             .background(AppColor.Page.background)
             .scrollBounceBehavior(.basedOnSize)
-            .sceneHeader("Quiz", onDismiss: {})
+            .sceneHeader("Quiz", onDismiss: {dismiss()})
             .sceneFooter {
                 bottomBar
             }
