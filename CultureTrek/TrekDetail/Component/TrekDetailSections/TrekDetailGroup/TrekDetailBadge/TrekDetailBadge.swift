@@ -15,7 +15,7 @@ struct TrekDetailBadge: View {
     
     var body: some View {
         
-        TrekDetailGroup(title: title.uppercased()) {
+        SceneDetailGroup(title: title) {
             
             HStack(alignment: .top, spacing: Styles.badgeInfoSpacing) {
                 

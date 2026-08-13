@@ -12,6 +12,8 @@ import SwiftUI
 @Observable
 final class RiddleFlowViewModel {
     
+    var onDismiss: () -> Void = {}
+    
     private let sourceUser: User
     private let sourceTrek: Trek
     private let savedRiddles: [Riddle]
@@ -19,7 +21,7 @@ final class RiddleFlowViewModel {
     
     private var isTrekSettingsPresented: Bool
     private let estimatedTrekDuration: Duration
-    private var trekMode: Trek.Mode
+    var trekMode: Trek.Mode
     private var trekPlayFormat: Trek.PlayFormat
     private var trekIsDownloaded: Bool
     
@@ -41,6 +43,7 @@ final class RiddleFlowViewModel {
     var imageViewerData: ImageViewerData? = nil
     
     var isTrekFinishedPresented: Bool = false
+    var isQuizPresented: Bool = false
     
     private var startDate: Date?
     private var duration: Duration?
@@ -96,7 +99,7 @@ final class RiddleFlowViewModel {
                                playFormat: playFormat,
                                isDownloaded: isDownloaded)
             },
-                                     onDismiss: {})
+                                     onDismiss: onDismiss)
         }
         
         if riddles.allSatisfy(\.isCompleted) && isTrekFinishedPresented {
@@ -218,6 +221,10 @@ final class RiddleFlowViewModel {
         riddles[currentRiddleIndex].photos.append(image)
     }
     
+    func getQuizQuestions() -> [QuizQuestion] {
+        sourceTrek.quizQuestions
+    }
+    
     private var isPathButtonDisabled: Bool {
         if riddles.count(where: { $0.isCompleted }) < 1 {
             return true
@@ -279,8 +286,18 @@ final class RiddleFlowViewModel {
         }
     }
     
+    private var testFailOnce: Bool = false
+    
     private func submitRiddle() {
-        let isValid = true // TODO: add random to simulate valid and invalid riddle
+        // Simule un échec de validation pour le 3ème Riddle
+        let isValid: Bool
+        
+        if currentRiddleIndex == 2 && !testFailOnce {
+            testFailOnce = true
+            isValid = false
+        } else {
+            isValid = true
+        }
         
         if isValid {
             if currentRiddleIndex >= riddles.count - 1 {
@@ -351,10 +368,14 @@ final class RiddleFlowViewModel {
     
     private func startQuiz() {
         completeTrek()
+        
+        isQuizPresented = true
     }
     
     private func skipQuiz() {
         completeTrek()
+        
+        onDismiss()
     }
     
     private func completeTrek() {

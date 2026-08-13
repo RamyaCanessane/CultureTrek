@@ -8,11 +8,49 @@
 import SwiftUI
 
 struct CompletedTrekDetailFooter: View {
+    
+    @Binding var showRiddleFullScreen : Bool
+    @Binding var showQuizFullScreen : Bool
+    @Binding var showMapFullScreen : Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        HStack(spacing: Styles.footerSpacing){
+            
+            Button("Énigmes") {
+                
+                showRiddleFullScreen = true
+                
+            }
+            .buttonStyle(NeubrutProminentButtonStyle(kind: .primary, icon: nil, isFullWidth: true))
+            
+            Button("Quiz") {
+                
+                showQuizFullScreen = true
+                
+            }
+            .buttonStyle(NeubrutProminentButtonStyle(kind: .neutral, icon: nil, isFullWidth: true))
+            
+            Button(action: {
+                
+                showMapFullScreen = true
+                
+            }) {
+                AppImage.Icon.map.image
+            }
+            .buttonStyle(.neubrutIcon(kind: .secondary))
+            
+        }
+        
     }
 }
 
+fileprivate struct Styles {
+    
+    static let footerSpacing = AppToken.Primitive.spacing5
+    
+}
+
 #Preview {
-    CompletedTrekDetailFooter()
+    CompletedTrekDetailFooter(showRiddleFullScreen: .constant(false), showQuizFullScreen: .constant(false), showMapFullScreen: .constant(false))
 }

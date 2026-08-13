@@ -14,7 +14,7 @@ struct TrekDetailGTK: View {
     
     var body: some View {
         
-        TrekDetailGroup(title: title.uppercased()) {
+        SceneDetailGroup(title: title) {
             
             ForEach(goodToKnow, id: \.self){ tips in
                 

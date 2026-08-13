@@ -1,13 +1,13 @@
 //
-//  TrekDetailGroup.swift
+//  SceneDetailGroup.swift
 //  CultureTrek
 //
-//  Created by Apprenant174 on 11/08/2026.
+//  Created by Apprenant174 on 12/08/2026.
 //
 
 import SwiftUI
 
-struct TrekDetailGroup<Content: View>: View {
+struct SceneDetailGroup<Content: View>: View {
     
     let title : String
     
@@ -40,5 +40,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    TrekDetailGroup(title: "Description", content: { })
+    SceneDetailGroup(title: "Description", content: { })
 }

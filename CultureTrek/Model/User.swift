@@ -9,6 +9,7 @@
 import CoreLocation
 import SwiftUI
 
+@Observable
 class User: CustomStringConvertible {
     let coordinate: CLLocationCoordinate2D
     var currentXPPoints: UInt
@@ -42,7 +43,7 @@ class User: CustomStringConvertible {
 extension User {
     static let example = User(
         coordinate: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522),
-        currentXPPoints: 15,
+        currentXPPoints: 300,
         firstName: "Lena",
         lastName: "Villamore",
         picture: AppImage.heroTestPicture

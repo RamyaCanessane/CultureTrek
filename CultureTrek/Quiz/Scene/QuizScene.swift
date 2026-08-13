@@ -9,60 +9,44 @@ import SwiftUI
 import PopupView
 
 struct QuizScene: View {
-    let questions: [QuizQuestion]
-    @State private var currentIndex: Int
-    @State private var selectedAnswer: QuizQuestion.Answer? = nil
-    @State private var isAnswerSubmitted: Bool = false
-    @State private var isGoodPopupPresented: Bool = false
-    @State private var isBadPopupPresented: Bool = false
+    @State private var vm: QuizViewModel
     
-    init(questions: [QuizQuestion] = QuizQuestion.examples, currentIndex: Int = 0) {
-        self.questions = questions
-        self.currentIndex = currentIndex
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont.systemFont(ofSize: 40, weight: .black, width: .condensed)]
-    }
+    @Environment(AppStore.self) private var appStore
+    @Environment(\.dismiss) private var dismiss
     
-    private var currentQuestion: QuizQuestion {
-        questions[currentIndex]
-    }
-    
-    private var correctAnswer: QuizQuestion.Answer? {
-        for answer in currentQuestion.answers {
-            if answer.isGood {
-                return answer
-            }
-        }
-        return nil
+    init(questions: [QuizQuestion], trekMode: Trek.Mode) {
+        self._vm = State(initialValue: .init(questions: questions,
+                                             trekMode: trekMode))
     }
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    TitledCard(title: "Question \(currentIndex + 1)", content: currentQuestion.question, kind: .secondary)
-                    
-                    if !isAnswerSubmitted {
+                    TitledCard(title: "Question \(vm.currentQuestion.order)", content: vm.currentQuestion.question, kind: .secondary)
+
+                    if vm.currentAnswer == nil {
                         Spacer()
-                        
+
                         VStack(spacing: 12) {
-                            ForEach(currentQuestion.answers, id: \.self) { answer in
-                                AnswerButton(selectedAnswer: $selectedAnswer, answer: answer)
+                            ForEach(vm.currentQuestion.answers, id: \.self) { answer in
+                                AnswerButton(selectedAnswer: $vm.selectedAnswer, answer: answer)
                             }
                         }
                     } else {
-                        if let selected = selectedAnswer {
+                        if let selected = vm.currentAnswer {
                             VStack(spacing: 24) {
-                                if let correct = correctAnswer {
+                                if let correct = vm.correctAnswer {
                                     CorrectAnswerCard(answer: correct)
                                 }
                                 
-                                if selected.isGood == true {
-                                    if let fact = currentQuestion.goodAnswerFact {
-                                        TitledCard(title: "À RETENIR", content: fact, kind: .info)
+                                if selected.isGood {
+                                    if let fact = vm.currentQuestion.goodAnswerFact {
+                                        TitledCard(title: "À retenir", content: fact, kind: .info)
                                     }
                                 } else {
-                                    if let explanation = currentQuestion.badAnswerExplanation {
-                                        TitledCard(title: "EXPLICATION", content: explanation, kind: .warning)
+                                    if let explanation = vm.currentQuestion.badAnswerExplanation {
+                                        TitledCard(title: "Explication", content: explanation, kind: .warning)
                                     }
                                 }
                             }
@@ -74,27 +58,34 @@ struct QuizScene: View {
             }
             .background(AppColor.Page.background)
             .scrollBounceBehavior(.basedOnSize)
-            .sceneHeader("Quiz", onDismiss: {})
+            .sceneHeader("Quiz", onDismiss: {dismiss()})
             .sceneFooter {
                 bottomBar
             }
-            .popup(isPresented: $isGoodPopupPresented) {
-                GoodActionPopupView(title: "BONNE RÉPONSE !", obtainedXPPoints: 10)
+            .fullScreenCover(isPresented: $vm.isFinishedQuizPresented, onDismiss: {
+                dismiss()
+            }) {
+                FinishedQuizScene(vm: vm, user: appStore.user)
+            }
+            .popup(isPresented: $vm.isGoodPopupPresented) {
+                GoodActionPopupView(title: "Bonne réponse !",
+                                    obtainedXPPoints: vm.pointsForGoodAnswer)
                     .padding(32)
             } customize: {
                 $0
                     .autohideIn(4)
-                    .closeOnTap(true)
+                    .closeOnTap(false)
                     .closeOnTapOutside(false)
                     .backgroundColor(Color.black.opacity(0.32))
             }
-            .popup(isPresented: $isBadPopupPresented) {
-                BadActionPopupView(title: "MAUVAISE RÉPONSE", content: "La bonne réponse était: \(correctAnswer?.text ?? "")")
+            .popup(isPresented: $vm.isBadPopupPresented) {
+                BadActionPopupView(title: "Mauvaise réponse",
+                                   content: "La bonne réponse était : \(vm.correctAnswer?.text ?? "")")
                     .padding(32)
             } customize: {
                 $0
                     .autohideIn(4)
-                    .closeOnTap(true)
+                    .closeOnTap(false)
                     .closeOnTapOutside(false)
                     .backgroundColor(Color.black.opacity(0.32))
             }
@@ -103,60 +94,42 @@ struct QuizScene: View {
     private var bottomBar: some View {
         HStack(spacing: 16) {
             Button() {
-                if currentIndex > 0 {
-                    currentIndex -= 1
-                }
+                vm.previousQuestion()
             } label: {
                 Image(systemName: "arrow.left")
             }
             .buttonStyle(.neubrutIcon(kind: .primary))
-            .disabled(currentIndex == 0)
+            .disabled(vm.currentIndex == 0)
             
-            LabeledProgressBar(current: UInt(currentIndex + 1), total: UInt(questions.count))
-                .animation(.bouncy, value: currentIndex + 1)
+            LabeledProgressBar(
+                current: UInt(
+                    vm.currentIndex + 1
+                ),
+                total: UInt(vm.questions.count)
+            )
+                .animation(.bouncy, value: vm.currentIndex + 1)
+            
+            let isAnswered = vm.currentAnswer != nil
             
             Button() {
-                if !isAnswerSubmitted {
-                    validateAnswer()
+                if isAnswered {
+                    vm.nextQuestion()
                 } else {
-                    nextQuestion()
+                    vm.validateAnswer()
                 }
             } label: {
-                Image(systemName: isAnswerSubmitted ? "arrow.right" : "checkmark")
+                Image(systemName: isAnswered ? "arrow.right" : "checkmark")
             }
-            .buttonStyle(.neubrutIcon(kind: isAnswerSubmitted ? .primary : .success))
-            .disabled(selectedAnswer == nil)
-        }
-    }
-    
-    private func nextQuestion() {
-        if currentIndex < questions.count - 1 {
-            currentIndex += 1
-            selectedAnswer = nil
-            isAnswerSubmitted = false
-        } else {
-            print("Quiz terminé")
-        }
-    }
-    
-    private func validateAnswer() {
-        if selectedAnswer != nil {
-            isAnswerSubmitted = true
-            
-            guard let selected = selectedAnswer else {
-                return
-            }
-            
-            if selected.isGood {
-                isGoodPopupPresented = true
-            } else {
-                isBadPopupPresented = true
-            }
+            .buttonStyle(.neubrutIcon(kind: isAnswered
+                                      ? (vm.isLastQuestion ? .success : .primary)
+                                      : .success))
+            .disabled(!isAnswered && vm.selectedAnswer == nil)
         }
     }
 }
 
 #Preview() {
-    QuizScene(currentIndex: 0)
+    QuizScene(questions: QuizQuestion.examples, trekMode: Trek.Mode.ranked)
+        .environment(AppStore(user: .example))
 }
 

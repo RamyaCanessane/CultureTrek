@@ -13,6 +13,8 @@ struct TrekDetailScene: View {
     
     @State private var showFullScreenCover = false
     
+    @Environment(AppStore.self) private var appStore
+    
     var body: some View {
         
         SceneDetail(trek: trek) {
@@ -25,14 +27,18 @@ struct TrekDetailScene: View {
                 
                 showFullScreenCover = true
                 
+                print(trek.completion)
             }
             .buttonStyle(NeubrutProminentButtonStyle(kind: .primary, icon: nil, isFullWidth: true))
             .padding(Styles.buttonPadding)
             
         }
-        .fullScreenCover(isPresented: $showFullScreenCover) {
-            
-            
+        .fullScreenCover(isPresented: $showFullScreenCover,
+                         onDismiss: {
+            print(trek.completion)
+        }) {
+            RiddleFlowScene(trek: trek,
+                            user: appStore.user)
         }
         
     }
@@ -45,5 +51,10 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    TrekDetailScene(trek: Trek.example)
+    let trekStore: TrekStore = .init(treks: Trek.liveDemoExamples)
+    let appStore: AppStore = .init(user: User.liveDemoExample)
+    
+    TrekDetailScene(trek: trekStore.treks.first!)
+        .environment(trekStore)
+        .environment(appStore)
 }

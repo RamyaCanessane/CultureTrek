@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var isTrekOpen: Bool = false
+    @Environment(AppStore.self) private var appStore
+    
     var body: some View {
         NeubrutTabView {
             NeubrutTab(activeIcon: AppTab.discover.activeIcon,
@@ -32,15 +36,28 @@ struct ContentView: View {
             
             NeubrutTab(activeIcon: AppTab.search.activeIcon,
                        inactiveIcon: AppTab.search.inactiveIcon) {
-                AppTab.search.rootView
+//                AppTab.search.rootView
+                VStack {
+                    Button("Open Trek") {
+                        isTrekOpen = true
+                    }
+                    
+                    Text("User has \(appStore.user.currentXPPoints) XP points")
+                }
+                .fullScreenCover(isPresented: $isTrekOpen) {
+                    RiddleFlowScene(trek: Trek.liveDemoExamples.first!,
+                                    user: appStore.user)
+                }
             }
         }
     }
 }
 
 #Preview {
-    let trekStore = TrekStore()
+    @Previewable @State var trekStore = TrekStore()
+    @Previewable @State var appStore = AppStore()
     
     ContentView()
         .environment(trekStore)
+        .environment(appStore)
 }

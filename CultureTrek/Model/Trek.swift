@@ -1,10 +1,10 @@
 //
 //  Trek.swift
 //  CultureTrek
-//  
+//
 //  Created by Mathieu Nivelles on 30/07/2026.
 //  Copyright © 2026 Mathieu Nivelles. All rights reserved.
-//  
+//
 
 import CoreLocation
 import SwiftUI
@@ -34,7 +34,7 @@ class Trek : Identifiable {
     var coordinate: CLLocationCoordinate2D {
         riddles.first?.coordinate ?? .init(latitude: 0, longitude: 0)
     }
-
+    
     init(
         accessibility: Accessibility,
         badgesToUnlock: [Badge],
@@ -280,6 +280,19 @@ extension Trek {
         
         return autoLocaleFormat.replacingOccurrences(of: ":", with: "\(autoUnits)")
         
+    }
+    
+    func completionDurationToString() -> String {
+        
+        var formatted : String
+        
+        if let hasCompletion = completion?.duration {
+            formatted = hasCompletion.formatted(.units(allowed: [.hours, .minutes],
+                                                       width: .condensedAbbreviated))
+            return formatted
+        }
+        
+        return "Durée indisponible"
     }
     
 }

@@ -13,6 +13,10 @@ struct CompletedTrekDetailScene: View {
     
     @State private var state: TabState = .first
     
+    @State private var showRiddleFullScreen = false
+    @State private var showQuizFullScreen = false
+    @State private var showMapFullScreen = false
+    
     enum PickerTab : String {
         case summary = "Résumé"
         case info = "Infos"
@@ -22,21 +26,44 @@ struct CompletedTrekDetailScene: View {
         
         SceneDetail(trek: trek) {
             
-            VStack {
-                NeubrutTabPicker(nameFirstTab: PickerTab.summary.rawValue, nameSecondTab: PickerTab.info.rawValue, state: $state)
+            VStack(alignment: .leading, spacing: Styles.detailSectionsSpacing ){
+                
+                NeubrutTabPicker(
+                    nameFirstTab: PickerTab.summary.rawValue,
+                    nameSecondTab: PickerTab.info.rawValue,
+                    state: $state
+                )
                     .padding(.horizontal, Styles.pickerPadding)
+                    .padding(.bottom, Styles.pickerBottomPadding)
                 
                 if state == .first {
                     
-                    //CompletedTrekDetail
+                    CompletedTrekDetailSections(trek: trek)
                     
                 } else {
                     
-                    TrekDetailSections(trek: trek)
+                    CompletedTrekDetailSectionsInfo(trek: trek)
                     
                 }
                 
             }
+            .padding(.vertical, Styles.detailSectionsVerticalPadding)
+            .neubrutTabViewVisibility(.hidden)
+        }
+        .sceneFooter {
+            CompletedTrekDetailFooter(
+                showRiddleFullScreen: $showRiddleFullScreen,
+                showQuizFullScreen: $showQuizFullScreen,
+                showMapFullScreen: $showMapFullScreen
+            )
+        }
+        .fullScreenCover(isPresented: $showRiddleFullScreen) {
+            
+        }
+        .fullScreenCover(isPresented: $showQuizFullScreen) {
+            
+        }
+        .fullScreenCover(isPresented: $showMapFullScreen) {
             
         }
         
@@ -45,10 +72,14 @@ struct CompletedTrekDetailScene: View {
 
 fileprivate struct Styles {
     
-    static let pickerPadding = AppToken.Primitive.padding4
+    static let pickerPadding = AppToken.Primitive.padding20
+    static let pickerBottomPadding = -AppToken.Primitive.padding8
+    
+    static let detailSectionsSpacing = AppToken.Primitive.spacing8
+    static let detailSectionsVerticalPadding = AppToken.Primitive.spacing8
+    static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing4
     
 }
-
 
 #Preview {
     CompletedTrekDetailScene(trek: Trek.example)

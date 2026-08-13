@@ -26,7 +26,7 @@ struct TrekDetailActionBar: View {
             
             Button(
                 action: { trek.isLiked.toggle()
-                    print(trek.isLiked)
+                    print("\(trek.name) en favoris : \(trek.isLiked)")
                 }) {
                     
                     if trek.isLiked {
