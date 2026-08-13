@@ -31,12 +31,14 @@ struct TrekDetailSections: View {
             Spacer(minLength: Styles.detailBottomPadding)
             
         }
+        .foregroundStyle(Styles.textForeground)
         
     }
 }
 
 fileprivate struct Styles {
     
+    static let textForeground = AppColor.Label.primary
     static let detailBottomPadding = AppToken.Primitive.padding20
     
 }

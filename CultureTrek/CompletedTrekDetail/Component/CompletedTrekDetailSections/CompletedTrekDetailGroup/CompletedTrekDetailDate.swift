@@ -30,6 +30,7 @@ struct CompletedTrekDetailDate: View {
                 
                 Text("Date indisponible")
                     .font(.spaceGrotesk(size: Styles.detailFontSize, weight: .medium))
+                    .foregroundStyle(Styles.detailForeground)
                 
             }
         
