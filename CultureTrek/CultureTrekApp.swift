@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct CultureTrekApp: App {
-    let trekStore = TrekStore()
+    let trekStore = TrekStore(treks: Trek.liveDemoExamples)
     let appStore = AppStore()
 
     var body: some Scene {

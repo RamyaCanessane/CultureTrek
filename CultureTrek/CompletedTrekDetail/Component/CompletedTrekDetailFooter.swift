@@ -23,6 +23,7 @@ struct CompletedTrekDetailFooter: View {
                 
             }
             .buttonStyle(NeubrutProminentButtonStyle(kind: .primary, icon: nil, isFullWidth: true))
+            .disabled(true)
             
             Button("Quiz") {
                 

@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct CompletedTrekDetailBadge: View {
     
     let trek : Trek
     
     let title : String = "Badges obtenus"
+    
+    @State private var selectedBadge : Badge?
     
     var body: some View {
         
@@ -27,6 +30,9 @@ struct CompletedTrekDetailBadge: View {
                             badge: badge.icon,
                             name: badge.name
                         )
+                        .onTapGesture {
+                            selectedBadge = badge
+                        }
                         
                     }
                     
@@ -41,6 +47,14 @@ struct CompletedTrekDetailBadge: View {
             }
             .padding(.top, Styles.badgeInfoPaddingTop)
             
+        }
+        .popup(item: $selectedBadge) { badge in
+            BadgePopupView(badge: badge)
+        } customize: {
+            $0
+                .closeOnTap(true)
+                .closeOnTapOutside(true)
+                .backgroundColor(Color.black.opacity(0.32))
         }
         
         

@@ -35,15 +35,23 @@ struct DiscoverSceneInternal: View {
                 
                 VStack {
                     
-                    HeroTrekTitle(
-                        trekTitle: vm.heroTrek.name,
-                        trekCity: vm.heroTrek.city,
-                        trekDepartment: vm.heroTrek.department,
-                        trekRegion: vm.heroTrek.region,
-                        trekPicture: vm.heroTrek.picture,
-                        sectionTag: heroTitle
-                    )
-                    
+                    NavigationLink {
+                        
+                        TrekDetailScene(trek: vm.heroTrek)
+                        
+                    } label: {
+                        
+                        HeroTrekTitle(
+                            trekTitle: vm.heroTrek.name,
+                            trekCity: vm.heroTrek.city,
+                            trekDepartment: vm.heroTrek.department,
+                            trekRegion: vm.heroTrek.region,
+                            trekPicture: vm.heroTrek.picture,
+                            sectionTag: heroTitle
+                        )
+                        
+                    }
+
                     VStack(spacing: Styles.sectionSpacing){
                         
                         ForEach(vm.sections) { section in

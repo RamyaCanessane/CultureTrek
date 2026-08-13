@@ -28,7 +28,9 @@ final class DiscoverViewModel {
 
     var sections : [TrekSection] = []
     
-    var heroTrek : Trek = Trek.example
+    var heroTrek : Trek {
+        store.treks.first{ $0.name == "Les Hauteurs de Belleville" } ?? Trek.example
+    }
    
     //Sortie pour affichage
     var user : User = User.example

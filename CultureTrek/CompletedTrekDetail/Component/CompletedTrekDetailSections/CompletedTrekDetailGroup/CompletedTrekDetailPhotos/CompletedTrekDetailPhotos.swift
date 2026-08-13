@@ -13,6 +13,17 @@ struct CompletedTrekDetailPhotos: View {
     
     let title : String = "Photos"
     
+    @State private var selectedImage : ImagePreviewData?
+    
+    fileprivate struct ImagePreviewData : Identifiable {
+        let id = UUID()
+        
+        let images : [UIImage]
+        
+        let index : Int
+        
+    }
+    
     var body: some View {
         
         SceneDetailGroup(title: title) {
@@ -21,9 +32,15 @@ struct CompletedTrekDetailPhotos: View {
                 
                 if let hasPhoto = trek.completion?.photos {
                     
-                    ForEach(hasPhoto, id: \.self){ photo in
+                    ForEach(hasPhoto.enumerated(), id: \.offset){ item in
                         
-                        SinglePhotoCompletedDetail(photo: photo.image, order: photo.riddleOrder)
+                        SinglePhotoCompletedDetail(
+                            photo: item.element.image,
+                            order: item.element.riddleOrder
+                        )
+                            .onTapGesture {
+                                selectedImage = .init(images: hasPhoto.map{ $0.image}, index: item.offset)
+                            }
                         
                     }
                     
@@ -38,6 +55,10 @@ struct CompletedTrekDetailPhotos: View {
             }
             .padding(.top, Styles.photoPaddingTop)
             
+        }
+        .fullScreenCover(item: $selectedImage) { data in
+            ImageViewer(images: data.images,
+                        initialImageIndex: data.index)
         }
         
         

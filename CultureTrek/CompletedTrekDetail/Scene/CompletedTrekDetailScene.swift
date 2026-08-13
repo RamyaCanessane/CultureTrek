@@ -57,14 +57,11 @@ struct CompletedTrekDetailScene: View {
                 showMapFullScreen: $showMapFullScreen
             )
         }
-        .fullScreenCover(isPresented: $showRiddleFullScreen) {
-            
-        }
         .fullScreenCover(isPresented: $showQuizFullScreen) {
-            
+            QuizSolutionScene(questions: trek.quizQuestions)
         }
         .fullScreenCover(isPresented: $showMapFullScreen) {
-            
+            TrekPathScene(riddles: trek.riddles, hasLastRiddle: true)
         }
         
     }
@@ -82,5 +79,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    CompletedTrekDetailScene(trek: Trek.example)
+    CompletedTrekDetailScene(trek: Trek.liveDemoHistoryExamples.first!)
 }
