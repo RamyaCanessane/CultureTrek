@@ -10,6 +10,7 @@ import Foundation
 @Observable
 class QuizViewModel {
     let questions: [QuizQuestion]
+    let trekMode: Trek.Mode
     var currentIndex: Int = 0
     var selectedAnswer: QuizQuestion.Answer? = nil
     var isGoodPopupPresented: Bool = false
@@ -20,8 +21,9 @@ class QuizViewModel {
     
     let pointsForGoodAnswer: UInt = 30 // TODO: choisir le nombre de points obtenus pour chaque question
 
-    init(questions: [QuizQuestion]) {
+    init(questions: [QuizQuestion], trekMode: Trek.Mode) {
         self.questions = questions
+        self.trekMode = trekMode
         self.answers = Array(repeating: nil, count: questions.count)
     }
     

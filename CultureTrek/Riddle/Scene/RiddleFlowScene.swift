@@ -76,7 +76,8 @@ struct RiddleFlowScene: View {
                              onDismiss: {
                 dismiss()
             }) {
-                QuizScene(questions: vm.getQuizQuestions())
+                QuizScene(questions: vm.getQuizQuestions(),
+                          trekMode: vm.trekMode)
             }
             .task(id: vm.selectedPhotoItem) {
                 if let data = try? await vm.selectedPhotoItem?.loadTransferable(type: Data.self) {

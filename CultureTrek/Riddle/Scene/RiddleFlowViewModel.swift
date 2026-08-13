@@ -21,7 +21,7 @@ final class RiddleFlowViewModel {
     
     private var isTrekSettingsPresented: Bool
     private let estimatedTrekDuration: Duration
-    private var trekMode: Trek.Mode
+    var trekMode: Trek.Mode
     private var trekPlayFormat: Trek.PlayFormat
     private var trekIsDownloaded: Bool
     

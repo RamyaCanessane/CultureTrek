@@ -101,6 +101,6 @@ struct FinishedQuizScene: View {
 }
 
 #Preview {
-    FinishedQuizScene(vm: QuizViewModel(questions: QuizQuestion.examples),
+    FinishedQuizScene(vm: QuizViewModel(questions: QuizQuestion.examples, trekMode: Trek.Mode.ranked),
                       user: .example)
 }

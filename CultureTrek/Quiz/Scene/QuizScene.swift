@@ -14,8 +14,9 @@ struct QuizScene: View {
     @Environment(AppStore.self) private var appStore
     @Environment(\.dismiss) private var dismiss
     
-    init(questions: [QuizQuestion]) {
-        self._vm = State(initialValue: .init(questions: questions))
+    init(questions: [QuizQuestion], trekMode: Trek.Mode) {
+        self._vm = State(initialValue: .init(questions: questions,
+                                             trekMode: trekMode))
     }
     
     var body: some View {
@@ -128,7 +129,7 @@ struct QuizScene: View {
 }
 
 #Preview() {
-    QuizScene(questions: QuizQuestion.examples)
+    QuizScene(questions: QuizQuestion.examples, trekMode: Trek.Mode.ranked)
         .environment(AppStore(user: .example))
 }
 
