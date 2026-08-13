@@ -14,21 +14,29 @@ struct ProfileCard: View {
     let initials: String
     let points: UInt
     
+    
     var body: some View {
         HStack(spacing: 16) {
             ProfileAvatarCard(initials: initials)
+
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 1) {
                     Text(firstName)
                         .font(.spaceGrotesk(size: 35, weight: .bold))
+                        .minimumScaleFactor(0.6)
                     Text(lastName)
                         .font(.spaceGrotesk(size: 20, weight: .medium))
+                        .minimumScaleFactor(0.6)
+                        .textCase(.uppercase)
                 }
             
-                ProfileCurrentXPPointsCard(currentPoints: points)
+                ProfileCurrentXPPoints(currentPoints: points)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
         }
         .padding(16)
+        .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: AppToken.cornerRadius)
                 .fill(AppColor.accentNeutral)
