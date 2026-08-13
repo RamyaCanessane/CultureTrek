@@ -56,7 +56,7 @@ final class DiscoverViewModel {
     
     var marne : [Trek] {
         store.treks
-            .filter({ $0.region.lowercased().contains("Marne".lowercased()) })
+            .filter({ $0.city.lowercased().contains("Marne".lowercased()) })
     }
     
     //Intention
