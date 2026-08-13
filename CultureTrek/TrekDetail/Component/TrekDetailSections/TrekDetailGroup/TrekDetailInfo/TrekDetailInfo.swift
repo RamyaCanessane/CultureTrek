@@ -49,7 +49,7 @@ struct TrekDetailInfo: View {
 
 fileprivate struct Styles {
     
-    static let infoSpacing = AppToken.Primitive.padding6
+    static let infoSpacing = AppToken.Primitive.spacing4
     
 }
 

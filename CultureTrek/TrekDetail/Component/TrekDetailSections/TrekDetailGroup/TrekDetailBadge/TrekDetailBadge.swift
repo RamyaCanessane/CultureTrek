@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct TrekDetailBadge: View {
     
     let trek : Trek
     
-    let title : String = "Badges à obtenir"
+    let title : String
+    
+    @State private var selectedBadge : Badge?
     
     var body: some View {
         
@@ -19,18 +22,29 @@ struct TrekDetailBadge: View {
             
             HStack(alignment: .top, spacing: Styles.badgeInfoSpacing) {
                 
-                ForEach(trek.badgesToUnlock){ badge in
+                ForEach(trek.completion?.unlockedBadges ?? trek.badgesToUnlock){ badge in
                     
                     SingleBadgeContent(
                         badge: badge.icon,
                         name: badge.name
                     )
+                    .onTapGesture {
+                        selectedBadge = badge
+                    }
                     
                 }
                 
             }
             .padding(.top, Styles.badgeInfoPaddingTop)
             
+        }
+        .popup(item: $selectedBadge) { badge in
+            BadgePopupView(obtained: trek.isCompleted, badge: badge)
+        } customize: {
+            $0
+                .closeOnTap(true)
+                .closeOnTapOutside(true)
+                .backgroundColor(Color.black.opacity(0.32))
         }
         
         
@@ -45,5 +59,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    TrekDetailBadge(trek: Trek.example)
+    TrekDetailBadge(trek: Trek.example, title: "Badges à obtenir")
 }

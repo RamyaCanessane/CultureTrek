@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct BadgePopupView: View {
+    
+    let obtained : Bool
+    
     let badge: Badge
     
     @State private var isFirstPresented: Bool = false
@@ -27,6 +30,7 @@ struct BadgePopupView: View {
                             .transition(.blurReplace.animation(.smooth))
                     }
                 }
+                .grayscale(obtained ? 0 : 1)
             
             nameView
                 .opacity(0)
@@ -92,6 +96,6 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    BadgePopupView(badge: .init(icon: AppImage.badgeTest,
+    BadgePopupView(obtained: true, badge: .init(icon: AppImage.badgeTest,
                                 name: "Aut Recusandae Dicta"))
 }

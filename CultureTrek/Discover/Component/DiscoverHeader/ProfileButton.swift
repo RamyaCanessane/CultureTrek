@@ -9,12 +9,16 @@ import SwiftUI
 
 struct ProfileButton: View {
     
+    @Binding var showProfileScreen : Bool
+    
     let currentUser : User
     
     var body: some View {
         
         Button {
-            //Affiche la vue de profil
+            
+            showProfileScreen = true
+            
         } label: {
             RoundedRectangle(cornerRadius: Styles.buttonCornerRadius)
                 .fill(Styles.buttonBackground)
@@ -43,5 +47,5 @@ fileprivate struct Styles {
 }
 
 #Preview {
-    ProfileButton(currentUser: User.example)
+    ProfileButton(showProfileScreen: .constant(false), currentUser: User.example)
 }

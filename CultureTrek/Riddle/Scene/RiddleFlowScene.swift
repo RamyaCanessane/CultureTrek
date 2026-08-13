@@ -54,7 +54,7 @@ struct RiddleFlowScene: View {
                     .backgroundColor(Styles.popupBackground)
             }
             .popup(item: $vm.badgeForPopup) { badge in
-                BadgePopupView(badge: badge)
+                BadgePopupView(obtained: true, badge: badge)
             } customize: {
                 $0
                     .closeOnTap(true)

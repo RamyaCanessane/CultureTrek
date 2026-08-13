@@ -34,7 +34,7 @@ fileprivate struct Styles {
     static let labelIconSpacing = AppToken.Primitive.spacing0_5
     static let labelForeground = AppColor.Label.primary
     
-    static let labelFontSize = CGFloat(40)
+    static let labelFontSize = CGFloat(32)
     
 }
 

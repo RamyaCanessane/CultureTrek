@@ -25,12 +25,20 @@ struct TrekDetailSections: View {
             
             TrekDetailGTK(goodToKnow: trek.goodToKnow)
             
-            TrekDetailBadge(trek: trek)
-                .grayscale(1)
+            TrekDetailBadge(trek: trek, title: trek.isCompleted ? "Badges obtenus" : "Badges à obtenir")
+                .grayscale(trek.isCompleted ? 0 : 1)
+            
+            Spacer(minLength: Styles.detailBottomPadding)
             
         }
         
     }
+}
+
+fileprivate struct Styles {
+    
+    static let detailBottomPadding = AppToken.Primitive.padding20
+    
 }
 
 #Preview {

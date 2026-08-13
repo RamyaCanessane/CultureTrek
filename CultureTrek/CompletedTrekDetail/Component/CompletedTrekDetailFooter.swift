@@ -42,13 +42,15 @@ struct CompletedTrekDetailFooter: View {
             .buttonStyle(.neubrutIcon(kind: .secondary))
             
         }
+        .padding(Styles.footerPadding)
         
     }
 }
 
 fileprivate struct Styles {
     
-    static let footerSpacing = AppToken.Primitive.spacing5
+    static let footerSpacing = AppToken.Primitive.spacing3
+    static let footerPadding = AppToken.Primitive.padding4
     
 }
 
