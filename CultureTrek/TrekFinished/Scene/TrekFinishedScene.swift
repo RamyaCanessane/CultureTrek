@@ -21,11 +21,11 @@ struct TrekFinishedScene: View {
     let onPressSkipQuiz: () -> Void
     let onPressPhotoItem: ([RiddlePhoto], Int) -> Void
     let onPressBadgeItem: (Badge) -> Void
-    
-    private let user: User
+
     private let progressBarData: LevelCalculator.ProgressBarData?
     
-    init(duration: Duration?,
+    init(userXPPoints: UInt,
+         duration: Duration?,
          points: UInt?,
          rank: (current: UInt, total: UInt)?,
          photos: [RiddlePhoto],
@@ -43,15 +43,8 @@ struct TrekFinishedScene: View {
         self.badges = badges
         self.trekMode = trekMode
         
-        #warning("Utiliser le vrai utilisateur")
-        self.user = .init(coordinate: CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522), // Hôtel de Ville de Paris
-                          currentXPPoints: 1100,
-                          firstName: "Nanashi",
-                          lastName: "Yamada",
-                          picture: Image(.riddleTestPicture))
-        
         if let points {
-            progressBarData = LevelCalculator.getProgressBarData(currentXPPoints: user.currentXPPoints,
+            progressBarData = LevelCalculator.getProgressBarData(currentXPPoints: userXPPoints,
                                                                  newXPPoints: points)
         } else {
             progressBarData = nil
@@ -140,7 +133,8 @@ fileprivate enum Styles {
 }
 
 #Preview {
-    TrekFinishedScene(duration: Duration.seconds(2 * 3600 + 23 * 60 + 45),
+    TrekFinishedScene(userXPPoints: 1100,
+                      duration: Duration.seconds(2 * 3600 + 23 * 60 + 45),
                       points: 220,
                       rank: (23, 302),
                       photos: [

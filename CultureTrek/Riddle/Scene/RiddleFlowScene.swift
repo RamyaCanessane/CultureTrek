@@ -79,6 +79,7 @@ struct RiddleFlowScene: View {
             }) {
                 QuizScene(questions: vm.getQuizQuestions(),
                           trekMode: vm.trekMode,
+                          riddlesPoints: vm.calculatePoints(),
                           onCompletePoints: vm.completeQuiz)
             }
             .task(id: vm.selectedPhotoItem) {

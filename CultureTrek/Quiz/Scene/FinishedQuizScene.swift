@@ -17,20 +17,25 @@ struct FinishedQuizScene: View {
     @State private var progressBarData: LevelCalculator.ProgressBarData?
     
     private let user: User
+    private let riddlesPoints: UInt
     private let onCompletePoints: (UInt) -> Void
     
     init(vm: QuizViewModel,
          user: User,
+         riddlesPoints: UInt,
          onCompletePoints: @escaping (UInt) -> Void) {
         self.vm = vm
         self.user = user
+        self.riddlesPoints = riddlesPoints
         self.onCompletePoints = onCompletePoints
 
         let points = vm.getFinishedPoints()
         
         print("QuizFinished, currentPoints = \(user.currentXPPoints), earned: \(points)")
         
-        self._progressBarData = State(initialValue: LevelCalculator.getProgressBarData(currentXPPoints: user.currentXPPoints, newXPPoints: points))
+        self._progressBarData = State(initialValue: LevelCalculator
+            .getProgressBarData(currentXPPoints: user.currentXPPoints + riddlesPoints,
+                                newXPPoints: points))
     }
     
     var body: some View {
@@ -92,12 +97,8 @@ struct FinishedQuizScene: View {
             Button("Fermer le quiz") {
                 let points = vm.getFinishedPoints()
                 
-                user.addXPPoints(points)
-                
                 onCompletePoints(points)
-                
-                print(user)
-                
+
                 dismiss()
             }
             .buttonStyle(.neubrutProminent(kind: .neutral, icon: nil, isFullWidth: true))
@@ -111,5 +112,6 @@ struct FinishedQuizScene: View {
 #Preview {
     FinishedQuizScene(vm: QuizViewModel(questions: QuizQuestion.examples, trekMode: Trek.Mode.ranked),
                       user: .example,
+                      riddlesPoints: 425,
                       onCompletePoints: { _ in })
 }

@@ -19,7 +19,7 @@ class QuizViewModel {
     var isFinishedQuizPresented: Bool = false
     var goodQuestionTexts: Set<String> = []
     
-    let pointsForGoodAnswer: UInt = 30 // TODO: choisir le nombre de points obtenus pour chaque question
+    let pointsForGoodAnswer: UInt = 60 // TODO: choisir le nombre de points obtenus pour chaque question
 
     init(questions: [QuizQuestion], trekMode: Trek.Mode) {
         self.questions = questions

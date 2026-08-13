@@ -121,7 +121,8 @@ final class RiddleFlowViewModel {
             
             let badges = getUnlockedBadges()
             
-            return TrekFinishedScene(duration: duration,
+            return TrekFinishedScene(userXPPoints: sourceUser.currentXPPoints,
+                                     duration: duration,
                                      points: points,
                                      rank: rank,
                                      photos: photos,
@@ -414,7 +415,7 @@ final class RiddleFlowViewModel {
         }
     }
     
-    private func calculatePoints() -> UInt {
+    func calculatePoints() -> UInt {
         riddles.map(\.validationPoints).reduce(0, +) + 0 // TODO: Ajouter des points en se basant sur la durée
     }
     

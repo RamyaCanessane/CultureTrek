@@ -14,17 +14,17 @@ struct QuizScene: View {
     @Environment(AppStore.self) private var appStore
     @Environment(\.dismiss) private var dismiss
     
+    private let riddlesPoints: UInt
     private let onCompletePoints: (UInt) -> Void
     
     init(questions: [QuizQuestion],
          trekMode: Trek.Mode,
+         riddlesPoints: UInt,
          onCompletePoints: @escaping (UInt) -> Void) {
-        print("--- Init of QuizScene")
-        
         self._vm = State(initialValue: .init(questions: questions,
                                              trekMode: trekMode))
         self.onCompletePoints = onCompletePoints
-        print("--- /END Init of QuizScene")
+        self.riddlesPoints = riddlesPoints
     }
     
     var body: some View {
@@ -78,6 +78,7 @@ struct QuizScene: View {
         }) {
             FinishedQuizScene(vm: vm,
                               user: appStore.user,
+                              riddlesPoints: riddlesPoints,
                               onCompletePoints: onCompletePoints)
         }
         .popup(isPresented: $vm.isGoodPopupPresented) {
@@ -144,6 +145,7 @@ struct QuizScene: View {
 #Preview() {
     QuizScene(questions: trekU.quizQuestions,//QuizQuestion.examples,
               trekMode: Trek.Mode.ranked,
+              riddlesPoints: 425,
               onCompletePoints: { _ in })
         .environment(AppStore(user: .example))
 }
