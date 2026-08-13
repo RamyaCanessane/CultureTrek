@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ExplanationAnswerCard: View {
-//    let explanation = QuizQuestion.examples.badAnswerExplanation
     let explanation: String
+    
     var body: some View {
         Text(explanation)
             .frame(maxWidth: .infinity, alignment: .leading)

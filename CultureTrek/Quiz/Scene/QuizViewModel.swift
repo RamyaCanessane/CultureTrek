@@ -46,6 +46,19 @@ class QuizViewModel {
         currentIndex == questions.count - 1
     }
     
+    var customResultMessage: String {
+        switch getPercentScore() {
+        case 100:
+            return "Parfait ! Un sans-faute impressionnant !"
+        case 75..<100:
+            return "Bravo ! Très beau score !"
+        case 50..<75:
+            return "Pas mal ! Tu as assimilé l'essentiel"
+        default:
+            return "Prends le temps de consulter les réponses aux questions avec les explications"
+        }
+    }
+    
     func nextQuestion() {
         if currentIndex < questions.count - 1 {
             currentIndex += 1
@@ -86,4 +99,9 @@ class QuizViewModel {
     func getFinishedPoints() -> UInt {
         UInt(goodQuestionTexts.count) * pointsForGoodAnswer
     }
+    
+    func getPercentScore() -> Double {
+        return (Double(goodQuestionTexts.count) / Double(questions.count)) * 100
+    }
 }
+
