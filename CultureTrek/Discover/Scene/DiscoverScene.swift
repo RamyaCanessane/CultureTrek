@@ -23,6 +23,8 @@ struct DiscoverSceneInternal: View {
     
     let heroTitle : String = "En vedette aujourd'hui"
     
+    @State private var showProfileScreen = false
+    
     init(store: TrekStore) {
         self._vm = State(initialValue: .init(store: store))
     }
@@ -51,7 +53,7 @@ struct DiscoverSceneInternal: View {
                         )
                         
                     }
-
+                    
                     VStack(spacing: Styles.sectionSpacing){
                         
                         ForEach(vm.sections) { section in
@@ -66,11 +68,16 @@ struct DiscoverSceneInternal: View {
             }
             .sceneHeader("Découvrir"){
                 
-                ProfileButton(currentUser: vm.user)
+                ProfileButton(showProfileScreen: $showProfileScreen, currentUser: vm.user)
                 
             }
             .scrollIndicators(.hidden)
             .background(AppColor.Page.background)
+            .fullScreenCover(isPresented: $showProfileScreen) {
+                
+                ProfileScene(user: vm.user)
+                
+            }
         }
     }
 }
