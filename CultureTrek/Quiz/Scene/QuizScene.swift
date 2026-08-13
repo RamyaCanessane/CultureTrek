@@ -20,76 +20,75 @@ struct QuizScene: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    TitledCard(title: "Question \(vm.currentQuestion.order)", content: vm.currentQuestion.question, kind: .secondary)
-
-                    if vm.currentAnswer == nil {
-                        Spacer()
-
-                        VStack(spacing: 12) {
-                            ForEach(vm.currentQuestion.answers, id: \.self) { answer in
-                                AnswerButton(selectedAnswer: $vm.selectedAnswer, answer: answer)
-                            }
+        ScrollView {
+            VStack(spacing: 24) {
+                TitledCard(title: "Question \(vm.currentQuestion.order)", content: vm.currentQuestion.question, kind: .secondary)
+                
+                if vm.currentAnswer == nil {
+                    Spacer()
+                    
+                    VStack(spacing: 12) {
+                        ForEach(vm.currentQuestion.answers, id: \.self) { answer in
+                            AnswerButton(selectedAnswer: $vm.selectedAnswer, answer: answer)
                         }
-                    } else {
-                        if let selected = vm.currentAnswer {
-                            VStack(spacing: 24) {
-                                if let correct = vm.correctAnswer {
-                                    CorrectAnswerCard(answer: correct)
+                    }
+                } else {
+                    if let selected = vm.currentAnswer {
+                        VStack(spacing: 24) {
+                            if let correct = vm.correctAnswer {
+                                CorrectAnswerCard(answer: correct)
+                            }
+                            
+                            if selected.isGood {
+                                if let fact = vm.currentQuestion.goodAnswerFact {
+                                    TitledCard(title: "À retenir", content: fact, kind: .info)
                                 }
-                                
-                                if selected.isGood {
-                                    if let fact = vm.currentQuestion.goodAnswerFact {
-                                        TitledCard(title: "À retenir", content: fact, kind: .info)
-                                    }
-                                } else {
-                                    if let explanation = vm.currentQuestion.badAnswerExplanation {
-                                        TitledCard(title: "Explication", content: explanation, kind: .warning)
-                                    }
+                            } else {
+                                if let explanation = vm.currentQuestion.badAnswerExplanation {
+                                    TitledCard(title: "Explication", content: explanation, kind: .warning)
                                 }
                             }
                         }
                     }
                 }
-                .padding(.horizontal)
-                .padding(.top, 32)
             }
-            .background(AppColor.Page.background)
-            .scrollBounceBehavior(.basedOnSize)
-            .sceneHeader("Quiz", onDismiss: {dismiss()})
-            .sceneFooter {
-                bottomBar
-            }
-            .fullScreenCover(isPresented: $vm.isFinishedQuizPresented, onDismiss: {
-                dismiss()
-            }) {
-                FinishedQuizScene(vm: vm, user: appStore.user)
-            }
-            .popup(isPresented: $vm.isGoodPopupPresented) {
-                GoodActionPopupView(title: "Bonne réponse !",
-                                    obtainedXPPoints: vm.pointsForGoodAnswer)
-                    .padding(32)
-            } customize: {
-                $0
-                    .autohideIn(4)
-                    .closeOnTap(false)
-                    .closeOnTapOutside(false)
-                    .backgroundColor(Color.black.opacity(0.32))
-            }
-            .popup(isPresented: $vm.isBadPopupPresented) {
-                BadActionPopupView(title: "Mauvaise réponse",
-                                   content: "La bonne réponse était : \(vm.correctAnswer?.text ?? "")")
-                    .padding(32)
-            } customize: {
-                $0
-                    .autohideIn(4)
-                    .closeOnTap(false)
-                    .closeOnTapOutside(false)
-                    .backgroundColor(Color.black.opacity(0.32))
-            }
+            .padding(.horizontal)
+            .padding(.top, 32)
         }
+        .background(AppColor.Page.background)
+        .scrollBounceBehavior(.basedOnSize)
+        .sceneHeader("Quiz", onDismiss: {dismiss()})
+        .sceneFooter {
+            bottomBar
+        }
+        .fullScreenCover(isPresented: $vm.isFinishedQuizPresented, onDismiss: {
+            dismiss()
+        }) {
+            FinishedQuizScene(vm: vm, user: appStore.user)
+        }
+        .popup(isPresented: $vm.isGoodPopupPresented) {
+            GoodActionPopupView(title: "Bonne réponse !",
+                                obtainedXPPoints: vm.pointsForGoodAnswer)
+            .padding(32)
+        } customize: {
+            $0
+                .autohideIn(4)
+                .closeOnTap(false)
+                .closeOnTapOutside(false)
+                .backgroundColor(Color.black.opacity(0.32))
+        }
+        .popup(isPresented: $vm.isBadPopupPresented) {
+            BadActionPopupView(title: "Mauvaise réponse",
+                               content: "La bonne réponse était: \(vm.correctAnswer?.text ?? "")")
+            .padding(32)
+        } customize: {
+            $0
+                .autohideIn(4)
+                .closeOnTap(false)
+                .closeOnTapOutside(false)
+                .backgroundColor(Color.black.opacity(0.32))
+        }
+        
     }
     private var bottomBar: some View {
         HStack(spacing: 16) {
@@ -107,7 +106,7 @@ struct QuizScene: View {
                 ),
                 total: UInt(vm.questions.count)
             )
-                .animation(.bouncy, value: vm.currentIndex + 1)
+            .animation(.bouncy, value: vm.currentIndex + 1)
             
             let isAnswered = vm.currentAnswer != nil
             
