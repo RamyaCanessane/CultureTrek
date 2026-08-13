@@ -30,9 +30,15 @@ struct ProfileMap: View {
                 Text(initials)
                     .font(.spaceGrotesk(size: 24, weight: .bold))
                     .background(
-                        RoundedRectangle(cornerRadius: AppToken.cornerRadius)
-                            .stroke(AppColor.border, lineWidth: AppToken.borderWidth)
-                            .background(AppColor.accentPrimary)
+                        Circle()
+                            .fill(AppColor.accentPrimary)
+                            .overlay {
+                                Circle()
+                                    .stroke(
+                                        AppColor.border,
+                                        lineWidth: AppToken.borderWidth
+                                    )
+                            }
                             .frame(width: 52, height: 52)
                     )
             }

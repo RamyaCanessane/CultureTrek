@@ -34,6 +34,7 @@ struct CompletedTrekDetailDate: View {
             }
         
         }
+        .foregroundStyle(Styles.detailForeground)
         
     }
 }

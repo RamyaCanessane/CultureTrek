@@ -14,8 +14,8 @@ final class DiscoverViewModel {
     //Etat de l'écran
     var section1 : TrekSection = TrekSection.aroundUser
     var section2 : TrekSection = TrekSection.userFavorites
-    var section3 : TrekSection = TrekSection.parisSecrets
-    var section4 : TrekSection = TrekSection.alongMarne
+    var section3 : TrekSection = TrekSection.alongMarne
+    var section4 : TrekSection = TrekSection.parisSecrets
     
     //Données
     var store : TrekStore
@@ -55,8 +55,10 @@ final class DiscoverViewModel {
     }
     
     var marne : [Trek] {
-        store.treks
-            .filter({ $0.city.lowercased().contains("Marne".lowercased()) })
+        
+        let treksWithDepartment = store.treks.filter({$0.department != nil})
+        
+        return treksWithDepartment.filter({ $0.department!.lowercased().contains("Marne".lowercased()) })
     }
     
     //Intention
@@ -64,8 +66,8 @@ final class DiscoverViewModel {
 
         section1.treks = around
         section2.treks = favorites
-        section3.treks = paris
-        section4.treks = marne
+        section3.treks = marne
+        section4.treks = paris
         
         sections = [section1, section2, section3, section4]
     }

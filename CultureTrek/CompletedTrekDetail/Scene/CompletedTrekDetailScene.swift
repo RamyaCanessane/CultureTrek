@@ -28,14 +28,20 @@ struct CompletedTrekDetailScene: View {
             
             VStack(alignment: .leading, spacing: Styles.detailSectionsSpacing ){
                 
-                NeubrutTabPicker(
-                    nameFirstTab: PickerTab.summary.rawValue,
-                    nameSecondTab: PickerTab.info.rawValue,
-                    state: $state
-                )
-                    .padding(.horizontal, Styles.pickerPadding)
+                HStack{
+                    
+                    Spacer()
+                    
+                    NeubrutTabPicker(
+                        nameFirstTab: PickerTab.summary.rawValue,
+                        nameSecondTab: PickerTab.info.rawValue,
+                        state: $state
+                    )
                     .padding(.bottom, Styles.pickerBottomPadding)
-                
+                    
+                    Spacer()
+                    
+                }
                 if state == .first {
                     
                     CompletedTrekDetailSections(trek: trek)
@@ -73,7 +79,7 @@ struct CompletedTrekDetailScene: View {
 
 fileprivate struct Styles {
     
-    static let pickerPadding = AppToken.Primitive.padding20
+    static let pickerPadding = AppToken.Primitive.padding10
     static let pickerBottomPadding = -AppToken.Primitive.padding8
     
     static let detailSectionsSpacing = AppToken.Primitive.spacing8

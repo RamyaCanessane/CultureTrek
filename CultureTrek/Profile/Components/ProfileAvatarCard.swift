@@ -12,12 +12,12 @@ struct ProfileAvatarCard: View {
     
     var body: some View {
         Text(initials)
-            .font(.spaceGrotesk(size: 60, weight: .bold))
+            .font(.spaceGrotesk(size: 100, weight: .bold))
+            .textCase(.uppercase)
+            .minimumScaleFactor(0.2)
             .foregroundStyle(AppColor.Label.primary)
-            .frame(height: 115)
-            .frame(minWidth: 100)
-            .padding(.vertical, 8)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 8)
+            .frame(width: 130, height: 130)
             .background(
                 RoundedRectangle(cornerRadius: AppToken.cornerRadius)
                     .fill(AppColor.accentPrimary)
@@ -28,5 +28,5 @@ struct ProfileAvatarCard: View {
 }
 
 #Preview {
-    ProfileAvatarCard(initials: "RC")
+    ProfileAvatarCard(initials: "zm")
 }
