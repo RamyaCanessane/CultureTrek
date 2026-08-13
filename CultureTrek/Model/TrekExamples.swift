@@ -2285,17 +2285,17 @@ fileprivate let trekTresorsLagny = Trek(
 // MARK: - Golden Trek
 
 fileprivate let badgePanorama = Badge(
-    icon: AppImage.Badge.distanceLv1.image,
+    icon: Image("golden_panorama"),
     name: "Panorama Conquis"
 )
 
 fileprivate let badgeStreetArt = Badge(
-    icon: AppImage.Badge.durationLv2.image,
+    icon: Image("golden_street_art"),
     name: "Œil de Street-Artiste"
 )
 
 fileprivate let badgeVoixDeBelleville = Badge(
-    icon: AppImage.Badge.paname.image,
+    icon: Image("golden_voice_of_belleville"),
     name: "Voix de Belleville"
 )
 

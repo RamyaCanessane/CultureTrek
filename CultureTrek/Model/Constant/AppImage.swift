@@ -138,13 +138,13 @@ enum AppImage {
             case .distanceLv1:
                 "distanceLv1"
             case .distanceLv2:
-                "distanceLv2"
+                "trek_expert"	
             case .distanceLv3:
                 "distanceLv3"
             case .distanceLv4:
                 "distanceLv4"
             case .distanceLv5:
-                "distanceLv5"
+                "trek_expert"
             case .durationLv1:
                 "durationLv1"
             case .durationLv2:
@@ -154,7 +154,7 @@ enum AppImage {
             case .durationLv4:
                 "durationLv4"
             case .durationLv5:
-                "durationLv5"
+                "record_time"
             case .paname:
                 "paname"
             }

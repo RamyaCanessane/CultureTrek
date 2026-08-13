@@ -38,7 +38,7 @@ extension Badge {
                              name: "Au fil de l'eau")
     static let climber = Badge(icon: AppImage.badgeTest,
                                name: "Grimpeur")
-    static let marathonRunner = Badge(icon: AppImage.Badge.distanceLv1.image,
+    static let marathonRunner = Badge(icon: AppImage.Badge.distanceLv5.image,
                                       name: "Marathonien")
     static let investigator = Badge(icon: AppImage.badgeTest,
                                     name: "L'Enquêteur")
