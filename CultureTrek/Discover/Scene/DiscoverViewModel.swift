@@ -12,10 +12,10 @@ import SwiftUI
 final class DiscoverViewModel {
     
     //Etat de l'écran
-    var section1 : TrekSection = TrekSection(name: TrekSection.aroundUser.name, icon: TrekSection.aroundUser.icon, treks: [])
-    var section2 : TrekSection = TrekSection(name: TrekSection.userFavorites.name, icon: TrekSection.userFavorites.icon, treks: [])
-    var section3 : TrekSection = TrekSection(name: TrekSection.parisSecrets.name, icon: TrekSection.parisSecrets.icon, treks: [])
-    var section4 : TrekSection = TrekSection(name: TrekSection.alongMarne.name, icon: TrekSection.alongMarne.icon, treks: [])
+    var section1 : TrekSection = TrekSection.aroundUser
+    var section2 : TrekSection = TrekSection.userFavorites
+    var section3 : TrekSection = TrekSection.parisSecrets
+    var section4 : TrekSection = TrekSection.alongMarne
     
     //Données
     var store : TrekStore
@@ -33,7 +33,7 @@ final class DiscoverViewModel {
     }
    
     //Sortie pour affichage
-    var user : User = User.example
+    var user : User = User.liveDemoExample
 
     var around : [Trek] {
         store.treks.filter(

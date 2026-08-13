@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct TrekSection : Identifiable {
+@Observable
+final class TrekSection : Identifiable {
     let id = UUID()
     
     let name : String
     let icon : Image?
-    var treks : [Trek] = []
+    var treks : [Trek]
+    
+    init(name: String, icon: Image?, treks: [Trek] = []) {
+        self.name = name
+        self.icon = icon
+        self.treks = treks
+    }
     
 }
 
