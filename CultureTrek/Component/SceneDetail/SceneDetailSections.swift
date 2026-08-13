@@ -51,7 +51,7 @@ fileprivate struct Styles {
             
             TrekDetailGTK(goodToKnow: Trek.example.goodToKnow)
             
-        TrekDetailBadge(trek: Trek.example)
+        TrekDetailBadge(trek: Trek.example, title: "Badges à obtenir")
                 .grayscale(1)
     }
 }

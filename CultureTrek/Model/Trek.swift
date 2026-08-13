@@ -272,14 +272,12 @@ extension Trek {
     
     func durationToString() -> String {
         
-        let autoLocale = Locale.autoupdatingCurrent
+        var formatted : String
         
-        let autoLocaleFormat = Duration.TimeFormatStyle(pattern: .hourMinute, locale: Locale(identifier: autoLocale.identifier)).format(self.duration)
+        formatted = self.duration.formatted(.units(allowed: [.hours, .minutes],
+                                                   width: .narrow))
         
-        let autoUnits = Duration.UnitsFormatStyle(allowedUnits: [.hours], width: .abbreviated).format(self.duration)
-        
-        return autoLocaleFormat.replacingOccurrences(of: ":", with: "\(autoUnits)")
-        
+        return formatted
     }
     
     func completionDurationToString() -> String {

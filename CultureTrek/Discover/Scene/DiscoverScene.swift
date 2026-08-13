@@ -64,11 +64,11 @@ struct DiscoverSceneInternal: View {
                     
                 }
             }
-            .safeAreaBar(edge: .top, content: {
+            .sceneHeader("Découvrir"){
                 
-                DiscoverHeader(user : vm.user)
+                ProfileButton(currentUser: vm.user)
                 
-            })
+            }
             .scrollIndicators(.hidden)
             .background(AppColor.Page.background)
         }
@@ -83,6 +83,11 @@ fileprivate struct Styles {
 }
 
 #Preview {
+    
+    let trekStore: TrekStore = .init(treks: Trek.liveDemoExamples)
+    let appStore: AppStore = .init(user: User.liveDemoExample)
+    
     DiscoverScene()
-        .environment(TrekStore())
+        .environment(trekStore)
+        .environment(appStore)
 }

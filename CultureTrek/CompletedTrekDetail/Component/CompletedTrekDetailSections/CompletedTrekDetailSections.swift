@@ -21,12 +21,21 @@ struct CompletedTrekDetailSections: View {
             
             CompletedTrekDetailPhotos(trek: trek)
             
-            CompletedTrekDetailBadge(trek: trek)
+            TrekDetailBadge(trek: trek, title: "Badges obtenus")
             
+            Spacer(minLength: Styles.detailBottomPadding)
         }
         
     }
 }
+
+
+fileprivate struct Styles {
+    
+    static let detailBottomPadding = AppToken.Primitive.padding20
+    
+}
+
 
 #Preview {
     CompletedTrekDetailSections(trek: Trek.example)

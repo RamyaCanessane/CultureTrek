@@ -39,16 +39,20 @@ struct CompletedTrekDetailScene: View {
                 if state == .first {
                     
                     CompletedTrekDetailSections(trek: trek)
+                        .padding(.bottom, Styles.detailBottomPadding)
                     
                 } else {
                     
                     CompletedTrekDetailSectionsInfo(trek: trek)
+                        .padding(.bottom, Styles.detailBottomPadding)
                     
                 }
+                
                 
             }
             .padding(.vertical, Styles.detailSectionsVerticalPadding)
             .neubrutTabViewVisibility(.hidden)
+
         }
         .sceneFooter {
             CompletedTrekDetailFooter(
@@ -75,6 +79,7 @@ fileprivate struct Styles {
     static let detailSectionsSpacing = AppToken.Primitive.spacing8
     static let detailSectionsVerticalPadding = AppToken.Primitive.spacing8
     static let detailSectionsHorizontalPadding = AppToken.Primitive.spacing4
+    static let detailBottomPadding = AppToken.Primitive.padding6
     
 }
 

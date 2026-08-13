@@ -40,6 +40,7 @@ struct TrekDetailUncompletedScene: View {
             RiddleFlowScene(trek: trek,
                             user: appStore.user)
         }
+        .neubrutTabViewVisibility(.hidden)
         
     }
 }

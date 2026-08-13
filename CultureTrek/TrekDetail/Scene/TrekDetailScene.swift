@@ -27,5 +27,10 @@ struct TrekDetailScene: View {
 }
 
 #Preview {
-    TrekDetailScene(trek: Trek.example)
+    let trekStore: TrekStore = .init(treks: Trek.liveDemoExamples)
+    let appStore: AppStore = .init(user: User.liveDemoExample)
+    
+    TrekDetailScene(trek: trekStore.treks.first!)
+        .environment(trekStore)
+        .environment(appStore)
 }
