@@ -10,8 +10,7 @@ import SwiftUI
 struct TrekDetailScene: View {
     
     let trek : Trek
-    @State var trekIsCompleted: Bool = true
-    
+
     @Environment(TrekStore.self) private var trekStore
     
     var body: some View {
@@ -23,11 +22,8 @@ struct TrekDetailScene: View {
                 TrekDetailUncompletedScene(trek: trek)
             }
         }
-        .onAppear {
-            trekIsCompleted = trek.isCompleted
-        }
         .onDisappear {
-            if trek.isCompleted && !trekIsCompleted {
+            if trek.isCompleted {
                 trekStore.addTrekToHistory(trek)
             }
         }
